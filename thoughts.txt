@@ -1,3 +1,42 @@
+zrobic funkcje 
+
+const handle = (arg) => () => {
+    setColor(arg);
+} 
+
+// return selectedDays.reduce((obj: any, item) => (obj[item.day] = [item.color], obj), {}); //theSame
+// return selectedDays.reduce((obj: any, item) => { obj[item.day] = [item.color]; return obj }, {}); //theSame
+
+.reduce((obj, item) => (obj[item.day] = item.color, obj), {}) posiada
+{} initial value ktory jest wartoscia poczatkowa accumulatora(obj)
+wartosci sa dodawane do accumulatora(obj)
+tyle i jest itemow w array tyle razy jest odpalana funkcja(iteruje wszystkie obiekty item)
+
+
+//1 Jesli kolor jest zaznaczony to zwrocony obiekt jest posortowany i sa tylko wartosci red 
+// let selectedDays = {
+//   '1': '--red',
+//   '2': '--red',
+//   '4': '--red'
+// }
+
+
+//2 Jesli kolor nie jest zaznaczony to obliczana dla kazdego dnia jest dlugosc tablicy i dodawana klasa
+// let selectedDays = {
+//   '1': [
+//     '--blue',
+//   ],
+//   '2': [
+//     '--red',
+//   ],
+//   '4': [
+//     '--red',
+//     '--blue'
+//   ]
+// }
+//day 1 className = tab[1].length
+
+
 //JAK JEST WYBRANY KOLOR ZWRACANE SA Z BACKENDU TYLKO TE WARTOSCI DLA DANEGO KOLORU
 //grida walnac
 
@@ -33,9 +72,11 @@
 //   { day: '2', color: '--red' },
 //   { day: '3', color: '' },
 //   { day: '4', color: '--red --blue' }
-// ] //ewentualnie moge tak przechowywac w api i sam parsowac
+// ] mozna tak przechowywac, ale trzeba parsowac tak stworzone obiekty
+
 //lub
-// let selectedDays = [
+
+// let selectedDays = [ //wazna jest kolejnosc (po index wybierane po)
 //   '--blue',
 //   '--red',
 //   '',
@@ -63,3 +104,9 @@
 //     '--blue'
 //   ]
 // }
+
+//jak jest wybrany kolor to dane sa parsowane inaczej 
+//jedne przypodzadkowuja kolory do tablicy i przenoszenia na klasy 
+//drugi zlicza ilosc stringow w tablicy kolorow
+
+ALGORYTMAMI SORTOWAC LISTE LUB JA ZAPISYWAC

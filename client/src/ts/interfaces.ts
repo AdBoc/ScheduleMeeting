@@ -9,6 +9,14 @@ export interface SelectedDay {
 
 export interface SelectedDays extends Array<SelectedDay> { }
 
-// interface LooseObject {
-//   [key: string]: any
-// }
+export interface LooseObject {
+    [key: string]: any
+}
+
+export interface FilteredByColor {
+    day?: string;
+}
+
+export interface FilteredAllColors {
+    day?: string[]
+}

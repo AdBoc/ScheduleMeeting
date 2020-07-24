@@ -17,20 +17,6 @@
     border: 0;
 }
 
-.--blue {
-    border: 1px solid blue;
-    /* background-color: blue; */
-}
-
-.--red {
-    border: 1px solid red;
-    /* background-color: red; */
-}
-
-.--yellow {
-    border: 1px solid yellow;
-    /* background-color: yellow; */
-}
 /* .calendarApp {
     margin: 0 auto;
     display: flex;
@@ -78,4 +64,61 @@
 }
 .potek::after {
     background-color: pink;
+}
+
+.--blue {
+    border: 1px solid blue;
+    background-color: rgba(0, 0, 255, 0.13);
+}
+
+.--red {
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, 0.13);
+}
+
+.--yellow {
+    border: 1px solid yellow;
+    background-color: rgba(255, 255, 0, 0.13);
+}
+
+.--green {
+    border: 1px solid green;
+    background-color: rgba(0, 128, 0, 0.13);
+}
+.--brown {
+    border: 1px solid brown;
+    background-color: rgba(165, 42, 42, 0.13);
+}
+.--purple {
+    border: 1px solid purple;
+    background-color: rgba(128, 0, 128, 0.13);
+}
+.--pink {
+    border: 1px solid pink;
+    background-color: rgba(255, 192, 203, 0.13);
+}
+
+.count0 {
+    background-color: white;
+}
+.count1 {
+    background-color: rgb(255, 153, 0, 0.15);
+}
+.count2 {
+    background-color: rgb(255, 153, 0, 0.2);
+}
+.count3 {
+    background-color: rgb(255, 153, 0, 0.35);
+}
+.count4 {
+    background-color: rgb(255, 153, 0, 0.5);
+}
+.count5 {
+    background-color: rgb(255, 153, 0, 0.65);
+}
+.count6 {
+    background-color: rgba(255, 153, 0, 0.825);
+}
+.count7 {
+    background-color: rgb(255, 153, 0);
 }

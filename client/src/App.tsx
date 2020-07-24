@@ -5,7 +5,6 @@ import Calendar from './components/Calendar';
 
 function App() {
   const [color, setColor] = useState<null | string>(null);
-  console.log(color);
 
   return (
     <div className="calendarApp">
@@ -17,12 +16,14 @@ function App() {
         <p className="name janek" onClick={() => { color === null ? setColor('--yellow') : setColor(null) }}>Janek</p>
         <p className="name adrian" onClick={() => { color === null ? setColor('--green') : setColor(null) }}>Adrian</p>
         <p className="name adam" onClick={() => { color === null ? setColor('--brown') : setColor(null) }}>Adam</p>
+        <p className="name krzysiek" onClick={() => { color === null ? setColor('--brown') : setColor(null) }}>Krzysiek</p>
         <p className="name maciek" onClick={() => { color === null ? setColor('--purple') : setColor(null) }}>Maciek</p>
       </div>
       <p>Date intersection: </p>
+      <p>Source Code: ...github</p>
     </div>
   );
-}
+};
 
 export default App;
 
