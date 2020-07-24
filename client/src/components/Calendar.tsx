@@ -4,33 +4,23 @@ import { CalendarProps, SelectedDays, FilteredAllColors, FilteredByColor, LooseO
 const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   let selectedDays: SelectedDays = [
     { day: '1', color: "--blue" },
-    { day: '2', color: "--blue" },
-    { day: '6', color: "--blue" },
-    { day: '9', color: "--blue" },
-    { day: '10', color: "--blue" },
-    { day: '23', color: "--red" },
-    { day: '25', color: "--blue" },
-    { day: '28', color: "--blue" },
-    { day: '26', color: "--red" },
-    { day: '3', color: "--yellow" },
-    { day: '8', color: "--yellow" }
   ];
 
   const ParseWithColor = (selectedDays: SelectedDays, selectedColor: string) => {
     return selectedDays.filter(item => item.color === selectedColor).reduce((obj: LooseObject, item) => (obj[item.day] = item.color, obj), {});
   };
   const ParseNoColor = (selectedDays: SelectedDays) => {
-    return selectedDays.reduce((obj: any, item) => {
-      if (obj[item.day] !== undefined) {
+    return selectedDays.reduce((obj: LooseObject, item) => {
+      if (obj[item.day]) {
         obj[item.day].push(item.color);
       } else {
         obj[item.day] = [item.color];
       }
       return obj;
-    })
+    }, {});
   };
 
-  const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays);
+  const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays); //jak ma drugi arg to dziala inaczej funkcja
 
   let today = new Date();
   const [currentDay] = useState(today.getDate());
@@ -49,8 +39,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     for (let i = 1; i <= daysInMonth; i++) {
       daysOfMonth.push(i.toString());
     };
-
-
     if (selectedColor) { //moge typeofem sprawdzac co to za typ
       return (
         <div className="days">
@@ -60,8 +48,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
         </div>
       )
     } else {
-      // let value: number;
-      return (
+      return ( // let value: number;
         <div className="days">
           {daysOfMonth.map((day, index) => {
             let value;
@@ -72,8 +59,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
         </div>
       )
     }
-
-
   };
 
   const nextMonth = () => {

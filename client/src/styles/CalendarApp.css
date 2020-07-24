@@ -65,6 +65,9 @@
 .potek::after {
     background-color: pink;
 }
+.krzysiek::after {
+    background-color: grey;
+}
 
 .--blue {
     border: 1px solid blue;
@@ -97,6 +100,10 @@
     border: 1px solid pink;
     background-color: rgba(255, 192, 203, 0.13);
 }
+.--grey {
+    border: 1px solid grey;
+    background-color: rgba(128, 128, 128, 0.13);
+}
 
 .count0 {
     background-color: white;
@@ -105,7 +112,7 @@
     background-color: rgb(255, 153, 0, 0.15);
 }
 .count2 {
-    background-color: rgb(255, 153, 0, 0.2);
+    background-color: rgb(255, 153, 0, 0.25);
 }
 .count3 {
     background-color: rgb(255, 153, 0, 0.35);
@@ -120,5 +127,8 @@
     background-color: rgba(255, 153, 0, 0.825);
 }
 .count7 {
-    background-color: rgb(255, 153, 0);
+    background-color: rgba(255, 153, 0, 0.918);
+}
+.count8 {
+    background-color: rgb(0, 255, 42);
 }
