@@ -1,36 +1,19 @@
 import React, { useState } from 'react';
+import { CalendarProps, SelectedDays } from '../ts/interfaces';
 
-interface IProps {
-  selectedColor: string | null;
-}
+const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
+  let selectedDays: SelectedDays = [
+    { day: '1', color: "--blue" },
+    { day: '2', color: "--blue" },
+    { day: '2', color: "--red" },
+    { day: '6', color: "--blue" }
+  ];
 
-interface LooseObject {
-  [key: string]: any
-}
-
-const Calendar: React.FC<IProps> = ({ selectedColor }) => { //destructuring because of props arg
+  const daysFilteredByColor = selectedColor ? selectedDays.filter(item => item.color === selectedColor) : selectedDays;
 
   let today = new Date();
-  let selectedDays: LooseObject = { '1': '--blue --red', '13': '--yellow', '14': '--yellow', '5': '--blue' };
-
-  if (selectedColor !== null) { //filter selectedDays
-    const filtered = Object.keys(selectedDays).filter(day =>
-      selectedDays[day] === selectedColor
-    ).map(key => ({
-      [key]: selectedDays[key]
-    }));
-    console.log(filtered);
-    const newobj = filtered.reduce((acc, cur, i) => {
-      acc[i] = cur;
-      return acc;
-    }, {});
-    console.log(newobj);
-  } else {
-    console.log(selectedDays);
-  }
-
   const [currentDay] = useState(today.getDate());
-  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1);
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
   const selectDay = ({ target }: any) => {
@@ -48,12 +31,16 @@ const Calendar: React.FC<IProps> = ({ selectedColor }) => { //destructuring beca
 
     return (
       <div className="days">
-        {daysOfMonth.map((day, index) => { //musialnym iterowac za jazdym razem po obiekcie az znajdzie jego wartosc
-          if (selectedDays[day] !== undefined)
-            return <button className={`day ${day} ${selectedDays[day]}`} value={day} key={index} onClick={selectDay}>{day}</button>
-          else
-            return <button className={`day ${day}`} value={day} key={index} onClick={selectDay}>{day}</button>
-        })}
+        {
+          daysOfMonth.map((day, index) => {
+            let className = '';
+            daysFilteredByColor.forEach((value) => {
+              if (value.day === day)
+                className = className + ' ' + value.color;
+            });
+            return <button className={`day ${day}${className}`} value={day} key={index} onClick={selectDay}>{day}</button>
+          })
+        }
       </div>
     )
   }
@@ -102,33 +89,3 @@ const Calendar: React.FC<IProps> = ({ selectedColor }) => { //destructuring beca
 };
 
 export default Calendar;
-//JAK JEST WYBRANY KOLOR ZWRACANE SA Z BACKENDU TYLKO TE WARTOSCI DLA DANEGO KOLORU
-//grida walnac
-
-// Object.filter = (obj: any, predicate: any) =>
-//   Object.keys(obj)
-//     .filter(key => predicate(obj[key]))
-//     .reduce((res: any, key) => (res[key] = obj[key], res), {});
-
-// Object.filter = (obj: any, predicate: any) =>
-//   Object.assign(...Object.keys(obj)
-//     .filter(key => predicate(obj[key]))
-//     .map(key => ({ [key]: obj[key] })));
-
-// console.log(Object.entries(selectedDays));
-// const result = selectedDays[0].slice(0, selectedDays[0].indexOf(',')); //wyciaga tylko 1 wartosc
-// console.log(result);
-
-// let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-//zmienic kolorek w hover i focused czy selected na przycisku zeby nie pisac tego w js
-
-
-// let selectedDays: LooseObject = { '1': '--blue --red', '13': '--yellow', '14': '--yellow', '5': '--blue' };
-// let selectedDays = [
-//   { day: '1', color: "--blue" },
-//   { day: '2', color: "--blue" },
-//   { day: '2', color: "--red" }
-// ];
-//kazdy miesiac ma tablice rowna ilosci dni i w tej tablicy sa zapisane kolory dla kazdego dnia
-//let seletedDays = [{5: '--blue'}, {6: '--red'}, {6: '--blue}];

@@ -1,0 +1,65 @@
+//JAK JEST WYBRANY KOLOR ZWRACANE SA Z BACKENDU TYLKO TE WARTOSCI DLA DANEGO KOLORU
+//grida walnac
+
+// Object.filter = (obj: any, predicate: any) =>
+//   Object.keys(obj)
+//     .filter(key => predicate(obj[key]))
+//     .reduce((res: any, key) => (res[key] = obj[key], res), {});
+
+// Object.filter = (obj: any, predicate: any) =>
+//   Object.assign(...Object.keys(obj)
+//     .filter(key => predicate(obj[key]))
+//     .map(key => ({ [key]: obj[key] })));
+
+// console.log(Object.entries(selectedDays));
+// const result = selectedDays[0].slice(0, selectedDays[0].indexOf(',')); //wyciaga tylko 1 wartosc
+// console.log(result);
+
+// let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+//zmienic kolorek w hover i focused czy selected na przycisku zeby nie pisac tego w js
+
+// let selectedDays: LooseObject = { '1': '--blue --red', '13': '--yellow', '14': '--yellow', '5': '--blue' };
+//kazdy miesiac ma tablice rowna ilosci dni i w tej tablicy sa zapisane kolory dla kazdego dnia
+//let seletedDays = [{5: '--blue'}, {6: '--red'}, {6: '--blue}];
+
+
+//DWA SPOSOY 
+//1 
+//TABLICA/
+//generowane sa wszystkie dni miesiaca i zapelniane w pliku, do frontu wsylany jest tylko dany miesiac
+// let selectedDays = [
+//   { day: '1', color: '--blue' },
+//   { day: '2', color: '--red' },
+//   { day: '3', color: '' },
+//   { day: '4', color: '--red --blue' }
+// ] //ewentualnie moge tak przechowywac w api i sam parsowac
+//lub
+// let selectedDays = [
+//   '--blue',
+//   '--red',
+//   '',
+//   '--red --blue'
+// ]
+
+//2 
+//OBIEKT lub mapa 
+// let selectedDays = {
+//   '1': '--blue',
+//   '2': '--red',
+//   '4': '--red --blue'
+// }
+
+// //3 OBIEKT
+// let selectedDays = {
+//   '1': [
+//     '--blue',
+//   ],
+//   '2': [
+//     '--red',
+//   ],
+//   '4': [
+//     '--red',
+//     '--blue'
+//   ]
+// }
