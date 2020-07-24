@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { CalendarProps, SelectedDays, FilteredAllColors, FilteredByColor, LooseObject } from '../ts/interfaces';
 
 const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
+  // let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  // let day = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
   let selectedDays: SelectedDays = [
     { day: '1', color: "--blue" },
   ];
@@ -9,6 +11,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   const ParseWithColor = (selectedDays: SelectedDays, selectedColor: string) => {
     return selectedDays.filter(item => item.color === selectedColor).reduce((obj: LooseObject, item) => (obj[item.day] = item.color, obj), {});
   };
+
   const ParseNoColor = (selectedDays: SelectedDays) => {
     return selectedDays.reduce((obj: LooseObject, item) => {
       if (obj[item.day]) {
@@ -34,6 +37,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   };
 
   const getCalendar = (month: number, year: number) => {
+    // console.log(new Date(year, month, 32).getDay());
     let daysInMonth = 32 - new Date(year, month, 32).getDate();
     let daysOfMonth = [];
     for (let i = 1; i <= daysInMonth; i++) {
