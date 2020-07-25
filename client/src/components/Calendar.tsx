@@ -88,11 +88,9 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   return (
     <>
       <div className="CalendarFlex">
-        <p className="top">{"<<"}</p>
         <p className="top" onClick={prevMonth}>{"<"}</p>
         <p className="top">{currentDay + "." + currentMonth + "." + currentYear}</p>
         <p className="top" onClick={nextMonth}>{">"}</p>
-        <p className="top">{">>"}</p>
       </div>
       <div className="CalendarFlex">
         <p className="top">SUN</p>
