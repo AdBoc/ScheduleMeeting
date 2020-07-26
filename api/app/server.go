@@ -4,8 +4,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"calculator/app/handler"
+
+	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 //App struct
@@ -13,17 +15,20 @@ type App struct {
 	Router *mux.Router
 }
 
-//Initialize router
-func (app *App) Initialize() {
+//Initialize server in specified port
+func (app *App) Initialize(host string) {
 	app.Router = mux.NewRouter().StrictSlash(true)
-	api := app.Router.PathPrefix("/api").Subrouter()
 
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedMethods: []string{"POST", "GET", "OPTIONS", "PUT", "DELETE"},
+		AllowedHeaders: []string{"Accept", "content-type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"},
+	})
+
+	api := app.Router.PathPrefix("/api").Subrouter()
 	api.HandleFunc("/", handler.GetDataForMonth).Methods("GET")
 	api.HandleFunc("/", handler.AddDataForMonth).Methods("POST")
 	api.HandleFunc("/", handler.DeleteDataForMonth).Methods("PATCH")
-}
 
-//Run server on specified port
-func (app *App) Run(host string) {
-	log.Fatal(http.ListenAndServe(host, app.Router))
+	log.Fatal(http.ListenAndServe(":8080", c.Handler(api)))
 }

@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CalendarProps, SelectedDays, FilteredAllColors, FilteredByColor, LooseObject } from '../ts/interfaces';
+import { apiService } from '../helpers/ApiService';
 
 const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
-  // let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  // let day = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
-  let selectedDays: SelectedDays = [
-    { day: '1', color: "--blue" },
-  ];
+
+  let today = new Date();
+  const [currentDay] = useState(today.getDate());
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1);
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await apiService.getSelectedMonthData();
+      setSelectedDays(response);
+    };
+
+    fetchData();
+  }, []);
 
   const ParseWithColor = (selectedDays: SelectedDays, selectedColor: string) => {
     return selectedDays.filter(item => item.color === selectedColor).reduce((obj: LooseObject, item) => (obj[item.day] = item.color, obj), {});
@@ -24,11 +35,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   };
 
   const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays); //jak ma drugi arg to dziala inaczej funkcja
-
-  let today = new Date();
-  const [currentDay] = useState(today.getDate());
-  const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1);
-  const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
   const selectDay = ({ target }: any) => {
     const { value } = target;
