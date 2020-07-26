@@ -3,7 +3,7 @@ package main
 import server "calculator/app"
 
 func main() {
-	server := &server.App{}
-	server.Initialize()
-	server.Run(":8000")
+	ser := server.App{}
+	ser.Initialize()
+	ser.Run(":8080")
 }
