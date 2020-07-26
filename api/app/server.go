@@ -1,6 +1,9 @@
 package server
 
 import (
+	"log"
+	"net/http"
+
 	"github.com/gorilla/mux"
 )
 
@@ -11,5 +14,10 @@ type App struct {
 
 //Initialize router
 func (app *App) Initialize() {
-	app.Router = mux.NewRouter()
+	app.Router = mux.NewRouter().StrictSlash(true)
+}
+
+//Run server
+func (app *App) Run(host string) {
+	log.Fatal(http.ListenAndServe(host, app.Router))
 }

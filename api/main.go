@@ -1,6 +1,9 @@
 package main
 
-import "github.com/AdBoc/ScheduleMeeting/app/server"
+import server "calculator/app"
 
 func main() {
+	server := &server.App{}
+	server.Initialize()
+	server.Run(":8000")
 }

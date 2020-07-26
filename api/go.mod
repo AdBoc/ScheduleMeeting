@@ -1,4 +1,4 @@
-module github.com/AdBoc/ScheduleMeeting
+module calculator
 
 go 1.14
 
