@@ -12,8 +12,8 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await apiService.getSelectedMonthData();
-      setSelectedDays(response);
+      const response = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
+      setSelectedDays(response.daysData);
     };
 
     fetchData();
@@ -38,8 +38,9 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
 
   const selectDay = ({ target }: any) => {
     const { value } = target;
-    //wysyla date to api i odpalany jest useEffect
-    //wysylana jest info o kolorku
+    console.log(value);
+    if (selectedColor)
+      apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor)
   };
 
   const getCalendar = (month: number, year: number) => {
