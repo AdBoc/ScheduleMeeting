@@ -10,7 +10,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
 
-  useEffect(() => {
+  useEffect(() => { //dodac zapamietywanie miesiaca pomiedzy renderami
     const fetchData = async () => {
       const response = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
       setSelectedDays(response.daysData);
@@ -37,9 +37,13 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays); //jak ma drugi arg to dziala inaczej funkcja
 
   const selectDay = ({ target }: any) => {
-    const { value } = target; 
-    if (selectedColor)
-      apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor); //let response --> zwracany komunikat zapisane zmainy lub usuniete
+    const { value, className } = target;
+    const isUndefined = /\b(\undefined)$/.test(className) //  \b(\w+)$
+    let response;
+    if (selectedColor) {
+      response = isUndefined ? apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor) :
+        apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor)
+    }
   };
 
   const getCalendar = (month: number, year: number) => {

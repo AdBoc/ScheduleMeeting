@@ -60,17 +60,17 @@ func main() {
 
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"http://localhost:3000"},
-		AllowedMethods: []string{"POST", "GET", "OPTIONS", "PUT", "DELETE"},
+		AllowedMethods: []string{"POST", "GET", "OPTIONS", "PUT", "DELETE", "PATCH"},
 		AllowedHeaders: []string{"Accept", "content-type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"},
 	})
 
 	router.HandleFunc("/", getDataForMonth).Methods("POST")
 	router.HandleFunc("/new", postDataForMonth).Methods("POST")
+	router.HandleFunc("/", patchDataForMonth).Methods("PATCH")
 
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
 
-//get data for current month
 func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	req := dateFromFront{}
 	decoder := json.NewDecoder(r.Body)
@@ -88,27 +88,50 @@ func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	var foundData FullDate
 	errFind := collection.FindOne(ctx, bson.M{"date": req.Date}).Decode(&foundData)
 	if errFind != nil {
-		fmt.Println("Not Found")
-		w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
+		fmt.Println("Data for selected month not found")
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(foundData) //jak zwrocic tylko czesc calego obieku??
+	json.NewEncoder(w).Encode(foundData)
 }
 
-//receive object {"day": "1", "color": "--blue"} and add it to db
 func postDataForMonth(w http.ResponseWriter, r *http.Request) {
-	//check if exists
-	//if exists delete it
-	//if doesnt then push
+	req := monthDataRequest{}
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&req)
+	if err != nil {
+		fmt.Println("Error Parsin Request Body")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+	defer error()
+
+	var updatedData MonthData
+	filter := bson.M{"date": req.Date}
+	update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}
+	singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&updatedData)
+	if singleResult != nil {
+		fmt.Println("Could Not Add Data For Selected Month")
+		w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
+func patchDataForMonth(w http.ResponseWriter, r *http.Request) {
 	req := monthDataRequest{}
 	decoder := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	err := decoder.Decode(&req)
 	if err != nil {
-		fmt.Println("Error Parsin Request Body")
+		fmt.Println("Error While Parsing Request Body")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -116,46 +139,13 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
 	defer error()
 
-	var foundData FullDate
-	errFind := collection.FindOne(ctx, bson.M{"date": req.Date, "daysData": bson.M{"$elemMatch": bson.M{"day": req.Day, "color": req.Color}}}).Decode(&foundData)
-	// var res
-	if errFind != nil {
-		fmt.Println("Add new one")
-		// collection.FindOneAndUpdate(ctx, )
-	} else {
-		fmt.Println("Delete")
-		// collection.DeleteOne(ctx,)
+	var updatedData interface{}
+	singleResult := collection.FindOneAndUpdate(ctx, bson.M{"date": req.Date}, bson.M{"$pull": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}).Decode(&updatedData)
+	if singleResult != nil {
+		fmt.Println("Could Not Delete Data For Selected Month")
+		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
-	
-	w.WriteHeader(http.StatusOK) // fmt.Println(foundData.DaysData)
+
+	w.WriteHeader(http.StatusOK)
 }
-
-// req := monthDataRequest{}
-// decoder := json.NewDecoder(r.Body)
-// err := decoder.Decode(&req)
-// if err != nil {
-// 	fmt.Println("Error Parsin Request Body")
-// 	w.WriteHeader(http.StatusBadRequest)
-// 	return
-// }
-// defer r.Body.Close()
-
-// ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
-// defer error()
-
-// var foundData MonthData
-// filter := bson.M{"date": req.Date}
-// update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}
-// singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&foundData)
-// if singleResult != nil {
-// 	fmt.Println(singleResult)
-// 	w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
-// 	return
-// }
-
-// w.WriteHeader(http.StatusOK)
-
-//QUERY Z WYSZUKIWANIEM OBIEKTU Z DANA DATA db.getCollection('month/year').find({"date": "7/2020"})
-//POPRAWNE QUERY db.getCollection('month/year').find({"date": "7/2020"}, {daysData: {$elemMatch: {day : "1"}}})
-/////////db.getCollection('month/year').find({"date": "7/2020"}, {daysData: {$elemMatch: {day : "1"}}})
-// errFind := collection.FindOne(ctx, bson.M{"date": req.Date, "daysData": bson.M{"day": req.Day, "color": req.Color}}).Decode(&foundData) //ONLY SOMETIMES WORKS
