@@ -17,7 +17,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     };
 
     fetchData();
-  }, []);
+  }, [currentMonth]);
 
   const ParseWithColor = (selectedDays: SelectedDays, selectedColor: string) => {
     return selectedDays.filter(item => item.color === selectedColor).reduce((obj: LooseObject, item) => (obj[item.day] = item.color, obj), {});
@@ -37,20 +37,18 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays); //jak ma drugi arg to dziala inaczej funkcja
 
   const selectDay = ({ target }: any) => {
-    const { value } = target;
-    console.log(value);
+    const { value } = target; 
     if (selectedColor)
-      apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor)
+      apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor); //let response --> zwracany komunikat zapisane zmainy lub usuniete
   };
 
   const getCalendar = (month: number, year: number) => {
-    // console.log(new Date(year, month, 32).getDay());
     let daysInMonth = 32 - new Date(year, month, 32).getDate();
     let daysOfMonth = [];
     for (let i = 1; i <= daysInMonth; i++) {
       daysOfMonth.push(i.toString());
     };
-    if (selectedColor) { //moge typeofem sprawdzac co to za typ
+    if (selectedColor) { //moge typeofem sprawdzac co to za typ zamiast if else
       return (
         <div className="days">
           {daysOfMonth.map((day, index) => {
@@ -59,7 +57,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
         </div>
       )
     } else {
-      return ( // let value: number;
+      return (
         <div className="days">
           {daysOfMonth.map((day, index) => {
             let value;
@@ -79,7 +77,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     } else {
       setCurrentMonth(currentMonth + 1);
     }
-    //getuje od api default selected values, wysylana jest wartosc month
   };
 
   const prevMonth = () => {
@@ -89,7 +86,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     } else {
       setCurrentMonth(currentMonth - 1);
     }
-    //getuje od api default selected values
   };
 
   return (

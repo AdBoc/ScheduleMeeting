@@ -30,13 +30,13 @@ type MonthData struct {
 	Color string `json:"color,omitempty" bson:"color,omitempty"`
 }
 
-type response struct {
-	Date string `json:"date,omitempty"`
+type dateFromFront struct {
+	Date string `json:"date,omitempty" bson:"date,omiteempty"`
 }
 
-type response2 struct {
-	Day string
-	Color string
+type monthDataRequest struct {
+	dateFromFront
+	MonthData
 }
 
 var collection *mongo.Collection
@@ -71,13 +71,15 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
 
-//get data for current month 
+//get data for current month
 func getDataForMonth(w http.ResponseWriter, r *http.Request) {
-	res := response{}
+	w.Header().Set("Content-Type", "application/json")
+
+	req := dateFromFront{}
 	decoder := json.NewDecoder(r.Body)
-	err := decoder.Decode(&res)
+	err := decoder.Decode(&req)
 	if err != nil {
-		fmt.Println("Error Parsing")
+		fmt.Println("Error Parsin Request Body")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -87,41 +89,60 @@ func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	defer errContext()
 
 	var foundData FullDate
-	errFind := collection.FindOne(ctx, bson.M{"date": res.Date}).Decode(&foundData)
+	errFind := collection.FindOne(ctx, bson.M{"date": req.Date}).Decode(&foundData)
 	if errFind != nil {
 		fmt.Println("Not Found")
 		w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(foundData) //jak zwrocic tylko czesc calego obieku??
 }
 
-//receive {"day": "1", "color": "--blue"} and add it to db
+//receive object {"day": "1", "color": "--blue"} and add it to db
 func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	ctx, err := context.WithTimeout(context.Background(), 10*time.Second)
-	defer err()
-
-	month := FullDate{
-		Date: "7/2020",
-		DaysData: []MonthData{MonthData{
-			Day:   "1",
-			Color: "--blue",
-		}},
+	req := monthDataRequest{}
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&req)
+	if err != nil {
+		fmt.Println("Error Parsin Request Body")
+		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
-	collection.InsertOne(ctx, month)
+	defer r.Body.Close()
+
+	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+	defer error()
+
+	var foundData MonthData
+	filter := bson.M{"date": req.Date}
+	update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}
+	singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&foundData)
+	if singleResult != nil {
+		fmt.Println(singleResult)
+		w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
+		return
+	}
 
 	w.WriteHeader(http.StatusOK)
 }
 
-//find and delete element that was sent 
+//find and delete element that was sent
 func patchDataForMonth(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 }
 
 //czy jak w funkcji w ifie cos returnuje to jaki to ma wplyw na dzialanie i na defer
+
+// month := FullDate{
+// Date: "7/2020",
+// DaysData: []MonthData{MonthData{
+// Day:   "1",
+// Color: "--blue",
+// }},
+// }
+// collection.InsertOne(ctx, month)
