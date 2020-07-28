@@ -66,24 +66,21 @@ func main() {
 
 	router.HandleFunc("/", getDataForMonth).Methods("POST")
 	router.HandleFunc("/new", postDataForMonth).Methods("POST")
-	router.HandleFunc("/", patchDataForMonth).Methods("PATCH")
 
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
 
 //get data for current month
 func getDataForMonth(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
 	req := dateFromFront{}
 	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
 	err := decoder.Decode(&req)
 	if err != nil {
 		fmt.Println("Error Parsin Request Body")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	defer r.Body.Close()
 
 	ctx, errContext := context.WithTimeout(context.Background(), 10*time.Second)
 	defer errContext()
@@ -96,53 +93,69 @@ func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(foundData) //jak zwrocic tylko czesc calego obieku??
 }
 
 //receive object {"day": "1", "color": "--blue"} and add it to db
 func postDataForMonth(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
+	//check if exists
+	//if exists delete it
+	//if doesnt then push
 	req := monthDataRequest{}
 	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
 	err := decoder.Decode(&req)
 	if err != nil {
 		fmt.Println("Error Parsin Request Body")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	defer r.Body.Close()
 
 	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
 	defer error()
 
-	var foundData MonthData
-	filter := bson.M{"date": req.Date}
-	update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}
-	singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&foundData)
-	if singleResult != nil {
-		fmt.Println(singleResult)
-		w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
-		return
+	var foundData FullDate
+	errFind := collection.FindOne(ctx, bson.M{"date": req.Date, "daysData": bson.M{"$elemMatch": bson.M{"day": req.Day, "color": req.Color}}}).Decode(&foundData)
+	// var res
+	if errFind != nil {
+		fmt.Println("Add new one")
+		// collection.FindOneAndUpdate(ctx, )
+	} else {
+		fmt.Println("Delete")
+		// collection.DeleteOne(ctx,)
 	}
-
-	w.WriteHeader(http.StatusOK)
+	
+	w.WriteHeader(http.StatusOK) // fmt.Println(foundData.DaysData)
 }
 
-//find and delete element that was sent
-func patchDataForMonth(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-}
-
-//czy jak w funkcji w ifie cos returnuje to jaki to ma wplyw na dzialanie i na defer
-
-// month := FullDate{
-// Date: "7/2020",
-// DaysData: []MonthData{MonthData{
-// Day:   "1",
-// Color: "--blue",
-// }},
+// req := monthDataRequest{}
+// decoder := json.NewDecoder(r.Body)
+// err := decoder.Decode(&req)
+// if err != nil {
+// 	fmt.Println("Error Parsin Request Body")
+// 	w.WriteHeader(http.StatusBadRequest)
+// 	return
 // }
-// collection.InsertOne(ctx, month)
+// defer r.Body.Close()
+
+// ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+// defer error()
+
+// var foundData MonthData
+// filter := bson.M{"date": req.Date}
+// update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}
+// singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&foundData)
+// if singleResult != nil {
+// 	fmt.Println(singleResult)
+// 	w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
+// 	return
+// }
+
+// w.WriteHeader(http.StatusOK)
+
+//QUERY Z WYSZUKIWANIEM OBIEKTU Z DANA DATA db.getCollection('month/year').find({"date": "7/2020"})
+//POPRAWNE QUERY db.getCollection('month/year').find({"date": "7/2020"}, {daysData: {$elemMatch: {day : "1"}}})
+/////////db.getCollection('month/year').find({"date": "7/2020"}, {daysData: {$elemMatch: {day : "1"}}})
+// errFind := collection.FindOne(ctx, bson.M{"date": req.Date, "daysData": bson.M{"day": req.Day, "color": req.Color}}).Decode(&foundData) //ONLY SOMETIMES WORKS
