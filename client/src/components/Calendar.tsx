@@ -10,7 +10,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
 
-  useEffect(() => { //dodac zapamietywanie miesiaca pomiedzy renderami
+  useEffect(() => { //dodac zapamietywanie miesiaca pomiedzy renderami albo nowy request po kliknieciu 
     const fetchData = async () => {
       const response = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
       setSelectedDays(response.daysData);
@@ -54,7 +54,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     };
     if (selectedColor) { //moge typeofem sprawdzac co to za typ zamiast if else
       return (
-        <div className="days">
+        <div className="days-of-month">
           {daysOfMonth.map((day, index) => {
             return <button className={`day ${day} ` + daysFilteredByColor[day]} value={day} key={index} onClick={selectDay}>{day}</button>
           })}
@@ -62,7 +62,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
       )
     } else {
       return (
-        <div className="days">
+        <div className="days-of-month">
           {daysOfMonth.map((day, index) => {
             let value;
             if (daysFilteredByColor[day] !== undefined)
@@ -92,24 +92,31 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     }
   };
 
+  let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
+
+  const currentDayToday = () => {
+
+  }; //dzisiejsza data jest zaznaczona na kalendarz
+
+  const firstDayOfMonth = () => { }; //oblicza pierwszy dzien w miesiacu i daje odpowiednie miejsca w gridzie 
+
   return (
-    <>
-      <div className="CalendarFlex">
-        <p className="top" onClick={prevMonth}>{"<"}</p>
-        <p className="top">{currentDay + "." + currentMonth + "." + currentYear}</p>
-        <p className="top" onClick={nextMonth}>{">"}</p>
+    <div className="calendar">
+      <div className="month-indicator">
+        <p className="month-indicator__button" onClick={prevMonth}>{"<"}</p>
+        <p className="month-indicator__label">{currentDay}</p>
+        <p className="month-indicator__label">{monthsInYear[currentMonth - 1]}</p>
+        <p className="month-indicator__label">{currentYear}</p>
+        <p className="month-indicator__button" onClick={nextMonth}>{">"}</p>
       </div>
-      <div className="CalendarFlex">
-        <p className="top">SUN</p>
-        <p className="top">MON</p>
-        <p className="top">TUE</p>
-        <p className="top">WED</p>
-        <p className="top">THU</p>
-        <p className="top">FRI</p>
-        <p className="top">SAT</p>
+      <div className="day-of-week">
+        {dayOfWeek.map((day, index) => {
+          return <p className="top" key={index}>{day}</p>
+        })}
       </div>
       {getCalendar(currentMonth, currentYear)}
-    </>
+    </div>
   );
 };
 

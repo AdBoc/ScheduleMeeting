@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles/App.css';
-import './styles/CalendarApp.css';
+import './styles/CalendarApp.scss';
 import Calendar from './components/Calendar';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   };
 
   return (
-    <div className="calendarApp">
+    <div className="calendar-app">
       <Calendar selectedColor={color} />
       <div className="colors">
         <p className="name witek" onClick={handleClick('--blue')}>Witek</p>
