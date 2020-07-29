@@ -1,5 +1,3 @@
-import { SrvRecord } from "dns";
-
 class ApiService {
   async getSelectedMonthData(date: string) {
     const rBody = { date };
