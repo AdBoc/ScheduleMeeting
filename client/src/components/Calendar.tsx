@@ -69,7 +69,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
         <div className="days-of-month">
           {daysOfMonth.map((day, index) => { //moze to pierwsze filter
             let value;
-            if (daysFilteredByColor[day] !== undefined)
+            if (daysFilteredByColor[day] !== undefined) //jesli taki dzien nie istnieje to nie badaj length tablicy ktorej nie ma (bo kazdy dzien zaznaczony ma tablice z kolorem)
               value = daysFilteredByColor[day].length;
             return <button key={index} className={`day ${day} count${value}`} value={day} onClick={selectDay}>{day}</button>
           })}
