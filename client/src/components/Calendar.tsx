@@ -128,3 +128,4 @@ export default Calendar;
 //refractor to smaller components
 //css in js or tailwind
 //rerender with every day selection
+//JAK KLIKASZ DRUGI RAZ NA TO SAMO IMIE TO SIE ROBI NULL, JAK NIE TO ZMIENIA STATE Z KOLOREM(OSOBE)
