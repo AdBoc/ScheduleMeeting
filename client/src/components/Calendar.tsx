@@ -47,27 +47,30 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   };
 
   const getCalendar = (month: number, year: number) => {
-    let daysInMonth = 32 - new Date(year, month, 32).getDate();
-    let daysOfMonth = [];
+    const daysInMonth = 32 - new Date(year, month, 32).getDate();
+    const daysOfMonth = [];
+    const firstDay = new Date(currentMonth + "/1/" + currentYear).getDay(); //ktora pozycja w gridzie
+
     for (let i = 1; i <= daysInMonth; i++) {
       daysOfMonth.push(i.toString());
     };
+
     if (selectedColor) { //moge typeofem sprawdzac co to za typ zamiast if else
       return (
         <div className="days-of-month">
           {daysOfMonth.map((day, index) => {
-            return <button className={`day ${day} ` + daysFilteredByColor[day]} value={day} key={index} onClick={selectDay}>{day}</button>
+            return <button key={index} className={`day ${day} ` + daysFilteredByColor[day]} value={day} onClick={selectDay}>{day}</button>
           })}
         </div>
       )
     } else {
       return (
         <div className="days-of-month">
-          {daysOfMonth.map((day, index) => {
+          {daysOfMonth.map((day, index) => { //moze to pierwsze filter
             let value;
             if (daysFilteredByColor[day] !== undefined)
               value = daysFilteredByColor[day].length;
-            return <button className={`day ${day} count${value}`} value={day} key={index} onClick={selectDay}>{day}</button>
+            return <button key={index} className={`day ${day} count${value}`} value={day} onClick={selectDay}>{day}</button>
           })}
         </div>
       )
@@ -95,11 +98,8 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
-  const currentDayToday = () => {
-
-  }; //dzisiejsza data jest zaznaczona na kalendarz
-
-  const firstDayOfMonth = () => { }; //oblicza pierwszy dzien w miesiacu i daje odpowiednie miejsca w gridzie 
+  // const currentDayToday = () => { }; //dzisiejsza data jest zaznaczona na kalendarzu
+  // const firstDayOfMonth = () => { }; //oblicza pierwszy dzien w miesiacu i daje odpowiednie miejsca w gridzie 
 
   return (
     <div className="calendar">
@@ -112,7 +112,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
       </div>
       <div className="day-of-week">
         {dayOfWeek.map((day, index) => {
-          return <p className="top" key={index}>{day}</p>
+          return <p key={index} className="top">{day}</p>
         })}
       </div>
       {getCalendar(currentMonth, currentYear)}
@@ -121,3 +121,9 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
 };
 
 export default Calendar;
+
+//ToDo: 
+//context language and cookies with preferences
+//refractor to smaller components
+//css in js or tailwind
+//rerender with every day selection
