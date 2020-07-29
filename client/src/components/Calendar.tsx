@@ -34,22 +34,23 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     }, {});
   };
 
-  const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays); //jak ma drugi arg to dziala inaczej funkcja
+  const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays);
 
   const selectDay = ({ target }: any) => {
     const { value, className } = target;
-    const isUndefined = /\b(\undefined)$/.test(className) //  \b(\w+)$
+    const isUndefined = /\b(\undefined)$/.test(className)
     let response;
     if (selectedColor) {
       response = isUndefined ? apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor) :
         apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor)
     }
+    //w zlalezonosci od responsa update??
   };
 
   const getCalendar = (month: number, year: number) => {
     const daysInMonth = 32 - new Date(year, month, 32).getDate();
     const daysOfMonth = [];
-    const firstDay = new Date(currentMonth + "/1/" + currentYear).getDay(); //ktora pozycja w gridzie
+    const firstDay = new Date(currentMonth + "/1/" + currentYear).getDay(); //ktora pozycja w gridzie moge dorenderowac puste elementy forem 
 
     for (let i = 1; i <= daysInMonth; i++) {
       daysOfMonth.push(i.toString());
@@ -123,7 +124,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
 export default Calendar;
 
 //ToDo: 
-//context language and cookies with preferences
+//context language and cookies with language preferences
 //refractor to smaller components
 //css in js or tailwind
 //rerender with every day selection

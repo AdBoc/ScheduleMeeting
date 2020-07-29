@@ -36,9 +36,9 @@
     padding: 1em;
     border-radius: 50%;
     color: #486581;
-}
-.day:first-child {
-    grid-column: 5;
+    &:first-child {
+        grid-column: 5;
+    }
 }
 
 .person-container {
@@ -60,7 +60,6 @@
     text-align: center;
     flex: 0 0 25%;
     padding: 0.75em;
-
     &::after {
         content: "";
         display: inline-block;
