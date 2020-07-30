@@ -6,18 +6,22 @@ interface IProps {
   dateProps: DateProps;
   selectedColor: string | null;
   daysFilteredByColor: FilteredByColor | FilteredAllColors;
+  setStatusResponse: React.Dispatch<React.SetStateAction<object>>;
 }
 
-const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor }) => {
+const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor, setStatusResponse }) => {
 
   const { currentMonth, currentYear, daysOfMonth, firstDayOfMonth } = dateProps;
 
-  const handleDaySelect = ({ target }: any) => {
+  const handleDaySelect = async ({ target }: any) => {
     const { value, className } = target;
-    const isUndefined = /\b(\undefined)$/.test(className)
-    if (selectedColor) { //let response and response = isUndefined in next line 
-      isUndefined ? apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor) :
-        apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor)
+    const doesNotExist = /\b(\undefined)$/.test(className);
+    if (doesNotExist) {
+      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor!);
+      setStatusResponse({}); //if status=200 update
+    } else {
+      await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor!);
+      setStatusResponse({});
     }
   }
 
@@ -49,7 +53,7 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor 
             let value;
             if (daysFilteredByColor[day] !== undefined) //jesli taki dzien nie istnieje to nie badaj dlugosci tablicy ktora nie istnieje
               value = daysFilteredByColor[day].length;
-            return <button key={index} className={`day ${day} count${value}`} value={day} onClick={handleDaySelect}>{day}</button>
+            return <button key={index} className={`day ${day} count${value}`} value={day}>{day}</button>
           })}
         </>
       }

@@ -21,7 +21,7 @@ class ApiService {
     if (response.status >= 400 && response.status <= 600) {
       return Promise.reject("Could not get response");
     }
-    return;
+    return response.status;
   }
 
   async unselectDay(date: string, day: string, color: string) {
@@ -34,7 +34,7 @@ class ApiService {
     if (response.status >= 400 && response.status <= 600) {
       return Promise.reject("Could not get response");
     }
-    return;
+    return response.status;
   }
 }
 export const apiService = new ApiService();

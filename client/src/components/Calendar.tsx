@@ -11,6 +11,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
 
   const today = new Date();
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
+  const [statusResponse, setStatusResponse] = useState({});
   const { dateProps, prevMonth, nextMonth, parseWithColor, parseNoColor } = useCalendar(today);
   const { currentDay, currentMonth, currentYear } = dateProps;
   const daysFilteredByColor = selectedColor ? parseWithColor(selectedDays, selectedColor) : parseNoColor(selectedDays);
@@ -20,9 +21,9 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
       const response = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
       setSelectedDays(response.daysData);
     };
-
+    
     fetchData();
-  }, [currentMonth, currentYear]);
+  }, [currentMonth, currentYear, statusResponse]);
 
   return (
     <div className="calendar">
@@ -42,6 +43,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
         dateProps={dateProps}
         selectedColor={selectedColor}
         daysFilteredByColor={daysFilteredByColor}
+        setStatusResponse={setStatusResponse}
       />
     </div>
   )
