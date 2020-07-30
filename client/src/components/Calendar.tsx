@@ -1,106 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { CalendarProps, SelectedDays, FilteredAllColors, FilteredByColor, LooseObject } from '../ts/interfaces';
+import React, { useEffect, useState } from 'react';
+import { CalendarProps, SelectedDays } from '../ts/interfaces';
 import { apiService } from '../helpers/ApiService';
+import { useCalendar } from '../hooks/useCalendar';
+import Days from './Days';
 
 const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
 
-  let today = new Date();
-  const [currentDay] = useState(today.getDate());
-  const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1);
-  const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
+  let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
-  useEffect(() => { //dodac zapamietywanie miesiaca pomiedzy renderami albo nowy request po kliknieciu 
+  const today = new Date();
+  const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
+  const { dateProps, prevMonth, nextMonth, parseWithColor, parseNoColor } = useCalendar(today);
+  const { currentDay, currentMonth, currentYear } = dateProps;
+  const daysFilteredByColor = selectedColor ? parseWithColor(selectedDays, selectedColor) : parseNoColor(selectedDays);
+
+  useEffect(() => {
     const fetchData = async () => {
       const response = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
       setSelectedDays(response.daysData);
     };
 
     fetchData();
-  }, [currentMonth]);
-
-  const ParseWithColor = (selectedDays: SelectedDays, selectedColor: string) => {
-    return selectedDays.filter(item => item.color === selectedColor).reduce((obj: LooseObject, item) => (obj[item.day] = item.color, obj), {});
-  };
-
-  const ParseNoColor = (selectedDays: SelectedDays) => {
-    return selectedDays.reduce((obj: LooseObject, item) => {
-      if (obj[item.day]) {
-        obj[item.day].push(item.color);
-      } else {
-        obj[item.day] = [item.color];
-      }
-      return obj;
-    }, {});
-  };
-
-  const daysFilteredByColor = selectedColor ? ParseWithColor(selectedDays, selectedColor) : ParseNoColor(selectedDays);
-
-  const selectDay = ({ target }: any) => {
-    const { value, className } = target;
-    const isUndefined = /\b(\undefined)$/.test(className)
-    let response;
-    if (selectedColor) {
-      response = isUndefined ? apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor) :
-        apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor)
-    }
-    //w zlalezonosci od responsa update??
-  };
-
-  const getCalendar = (month: number, year: number) => {
-    const daysInMonth = 32 - new Date(year, month, 32).getDate();
-    const daysOfMonth = [];
-    const firstDay = new Date(currentMonth + "/1/" + currentYear).getDay(); //ktora pozycja w gridzie moge dorenderowac puste elementy forem 
-
-    for (let i = 1; i <= daysInMonth; i++) {
-      daysOfMonth.push(i.toString());
-    };
-
-    if (selectedColor) { //moge typeofem sprawdzac co to za typ zamiast if else
-      return (
-        <div className="days-of-month">
-          {daysOfMonth.map((day, index) => {
-            return <button key={index} className={`day ${day} ` + daysFilteredByColor[day]} value={day} onClick={selectDay}>{day}</button>
-          })}
-        </div>
-      )
-    } else {
-      return (
-        <div className="days-of-month">
-          {daysOfMonth.map((day, index) => { //moze to pierwsze filter
-            let value;
-            if (daysFilteredByColor[day] !== undefined) //jesli taki dzien nie istnieje to nie badaj length tablicy ktorej nie ma (bo kazdy dzien zaznaczony ma tablice z kolorem)
-              value = daysFilteredByColor[day].length;
-            return <button key={index} className={`day ${day} count${value}`} value={day} onClick={selectDay}>{day}</button>
-          })}
-        </div>
-      )
-    }
-  };
-
-  const nextMonth = () => {
-    if (currentMonth === 12) {
-      setCurrentYear(currentYear + 1);
-      setCurrentMonth(1);
-    } else {
-      setCurrentMonth(currentMonth + 1);
-    }
-  };
-
-  const prevMonth = () => {
-    if (currentMonth === 1) {
-      setCurrentYear(currentYear - 1);
-      setCurrentMonth(12);
-    } else {
-      setCurrentMonth(currentMonth - 1);
-    }
-  };
-
-  let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
-
-  // const currentDayToday = () => { }; //dzisiejsza data jest zaznaczona na kalendarzu
-  // const firstDayOfMonth = () => { }; //oblicza pierwszy dzien w miesiacu i daje odpowiednie miejsca w gridzie 
+  }, [currentMonth, currentYear]);
 
   return (
     <div className="calendar">
@@ -116,16 +38,13 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
           return <p key={index} className="top">{day}</p>
         })}
       </div>
-      {getCalendar(currentMonth, currentYear)}
+      <Days
+        dateProps={dateProps}
+        selectedColor={selectedColor}
+        daysFilteredByColor={daysFilteredByColor}
+      />
     </div>
-  );
-};
+  )
+}
 
 export default Calendar;
-
-//ToDo: 
-//context language and cookies with language preferences
-//refractor to smaller components
-//css in js or tailwind
-//rerender with every day selection
-//JAK KLIKASZ DRUGI RAZ NA TO SAMO IMIE TO SIE ROBI NULL, JAK NIE TO ZMIENIA STATE Z KOLOREM(OSOBE)

@@ -20,3 +20,11 @@ export interface FilteredByColor {
 export interface FilteredAllColors {
     day?: string[]
 }
+
+export interface DateProps {
+    currentDay: number;
+    currentMonth: number;
+    currentYear: number;
+    firstDayOfMonth: number;
+    daysOfMonth: string[];
+}

@@ -1,10 +1,11 @@
 Front - React(Typescript) and SCSS
-Back - REST API with GO(Mux) and MongoDB
+
+Back - REST API made in GO and MongoDB
 
 routes
-post "/api/" - get data for current month 
-post "/api/new" - add data to DB
-patch "/api/" - delete date from DB
+post "/" - sends month and rereived data for said month 
+post "/new" - adds new data to DB
+patch "/" - deletes data in DB
 
 v 0.1 - initial setup
 
