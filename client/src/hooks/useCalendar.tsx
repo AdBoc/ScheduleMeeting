@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SelectedDays, LooseObject, DateProps } from '../ts/interfaces';
+import { SelectedDays, DateProps, FilteredAllColors, FilteredByColor } from '../ts/interfaces';
 
 export const useCalendar = (today: Date) => {
   const [currentDay] = useState(today.getDate());
@@ -32,14 +32,14 @@ export const useCalendar = (today: Date) => {
   };
 
   const parseWithColor = (selectedDays: SelectedDays, selectedColor: string) => {
-    return selectedDays.filter(item => item.color === selectedColor).reduce((obj: LooseObject, item) => {
+    return selectedDays.filter(item => item.color === selectedColor).reduce((obj: FilteredByColor, item) => {
       obj[item.day] = item.color;
       return obj;
     }, {})
   };
 
   const parseNoColor = (selectedDays: SelectedDays) => {
-    return selectedDays.reduce((obj: LooseObject, item) => {
+    return selectedDays.reduce((obj: FilteredAllColors, item) => {
       if (obj[item.day]) {
         obj[item.day].push(item.color);
       } else {

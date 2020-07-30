@@ -1,11 +1,11 @@
 import React from 'react';
-import { LooseObject, DateProps } from '../ts/interfaces';
+import { DateProps, FilteredByColor, FilteredAllColors } from '../ts/interfaces';
 import { apiService } from '../helpers/ApiService';
 
 interface IProps {
   dateProps: DateProps;
   selectedColor: string | null;
-  daysFilteredByColor: LooseObject;
+  daysFilteredByColor: FilteredByColor | FilteredAllColors;
 }
 
 const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor }) => {
