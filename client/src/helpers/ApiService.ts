@@ -13,7 +13,6 @@ class ApiService {
 
   async addSelectedDay(date: string, day: string, color: string) {
     const rBody = { date, day, color };
-    console.log('adding day');
     const response = await fetch("http://localhost:8080/new", {
       method: "POST",
       body: JSON.stringify(rBody)
@@ -26,7 +25,6 @@ class ApiService {
 
   async unselectDay(date: string, day: string, color: string) {
     const rBody = { date, day, color };
-    console.log('deleting day');
     const response = await fetch("http://localhost:8080/", {
       method: "PATCH",
       body: JSON.stringify(rBody)

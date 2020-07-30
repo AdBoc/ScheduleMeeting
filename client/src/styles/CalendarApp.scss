@@ -32,6 +32,7 @@
 }
 
 .day {
+    -webkit-tap-highlight-color: transparent;
     background-color: white;
     border: 0;
     padding: 1em;
@@ -40,6 +41,14 @@
     outline: none;
     border: 1px solid white;
     cursor: pointer;
+    &:focus,
+    &:active,
+    &:focus:active {
+        background-image: none;
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
 }
 
 .person-container {

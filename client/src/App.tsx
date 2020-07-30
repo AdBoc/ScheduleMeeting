@@ -10,7 +10,7 @@ function App() {
   const [color, setColor] = useState<null | string>(null);
 
   const handleClick = (arg: string | null) => () => {
-    !!color ? setColor(null) : setColor(arg);
+    !color ? setColor(arg) : arg === color ? setColor(null) : setColor(arg);
   };
 
   return (
@@ -22,4 +22,4 @@ function App() {
   );
 };
 
-export default App; //MEDIA QUERIES W DUZYM WIDOKU MA GRID W MALYM FLEX
+export default App;
