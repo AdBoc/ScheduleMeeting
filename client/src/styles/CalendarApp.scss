@@ -61,8 +61,19 @@
     font-family: Roboto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin: 1em auto;
     max-width: fit-content;
+    &__person {
+        text-align: center;
+        flex: 0 0 50%;
+        padding: 0.75em 0;
+        cursor: pointer;
+        &--active {
+            @extend .person-container__person;
+            background-color: rgb(205, 205, 255);
+        }
+    }
 }
 
 .footer {
@@ -72,86 +83,41 @@
     margin: 0.5em 1em;
     justify-content: flex-end;
     align-items: center;
-    // &__label {
-    //     // margin: 0.5em;
-    // }
     &__git-icon {
         margin: 0.5em;
+        width: 32px;
     }
 }
 
-.person {
-    text-align: center;
-    flex: 0 0 50%;
-    padding: 0.75em;
-    cursor: pointer;
-    &::after {
-        content: "";
-        display: inline-block;
-        position: absolute;
-        margin-left: 0.2rem;
-        height: 20px;
-        width: 20px;
-    }
-    &:hover {
-        background-color: rgb(205, 205, 255);
-    }
-}
-
-.witek::after {
-    background-color: blue;
-}
-.janek::after {
-    background-color: yellow;
-}
-.slawek::after {
-    background-color: red;
-}
-.adrian::after {
-    background-color: green;
-}
-.adam::after {
-    background-color: brown;
-}
-.maciek::after {
-    background-color: purple;
-}
-.potek::after {
-    background-color: pink;
-}
-.krzysiek::after {
-    background-color: grey;
-}
-
-.--blue {
+.Witek {
     border: 1px solid blue;
     background-color: rgba(0, 0, 255, 0.13);
 }
-.--red {
+.Sławek {
     border: 1px solid red;
     background-color: rgba(255, 0, 0, 0.13);
 }
-.--yellow {
+.Janek {
     border: 1px solid yellow;
     background-color: rgba(255, 255, 0, 0.13);
 }
-.--green {
+.Adrian {
     border: 1px solid green;
     background-color: rgba(0, 128, 0, 0.13);
 }
-.--brown {
+.Adam {
     border: 1px solid brown;
     background-color: rgba(165, 42, 42, 0.13);
 }
-.--purple {
+.Maciek {
     border: 1px solid purple;
     background-color: rgba(128, 0, 128, 0.13);
 }
-.--pink {
+.Potrek {
     border: 1px solid pink;
     background-color: rgba(255, 192, 203, 0.13);
 }
-.--grey {
+.Krzysiek {
     border: 1px solid grey;
     background-color: rgba(128, 128, 128, 0.13);
 }
@@ -195,3 +161,11 @@
         flex: 0 0 25%;
     }
 }
+
+// @media (hover: hover) and (pointer: fine) {
+//     .day {
+//         &:hover {
+//             background-color: rgb(205, 205, 255);
+//         }
+//     }
+// }

@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="calendar-app">
       <Calendar selectedColor={color} />
-      <PickPerson handleClick={handleClick} />
+      <PickPerson selectedColor={color} handleClick={handleClick} />
       <Footer />
     </div >
   );

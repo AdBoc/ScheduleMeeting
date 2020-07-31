@@ -18,7 +18,7 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor,
     const doesNotExist = /\b(\undefined)$/.test(className);
     if (doesNotExist) {
       await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor!);
-      setStatusResponse({}); //if status=200 update
+      setStatusResponse({}); //if status=200 update or show error
     } else {
       await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor!);
       setStatusResponse({});

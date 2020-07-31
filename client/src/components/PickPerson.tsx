@@ -1,20 +1,21 @@
 import React from 'react';
 
 interface IProps {
-  handleClick: (arg: string | null) => () => void
+  handleClick: (arg: string | null) => () => void;
+  selectedColor: string | null;
 }
 
-const PickPerson: React.FC<IProps> = ({handleClick}) => {
+const PickPerson: React.FC<IProps> = ({ handleClick, selectedColor }) => {
+
+  const players = ['Witek', 'Sławek', 'Potrek', 'Janek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
+
   return (
     <div className="person-container">
-      <p className="person witek" onClick={handleClick('--blue')}>Witek</p>
-      <p className="person slawek" onClick={handleClick('--red')}>Sławek</p>
-      <p className="person potek" onClick={handleClick('--pink')}>Potrek</p>
-      <p className="person janek" onClick={handleClick('--yellow')}>Janek</p>
-      <p className="person adrian" onClick={handleClick('--green')}>Adrian</p>
-      <p className="person adam" onClick={handleClick('--brown')}>Adam</p>
-      <p className="person krzysiek" onClick={handleClick('--grey')}>Krzysiek</p>
-      <p className="person maciek" onClick={handleClick('--purple')}>Maciek</p>
+      {players.map((person, index) => {
+        if (selectedColor && person === selectedColor)
+          return <p key={index} className="person-container__person--active" onClick={handleClick(person)}>{person}</p>
+        return <p key={index} className="person-container__person" onClick={handleClick(person)}>{person}</p>
+      })}
     </div>
   )
 }
