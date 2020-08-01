@@ -90,16 +90,12 @@ func deleteOldData() {
 	operation := int(t.Month() - 1)
 	monthString := strconv.Itoa(operation)
 	yearString := strconv.Itoa(t.Year())
-	deleteQuery := string(monthString + "/" + yearString)
+	deleteQuery := monthString + "/" + yearString
 
-	fmt.Println(deleteQuery)
-	filter := bson.M{"date": deleteQuery}
-	_, err := collection.DeleteOne(ctx, filter)
+	_, err := collection.DeleteOne(ctx, bson.M{"date": deleteQuery})
 	if err != nil {
 		fmt.Println("Error while deleting old data")
 	}
-
-	fmt.Println("delete func")
 }
 
 func getDataForMonth(w http.ResponseWriter, r *http.Request) {

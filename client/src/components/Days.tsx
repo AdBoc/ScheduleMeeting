@@ -32,7 +32,6 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor,
       days = firstDayOfMonth - 1;
     else
       days = 6;
-
     for (let i = 0; i < days; i++) {
       buttons.push(<button key={i} className="day"></button>);
     }

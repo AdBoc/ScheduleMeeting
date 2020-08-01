@@ -13,7 +13,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
   const [statusResponse, setStatusResponse] = useState({});
   const { dateProps, prevMonth, nextMonth, parseWithColor, parseNoColor } = useCalendar(today);
-  const { currentDay, currentMonth, currentYear } = dateProps;
+  const { currentMonth, currentYear } = dateProps;
   const daysFilteredByColor = selectedColor ? parseWithColor(selectedDays, selectedColor) : parseNoColor(selectedDays);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
       const response = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
       setSelectedDays(response.daysData);
     };
-    
+
     fetchData();
   }, [currentMonth, currentYear, statusResponse]);
 
@@ -29,7 +29,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
     <div className="calendar">
       <div className="month-indicator">
         <p className="month-indicator__button" onClick={prevMonth}>{"<"}</p>
-        <p className="month-indicator__label">{currentDay}</p>
         <p className="month-indicator__label">{monthsInYear[currentMonth - 1]}</p>
         <p className="month-indicator__label">{currentYear}</p>
         <p className="month-indicator__button" onClick={nextMonth}>{">"}</p>

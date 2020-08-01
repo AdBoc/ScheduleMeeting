@@ -3,12 +3,35 @@
     font-family: "Roboto"; // font-family: "Lato";
 }
 
+$main-theme: #003366;
+
+$count1: rgba(0, 51, 102, 0.15);
+$count2: rgba(0, 51, 102, 0.25);
+$count3: rgba(0, 51, 102, 0.35);
+$count4: rgba(0, 51, 102, 0.5);
+$count5: rgba(0, 51, 102, 0.65);
+$count6: rgba(0, 51, 102, 0.825);
+$count7: rgb(0, 51, 102);
+$count8: #00a558;
+
+$text-light: white;
+$text-dark: #003366;
+
+$witek--color: rgb(0, 51, 102);
+$sławek--color: rgb(0, 51, 102);
+$maciek--color: rgb(0, 51, 102);
+$adrian--color: rgb(0, 51, 102);
+$adam--color: rgb(0, 51, 102);
+$janek--color: rgb(0, 51, 102);
+$potrek--color: rgb(0, 51, 102);
+$krzysiek--color: rgb(0, 51, 102);
+
 .calendar {
     font-family: Roboto;
     max-width: max-content;
     margin: 3em auto 0 auto;
     padding: 1.5em;
-    border: 2px solid #bcccdc;
+    border: 2px solid $main-theme;
     border-radius: 8px;
 }
 
@@ -18,10 +41,15 @@
     justify-content: center;
     &__button {
         font-size: 1.25em;
+        font-weight: bold;
         display: inline-block;
-        margin: 0 0.5em;
-        padding: 0.5em;
+        margin: 0.5em;
+        padding: 0.5em 0.75em;
+        background-color: $main-theme;
+        color: white;
         cursor: pointer;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        -webkit-tap-highlight-color: transparent;
     }
     &__label {
         font-size: 1.75em;
@@ -42,10 +70,10 @@
     background-color: white;
     border: 0;
     padding: 0.75em;
+    margin: 0.1em;
     border-radius: 50%;
-    color: #486581;
+    color: $main-theme;
     outline: none;
-    border: 1px solid white;
     cursor: pointer;
     &:focus,
     &:active,
@@ -71,7 +99,8 @@
         cursor: pointer;
         &--active {
             @extend .person-container__person;
-            background-color: rgb(205, 205, 255);
+            background-color: $main-theme;
+            color: white;
         }
         -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
         -webkit-tap-highlight-color: transparent; // i.e. Nexus5/Chrome and Kindle Fire HD 7''
@@ -81,7 +110,7 @@
 .footer {
     font-family: Roboto;
     display: flex;
-    border-top: 1px solid #bcccdc;
+    border-top: 1px solid $main-theme;
     margin: 0.5em 1em;
     justify-content: flex-end;
     align-items: center;
@@ -92,64 +121,69 @@
 }
 
 .Witek {
-    border: 1px solid blue;
-    background-color: rgba(0, 0, 255, 0.13);
+    background-color: $witek--color;
+    color: $text-light;
 }
 .Sławek {
-    border: 1px solid red;
-    background-color: rgba(255, 0, 0, 0.13);
+    background-color: $sławek--color;
+    color: $text-light;
 }
 .Janek {
-    border: 1px solid yellow;
-    background-color: rgba(255, 255, 0, 0.13);
+    background-color: $janek--color;
+    color: $text-light;
 }
 .Adrian {
-    border: 1px solid green;
-    background-color: rgba(0, 128, 0, 0.13);
+    background-color: $adrian--color;
+    color: $text-light;
 }
 .Adam {
-    border: 1px solid brown;
-    background-color: rgba(165, 42, 42, 0.13);
+    background-color: $adam--color;
+    color: $text-light;
 }
 .Maciek {
-    border: 1px solid purple;
-    background-color: rgba(128, 0, 128, 0.13);
+    background-color: $maciek--color;
+    color: $text-light;
 }
 .Potrek {
-    border: 1px solid pink;
-    background-color: rgba(255, 192, 203, 0.13);
+    background-color: $potrek--color;
+    color: $text-light;
 }
 .Krzysiek {
-    border: 1px solid grey;
-    background-color: rgba(128, 128, 128, 0.13);
+    background-color: $krzysiek--color;
+    color: $text-light;
 }
 
-.count0 {
-    background-color: white;
-}
 .count1 {
-    background-color: rgba(255, 153, 0, 0.15);
+    background-color: $count1;
+    color: $text-dark;
 }
 .count2 {
-    background-color: rgba(255, 153, 0, 0.25);
+    background-color: $count2;
+    color: $text-dark;
 }
 .count3 {
-    background-color: rgba(255, 153, 0, 0.35);
+    background-color: $count3;
+    color: $text-dark;
 }
 .count4 {
-    background-color: rgba(255, 153, 0, 0.5);
+    background-color: $count4;
+    color: $text-light;
 }
 .count5 {
-    background-color: rgba(255, 153, 0, 0.65);
+    background-color: $count5;
+    color: $text-light;
 }
 .count6 {
-    background-color: rgba(255, 153, 0, 0.825);
+    background-color: $count6;
+    color: $text-light;
 }
 .count7 {
-    background-color: rgba(255, 153, 0, 0.918);
+    background-color: $count7;
+    color: $text-light;
 }
 .count8 {
-    background-color: rgb(0, 255, 42);
+    background-color: $count8;
+    color: $text-light;
 }
 
 @media screen and (min-width: 354px) {
