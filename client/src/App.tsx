@@ -19,7 +19,7 @@ function App() {
       <PickPerson selectedColor={color} handleClick={handleClick} />
       <Footer />
     </div >
-  );
+  )
 };
 
 export default App;

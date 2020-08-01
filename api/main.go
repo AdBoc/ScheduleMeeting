@@ -6,9 +6,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/robfig/cron/v3"
 	"github.com/rs/cors"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -42,6 +45,13 @@ type monthDataRequest struct {
 var collection *mongo.Collection
 
 func main() {
+	//Run CRON schedule
+	cSchedule := cron.New()
+	cSchedule.AddFunc("@monthly", func() { //MONTHLY
+		deleteOldData()
+	})
+	cSchedule.Start()
+
 	//MONGODB
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -71,6 +81,27 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
 
+func deleteOldData() {
+	t := time.Now()
+
+	ctx, errContext := context.WithTimeout(context.Background(), 10*time.Second)
+	defer errContext()
+
+	operation := int(t.Month() - 1)
+	monthString := strconv.Itoa(operation)
+	yearString := strconv.Itoa(t.Year())
+	deleteQuery := string(monthString + "/" + yearString)
+
+	fmt.Println(deleteQuery)
+	filter := bson.M{"date": deleteQuery}
+	_, err := collection.DeleteOne(ctx, filter)
+	if err != nil {
+		fmt.Println("Error while deleting old data")
+	}
+
+	fmt.Println("delete func")
+}
+
 func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	req := dateFromFront{}
 	decoder := json.NewDecoder(r.Body)
@@ -88,7 +119,6 @@ func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	var foundData FullDate
 	errFind := collection.FindOne(ctx, bson.M{"date": req.Date}).Decode(&foundData)
 	if errFind != nil {
-		// addNewMonth()
 		fmt.Println("Data for selected month does not exist")
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -118,11 +148,36 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 	update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}
 	singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&updatedData)
 	if singleResult != nil {
-		fmt.Println("Could Not Add Data For Selected Month")
-		w.WriteHeader(http.StatusBadRequest) //app is killed with Fatal // log.Fatal(errFind)
-		return
-	}
+		monthArray := [12]string{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
+		tNow := time.Now()
+		parts := strings.Split(req.Date, "/")
+		work, _ := strconv.Atoi(parts[0])
+		dateFront := parts[1] + "-" + monthArray[work-1] + "-01"
+		tNew, dateErr := time.Parse("2006-Jan-02", dateFront)
+		if dateErr != nil {
+			fmt.Println(tNew)
+		}
+		dateDiff := tNew.Sub(tNow)
 
+		if dateDiff.Hours() > 1460 {
+			return
+		}
+
+		month := bson.M{
+			"date": req.Date,
+			"daysData": bson.A{
+				bson.M{
+					"day":   req.Day,
+					"color": req.Color},
+			},
+		}
+		_, nextErr := collection.InsertOne(ctx, month)
+		if nextErr != nil {
+			fmt.Println("Error while adding new data")
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+	}
 	w.WriteHeader(http.StatusOK)
 }
 

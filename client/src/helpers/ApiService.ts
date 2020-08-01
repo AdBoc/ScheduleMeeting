@@ -6,7 +6,8 @@ class ApiService {
       body: JSON.stringify(rBody)
     });
     if (response.status >= 400 && response.status <= 600) {
-      return Promise.reject("Could not get response");
+      Promise.reject("Could not get response");
+      return { daysData: [] };
     }
     return response.json();
   };
