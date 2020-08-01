@@ -77,7 +77,7 @@ func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	err := decoder.Decode(&req)
 	if err != nil {
-		fmt.Println("Error Parsin Request Body")
+		fmt.Println("Error While Parsing Request Body")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -88,7 +88,8 @@ func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	var foundData FullDate
 	errFind := collection.FindOne(ctx, bson.M{"date": req.Date}).Decode(&foundData)
 	if errFind != nil {
-		fmt.Println("Data for selected month not found")
+		// addNewMonth()
+		fmt.Println("Data for selected month does not exist")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -103,7 +104,7 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&req)
 	if err != nil {
-		fmt.Println("Error Parsin Request Body")
+		fmt.Println("Error While Parsing Request Body")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -149,3 +150,7 @@ func patchDataForMonth(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 }
+
+// func addNewMonth() {
+
+// }
