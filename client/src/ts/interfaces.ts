@@ -1,10 +1,10 @@
 export interface CalendarProps {
-    selectedColor: string | null;
+    selectedName: string | null;
 }
 
 export interface SelectedDay {
     day: string;
-    color: string;
+    name: string;
 }
 
 export interface SelectedDays extends Array<SelectedDay> { }
@@ -13,11 +13,11 @@ export interface SelectedDays extends Array<SelectedDay> { }
 //     [key: string]: any
 // }
 
-export interface FilteredByColor {
+export interface FilteredByName {
     [day: string]: string
 }
 
-export interface FilteredAllColors {
+export interface FilteredAllNames {
     [day: string]: string[]
 }
 

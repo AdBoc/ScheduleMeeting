@@ -2,25 +2,23 @@ version: "3.8"
 services: 
     backend:
         build: ./api
-        restart: unless-stopped
+        container_name: "calendar-api"
         ports: 
             - "8080:8080"
         depends_on: 
-            - mongo
-
+            - db
 
     frontend:
         build: ./client
-        restart: unless-stopped
+        tty: true
+        container_name: "calendar-front"
         ports: 
             - "3000:3000"
-        depends_on: 
-            - backend
-
-    mongo:
-        image: mongo
-        restart: unless-stopped
-        ports: 
-            - "27017:27017"
+            
+    db:
+        image: mongo:latest
+        container_name: "calendar-db"
         volumes: 
             - ./data/db:/data/db
+        ports: 
+            - 27017:27017

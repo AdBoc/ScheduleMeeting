@@ -4,7 +4,7 @@ import { apiService } from '../helpers/ApiService';
 import { useCalendar } from '../hooks/useCalendar';
 import Days from './Days';
 
-const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
+const Calendar: React.FC<CalendarProps> = ({ selectedName }) => {
 
   let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
@@ -12,9 +12,9 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   const today = new Date();
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
   const [statusResponse, setStatusResponse] = useState({});
-  const { dateProps, prevMonth, nextMonth, parseWithColor, parseNoColor } = useCalendar(today);
+  const { dateProps, prevMonth, nextMonth, parseWithName, parseNoName } = useCalendar(today);
   const { currentMonth, currentYear } = dateProps;
-  const daysFilteredByColor = selectedColor ? parseWithColor(selectedDays, selectedColor) : parseNoColor(selectedDays);
+  const daysFilteredByName = selectedName ? parseWithName(selectedDays, selectedName) : parseNoName(selectedDays);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,8 +40,8 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
       </div>
       <Days
         dateProps={dateProps}
-        selectedColor={selectedColor}
-        daysFilteredByColor={daysFilteredByColor}
+        selectedName={selectedName}
+        daysFilteredByName={daysFilteredByName}
         setStatusResponse={setStatusResponse}
       />
     </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SelectedDays, DateProps, FilteredAllColors, FilteredByColor } from '../ts/interfaces';
+import { SelectedDays, DateProps, FilteredByName, FilteredAllNames } from '../ts/interfaces';
 
 export const useCalendar = (today: Date) => {
   const [currentDay] = useState(today.getDate());
@@ -31,19 +31,19 @@ export const useCalendar = (today: Date) => {
     }
   };
 
-  const parseWithColor = (selectedDays: SelectedDays, selectedColor: string) => {
-    return selectedDays.filter(item => item.color === selectedColor).reduce((obj: FilteredByColor, item) => {
-      obj[item.day] = item.color;
+  const parseWithName = (selectedDays: SelectedDays, selectedName: string) => {
+    return selectedDays.filter(item => item.name === selectedName).reduce((obj: FilteredByName, item) => {
+      obj[item.day] = item.name;
       return obj;
     }, {})
   };
 
-  const parseNoColor = (selectedDays: SelectedDays) => {
-    return selectedDays.reduce((obj: FilteredAllColors, item) => {
+  const parseNoName = (selectedDays: SelectedDays) => {
+    return selectedDays.reduce((obj: FilteredAllNames, item) => {
       if (obj[item.day]) {
-        obj[item.day].push(item.color);
+        obj[item.day].push(item.name);
       } else {
-        obj[item.day] = [item.color];
+        obj[item.day] = [item.name];
       }
       return obj;
     }, {})
@@ -61,7 +61,7 @@ export const useCalendar = (today: Date) => {
     dateProps,
     nextMonth,
     prevMonth,
-    parseNoColor,
-    parseWithColor
+    parseNoName,
+    parseWithName
   };
 }

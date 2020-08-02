@@ -12,8 +12,8 @@ class ApiService {
     return response.json();
   };
 
-  async addSelectedDay(date: string, day: string, color: string) {
-    const rBody = { date, day, color };
+  async addSelectedDay(date: string, day: string, name: string) {
+    const rBody = { date, day, name };
     const response = await fetch("http://localhost:8080/new", {
       method: "POST",
       body: JSON.stringify(rBody)
@@ -24,8 +24,8 @@ class ApiService {
     return response.status;
   }
 
-  async unselectDay(date: string, day: string, color: string) {
-    const rBody = { date, day, color };
+  async unselectDay(date: string, day: string, name: string) {
+    const rBody = { date, day, name };
     const response = await fetch("http://localhost:8080/", {
       method: "PATCH",
       body: JSON.stringify(rBody)

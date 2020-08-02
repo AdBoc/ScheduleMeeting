@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { DateProps, FilteredByColor, FilteredAllColors } from '../ts/interfaces';
+import { DateProps, FilteredByName, FilteredAllNames } from '../ts/interfaces';
 import { apiService } from '../helpers/ApiService';
 
 interface IProps {
   dateProps: DateProps;
-  selectedColor: string | null;
-  daysFilteredByColor: FilteredByColor | FilteredAllColors;
+  selectedName: string | null;
+  daysFilteredByName: FilteredByName | FilteredAllNames;
   setStatusResponse: React.Dispatch<React.SetStateAction<object>>;
 }
 
-const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor, setStatusResponse }) => {
+const Days: React.FC<IProps> = ({ dateProps, selectedName, daysFilteredByName, setStatusResponse }) => {
 
   const { currentMonth, currentYear, daysOfMonth, firstDayOfMonth } = dateProps;
   const [isFetching, setIsFetching] = useState(false);
@@ -19,12 +19,12 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor,
     const doesNotExist = /\b(\undefined)$/.test(className);
     if (doesNotExist && !isFetching) {
       setIsFetching(prev => !prev);
-      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor!);
+      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedName!);
       setStatusResponse({}); //if status=200 update or show error
       setIsFetching(prev => !prev);
     } else if (!doesNotExist && !isFetching) {
       setIsFetching(prev => !prev);
-      await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor!);
+      await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedName!);
       setStatusResponse({});
       setIsFetching(prev => !prev);
     }
@@ -46,7 +46,7 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor,
   const composeClassName = (day: string) => {
     const newCurrentDay = new Date();
     let className = `day ${day}`;
-    className += daysFilteredByColor[day] !== undefined ? ` count${daysFilteredByColor[day].length}` : "";
+    className += daysFilteredByName[day] !== undefined ? ` count${daysFilteredByName[day].length}` : "";
     if (currentMonth - 1 === newCurrentDay.getMonth() && currentYear === newCurrentDay.getFullYear() && +day === newCurrentDay.getDate()) {
       className += " currentDay";
     }
@@ -56,10 +56,10 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor,
   return (
     <div className="days-of-month">
       {addEmptyButtons()}
-      {!!selectedColor ?
+      {!!selectedName ?
         <>
           {daysOfMonth.map((day, index) => {
-            return <button key={index} className={`day ${day} ` + daysFilteredByColor[day]} value={day} onClick={handleDaySelect}>{day}</button>
+            return <button key={index} className={`day ${day} ` + daysFilteredByName[day]} value={day} onClick={handleDaySelect}>{day}</button>
           })}
         </> :
         <>

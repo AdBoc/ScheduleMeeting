@@ -7,16 +7,16 @@ import './styles/App.css';
 import './styles/CalendarApp.scss';
 
 function App() {
-  const [color, setColor] = useState<null | string>(null);
+  const [name, setName] = useState<null | string>(null);
 
   const handleClick = (arg: string | null) => () => {
-    !color ? setColor(arg) : arg === color ? setColor(null) : setColor(arg);
+    !name ? setName(arg) : arg === name ? setName(null) : setName(arg);
   };
 
   return (
     <div className="calendar-app">
-      <Calendar selectedColor={color} />
-      <PickPerson selectedColor={color} handleClick={handleClick} />
+      <Calendar selectedName={name} />
+      <PickPerson selectedName={name} handleClick={handleClick} />
       <Footer />
     </div >
   )

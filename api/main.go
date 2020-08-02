@@ -30,7 +30,7 @@ type FullDate struct {
 // MonthData has data for current month
 type MonthData struct {
 	Day   string `json:"day,omitempty" bson:"day,omitempty"`
-	Color string `json:"color,omitempty" bson:"color,omitempty"`
+	Name string `json:"name,omitempty" bson:"name,omitempty"`
 }
 
 type dateFromFront struct {
@@ -141,7 +141,7 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 
 	var updatedData MonthData
 	filter := bson.M{"date": req.Date}
-	update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}
+	update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "name": req.Name}}}
 	singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&updatedData)
 	if singleResult != nil {
 		monthArray := [12]string{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
@@ -164,7 +164,7 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 			"daysData": bson.A{
 				bson.M{
 					"day":   req.Day,
-					"color": req.Color},
+					"name": req.Name},
 			},
 		}
 		_, nextErr := collection.InsertOne(ctx, month)
@@ -192,7 +192,7 @@ func patchDataForMonth(w http.ResponseWriter, r *http.Request) {
 	defer error()
 
 	var updatedData interface{}
-	singleResult := collection.FindOneAndUpdate(ctx, bson.M{"date": req.Date}, bson.M{"$pull": bson.M{"daysData": bson.M{"day": req.Day, "color": req.Color}}}).Decode(&updatedData)
+	singleResult := collection.FindOneAndUpdate(ctx, bson.M{"date": req.Date}, bson.M{"$pull": bson.M{"daysData": bson.M{"day": req.Day, "name": req.Name}}}).Decode(&updatedData)
 	if singleResult != nil {
 		fmt.Println("Could Not Delete Data For Selected Month")
 		w.WriteHeader(http.StatusBadRequest)
