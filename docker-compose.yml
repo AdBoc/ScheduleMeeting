@@ -1,0 +1,26 @@
+version: "3.8"
+services: 
+    backend:
+        build: ./api
+        restart: unless-stopped
+        ports: 
+            - "8080:8080"
+        depends_on: 
+            - mongo
+
+
+    frontend:
+        build: ./client
+        restart: unless-stopped
+        ports: 
+            - "3000:3000"
+        depends_on: 
+            - backend
+
+    mongo:
+        image: mongo
+        restart: unless-stopped
+        ports: 
+            - "27017:27017"
+        volumes: 
+            - ./data/db:/data/db
