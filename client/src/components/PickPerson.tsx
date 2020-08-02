@@ -13,8 +13,8 @@ const PickPerson: React.FC<IProps> = ({ handleClick, selectedColor }) => {
     <div className="person-container">
       {players.map((person, index) => {
         if (selectedColor && person === selectedColor)
-          return <p key={index} className="person-container__person--active" onClick={handleClick(person)}>{person}</p>
-        return <p key={index} className="person-container__person" onClick={handleClick(person)}>{person}</p>
+          return <button key={index} className="person-container__person--active" onClick={handleClick(person)}>{person}</button>
+        return <button key={index} className="person-container__person" onClick={handleClick(person)}>{person}</button>
       })}
     </div>
   )

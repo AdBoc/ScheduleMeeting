@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DateProps, FilteredByColor, FilteredAllColors } from '../ts/interfaces';
 import { apiService } from '../helpers/ApiService';
 
@@ -12,16 +12,21 @@ interface IProps {
 const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor, setStatusResponse }) => {
 
   const { currentMonth, currentYear, daysOfMonth, firstDayOfMonth } = dateProps;
+  const [isFetching, setIsFetching] = useState(false);
 
   const handleDaySelect = async ({ target }: any) => {
     const { value, className } = target;
     const doesNotExist = /\b(\undefined)$/.test(className);
-    if (doesNotExist) {
+    if (doesNotExist && !isFetching) {
+      setIsFetching(prev => !prev);
       await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedColor!);
       setStatusResponse({}); //if status=200 update or show error
-    } else {
+      setIsFetching(prev => !prev);
+    } else if (!doesNotExist && !isFetching) {
+      setIsFetching(prev => !prev);
       await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedColor!);
       setStatusResponse({});
+      setIsFetching(prev => !prev);
     }
   }
 
@@ -38,6 +43,16 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor,
     return buttons;
   };
 
+  const composeClassName = (day: string) => {
+    const newCurrentDay = new Date();
+    let className = `day ${day}`;
+    className += daysFilteredByColor[day] !== undefined ? ` count${daysFilteredByColor[day].length}` : "";
+    if (currentMonth - 1 === newCurrentDay.getMonth() && currentYear === newCurrentDay.getFullYear() && +day === newCurrentDay.getDate()) {
+      className += " currentDay";
+    }
+    return className;
+  }
+
   return (
     <div className="days-of-month">
       {addEmptyButtons()}
@@ -49,10 +64,7 @@ const Days: React.FC<IProps> = ({ dateProps, selectedColor, daysFilteredByColor,
         </> :
         <>
           {daysOfMonth.map((day, index) => {
-            let value;
-            if (daysFilteredByColor[day] !== undefined) //jesli taki dzien nie istnieje to nie badaj dlugosci tablicy ktora nie istnieje
-              value = daysFilteredByColor[day].length;
-            return <button key={index} className={`day ${day} count${value}`} value={day}>{day}</button>
+            return <button key={index} className={composeClassName(day)} value={day}>{day}</button>
           })}
         </>
       }

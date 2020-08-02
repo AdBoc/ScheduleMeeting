@@ -28,10 +28,10 @@ const Calendar: React.FC<CalendarProps> = ({ selectedColor }) => {
   return (
     <div className="calendar">
       <div className="month-indicator">
-        <p className="month-indicator__button" onClick={prevMonth}>{"<"}</p>
+        <button className="month-indicator__button" onClick={prevMonth}>{"<"}</button>
         <p className="month-indicator__label">{monthsInYear[currentMonth - 1]}</p>
         <p className="month-indicator__label">{currentYear}</p>
-        <p className="month-indicator__button" onClick={nextMonth}>{">"}</p>
+        <button className="month-indicator__button" onClick={nextMonth}>{">"}</button>
       </div>
       <div className="day-of-week">
         {dayOfWeek.map((day, index) => {
