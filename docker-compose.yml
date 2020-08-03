@@ -7,6 +7,8 @@ services:
             - "8080:8080"
         depends_on: 
             - db
+        networks: 
+            - webappnetwork
 
     frontend:
         build: ./client
@@ -14,6 +16,8 @@ services:
         container_name: "calendar-front"
         ports: 
             - "3000:3000"
+        networks: 
+            - webappnetwork
             
     db:
         image: mongo:latest
@@ -22,3 +26,9 @@ services:
             - ./data/db:/data/db
         ports: 
             - 27017:27017
+        networks: 
+            - webappnetwork
+
+    networks: 
+        webappnetwork:
+            driver: bridge

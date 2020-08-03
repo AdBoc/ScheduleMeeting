@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
-import Calendar from './components/Calendar';
-import PickPerson from './components/PickPerson';
-import Footer from './components/Footer';
+import React from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
+import { history } from './helpers/history';
+import MainComponent from './components/MainComponent';
 
 import './styles/App.css';
 import './styles/CalendarApp.scss';
+import CharacterSheet from './components/CharacterSheet/CharacterSheet';
 
-function App() {
-  const [name, setName] = useState<null | string>(null);
-
-  const handleClick = (arg: string | null) => () => {
-    !name ? setName(arg) : arg === name ? setName(null) : setName(arg);
-  };
+function App(): JSX.Element {
 
   return (
-    <div className="calendar-app">
-      <Calendar selectedName={name} />
-      <PickPerson selectedName={name} handleClick={handleClick} />
-      <Footer />
-    </div >
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={MainComponent}></Route>
+        <Route exact path="/witek" component={CharacterSheet}></Route>
+        <Route component={() => <p>Route does not exist</p>} />
+      </Switch>
+    </Router>
   )
 };
 
