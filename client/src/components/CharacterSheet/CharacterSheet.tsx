@@ -1,37 +1,24 @@
-import React, { useState, SyntheticEvent } from 'react';
-import Stats from './Stats';
-import Skills from './Skills';
-import SavingThrows from './SavingThrows';
-import Attacks from './Attacks';
-import Equipment from './Equipment';
-import Story from './Story';
+import React, { useState, useReducer } from 'react';
+import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './index';
+// import NumberSelect from '../Reusable/Select';
 
 import "./Sheet.scss";
-import { useSheet } from '../../hooks/useSheet';
+import { sheetReducer } from './reducer/sheetReducer';
+import { initialCharacter } from './reducer/sheetReducer';
+// import { Types } from './reducer/sheetReducer';
 
 const CharacterSheet: React.FC = () => {
 
-  const { newChar } = useSheet();
   const [currentView, setCurrentView] = useState("stats");
-  const [character, setCharacter] = useState(newChar);
+  const [character, dispatch] = useReducer(sheetReducer, initialCharacter);
 
   const toggleView = ({ target }: any) => {
     setCurrentView(target.name);
   };
 
-  const handleChange = ({ target }: any) => {
-    //1 way
-    // const { value } = target;
-    // setCharacter({ ...character, MainStats: { ...character.MainStats, ArmorClass: praseInt(value) } });
-
-    //2 way
-    // const copy = { ...character };
-    // copy.MainStats.ArmorClass = parseInt(target.value);
-    // setCharacter(copy);
-
-  };
-
-  console.log(character);
+  // const handleStatChange = ({ target }: any) => {
+  //   dispatch({ type: Types.CHANGE_STAT, payload: { property: target.name, newValue: target.value } });
+  // };
 
   const calculateProficiency = (charLvl: number) => {
     if (charLvl === 0)
@@ -53,8 +40,12 @@ const CharacterSheet: React.FC = () => {
         return <Equipment character={character} />
       case 'story':
         return <Story character={character} />
+      case 'quickAccess':
+        return <QuickAccess character={character} dispatch={dispatch} />
     }
   };
+
+  console.log(character);
 
   return (
     <>
@@ -65,7 +56,7 @@ const CharacterSheet: React.FC = () => {
       </div>
       <div className="sheet--main-stats">
         <div className="sheet--main-stats--stat">
-          <input type="number" className="sheet--main-stats--stat--val" name="MainStats.ArmorClass" value={character.MainStats.ArmorClass} onChange={handleChange} />
+          <p className="sheet--main-stats--stat--val">{character.MainStats.ArmorClass}</p>
           <p>Armor Class</p>
         </div>
         <div className="sheet--main-stats--stat">
@@ -96,6 +87,7 @@ const CharacterSheet: React.FC = () => {
         <button className="sheet--button" onClick={toggleView} name="attacks">Attacks</button>
         <button className="sheet--button" onClick={toggleView} name="equipment">Equipment</button>
         <button className="sheet--button" onClick={toggleView} name="story">Story</button>
+        <button className="sheet--button" onClick={toggleView} name="quickAccess">QuickAccess</button>
       </div>
       {renderView()}
     </>
@@ -108,3 +100,30 @@ export default CharacterSheet;
 //save to api when something is changed via button click 
 //download data
 //revert changes
+
+
+
+{/* <div className="sheet--main-stats--stat">
+          <NumberSelect range={[1, 50]} name="ArmorClass" value={character.MainStats.ArmorClass} onChange={handleStatChange} />
+          <p>ArmorClass</p>
+        </div>
+        <div className="sheet--main-stats--stat">
+          <NumberSelect range={[1, 40]} name="Initiative" value={character.MainStats.Initiative} onChange={handleStatChange} />
+          <p>Initiative</p>
+        </div>
+        <div className="sheet--main-stats--stat">
+          <label><input type="number" className="sheet--main-stats--stat--val" name="Speed" value={character.MainStats.Speed} onChange={handleStatChange} />
+          Speed</label>
+        </div>
+        <div className="sheet--main-stats--stat">
+          <NumberSelect range={[1, 30]} name="PassivePercepion" value={character.MainStats.PassivePercepion} onChange={handleStatChange} />
+          <p>Passive Percepion</p>
+        </div>
+        <div className="sheet--main-stats--stat">
+          <label><p className="sheet--main-stats--stat--val">{calculateProficiency(character.Level)}</p>
+          Proficiency Bonus</label>
+        </div>
+        <div className="sheet--main-stats--stat">
+          <label><input type="number" className="sheet--main-stats--stat--val" name="Inspiration" value={character.MainStats.Inspiration} onChange={handleStatChange} />
+          Inspiration</label>
+        </div> */}

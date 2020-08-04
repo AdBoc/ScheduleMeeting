@@ -125,3 +125,22 @@
         }
     }
 }
+
+.generic-select {
+    appearance: none;
+    color: white;
+    padding: 0.1em;
+    font-size: 3em;
+}
+
+.generic-stat-buttons {
+    display: flex;
+    &--button {
+        color: red;
+        background-color: yellow;
+        padding: 0.1em 0.25em;
+        margin: 0 0.4em;
+        min-width: 1.25em;
+        cursor: pointer;
+    }
+}
