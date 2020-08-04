@@ -31,6 +31,7 @@ const SavingThrows: React.FC<IProps> = ({ character }) => {
       <p className="sheet--view--title">Saving throws</p>
       <div className="sheet--view--saving-throws">
         {generateSavingThrows()}
+        <p>tagged 0/2</p>
       </div>
       <div className="sheet--view--death-saving">
         <p className="sheet--view--death-saving--title">Death save</p>

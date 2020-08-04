@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import Stats from './Stats';
 import Skills from './Skills';
 import SavingThrows from './SavingThrows';
@@ -19,9 +19,19 @@ const CharacterSheet: React.FC = () => {
     setCurrentView(target.name);
   };
 
-  const onChange = () => {
-    localStorage.setItem('character', JSON.stringify(character));
+  const handleChange = ({ target }: any) => {
+    //1 way
+    // const { value } = target;
+    // setCharacter({ ...character, MainStats: { ...character.MainStats, ArmorClass: praseInt(value) } });
+
+    //2 way
+    // const copy = { ...character };
+    // copy.MainStats.ArmorClass = parseInt(target.value);
+    // setCharacter(copy);
+
   };
+
+  console.log(character);
 
   const calculateProficiency = (charLvl: number) => {
     if (charLvl === 0)
@@ -55,7 +65,7 @@ const CharacterSheet: React.FC = () => {
       </div>
       <div className="sheet--main-stats">
         <div className="sheet--main-stats--stat">
-          <p className="sheet--main-stats--stat--val">{character.MainStats.ArmorClass}</p>
+          <input type="number" className="sheet--main-stats--stat--val" name="MainStats.ArmorClass" value={character.MainStats.ArmorClass} onChange={handleChange} />
           <p>Armor Class</p>
         </div>
         <div className="sheet--main-stats--stat">
