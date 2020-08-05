@@ -1,14 +1,10 @@
-import React from 'react';
-import { CharacterInterface } from '../../ts/interfaces';
+import React, { useContext } from 'react';
 import NumberSelect from '../Reusable/NumberSelect';
-import { ScheetActions } from './reducer/sheetReducer';
+import { characterContext } from '../../context/character';
 
-interface IProps {
-  character: CharacterInterface;
-  dispatch: React.Dispatch<ScheetActions>;
-}
+const Stats: React.FC = () => {
 
-const Stats: React.FC<IProps> = ({ character, dispatch }) => {
+  const { character, dispatch } = useContext(characterContext);
 
   const returnModificator = (statValue: number) => {
     return Math.floor(statValue / 2) - 5;

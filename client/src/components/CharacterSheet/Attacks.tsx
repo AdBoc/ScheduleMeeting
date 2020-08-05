@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
-import { CharacterInterface } from '../../ts/interfaces';
+import React, { useState, useContext } from 'react';
 import AddAttack from './AddAttack';
+import { characterContext } from '../../context/character';
 
-interface IProps {
-  character: CharacterInterface;
-}
-
-const Attacks: React.FC<IProps> = ({ character }) => {
-
+const Attacks: React.FC = () => {
   const [attackForm, setAttackForm] = useState(false);
+  const { character } = useContext(characterContext);
 
   return (
     <div className="sheet--view--attacks">
       <button onClick={() => setAttackForm(prev => !prev)}>+ Add Attack</button>
       {attackForm && <AddAttack />}
-      <div>
-        <p>name</p>
-        <p>dice</p>
-      </div>
+      {character.Attacks.map((item, index) => {
+        return (
+          <div key={index}>
+            <p>{item.name}</p>
+            <p>{item.diceType}</p>
+            <p>{item.range}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }

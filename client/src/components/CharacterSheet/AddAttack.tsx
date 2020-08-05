@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Attack } from '../../ts/interfaces';
+import { characterContext } from '../../context/character';
+import { Types } from '../../context/sheetReducer';
 
 const AddAttack: React.FC = () => {
+
+  const { dispatch } = useContext(characterContext);
   const [newAttack, setNewAttack] = useState<Attack>({
     name: "",
     diceType: "",
@@ -12,6 +16,7 @@ const AddAttack: React.FC = () => {
 
   const submitNewAttack = (e: any) => {
     e.preventDefault();
+    dispatch({ type: Types.ADD_ATTACK, payload: { attackData: newAttack } });
   };
 
   const handleInput = ({ target }: any) => {

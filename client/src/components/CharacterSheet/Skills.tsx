@@ -1,14 +1,11 @@
-import React from 'react';
-import { CharacterInterface } from '../../ts/interfaces';
+import React, { useContext } from 'react';
 import StatButtons from '../Reusable/StatButtons';
-import { ScheetActions } from './reducer/sheetReducer';
+import { characterContext } from '../../context/character';
 
-interface IProps {
-  character: CharacterInterface;
-  dispatch: React.Dispatch<ScheetActions>
-}
+const Skills: React.FC = () => {
 
-const Skills: React.FC<IProps> = ({ character, dispatch }) => {
+  const { character, dispatch } = useContext(characterContext);
+
   return (
     <div className="sheet--view--skills">
       <div className="sheet--view--skills--section">

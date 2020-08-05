@@ -81,8 +81,8 @@ export interface CharacterInterface {
         SleightOfHand: number;
         Stealth: number;
     },
-    Attacks?: Attack[];
-    Equipment?: BackpackObj[];
+    Attacks: Attack[] | never;
+    Equipment: BackpackObj[] | never;
     Story: {
         Alignment: string;
         Background: string;

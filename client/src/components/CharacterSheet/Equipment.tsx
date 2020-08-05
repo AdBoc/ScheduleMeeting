@@ -1,14 +1,25 @@
-import React from 'react';
-import { CharacterInterface } from '../../ts/interfaces';
+import React, { useContext, useState } from 'react';
+import AddEquipment from './AddEquipment';
+import { characterContext } from '../../context/character';
 
-interface IProps {
-  character: CharacterInterface;
-}
+const Equipment: React.FC = () => {
 
-const Equipment: React.FC<IProps> = ({ character }) => {
+  const [equipmentForm, setEquipmentForm] = useState(false);
+  const { character } = useContext(characterContext);
+
   return (
     <div className="sheet--view--equipment">
       <p className="sheet--view--equipment--title">Equipment</p>
+      <button onClick={() => setEquipmentForm(prev => !prev)}>+ Add Equipment</button>
+      {equipmentForm && <AddEquipment />}
+      {character.Equipment.map((item, index) => {
+        return (
+          <div key={index}>
+            <p>{item.name}</p>
+            <p>{item.description}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }

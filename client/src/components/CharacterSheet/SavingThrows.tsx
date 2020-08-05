@@ -1,13 +1,10 @@
-import React, { useState, useImperativeHandle } from 'react';
-import { CharacterInterface } from '../../ts/interfaces';
+import React, { useContext } from 'react';
+import { characterContext } from '../../context/character';
 
-interface IProps {
-  character: CharacterInterface;
-}
+const SavingThrows: React.FC = () => {
 
-const SavingThrows: React.FC<IProps> = ({ character }) => {
-
-  const [tagged, setTagged] = useState([]);
+  const { character } = useContext(characterContext);
+  // const [tagged, setTagged] = useState([]);
 
   const returnModificator = (statValue: number) => {
     return Math.floor(statValue / 2) - 5;

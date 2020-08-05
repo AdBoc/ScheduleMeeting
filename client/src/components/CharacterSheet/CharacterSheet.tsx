@@ -1,15 +1,14 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useContext } from 'react';
 import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './index';
 
 import "./Sheet.scss";
-import { sheetReducer } from './reducer/sheetReducer';
-import { initialCharacter } from './reducer/sheetReducer';
-import { Types } from './reducer/sheetReducer';
+import { Types } from '../../context/sheetReducer';
+import { characterContext } from '../../context/character';
 
 const CharacterSheet: React.FC = () => {
 
   const [currentView, setCurrentView] = useState("stats");
-  const [character, dispatch] = useReducer(sheetReducer, initialCharacter);
+  const { character, dispatch } = useContext(characterContext);
 
   const toggleView = ({ target }: any) => {
     setCurrentView(target.name);
@@ -32,19 +31,19 @@ const CharacterSheet: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case 'stats':
-        return <Stats character={character} dispatch={dispatch}/>
+        return <Stats />
       case 'skills':
-        return <Skills character={character} dispatch={dispatch}/>
+        return <Skills />
       case 'savingThrows':
-        return <SavingThrows character={character} />
+        return <SavingThrows />
       case 'attacks':
-        return <Attacks character={character} />
+        return <Attacks />
       case 'equipment':
-        return <Equipment character={character} />
+        return <Equipment />
       case 'story':
-        return <Story character={character} dispatch={dispatch}/>
+        return <Story />
       case 'quickAccess':
-        return <QuickAccess character={character} dispatch={dispatch} />
+        return <QuickAccess />
     }
   };
 
@@ -105,30 +104,3 @@ export default CharacterSheet;
 //save to api when something is changed via button click 
 //download data
 //revert changes
-
-
-
-{/* <div className="sheet--main-stats--stat">
-          <NumberSelect range={[1, 50]} name="ArmorClass" value={character.MainStats.ArmorClass} onChange={handleStatChange} />
-          <p>ArmorClass</p>
-        </div>
-        <div className="sheet--main-stats--stat">
-          <NumberSelect range={[1, 40]} name="Initiative" value={character.MainStats.Initiative} onChange={handleStatChange} />
-          <p>Initiative</p>
-        </div>
-        <div className="sheet--main-stats--stat">
-          <label><input type="number" className="sheet--main-stats--stat--val" name="Speed" value={character.MainStats.Speed} onChange={handleStatChange} />
-          Speed</label>
-        </div>
-        <div className="sheet--main-stats--stat">
-          <NumberSelect range={[1, 30]} name="PassivePercepion" value={character.MainStats.PassivePercepion} onChange={handleStatChange} />
-          <p>Passive Percepion</p>
-        </div>
-        <div className="sheet--main-stats--stat">
-          <label><p className="sheet--main-stats--stat--val">{calculateProficiency(character.Level)}</p>
-          Proficiency Bonus</label>
-        </div>
-        <div className="sheet--main-stats--stat">
-          <label><input type="number" className="sheet--main-stats--stat--val" name="Inspiration" value={character.MainStats.Inspiration} onChange={handleStatChange} />
-          Inspiration</label>
-</div> */}

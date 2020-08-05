@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScheetActions, Types } from '../CharacterSheet/reducer/sheetReducer';
+import { ScheetActions, Types } from '../../context/sheetReducer';
 
 interface IProps {
   /**

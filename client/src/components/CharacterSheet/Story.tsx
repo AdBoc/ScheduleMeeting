@@ -1,13 +1,10 @@
-import React from 'react';
-import { CharacterInterface } from '../../ts/interfaces';
-import { ScheetActions, Types } from './reducer/sheetReducer';
+import React, { useContext } from 'react';
+import { Types } from '../../context/sheetReducer';
+import { characterContext } from '../../context/character';
 
-interface IProps {
-  character: CharacterInterface;
-  dispatch: React.Dispatch<ScheetActions>;
-};
+const Story: React.FC = () => {
 
-const Story: React.FC<IProps> = ({ character, dispatch }) => {
+  const { character, dispatch } = useContext(characterContext);
 
   const handleText = ({ target }: any) => {
     dispatch({ type: Types.EDIT_TEXT, payload: { property: target.name, newValue: target.value } });

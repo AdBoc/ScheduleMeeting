@@ -1,11 +1,13 @@
-import { CharacterInterface } from "../../../ts/interfaces";
+import { CharacterInterface, Attack, BackpackObj } from "../ts/interfaces";
 import * as immutable from 'object-path-immutable';
 
 export enum Types {
   INCREMENT_STAT = "INCREMENT_STAT",
   DECREMENT_STAT = "DECREMENT_STAT",
   SWITCH_STAT = "SWITCH_STAT",
-  EDIT_TEXT = "EDIT_TEXT"
+  EDIT_TEXT = "EDIT_TEXT",
+  ADD_ATTACK = "ADD_ATTACK",
+  ADD_EQUIPMENT = "ADD_EQUIPMENT"
 };
 
 export type ContextProps = {
@@ -38,6 +40,12 @@ type SettingsPayload = {
     property: string;
     newValue: string;
   };
+  [Types.ADD_ATTACK]: {
+    attackData: Attack;
+  }
+  [Types.ADD_EQUIPMENT]: {
+    newItem: BackpackObj;
+  }
 };
 
 export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
@@ -92,7 +100,9 @@ export const initialCharacter: CharacterInterface = {
     ProficienciesAndLanguage: "",
     Race: "Orc",
     Story: ""
-  }
+  },
+  Attacks: [],
+  Equipment: []
 };
 
 export const sheetReducer = (character: CharacterInterface, action: ScheetActions): CharacterInterface => {
@@ -103,6 +113,18 @@ export const sheetReducer = (character: CharacterInterface, action: ScheetAction
       return immutable.update(character, action.payload.property, v => v - 1) as any;
     case Types.SWITCH_STAT:
       return immutable.set(character, action.payload.property, +action.payload.newValue);
+    case Types.ADD_ATTACK:
+      const copyAttack = character.Attacks.concat(action.payload.attackData);
+      return {
+        ...character,
+        Attacks: copyAttack
+      }
+    case Types.ADD_EQUIPMENT:
+      const copyEquipment = character.Equipment.concat(action.payload.newItem);
+      return {
+        ...character,
+        Equipment: copyEquipment
+      }
     case Types.EDIT_TEXT:
       return {
         ...character,

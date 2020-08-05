@@ -6,6 +6,7 @@ import MainComponent from './components/MainComponent';
 import './styles/App.css';
 import './styles/CalendarApp.scss';
 import CharacterSheet from './components/CharacterSheet/CharacterSheet';
+import CharacterContextProvider from './context/character';
 
 function App(): JSX.Element {
 
@@ -13,8 +14,10 @@ function App(): JSX.Element {
     <Router history={history}>
       <Switch>
         <Route exact path="/" component={MainComponent}></Route>
-        <Route exact path="/witek" component={CharacterSheet}></Route>
-        <Route component={() => <p>Route does not exist</p>} />
+        <CharacterContextProvider>
+          <Route exact path="/witek" component={CharacterSheet}></Route>
+        </CharacterContextProvider>
+        <Route component={() => (<p>Route does not exist</p>)} />
       </Switch>
     </Router>
   )
