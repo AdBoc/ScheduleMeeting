@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './index';
 
 import "./Sheet.scss";
@@ -9,6 +9,11 @@ const CharacterSheet: React.FC = () => {
 
   const [currentView, setCurrentView] = useState("stats");
   const { character, dispatch } = useContext(characterContext);
+
+  useEffect(() => {
+    localStorage.setItem("character", JSON.stringify(character));
+  }, [character]);
+
 
   const toggleView = ({ target }: any) => {
     setCurrentView(target.name);
@@ -90,7 +95,7 @@ const CharacterSheet: React.FC = () => {
         <button className="sheet--button" onClick={toggleView} name="savingThrows">Saving Throws</button>
         <button className="sheet--button" onClick={toggleView} name="attacks">Attacks</button>
         <button className="sheet--button" onClick={toggleView} name="equipment">Equipment</button>
-        <button className="sheet--button" onClick={toggleView} name="story">Story</button>
+        <button className="sheet--button" onClick={toggleView} name="story">Background</button>
         <button className="sheet--button" onClick={toggleView} name="quickAccess">Quick Access</button>
       </div>
       {renderView()}
@@ -100,7 +105,4 @@ const CharacterSheet: React.FC = () => {
 
 export default CharacterSheet;
 
-//get from local storage if doesnt exist then create new one 
-//save to api when something is changed via button click 
-//download data
-//revert changes
+//jesli local sotrage jest pusty to NAJPIERW SPRAWDZA CZY ISTNIEJE W API TAKI UZYTKOWNIK i jesli istnieje to pobiera z api jak nie no to tworzy nowa postac

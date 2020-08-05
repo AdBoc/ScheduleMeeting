@@ -51,25 +51,25 @@ type SettingsPayload = {
 export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
 
 export const initialCharacter: CharacterInterface = {
-  PlayerName: "Grug",
-  TemporaryHitPoints: 15,
+  PlayerName: "Name",
+  TemporaryHitPoints: 1,
   MainStats: {
-    Level: 2,
-    HitPoints: 15,
-    ArmorClass: 15,
-    Initiative: 2,
-    Speed: 30,
-    PassivePercepion: 12,
-    ProficiencyBonus: 2,
+    Level: 0,
+    HitPoints: 1,
+    ArmorClass: 1,
+    Initiative: 1,
+    Speed: 1,
+    PassivePercepion: 1,
+    ProficiencyBonus: 1,
     Inspiration: 1
   },
   Stats: {
-    Strength: 18,
-    Dexterity: 14,
-    Constitution: 16,
-    Intelligence: 7,
-    Wisdom: 11,
-    Charisma: 10
+    Strength: 1,
+    Dexterity: 1,
+    Constitution: 1,
+    Intelligence: 1,
+    Wisdom: 1,
+    Charisma: 1
   },
   Skills: {
     Athletics: 1,
@@ -98,7 +98,7 @@ export const initialCharacter: CharacterInterface = {
     FeaturesAndTraits: "",
     ExperiencePoints: "",
     ProficienciesAndLanguage: "",
-    Race: "Orc",
+    Race: "",
     Story: ""
   },
   Attacks: [],
