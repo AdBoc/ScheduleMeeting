@@ -27,13 +27,15 @@ export interface DateProps {
 
 //Character Sheet
 
-type attack = {
+export type Attack = {
     name: string;
     diceType: string;
-    actionCost: number;
+    hitDc: string;
+    range: string;
+    type: string;
 };
 
-type backpackObj = {
+export type BackpackObj = {
     name: string;
     description: string;
 }
@@ -67,27 +69,31 @@ export interface CharacterInterface {
         Deception: number;
         Intimidation: number;
         Insight: number;
-        SleightOfHand: number;
-        Stealth: number;
         History: number;
         Invesigation: number;
         Nature: number;
         Religion: number;
         Medicine: number;
-        Survival: number;
         Perception: number;
         Performance: number;
         Persuasion: number;
+        Survival: number;
+        SleightOfHand: number;
+        Stealth: number;
     },
-    Attacks?: attack[];
-    Equipment?: backpackObj[];
+    Attacks?: Attack[];
+    Equipment?: BackpackObj[];
     Story: {
-        Class: string;
-        Background: string;
-        ExperiencePoints: string;
         Alignment: string;
-        ProficienciesAndLanguage: string;
+        Background: string;
+        Class: string;
+        ExperiencePoints: string;
         FeaturesAndTraits: string;
+        ProficienciesAndLanguage: string;
+        Race: string;
         Story: string;
+    }
+    Other?: {
+        tagged: [string, string];
     }
 }

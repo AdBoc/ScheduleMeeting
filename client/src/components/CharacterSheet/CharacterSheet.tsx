@@ -42,7 +42,7 @@ const CharacterSheet: React.FC = () => {
       case 'equipment':
         return <Equipment character={character} />
       case 'story':
-        return <Story character={character} />
+        return <Story character={character} dispatch={dispatch}/>
       case 'quickAccess':
         return <QuickAccess character={character} dispatch={dispatch} />
     }

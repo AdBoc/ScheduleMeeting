@@ -2,11 +2,11 @@ import { CharacterInterface } from "../../../ts/interfaces";
 import * as immutable from 'object-path-immutable';
 
 export enum Types {
-  CHANGE_STAT = "CHANGE_STAT",
   INCREMENT_STAT = "INCREMENT_STAT",
   DECREMENT_STAT = "DECREMENT_STAT",
-  SWITCH_STAT = "SWITCH_STAT"
-}
+  SWITCH_STAT = "SWITCH_STAT",
+  EDIT_TEXT = "EDIT_TEXT"
+};
 
 export type ContextProps = {
   children: React.ReactNode;
@@ -24,10 +24,6 @@ type ActionMap<M extends { [index: string]: any }> = {
 };
 
 type SettingsPayload = {
-  [Types.CHANGE_STAT]: {
-    property: string;
-    newValue: number;
-  };
   [Types.INCREMENT_STAT]: { //undefined if property does not exist
     property: string;
   };
@@ -37,6 +33,10 @@ type SettingsPayload = {
   [Types.SWITCH_STAT]: {
     property: string;
     newValue: number;
+  };
+  [Types.EDIT_TEXT]: {
+    property: string;
+    newValue: string;
   };
 };
 
@@ -84,33 +84,34 @@ export const initialCharacter: CharacterInterface = {
     Persuasion: 1
   },
   Story: {
-    Class: "",
-    Background: "",
-    ExperiencePoints: "",
     Alignment: "",
-    ProficienciesAndLanguage: "",
+    Background: "",
+    Class: "",
     FeaturesAndTraits: "",
+    ExperiencePoints: "",
+    ProficienciesAndLanguage: "",
+    Race: "Orc",
     Story: ""
   }
-}
+};
 
 export const sheetReducer = (character: CharacterInterface, action: ScheetActions): CharacterInterface => {
   switch (action.type) {
-    case Types.CHANGE_STAT:
-      return {
-        ...character,
-        MainStats: {
-          ...character.MainStats,
-          [action.payload.property]: action.payload.newValue
-        }
-      };
     case Types.INCREMENT_STAT:
       return immutable.update(character, action.payload.property, v => v + 1) as any;
     case Types.DECREMENT_STAT:
       return immutable.update(character, action.payload.property, v => v - 1) as any;
     case Types.SWITCH_STAT:
       return immutable.set(character, action.payload.property, +action.payload.newValue);
+    case Types.EDIT_TEXT:
+      return {
+        ...character,
+        Story: {
+          ...character.Story,
+          [action.payload.property]: action.payload.newValue
+        }
+      };
     default:
       return character;
-  }
-}
+  };
+};

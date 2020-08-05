@@ -5,7 +5,7 @@ interface IProps {
   /**
   * range of generated switch
   */
-  range: number[]
+  range: [number, number];
   /**
   * path of property that will change in character object
   */

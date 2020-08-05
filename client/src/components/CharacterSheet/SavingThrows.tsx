@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle } from 'react';
 import { CharacterInterface } from '../../ts/interfaces';
 
 interface IProps {
@@ -6,17 +6,21 @@ interface IProps {
 }
 
 const SavingThrows: React.FC<IProps> = ({ character }) => {
- 
+
   const [tagged, setTagged] = useState([]);
 
   const returnModificator = (statValue: number) => {
     return Math.floor(statValue / 2) - 5;
   };
 
+  const toggleElement = () => {
+
+  }
+
   const generateSavingThrows = () => {
     return Object.entries(character.Stats).map((stat, index) => {
       return (
-        <div key={index} className="sheet--view--saving-throws--section">
+        <div key={index} className="sheet--view--saving-throws--section" onClick={toggleElement}>
           <p className="sheet--view--saving-throws--section--title">{stat[0]}</p>
           <div className="sheet--view--saving-throws--section--value">
             <p>{returnModificator(stat[1])}</p>

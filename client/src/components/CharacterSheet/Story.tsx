@@ -1,33 +1,38 @@
 import React from 'react';
 import { CharacterInterface } from '../../ts/interfaces';
+import { ScheetActions, Types } from './reducer/sheetReducer';
 
 interface IProps {
   character: CharacterInterface;
-}
+  dispatch: React.Dispatch<ScheetActions>;
+};
 
-const Story: React.FC<IProps> = ({ character }) => {
+const Story: React.FC<IProps> = ({ character, dispatch }) => {
+
+  const handleText = ({ target }: any) => {
+    dispatch({ type: Types.EDIT_TEXT, payload: { property: target.name, newValue: target.value } });
+  };
 
   return (
     <>
       <div className="sheet--view--story">
         <p>Class</p>
-        <p>{character.Story.Class}</p>
+        <textarea name="Class" value={character.Story.Class} onChange={handleText} />
         <p>Background</p>
-        <p>{character.Story.Background}</p>
-        <p>XP</p>
-        <p>{character.Story.ExperiencePoints}</p>
+        <textarea name="Background" value={character.Story.Background} onChange={handleText} />
         <p>Alignment</p>
-        <p>{character.Story.Alignment}</p>
+        <textarea name="Alignment" value={character.Story.Alignment} onChange={handleText} />
         <p>Race</p>
+        <textarea name="Race" value={character.Story.Race} onChange={handleText} />
       </div>
       <p>Proficiencies and language</p>
-      <p>{character.Story.ProficienciesAndLanguage}</p>
+      <textarea name="ProficienciesAndLanguage" value={character.Story.ProficienciesAndLanguage} onChange={handleText} />
       <p>Features n Traits</p>
-      <p>{character.Story.FeaturesAndTraits}</p>
+      <textarea name="FeaturesAndTraits" value={character.Story.FeaturesAndTraits} onChange={handleText} />
       <p>Story</p>
-      <p>{character.Story.Story}</p>
+      <textarea name="Story" value={character.Story.Story} onChange={handleText} />
     </>
   )
-}
+};
 
 export default Story;
