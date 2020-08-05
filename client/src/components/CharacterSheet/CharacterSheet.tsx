@@ -87,7 +87,7 @@ const CharacterSheet: React.FC = () => {
         <button className="sheet--button" onClick={toggleView} name="attacks">Attacks</button>
         <button className="sheet--button" onClick={toggleView} name="equipment">Equipment</button>
         <button className="sheet--button" onClick={toggleView} name="story">Story</button>
-        <button className="sheet--button" onClick={toggleView} name="quickAccess">QuickAccess</button>
+        <button className="sheet--button" onClick={toggleView} name="quickAccess">Quick Access</button>
       </div>
       {renderView()}
     </>

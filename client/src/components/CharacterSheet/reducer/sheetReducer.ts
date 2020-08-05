@@ -1,5 +1,5 @@
 import { CharacterInterface } from "../../../ts/interfaces";
-import immutable from 'object-path-immutable';
+import * as immutable from 'object-path-immutable';
 
 export enum Types {
   CHANGE_STAT = "CHANGE_STAT",
@@ -27,10 +27,12 @@ type SettingsPayload = {
     property: string;
     newValue: number;
   };
-  [Types.INCREMENT_STAT]: {
+  [Types.INCREMENT_STAT]: { //undefined if property does not exist
     property: string;
   };
-  [Types.DECREMENT_STAT]: undefined;
+  [Types.DECREMENT_STAT]: {
+    property: string;
+  }
 };
 
 export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
@@ -96,13 +98,10 @@ export const sheetReducer = (character: CharacterInterface, action: ScheetAction
           [action.payload.property]: action.payload.newValue
         }
       };
-    case Types.INCREMENT_STAT:  // immutable.set(initialCharacter, action.payload.property, initialCharacter[action.payload.property] + 1);
-      return {
-        ...character,
-        [action.payload.property]: character.Level + 1
-      }
+    case Types.INCREMENT_STAT:
+      return immutable.update(character, action.payload.property, v => v + 1) as any;
     case Types.DECREMENT_STAT:
-      return character;
+      return immutable.update(character, action.payload.property, v => v - 1) as any;
     default:
       return character;
   }
