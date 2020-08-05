@@ -1,105 +1,48 @@
 import React from 'react';
 import { CharacterInterface } from '../../ts/interfaces';
+import StatButtons from '../Reusable/StatButtons';
+import { ScheetActions } from './reducer/sheetReducer';
 
 interface IProps {
-  character: CharacterInterface
+  character: CharacterInterface;
+  dispatch: React.Dispatch<ScheetActions>
 }
 
-const Skills: React.FC<IProps> = ({ character }) => {
+const Skills: React.FC<IProps> = ({ character, dispatch }) => {
   return (
     <div className="sheet--view--skills">
       <div className="sheet--view--skills--section">
         <p className="sheet--view--skills--section--title">Strength</p>
-        <div className="sheet--view--skills--section--skill">
-          <p>Athletics</p>
-          <p>{character.Skills.Athletics}</p>
-        </div>
+        <StatButtons fieldName="Athletics" prop={character.Skills.Athletics} propName="Skills.Athletics" dispatch={dispatch} />
       </div>
       <div className="sheet--view--skills--section">
         <p className="sheet--view--skills--section--title">Dexterity</p>
-        <div className="sheet--view--skills--section--skill">
-          <p>Acrobatics</p>
-          <p>{character.Skills.Acrobatics}</p>
-        </div>
-        <div className="sheet--view--skills--section--skill">
-          <p>Sleight of hands</p>
-          <p>{character.Skills.SleightOfHand}</p>
-        </div>
-        <div className="sheet--view--skills--section--skill">
-          <p>Stealth</p>
-          <p>{character.Skills.Stealth}</p>
-        </div>
+        <StatButtons fieldName="Acrobatics" prop={character.Skills.Acrobatics} propName="Skills.Acrobatics" dispatch={dispatch} />
+        <StatButtons fieldName="SleightOfHands" prop={character.Skills.SleightOfHand} propName="Skills.SleightOfHand" dispatch={dispatch} />
+        <StatButtons fieldName="Stealth" prop={character.Skills.Stealth} propName="Skills.Stealth" dispatch={dispatch} />
       </div>
       <div className="sheet--view--skills--section">
         <p className="sheet--view--skills--section--title">Intelligence</p>
-        <div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Arcana</p>
-            <p>{character.Skills.Arcana}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>History</p>
-            <p>{character.Skills.History}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Investigation</p>
-            <p>{character.Skills.Invesigation}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Nature</p>
-            <p>{character.Skills.Nature}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Religion</p>
-            <p>{character.Skills.Religion}</p>
-          </div>
-        </div>
+        <StatButtons fieldName="Arcana" prop={character.Skills.Arcana} propName="Skills.Arcana" dispatch={dispatch} />
+        <StatButtons fieldName="History" prop={character.Skills.History} propName="Skills.History" dispatch={dispatch} />
+        <StatButtons fieldName="Investigation" prop={character.Skills.Invesigation} propName="Skills.Invesigation" dispatch={dispatch} />
+        <StatButtons fieldName="Nature" prop={character.Skills.Nature} propName="Skills.Nature" dispatch={dispatch} />
+        <StatButtons fieldName="Religion" prop={character.Skills.Religion} propName="Skills.Religion" dispatch={dispatch} />
       </div>
       <div className="sheet--view--skills--section">
         <p className="sheet--view--skills--section--title">Wisdom</p>
-        <div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Animal handling</p>
-            <p>{character.Skills.AnimalHandling}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Insight</p>
-            <p>{character.Skills.Insight}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Medicine</p>
-            <p>{character.Skills.Medicine}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Perception</p>
-            <p>{character.Skills.Perception}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Survival</p>
-            <p>{character.Skills.Survival}</p>
-          </div>
-        </div>
+        <StatButtons fieldName="Animal Handling" prop={character.Skills.AnimalHandling} propName="Skills.AnimalHandling" dispatch={dispatch} />
+        <StatButtons fieldName="Insight" prop={character.Skills.Insight} propName="Skills.Insight" dispatch={dispatch} />
+        <StatButtons fieldName="Medicine" prop={character.Skills.Medicine} propName="Skills.Medicine" dispatch={dispatch} />
+        <StatButtons fieldName="Perception" prop={character.Skills.Perception} propName="Skills.Perception" dispatch={dispatch} />
+        <StatButtons fieldName="Survival" prop={character.Skills.Survival} propName="Skills.Survival" dispatch={dispatch} />
       </div>
       <div className="sheet--view--skills--section">
         <p className="sheet--view--skills--section--title">Charisma</p>
-        <div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Deception</p>
-            <p>{character.Skills.Deception}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Intimidation</p>
-            <p>{character.Skills.Initimidation}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Performance</p>
-            <p>{character.Skills.Performance}</p>
-          </div>
-          <div className="sheet--view--skills--section--skill">
-            <p>Persuasion</p>
-            <p>{character.Skills.Persuasion}</p>
-          </div>
-        </div>
+        <StatButtons fieldName="Deception" prop={character.Skills.Deception} propName="Skills.Deception" dispatch={dispatch} />
+        <StatButtons fieldName="Intimidation" prop={character.Skills.Intimidation} propName="Skills.Intimidation" dispatch={dispatch} />
+        <StatButtons fieldName="Performance" prop={character.Skills.Performance} propName="Skills.Performance" dispatch={dispatch} />
+        <StatButtons fieldName="Persuasion" prop={character.Skills.Persuasion} propName="Skills.Persuasion" dispatch={dispatch} />
       </div>
     </div>
   )

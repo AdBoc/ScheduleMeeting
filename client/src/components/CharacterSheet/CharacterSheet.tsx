@@ -1,11 +1,10 @@
 import React, { useState, useReducer } from 'react';
 import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './index';
-// import NumberSelect from '../Reusable/Select';
 
 import "./Sheet.scss";
 import { sheetReducer } from './reducer/sheetReducer';
 import { initialCharacter } from './reducer/sheetReducer';
-// import { Types } from './reducer/sheetReducer';
+import { Types } from './reducer/sheetReducer';
 
 const CharacterSheet: React.FC = () => {
 
@@ -16,9 +15,13 @@ const CharacterSheet: React.FC = () => {
     setCurrentView(target.name);
   };
 
-  // const handleStatChange = ({ target }: any) => {
-  //   dispatch({ type: Types.CHANGE_STAT, payload: { property: target.name, newValue: target.value } });
-  // };
+  const incrementHp = () => {
+    dispatch({ type: Types.INCREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
+  };
+
+  const decrementHp = () => {
+    dispatch({ type: Types.DECREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
+  };
 
   const calculateProficiency = (charLvl: number) => {
     if (charLvl === 0)
@@ -29,9 +32,9 @@ const CharacterSheet: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case 'stats':
-        return <Stats character={character} />
+        return <Stats character={character} dispatch={dispatch}/>
       case 'skills':
-        return <Skills character={character} />
+        return <Skills character={character} dispatch={dispatch}/>
       case 'savingThrows':
         return <SavingThrows character={character} />
       case 'attacks':
@@ -45,14 +48,16 @@ const CharacterSheet: React.FC = () => {
     }
   };
 
-  console.log(character);
-
   return (
     <>
       <div className="sheet--top">
-        <p className="sheet--top--level">{character.Level}</p>
+        <p className="sheet--top--level">{character.MainStats.Level}</p>
         <p className="sheet--top--name">{character.PlayerName}</p>
-        <p className="sheet--top--hp">{character.HitPoints}/20 HP</p>
+        <div className="sheet--top--hp">
+          <button className="span-before" onClick={decrementHp} />
+          {character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP
+          <button className="span-after" onClick={incrementHp} />
+        </div>
       </div>
       <div className="sheet--main-stats">
         <div className="sheet--main-stats--stat">
@@ -72,7 +77,7 @@ const CharacterSheet: React.FC = () => {
           <p>Passive Percepion</p>
         </div>
         <div className="sheet--main-stats--stat">
-          <p className="sheet--main-stats--stat--val">{calculateProficiency(character.Level)}</p>
+          <p className="sheet--main-stats--stat--val">{calculateProficiency(character.MainStats.Level)}</p>
           <p>Proficiency Bonus</p>
         </div>
         <div className="sheet--main-stats--stat">
@@ -126,4 +131,4 @@ export default CharacterSheet;
         <div className="sheet--main-stats--stat">
           <label><input type="number" className="sheet--main-stats--stat--val" name="Inspiration" value={character.MainStats.Inspiration} onChange={handleStatChange} />
           Inspiration</label>
-        </div> */}
+</div> */}

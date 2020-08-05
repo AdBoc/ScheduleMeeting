@@ -40,41 +40,42 @@ type backpackObj = {
 
 export interface CharacterInterface {
     PlayerName: string;
-    Level: number;
-    HitPoints: number;
+    TemporaryHitPoints: number;
     MainStats: {
         ArmorClass: number;
+        HitPoints: number;
+        Level: number;
         Initiative: number;
+        Inspiration: number;
         Speed: number;
         PassivePercepion: number;
         ProficiencyBonus: number;
-        Inspiration: number;
     },
     Stats: {
-        Strength: number;
-        Dexterity: number;
-        Constitution: number;
-        Intelligence: number;
-        Wisdom: number;
         Charisma: number;
+        Constitution: number;
+        Dexterity: number;
+        Intelligence: number;
+        Strength: number;
+        Wisdom: number;
     },
     Skills: {
-        Athletics: number;
         Acrobatics: number;
+        Athletics: number;
+        AnimalHandling: number;
+        Arcana: number;
+        Deception: number;
+        Intimidation: number;
+        Insight: number;
         SleightOfHand: number;
         Stealth: number;
-        Arcana: number;
         History: number;
         Invesigation: number;
         Nature: number;
         Religion: number;
-        AnimalHandling: number;
-        Insight: number;
         Medicine: number;
-        Perception: number;
         Survival: number;
-        Deception: number;
-        Initimidation: number;
+        Perception: number;
         Performance: number;
         Persuasion: number;
     },

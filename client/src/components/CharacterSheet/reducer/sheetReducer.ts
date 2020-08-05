@@ -4,7 +4,8 @@ import * as immutable from 'object-path-immutable';
 export enum Types {
   CHANGE_STAT = "CHANGE_STAT",
   INCREMENT_STAT = "INCREMENT_STAT",
-  DECREMENT_STAT = "DECREMENT_STAT"
+  DECREMENT_STAT = "DECREMENT_STAT",
+  SWITCH_STAT = "SWITCH_STAT"
 }
 
 export type ContextProps = {
@@ -32,16 +33,21 @@ type SettingsPayload = {
   };
   [Types.DECREMENT_STAT]: {
     property: string;
-  }
+  };
+  [Types.SWITCH_STAT]: {
+    property: string;
+    newValue: number;
+  };
 };
 
 export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
 
 export const initialCharacter: CharacterInterface = {
   PlayerName: "Grug",
-  Level: 2,
-  HitPoints: 15,
+  TemporaryHitPoints: 15,
   MainStats: {
+    Level: 2,
+    HitPoints: 15,
     ArmorClass: 15,
     Initiative: 2,
     Speed: 30,
@@ -73,7 +79,7 @@ export const initialCharacter: CharacterInterface = {
     Perception: 1,
     Survival: 1,
     Deception: 1,
-    Initimidation: 1,
+    Intimidation: 1,
     Performance: 1,
     Persuasion: 1
   },
@@ -102,6 +108,8 @@ export const sheetReducer = (character: CharacterInterface, action: ScheetAction
       return immutable.update(character, action.payload.property, v => v + 1) as any;
     case Types.DECREMENT_STAT:
       return immutable.update(character, action.payload.property, v => v - 1) as any;
+    case Types.SWITCH_STAT:
+      return immutable.set(character, action.payload.property, +action.payload.newValue);
     default:
       return character;
   }

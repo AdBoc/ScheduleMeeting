@@ -185,3 +185,12 @@ textarea {
   margin: 0; /* 2 */
   border: none;
 }
+
+button:focus,
+button:active,
+button:focus:active {
+  background-image: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
