@@ -1,5 +1,6 @@
-import React from 'react';
-import { ScheetActions, Types } from '../../context/sheetReducer';
+import React, { useContext } from 'react';
+import { Types } from '../../context/sheetReducer';
+import { characterContext } from '../../context/character';
 
 interface IProps {
   /**
@@ -14,12 +15,12 @@ interface IProps {
   * default value of generated switch
   */
   value: number;
-  dispatch: React.Dispatch<ScheetActions>;
 };
 
-const NumberSelect: React.FC<IProps> = ({ range, name, value, dispatch }) => {
+const NumberSelect: React.FC<IProps> = ({ range, name, value }) => {
 
-  const onChange = ({target}: any) => {
+  const { dispatch } = useContext(characterContext);
+  const onChange = ({ target }: any) => {
     dispatch({ type: Types.SWITCH_STAT, payload: { property: name, newValue: target.value } });
   }
 

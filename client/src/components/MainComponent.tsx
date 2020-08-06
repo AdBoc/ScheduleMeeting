@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Calendar from './Calendar';
-import PickPerson from './PickPerson';
-import Footer from './Footer';
+import { Calendar, PickPerson, Footer } from './Calendar/index';
 
 import '../styles/App.css';
-import '../styles/CalendarApp.scss';
+import './Calendar/Calendar.scss';
 
 const MainComponent = () => {
   const [name, setName] = useState<null | string>(null);

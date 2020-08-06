@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { DateProps, FilteredByName, FilteredAllNames } from '../ts/interfaces';
-import { apiService } from '../helpers/ApiService';
+import { DateProps, FilteredByName, FilteredAllNames } from '../../ts/interfaces';
+import { apiService } from '../../helpers/ApiService';
 
 interface IProps {
   dateProps: DateProps;

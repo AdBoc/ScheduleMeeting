@@ -12,16 +12,14 @@ const Story: React.FC = () => {
 
   return (
     <>
-      <div className="sheet--view--story">
-        <p>Class</p>
-        <textarea name="Class" value={character.Story.Class} onChange={handleText} />
-        <p>Background</p>
-        <textarea name="Background" value={character.Story.Background} onChange={handleText} />
-        <p>Alignment</p>
-        <textarea name="Alignment" value={character.Story.Alignment} onChange={handleText} />
-        <p>Race</p>
-        <textarea name="Race" value={character.Story.Race} onChange={handleText} />
-      </div>
+      <p>Class</p>
+      <textarea name="Class" value={character.Story.Class} onChange={handleText} />
+      <p>Background</p>
+      <textarea name="Background" value={character.Story.Background} onChange={handleText} />
+      <p>Alignment</p>
+      <textarea name="Alignment" value={character.Story.Alignment} onChange={handleText} />
+      <p>Race</p>
+      <textarea name="Race" value={character.Story.Race} onChange={handleText} />
       <p>Proficiencies and language</p>
       <textarea name="ProficienciesAndLanguage" value={character.Story.ProficienciesAndLanguage} onChange={handleText} />
       <p>Features n Traits</p>

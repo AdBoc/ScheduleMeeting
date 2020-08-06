@@ -1,5 +1,6 @@
-import React from 'react';
-import { ScheetActions, Types } from '../../context/sheetReducer';
+import React, { useContext } from 'react';
+import { Types } from '../../context/sheetReducer';
+import { characterContext } from '../../context/character';
 
 interface IProps {
   /**
@@ -14,10 +15,11 @@ interface IProps {
   * fieldName will be visible as label to buttons 
   */
   fieldName: string;
-  dispatch: React.Dispatch<ScheetActions>;
 }
 
-const StatButtons: React.FC<IProps> = ({ prop, propName, fieldName, dispatch }) => {
+const StatButtons: React.FC<IProps> = ({ prop, propName, fieldName }) => {
+
+  const { dispatch } = useContext(characterContext);
 
   const increment = () => {
     dispatch({ type: Types.INCREMENT_STAT, payload: { property: propName } });
@@ -28,11 +30,11 @@ const StatButtons: React.FC<IProps> = ({ prop, propName, fieldName, dispatch }) 
   }
 
   return (
-    <div className="generic-stat-buttons">
-      <p>{fieldName}</p>
-      <button className={prop === 0 ? "generic-stat-buttons--button hide" : "generic-stat-buttons--button"} onClick={decrement} > -</button>
-      <p>{prop}</p>
-      <button className="generic-stat-buttons--button" onClick={increment}>+</button>
+    <div className="g-add-button">
+      <p className="g-add-button__field">{fieldName}</p>
+      <button className={prop <= -5 ? "g-add-button__btn hide" : "g-add-button__btn"} onClick={decrement} > -</button>
+      <p className="g-add-button__val">{prop}</p>
+      <button className="g-add-button__btn" onClick={increment}>+</button>
     </div >
   );
 };

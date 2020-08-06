@@ -8,15 +8,13 @@ const Equipment: React.FC = () => {
   const { character } = useContext(characterContext);
 
   return (
-    <div className="sheet--view--equipment">
-      <p className="sheet--view--equipment--title">Equipment</p>
-      <button onClick={() => setEquipmentForm(prev => !prev)}>+ Add Equipment</button>
+    <div className="c-equipment">
+      <button className="g-btn" onClick={() => setEquipmentForm(prev => !prev)}>+ Add Equipment</button>
       {equipmentForm && <AddEquipment />}
       {character.Equipment.map((item, index) => {
         return (
-          <div key={index}>
-            <p>{item.name}</p>
-            <p>{item.description}</p>
+          <div key={index} className="c-item">
+            <p className="c-item__name">{item.name}</p>
           </div>
         )
       })}

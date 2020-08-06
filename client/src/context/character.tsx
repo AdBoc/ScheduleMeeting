@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, useReducer, useEffect } from 'react';
+import React, { createContext, Dispatch, useReducer } from 'react';
 import { initialCharacter, ScheetActions } from './sheetReducer';
 import { CharacterInterface } from '../ts/interfaces';
 import { sheetReducer } from './sheetReducer';

@@ -6,7 +6,7 @@ import { history } from '../../helpers/history';
 
 const QuickAccess: React.FC = () => {
 
-  const { character, dispatch } = useContext(characterContext);
+  const { character } = useContext(characterContext);
 
   const clearStorage = () => {
     localStorage.removeItem("character");
@@ -15,18 +15,21 @@ const QuickAccess: React.FC = () => {
   }
 
   return (
-    <div className="sheet--view--story">
-      <StatButtons prop={character.MainStats.Level} propName="MainStats.Level" dispatch={dispatch} fieldName="Level" />
-      <StatButtons prop={character.MainStats.HitPoints} propName="MainStats.HitPoints" dispatch={dispatch} fieldName="Max Hit Points" />
-      <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" dispatch={dispatch} fieldName="Armor Class" />
-      <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" dispatch={dispatch} fieldName="Initiaive" />
-      <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" dispatch={dispatch} fieldName="Passive Perception" />
-      <StatButtons prop={character.MainStats.Speed} propName="MainStats.Speed" dispatch={dispatch} fieldName="Speed" />
-      <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" dispatch={dispatch} fieldName="Inspiration Points" />
-      <button onClick={clearStorage}>Clear Local Storage</button>
-      <button>Store data on server</button>
-      <button>Revert changes</button>
-      <button>Delete character</button>
+    <div className="c-story">
+      <StatButtons prop={character.MainStats.Level} propName="MainStats.Level" fieldName="Level" />
+      <StatButtons prop={character.MainStats.HitPoints} propName="MainStats.HitPoints" fieldName="Max Hit Points" />
+      <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" fieldName="Armor Class" />
+      <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiaive" />
+      <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
+      <StatButtons prop={character.MainStats.Speed} propName="MainStats.Speed" fieldName="Speed" />
+      <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" fieldName="Inspiration Points" />
+      <div className="c-story__buttons">
+        <button className="g-btn">Send To Backend</button>
+        <button className="g-btn">Show Calendar</button>
+        <button className="g-btn">Change User</button>
+        <button className="g-btn" onClick={clearStorage}>Clear Local Storage</button>
+        <button className="g-btn g-btn--red">Delete character</button>
+      </div>
     </div>
   )
 }

@@ -17,11 +17,9 @@ const SavingThrows: React.FC = () => {
   const generateSavingThrows = () => {
     return Object.entries(character.Stats).map((stat, index) => {
       return (
-        <div key={index} className="sheet--view--saving-throws--section" onClick={toggleElement}>
-          <p className="sheet--view--saving-throws--section--title">{stat[0]}</p>
-          <div className="sheet--view--saving-throws--section--value">
-            <p>{returnModificator(stat[1])}</p>
-          </div>
+        <div key={index} className="c-save-throw" onClick={toggleElement}>
+          <p className="c-save-throw__title">{stat[0]}</p>
+          <p>{returnModificator(stat[1])}</p>
         </div>
       )
     })
@@ -29,21 +27,21 @@ const SavingThrows: React.FC = () => {
 
   return (
     <>
-      <p className="sheet--view--title">Saving throws</p>
-      <div className="sheet--view--saving-throws">
+      <p className="c-save-throws__title">Saving throws</p>
+      <div className="c-save-throws">
         {generateSavingThrows()}
         <p>tagged 0/2</p>
       </div>
-      <div className="sheet--view--death-saving">
-        <p className="sheet--view--death-saving--title">Death save</p>
-        <p className="sheet--view--death-saving--label">Successes</p>
-        <input className="sheet--view--death-saving--checkbox" type="checkbox" />
-        <input className="sheet--view--death-saving--checkbox" type="checkbox" />
-        <input className="sheet--view--death-saving--checkbox" type="checkbox" />
-        <p className="sheet--view--death-saving--label">Failures</p>
-        <input className="sheet--view--death-saving--checkbox" type="checkbox" />
-        <input className="sheet--view--death-saving--checkbox" type="checkbox" />
-        <input className="sheet--view--death-saving--checkbox" type="checkbox" />
+      <div className="c-save-death">
+        <p className="c-save-death__title">Death save</p>
+        <p className="c-save-death__label">Successes</p>
+        <input className="c-save-death__checkbox" type="checkbox" />
+        <input className="c-save-death__checkbox" type="checkbox" />
+        <input className="c-save-death__checkbox" type="checkbox" />
+        <p className="c-save-death__label">Failures</p>
+        <input className="c-save-death__checkbox" type="checkbox" />
+        <input className="c-save-death__checkbox" type="checkbox" />
+        <input className="c-save-death__checkbox" type="checkbox" />
       </div>
     </>
   )

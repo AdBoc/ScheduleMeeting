@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { CalendarProps, SelectedDays } from '../ts/interfaces';
-import { apiService } from '../helpers/ApiService';
-import { useCalendar } from '../hooks/useCalendar';
+import { CalendarProps, SelectedDays } from '../../ts/interfaces';
+import { apiService } from '../../helpers/ApiService';
+import { useCalendar } from '../../hooks/useCalendar';
 import Days from './Days';
 
 const Calendar: React.FC<CalendarProps> = ({ selectedName }) => {

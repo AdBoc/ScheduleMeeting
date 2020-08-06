@@ -1,27 +1,66 @@
-.sheet--top {
+@font-face {
+    src: url(../../styles/Roboto-Light.ttf); // src: url(./assets/fonts/lato/Lato-Regular.ttf);
+    font-family: "Roboto"; // font-family: "Lato";
+}
+
+$primary-color: rgb(53, 53, 53);
+
+.c-sheet {
+    font-family: Roboto;
     color: white;
-    background-color: black;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    &--level {
-        font-size: 2em;
-        border: 1px solid white;
-        border-radius: 50%;
-        margin: 0.5em;
-        padding: 0.5em;
+    background-color: $primary-color;
+    &__player {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
     }
-    &--name {
-        margin: 0.5em 0;
-        padding: 0.5em;
-    }
-    &--hp {
-        border: 1px solid white;
-        padding: 1em;
-        flex-grow: 1.1;
+    &__hp {
         margin: 1em;
+        padding: 1em;
         position: relative;
     }
+    &__stats {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    &__buttons {
+        display: flex; //w media query uzyc: justify-content: center;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-bottom: 1px solid $primary-color;
+    }
+}
+
+.c-player {
+    margin: 0 0 0 1em;
+    &__name {
+        font-size: 1.2em;
+    }
+    &__details {
+        font-size: 0.8em;
+    }
+}
+
+.c-stat {
+    flex: 0 0 4em;
+    margin: 0 0.5em 1em;
+    min-height: 3em;
+    &__value {
+        font-size: 1.3em;
+        margin-bottom: 0.25em;
+    }
+    &__label {
+        font-size: 0.75em;
+    }
+}
+
+.button {
+    padding: 0.75em;
+    margin: 0.25em;
 }
 
 .span-after {
@@ -42,106 +81,104 @@
     cursor: pointer;
 }
 
-.sheet--main-stats {
-    background-color: black;
-    color: white;
-    text-align: center;
+.c-stats {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    font-size: 0.6em;
-    &--stat {
-        min-height: 5em;
-        min-width: 6em;
-        max-width: 6em;
-        padding: 0.3em;
-        margin: 0.2em;
-        &--val {
-            color: white;
-            font-size: 2.5em;
-            margin-bottom: 0.2em;
-        }
+    padding: 0.7em;
+    font-size: 1.5em;
+    justify-content: space-around;
+    align-items: center;
+    &__stat {
+        margin: 0 0 0 0.5em;
+        flex-grow: 1.1;
+    }
+    &__mod-val {
+        margin: 0 0.5em;
+        text-align: center;
     }
 }
-.sheet--buttons {
-    display: flex; //w media query uzyc: justify-content: center;
-    overflow-x: auto;
-    white-space: nowrap;
-}
 
-.sheet--button {
-    padding: 0.75em;
-    margin: 0.25em;
-}
-
-.sheet--view {
-    &--stats {
-        display: flex;
-        padding: 1em;
+.c-skills {
+    display: flex;
+    flex-direction: column;
+    &__skill {
+        border-bottom: 1px solid $primary-color;
         font-size: 1.5em;
-        align-items: center;
-        &--stat {
-            margin: 0 0 0 1em;
-        }
-        &--mod {
-            flex-grow: 1.1;
-            text-align: right;
-        }
+        margin: 0.5em 1em;
     }
-    &--skills {
-        display: flex;
-        flex-wrap: wrap;
-        &--section {
-            flex: 1 0 33%;
-            margin: 1em;
-            &--title {
-                margin: 0.25em 0;
-                padding: 0.25em 0;
-                border-bottom: 1px solid black;
-                font-size: 1.3em;
-            }
-            &--skill {
-                display: flex;
-                justify-content: space-between;
-                margin: 0.25em;
-            }
-        }
+}
+
+.g-add-button {
+    display: flex;
+    margin: 0.25em 1em;
+    font-size: 1.25em;
+    justify-content: space-around;
+    &__field {
+        flex-grow: 1.1;
     }
-    &--title {
+    &__btn {
+        margin: 0 0.5em;
+        border-radius: 20%;
+        color: white;
+        background-color: $primary-color;
+        min-width: 1em;
+        min-height: 1em;
+        padding: 0;
+        cursor: pointer;
+    }
+}
+
+.c-save-throws {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    &__title {
         text-align: center;
         font-size: 1.75em;
         margin: 1em 0;
     }
-    &--saving-throws {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        text-align: center;
-        &--section {
-            flex: 1 0 33%;
-            &--title {
-                font-size: 1.3em;
-                margin: 0.5em 0;
-            }
-            &--value {
-                display: flex;
-                justify-content: center;
-            }
-        }
+}
+.c-save-throw {
+    flex: 1 0 33%;
+    &__title {
+        font-size: 1.3em;
+        margin: 0.5em 0;
     }
-    &--death-saving {
-        text-align: center;
-        margin-top: 2em;
-        &--title {
-            font-size: 1.75em;
-        }
-        &--label {
-            margin-top: 1em;
-            font-size: 1.2em;
-        }
-        &--checkbox {
-            margin: 0.5em;
-        }
+}
+
+.c-save-death {
+    text-align: center;
+    margin-top: 2em;
+    &__title {
+        font-size: 1.75em;
+    }
+    &__label {
+        margin-top: 1em;
+        font-size: 1.2em;
+    }
+    &__checkbox {
+        margin: 0.5em;
+        height: 1.75em;
+        width: 1.75em;
+    }
+}
+
+.equipment {
+    &__title {
+    }
+}
+
+.c-item {
+    margin: 1em 0.5em 0;
+    &__name {
+    }
+    &__description {
+    }
+}
+
+.c-story {
+    &__buttons {
+        margin: 2.5em 0 0;
     }
 }
 
@@ -150,20 +187,27 @@
     color: black;
     padding: 0.1em;
     font-size: 1.5em;
-}
-
-.generic-stat-buttons {
-    display: flex;
-    &--button {
-        color: white;
-        background-color: black;
-        padding: 0.1em 0.25em;
-        margin: 0 0.4em;
-        min-width: 1.25em;
-        cursor: pointer;
+    text-align-last: center;
+    &:focus {
+        outline: none;
     }
 }
 
 .hide {
     display: none;
+}
+
+.g-btn {
+    display: block;
+    color: white;
+    background-color: $primary-color;
+    padding: 0.5em;
+    margin: 0.5em auto;
+    min-width: 10em;
+    &--red {
+        background-color: rgba(230, 41, 41, 0.918);
+    }
+}
+
+.g-text {
 }
