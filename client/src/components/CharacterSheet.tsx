@@ -8,7 +8,7 @@ import './CharacterSheet/Sheet.scss';
 
 const CharacterSheet: React.FC = () => {
 
-  const [currentView, setCurrentView] = useState<Tabs>("equipment");
+  const [currentView, setCurrentView] = useState<Tabs>("stats");
   const { character, dispatch } = useContext(characterContext);
 
   useEffect(() => {

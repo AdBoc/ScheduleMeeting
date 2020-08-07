@@ -9,6 +9,7 @@ export enum Types {
   ADD_ATTACK = "ADD_ATTACK",
   ADD_EQUIPMENT = "ADD_EQUIPMENT",
   TAG_PROP = "TAG_PROP",
+  CHANGE_SPEED = "CHANGE_SPEED"
 };
 
 export type ContextProps = {
@@ -49,6 +50,9 @@ type SettingsPayload = {
   };
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
+  };
+  [Types.CHANGE_SPEED]: {
+    newSpeed: number;
   };
 };
 
@@ -147,6 +151,14 @@ export const sheetReducer = (character: CharacterInterface, action: ScheetAction
           [action.payload.property]: action.payload.newValue
         }
       };
+    case Types.CHANGE_SPEED:
+      return {
+        ...character,
+        MainStats: {
+          ...character.MainStats,
+          Speed: action.payload.newSpeed
+        }
+      }
     default:
       return character;
   };

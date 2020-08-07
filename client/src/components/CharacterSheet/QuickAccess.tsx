@@ -1,17 +1,21 @@
 import React, { useContext } from 'react';
 import StatButtons from '../Reusable/StatButtons';
 import { characterContext } from '../../context/character';
-import { initialCharacter } from '../../context/sheetReducer';
+import { initialCharacter, Types } from '../../context/sheetReducer';
 import { history } from '../../helpers/history';
 
 const QuickAccess: React.FC = () => {
 
-  const { character } = useContext(characterContext);
+  const { dispatch, character } = useContext(characterContext);
 
   const clearStorage = () => {
     localStorage.removeItem("character");
     localStorage.setItem("character", JSON.stringify(initialCharacter));
     history.go(0);
+  }
+
+  const changeSpeed = ({ target }: any) => {
+    dispatch({ type: Types.CHANGE_SPEED, payload: { newSpeed: target.value } });
   }
 
   return (
@@ -21,7 +25,7 @@ const QuickAccess: React.FC = () => {
       <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" fieldName="Armor Class" />
       <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiaive" />
       <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
-      <StatButtons prop={character.MainStats.Speed} propName="MainStats.Speed" fieldName="Speed" />
+      <label>Speed<input type="number" value={character.MainStats.Speed} onChange={changeSpeed} /></label>
       <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" fieldName="Inspiration Points" />
       <div className="c-story__buttons">
         <button className="g-btn">Send To Backend</button>

@@ -212,7 +212,7 @@ $primary-color: rgb(53, 53, 53);
         background-color: $primary-color;
         color: white;
         width: 75%;
-        height: 4em;
+        height: 7em;
     }
 }
 
@@ -247,3 +247,30 @@ $primary-color: rgb(53, 53, 53);
     background-color: $primary-color;
     color: white;
 }
+
+.c-new-eq {
+    &__input {
+        display: block;
+        margin: 0.5em auto;
+        border: 1px solid $primary-color;
+        padding: 0.3em;
+    }
+}
+
+.c-new-atk {
+    &__input {
+        display: block;
+        margin: 0.5em auto;
+        border: 1px solid $primary-color;
+        padding: 0.3em;
+    }
+}
+
+// .c-new-atk {
+//     &__input {
+//         display: block;
+//         margin: 0.5em auto;
+//         border: 1px solid $primary-color;
+//         padding: 0.3em;
+//     }
+// }

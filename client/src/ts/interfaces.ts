@@ -37,6 +37,7 @@ export type Tabs =
     | "quickAccess";
 
 export type Attack = {
+    id: string;
     name: string;
     diceType: string;
     hitDc: string;

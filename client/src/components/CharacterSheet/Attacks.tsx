@@ -1,21 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import AddAttack from './AddAttack';
-import { characterContext } from '../../context/character';
+import { useExpandableList } from '../../hooks/useExpandableList';
 
 const Attacks: React.FC = () => {
-  const [attackForm, setAttackForm] = useState(false);
-  const { character } = useContext(characterContext);
+  const { extItems, extVisible, showDetails, formVisiblity } = useExpandableList("Attacks");
 
   return (
     <div className="sheet--view--attacks">
-      <button className="g-btn" onClick={() => setAttackForm(prev => !prev)}>+ Add Attack</button>
-      {attackForm && <AddAttack />}
-      {character.Attacks.map((item, index) => {
+      <button className="g-btn" onClick={formVisiblity}>+ Add Attack</button>
+      {extVisible && <AddAttack formVisibility={formVisiblity} />}
+      {extItems.map((item: any) => {
         return (
-          <div key={index}>
+          <div key={item.id} onClick={showDetails(item.id)}>
             <p>{item.name}</p>
             <p>{item.diceType}</p>
             <p>{item.range}</p>
+            {item.active && <p>{item.type}</p>}
           </div>
         )
       })}

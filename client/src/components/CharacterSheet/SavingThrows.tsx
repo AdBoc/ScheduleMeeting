@@ -43,13 +43,22 @@ const SavingThrows: React.FC = () => {
     });
   };
 
+  const countTagged = () => {
+    let count = 0;
+    if (character.Other.TaggedThrows[0] !== null)
+      count++;
+    if (character.Other.TaggedThrows[1] !== null)
+      count++;
+    return count;
+  }
+
   return (
     <>
       <p className="c-save-throws__title">Saving throws</p>
       <div className="c-save-throws">
         {generateSavingThrows()}
       </div>
-      <p className="c-save-throws__tag">tagged 0/2</p>
+      <p className="c-save-throws__tag">tagged {countTagged()}/2</p>
       <div className="c-save-death">
         <p className="c-save-death__title">Death save</p>
         <p className="c-save-death__label">Successes</p>
