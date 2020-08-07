@@ -1,3 +1,9 @@
+@font-face {
+  src: url(./Roboto-Light.ttf);
+  font-family: "Roboto";
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }

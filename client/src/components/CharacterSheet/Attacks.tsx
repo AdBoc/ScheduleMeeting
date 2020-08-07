@@ -8,7 +8,7 @@ const Attacks: React.FC = () => {
 
   return (
     <div className="sheet--view--attacks">
-      <button onClick={() => setAttackForm(prev => !prev)}>+ Add Attack</button>
+      <button className="g-btn" onClick={() => setAttackForm(prev => !prev)}>+ Add Attack</button>
       {attackForm && <AddAttack />}
       {character.Attacks.map((item, index) => {
         return (

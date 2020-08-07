@@ -31,7 +31,7 @@ const AddAttack: React.FC = () => {
       <input placeholder="HitDC" onChange={handleInput} name="hitDc" value={newAttack.hitDc} />
       <input placeholder="range" onChange={handleInput} name="range" value={newAttack.range} />
       <input placeholder="type" onChange={handleInput} name="type" value={newAttack.type} />
-      <button type="submit">Submit</button>
+      <button className="g-btn" type="submit">Submit</button>
     </form>
   )
 };

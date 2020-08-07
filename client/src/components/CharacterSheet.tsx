@@ -1,13 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './CharacterSheet/index';
 
-import './CharacterSheet/Sheet.scss';
 import { Types } from '../context/sheetReducer';
 import { characterContext } from '../context/character';
+import { Tabs } from '../ts/interfaces';
+import './CharacterSheet/Sheet.scss';
 
 const CharacterSheet: React.FC = () => {
 
-  const [currentView, setCurrentView] = useState("stats");
+  const [currentView, setCurrentView] = useState<Tabs>("equipment");
   const { character, dispatch } = useContext(characterContext);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const CharacterSheet: React.FC = () => {
         return <Story />
       case 'quickAccess':
         return <QuickAccess />
-    }
+    };
   };
 
   return (
@@ -57,13 +58,13 @@ const CharacterSheet: React.FC = () => {
       <div className="c-sheet">
         <div className="c-sheet__player">
           <div className="c-player">
-            <p className="c-player__name">{character.PlayerName}</p>
+            <p className="c-player__name">{character.Story.Name}</p>
             <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level}</p>
           </div>
           <div className="c-sheet__hp">
-            <button className="span-before" onClick={decrementHp} />
+            <button className="decrement-hp" onClick={decrementHp} aria-label="decrement hp" />
             {character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP
-          <button className="span-after" onClick={incrementHp} />
+            <button className="increment-hp" onClick={incrementHp} aria-label="increment hp" />
           </div>
         </div>
         <div className="c-sheet__stats">

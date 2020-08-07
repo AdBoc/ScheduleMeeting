@@ -1,28 +1,46 @@
 import React, { useContext } from 'react';
 import { characterContext } from '../../context/character';
+import { Types } from '../../context/sheetReducer';
 
 const SavingThrows: React.FC = () => {
 
-  const { character } = useContext(characterContext);
-  // const [tagged, setTagged] = useState([]);
+  const { character, dispatch } = useContext(characterContext);
 
-  const returnModificator = (statValue: number) => {
+  const returnModificator = (statValue: number, isTagged: boolean) => {
+    if (isTagged) {
+      let ProfMod: number;
+      if (character.MainStats.Level === 0)
+        ProfMod = 2
+      else
+        ProfMod = Math.floor((character.MainStats.Level - 1) / 4) + 2
+      return Math.floor(statValue / 2) - 5 + ProfMod;
+    }
     return Math.floor(statValue / 2) - 5;
   };
 
-  const toggleElement = () => {
-
-  }
+  const tagElement = ({ target }: any) => {
+    const newArr = character.Other.TaggedThrows;
+    if (target.name === newArr[0]) {
+      newArr[0] = null;
+    } else if (target.name === newArr[1]) {
+      newArr[1] = null;
+    } else {
+      newArr.pop();
+      newArr.unshift(target.name);
+    }
+    dispatch({ type: Types.TAG_PROP, payload: { newArray: newArr } });
+  };
 
   const generateSavingThrows = () => {
+    let isTagged: boolean;
     return Object.entries(character.Stats).map((stat, index) => {
+      isTagged = character.Other.TaggedThrows[0] === stat[0] || character.Other.TaggedThrows[1] === stat[0];
       return (
-        <div key={index} className="c-save-throw" onClick={toggleElement}>
-          <p className="c-save-throw__title">{stat[0]}</p>
-          <p>{returnModificator(stat[1])}</p>
-        </div>
+        <button key={index} name={stat[0]} className={isTagged ? "c-save-throw g-tagged" : "c-save-throw"} onClick={tagElement}>
+          {stat[0]} {returnModificator(stat[1], isTagged)}
+        </button>
       )
-    })
+    });
   };
 
   return (
@@ -30,8 +48,8 @@ const SavingThrows: React.FC = () => {
       <p className="c-save-throws__title">Saving throws</p>
       <div className="c-save-throws">
         {generateSavingThrows()}
-        <p>tagged 0/2</p>
       </div>
+      <p className="c-save-throws__tag">tagged 0/2</p>
       <div className="c-save-death">
         <p className="c-save-death__title">Death save</p>
         <p className="c-save-death__label">Successes</p>

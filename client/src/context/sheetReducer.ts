@@ -7,7 +7,8 @@ export enum Types {
   SWITCH_STAT = "SWITCH_STAT",
   EDIT_TEXT = "EDIT_TEXT",
   ADD_ATTACK = "ADD_ATTACK",
-  ADD_EQUIPMENT = "ADD_EQUIPMENT"
+  ADD_EQUIPMENT = "ADD_EQUIPMENT",
+  TAG_PROP = "TAG_PROP",
 };
 
 export type ContextProps = {
@@ -42,16 +43,18 @@ type SettingsPayload = {
   };
   [Types.ADD_ATTACK]: {
     attackData: Attack;
-  }
+  };
   [Types.ADD_EQUIPMENT]: {
     newItem: BackpackObj;
-  }
+  };
+  [Types.TAG_PROP]: {
+    newArray: [string | null, string | null];
+  };
 };
 
 export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
 
 export const initialCharacter: CharacterInterface = {
-  PlayerName: "Name",
   TemporaryHitPoints: 1,
   MainStats: {
     Level: 0,
@@ -60,7 +63,6 @@ export const initialCharacter: CharacterInterface = {
     Initiative: 1,
     Speed: 1,
     PassivePercepion: 1,
-    ProficiencyBonus: 1,
     Inspiration: 0
   },
   Stats: {
@@ -92,6 +94,7 @@ export const initialCharacter: CharacterInterface = {
     Persuasion: 0
   },
   Story: {
+    Name: "",
     Alignment: "",
     Background: "",
     Class: "",
@@ -102,7 +105,10 @@ export const initialCharacter: CharacterInterface = {
     Story: ""
   },
   Attacks: [],
-  Equipment: []
+  Equipment: [],
+  Other: {
+    TaggedThrows: [null, null]
+  }
 };
 
 export const sheetReducer = (character: CharacterInterface, action: ScheetActions): CharacterInterface => {
@@ -113,18 +119,26 @@ export const sheetReducer = (character: CharacterInterface, action: ScheetAction
       return immutable.update(character, action.payload.property, v => v - 1) as any;
     case Types.SWITCH_STAT:
       return immutable.set(character, action.payload.property, +action.payload.newValue);
+    case Types.TAG_PROP:
+      return {
+        ...character,
+        Other: {
+          ...character.Other,
+          TaggedThrows: action.payload.newArray
+        }
+      };
     case Types.ADD_ATTACK:
       const copyAttack = character.Attacks.concat(action.payload.attackData);
       return {
         ...character,
         Attacks: copyAttack
-      }
+      };
     case Types.ADD_EQUIPMENT:
       const copyEquipment = character.Equipment.concat(action.payload.newItem);
       return {
         ...character,
         Equipment: copyEquipment
-      }
+      };
     case Types.EDIT_TEXT:
       return {
         ...character,

@@ -1,31 +1,19 @@
-import React, { useContext } from 'react';
-import { Types } from '../../context/sheetReducer';
-import { characterContext } from '../../context/character';
+import React from 'react';
+import InputField from '../Reusable/InputField';
+import TextAreaField from '../Reusable/TextArea';
 
 const Story: React.FC = () => {
 
-  const { character, dispatch } = useContext(characterContext);
-
-  const handleText = ({ target }: any) => {
-    dispatch({ type: Types.EDIT_TEXT, payload: { property: target.name, newValue: target.value } });
-  };
-
   return (
     <>
-      <p>Class</p>
-      <textarea name="Class" value={character.Story.Class} onChange={handleText} />
-      <p>Background</p>
-      <textarea name="Background" value={character.Story.Background} onChange={handleText} />
-      <p>Alignment</p>
-      <textarea name="Alignment" value={character.Story.Alignment} onChange={handleText} />
-      <p>Race</p>
-      <textarea name="Race" value={character.Story.Race} onChange={handleText} />
-      <p>Proficiencies and language</p>
-      <textarea name="ProficienciesAndLanguage" value={character.Story.ProficienciesAndLanguage} onChange={handleText} />
-      <p>Features n Traits</p>
-      <textarea name="FeaturesAndTraits" value={character.Story.FeaturesAndTraits} onChange={handleText} />
-      <p>Story</p>
-      <textarea name="Story" value={character.Story.Story} onChange={handleText} />
+      <InputField fieldName="Name" property="Name" />
+      <InputField fieldName="Class" property="Class" />
+      <InputField fieldName="Background" property="Background" />
+      <InputField fieldName="Alignment" property="Alignment" />
+      <InputField fieldName="Race" property="Race" />
+      <TextAreaField fieldName="ProficienciesAndLanguage" property="ProficienciesAndLanguage" />
+      <TextAreaField fieldName="FeaturesAndTraits" property="FeaturesAndTraits" />
+      <TextAreaField fieldName="Story" property="Story" />
     </>
   )
 };

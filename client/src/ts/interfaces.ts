@@ -27,6 +27,15 @@ export interface DateProps {
 
 //Character Sheet
 
+export type Tabs =
+    | "stats"
+    | "skills"
+    | "savingThrows"
+    | "attacks"
+    | "equipment"
+    | "story"
+    | "quickAccess";
+
 export type Attack = {
     name: string;
     diceType: string;
@@ -36,12 +45,12 @@ export type Attack = {
 };
 
 export type BackpackObj = {
+    id: string;
     name: string;
     description: string;
 }
 
 export interface CharacterInterface {
-    PlayerName: string;
     TemporaryHitPoints: number;
     MainStats: {
         ArmorClass: number;
@@ -51,7 +60,6 @@ export interface CharacterInterface {
         Inspiration: number;
         Speed: number;
         PassivePercepion: number;
-        ProficiencyBonus: number;
     },
     Stats: {
         Charisma: number;
@@ -89,11 +97,12 @@ export interface CharacterInterface {
         Class: string;
         ExperiencePoints: string;
         FeaturesAndTraits: string;
+        Name: string;
         ProficienciesAndLanguage: string;
         Race: string;
         Story: string;
     }
-    Other?: {
-        tagged: [string, string];
+    Other: {
+        TaggedThrows: [string | null, string | null];
     }
 }
