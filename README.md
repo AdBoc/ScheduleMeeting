@@ -1,6 +1,6 @@
-#DND character sheet and calendar
+# DND character sheet and calendar
 
-##Backend
+## Backend
 
 REST API made in GO and MongoDB
 
@@ -11,11 +11,13 @@ API Routes
 
 Install Locally: 
 
-- go mod download
-- go build
-- ./calendar.exe
+```sh
+ go mod download
+ go build
+ ./calendar.exe
+```
 
-##Frontend
+## Frontend
 
 Front - React(Typescript) and SCSS
 
@@ -25,13 +27,15 @@ Front Routes
 
 Install Locally:
 
-- npm i
-- npm run start
+```sh
+npm i
+npm run start
+```
 
 <details><summary>FrontEnd Folder Structure</summary>
 <p>CLI command: tree /F</p>
 <p>
-C:.
+.
 │   f.txt
 │   package-lock.json
 │   package.json
