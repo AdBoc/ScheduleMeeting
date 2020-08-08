@@ -1,10 +1,10 @@
-import Attacks from './Attacks/Attacks';
-import Equipment from './Equipment/Equipment';
-import QuickAccess from './QuickAccess/QuickAccess';
-import SavingThrows from './SavingThrows/SavingThrows';
-import Skills from './Skills/Skills';
-import Stats from './Stats/Stats';
-import Story from './Story/Story';
+import Attacks from './Attacks';
+import Equipment from './Equipment';
+import QuickAccess from './QuickAccess';
+import SavingThrows from './SavingThrows';
+import Skills from './Skills';
+import Stats from './Stats';
+import Story from './Story';
 
 export {
     Attacks, Equipment, QuickAccess, SavingThrows, Skills, Stats, Story

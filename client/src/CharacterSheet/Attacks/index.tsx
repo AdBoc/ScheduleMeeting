@@ -1,6 +1,11 @@
 import React from 'react';
-import AddAttack from './AddAttack/AddAttack';
-import { useExpandableList } from '../../hooks/UseExpandableList';
+import AddAttack from './AddAttack';
+import { useExpandableList } from '../../hooks/useExpandableList';
+import { Attack } from '../../ts/interfaces';
+
+interface AttackActive extends Attack {
+  active: boolean;
+}
 
 const Attacks: React.FC = () => {
   const { extItems, extVisible, showDetails, formVisiblity } = useExpandableList("Attacks");
@@ -9,7 +14,7 @@ const Attacks: React.FC = () => {
     <div className="sheet--view--attacks">
       <button className="g-btn" onClick={formVisiblity}>+ Add Attack</button>
       {extVisible && <AddAttack formVisibility={formVisiblity} />}
-      {extItems.map((item: any) => {
+      {extItems.map((item: AttackActive) => {
         return (
           <div key={item.id} onClick={showDetails(item.id)}>
             <div className="c-atk">

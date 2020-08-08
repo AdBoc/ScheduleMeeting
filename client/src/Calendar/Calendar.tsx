@@ -3,20 +3,21 @@ import { Month, Players, Footer } from './index';
 
 import './Calendar.scss';
 
-const MainCalendar = () => {
-  const [name, setName] = useState<null | string>(null);
+const Calendar = () => {
+  const [player, setPlayer] = useState<null | string>(null);
 
-  const handleClick = (arg: string | null) => () => {
-    !name ? setName(arg) : arg === name ? setName(null) : setName(arg);
+  const handlePlayer = (arg: string | null) => () => {
+    if (player === arg) return setPlayer(null);
+    return setPlayer(arg);
   };
 
   return (
     <div className="calendar-app">
-      <Month selectedName={name} />
-      <Players selectedName={name} handleClick={handleClick} />
+      <Month selectedPlayer={player} />
+      <Players selectedPlayer={player} handleClick={handlePlayer} />
       <Footer />
     </div>
   )
 };
 
-export default MainCalendar;
+export default Calendar;

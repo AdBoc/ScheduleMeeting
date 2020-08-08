@@ -18,9 +18,7 @@ const TextAreaField: React.FC<IProps> = ({ fieldName, property }) => {
 
   const { character, dispatch } = useContext(characterContext);
 
-  const handleTextArea = ({ target }: any) => {
-    dispatch({ type: Types.EDIT_TEXT, payload: { property, newValue: target.value } });
-  }
+  const handleTextArea = ({ target }: any) => dispatch({ type: Types.EDIT_TEXT, payload: { property, newValue: target.value } });
 
   return (
     <div className="g-text-area">

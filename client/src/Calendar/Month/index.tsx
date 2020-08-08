@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { CalendarProps, SelectedDays } from '../../ts/interfaces';
 import { apiService } from '../../Services/CalendarFetch';
-import { useCalendar } from '../../hooks/UseCalendar';
+import { useCalendar } from '../../hooks/useCalendar';
 import Days from './Days';
 
-const Month: React.FC<CalendarProps> = ({ selectedName }) => {
+const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
 
   let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
-  const today = new Date();
+  const { prevMonth, nextMonth, parseWithName, parseNoName, dateProps: { currentMonth, currentYear } } = useCalendar();
+  
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
-  const [statusResponse, setStatusResponse] = useState({});
-  const { dateProps, prevMonth, nextMonth, parseWithName, parseNoName } = useCalendar(today);
-  const { currentMonth, currentYear } = dateProps;
-  const daysFilteredByName = selectedName ? parseWithName(selectedDays, selectedName) : parseNoName(selectedDays);
+  const [responseStatus, setResponseStatus] = useState({});
+
+  const daysFilteredByName = selectedPlayer ? parseWithName(selectedDays, selectedPlayer) : parseNoName(selectedDays);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +23,7 @@ const Month: React.FC<CalendarProps> = ({ selectedName }) => {
     };
 
     fetchData();
-  }, [currentMonth, currentYear, statusResponse]);
+  }, [currentMonth, currentYear, responseStatus]);
 
   return (
     <div className="calendar">
@@ -39,10 +39,9 @@ const Month: React.FC<CalendarProps> = ({ selectedName }) => {
         })}
       </div>
       <Days
-        dateProps={dateProps}
-        selectedName={selectedName}
+        selectedPlayer={selectedPlayer}
         daysFilteredByName={daysFilteredByName}
-        setStatusResponse={setStatusResponse}
+        setStatusResponse={setResponseStatus}
       />
     </div>
   )

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { SelectedDays, DateProps, FilteredByName, FilteredAllNames } from '../../ts/interfaces';
 
-export const useCalendar = (today: Date) => {
+export const useCalendar = () => {
+  const today = new Date();
   const [currentDay] = useState(today.getDate());
   const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1);
   const [currentYear, setCurrentYear] = useState(today.getFullYear());

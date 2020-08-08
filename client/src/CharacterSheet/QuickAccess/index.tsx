@@ -5,7 +5,6 @@ import { initialCharacter, Types } from '../../context/Character/reducer';
 import { history } from '../../Services/History';
 
 const QuickAccess: React.FC = () => {
-
   const { dispatch, character } = useContext(characterContext);
 
   const clearStorage = () => {
@@ -14,9 +13,7 @@ const QuickAccess: React.FC = () => {
     history.go(0);
   }
 
-  const changeSpeed = ({ target }: any) => {
-    dispatch({ type: Types.CHANGE_SPEED, payload: { newSpeed: target.value } });
-  }
+  const changeSpeed = ({ target }: any) => dispatch({ type: Types.CHANGE_SPEED, payload: { newSpeed: target.value } });
 
   return (
     <div className="c-story">
@@ -25,8 +22,10 @@ const QuickAccess: React.FC = () => {
       <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" fieldName="Armor Class" />
       <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiaive" />
       <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
-      <label>Speed<input type="number" value={character.MainStats.Speed} onChange={changeSpeed} /></label>
       <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" fieldName="Inspiration Points" />
+      <div className="g-input-num">
+        <p className="g-input-num__label">Speed</p>
+        <input className="g-input-num__val" type="number" value={character.MainStats.Speed} onChange={changeSpeed} /></div>
       <div className="c-story__buttons">
         <button className="g-btn">Send To Backend</button>
         <button className="g-btn">Show Calendar</button>

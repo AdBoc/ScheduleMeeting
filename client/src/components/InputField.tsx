@@ -18,9 +18,7 @@ const InputField: React.FC<IProps> = ({ fieldName, property }) => {
 
   const { character, dispatch } = useContext(characterContext);
 
-  const handleInput = ({ target }: any) => {
-    dispatch({ type: Types.EDIT_TEXT, payload: { property, newValue: target.value } });
-  }
+  const handleInput = ({ target }: any) => dispatch({ type: Types.EDIT_TEXT, payload: { property, newValue: target.value } });
 
   return (
     <div className="g-input">

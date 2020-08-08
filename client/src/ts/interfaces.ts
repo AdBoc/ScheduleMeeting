@@ -1,5 +1,5 @@
 export interface CalendarProps {
-    selectedName: string | null;
+    selectedPlayer: string | null;
 }
 
 export interface SelectedDay {
@@ -26,7 +26,6 @@ export interface DateProps {
 }
 
 //Character Sheet
-
 export type Tabs =
     | "stats"
     | "skills"

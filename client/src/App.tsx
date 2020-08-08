@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { history } from './Services/History';
-import MainCalendar from './Calendar/Calendar';
+import Calendar from './Calendar/Calendar';
 import CharacterSheet from './CharacterSheet/CharacterSheet';
 import CharacterContextProvider from './context/Character';
 
@@ -10,7 +10,7 @@ function App(): JSX.Element {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={MainCalendar}></Route>
+        <Route exact path="/" component={Calendar}></Route>
         <CharacterContextProvider>
           <Route exact path="/sheet" component={CharacterSheet}></Route>
         </CharacterContextProvider>

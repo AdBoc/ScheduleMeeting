@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { DateProps, FilteredByName, FilteredAllNames } from '../../../ts/interfaces';
+import { FilteredByName, FilteredAllNames } from '../../../ts/interfaces';
 import { apiService } from '../../../Services/CalendarFetch';
+import { useCalendar } from '../../../hooks/useCalendar';
 
 interface IProps {
-  dateProps: DateProps;
-  selectedName: string | null;
+  selectedPlayer: string | null;
   daysFilteredByName: FilteredByName | FilteredAllNames;
   setStatusResponse: React.Dispatch<React.SetStateAction<object>>;
 }
 
-const Days: React.FC<IProps> = ({ dateProps, selectedName, daysFilteredByName, setStatusResponse }) => {
+const Days: React.FC<IProps> = ({ selectedPlayer, daysFilteredByName, setStatusResponse }) => {
 
-  const { currentMonth, currentYear, daysOfMonth, firstDayOfMonth } = dateProps;
+  const { dateProps: { currentMonth, currentYear, daysOfMonth, firstDayOfMonth } } = useCalendar();
   const [isFetching, setIsFetching] = useState(false);
 
   const handleDaySelect = async ({ target }: any) => {
@@ -19,12 +19,12 @@ const Days: React.FC<IProps> = ({ dateProps, selectedName, daysFilteredByName, s
     const doesNotExist = /\b(\undefined)$/.test(className);
     if (doesNotExist && !isFetching) {
       setIsFetching(prev => !prev);
-      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedName!);
+      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
       setStatusResponse({}); //if status=200 update or show error
       setIsFetching(prev => !prev);
     } else if (!doesNotExist && !isFetching) {
       setIsFetching(prev => !prev);
-      await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedName!);
+      await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
       setStatusResponse({});
       setIsFetching(prev => !prev);
     }
@@ -56,7 +56,7 @@ const Days: React.FC<IProps> = ({ dateProps, selectedName, daysFilteredByName, s
   return (
     <div className="days-of-month">
       {addEmptyButtons()}
-      {!!selectedName ?
+      {!!selectedPlayer ?
         <>
           {daysOfMonth.map((day, index) => {
             return <button key={index} className={`day ${day} ` + daysFilteredByName[day]} value={day} onClick={handleDaySelect}>{day}</button>

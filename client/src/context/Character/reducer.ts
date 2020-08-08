@@ -156,7 +156,7 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
         ...character,
         MainStats: {
           ...character.MainStats,
-          Speed: action.payload.newSpeed
+          Speed: +action.payload.newSpeed
         }
       }
     default:

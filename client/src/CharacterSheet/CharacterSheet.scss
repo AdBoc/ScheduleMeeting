@@ -98,13 +98,13 @@ $primary-color: rgb(53, 53, 53);
     &__skill {
         border-bottom: 1px solid $primary-color;
         font-size: 1.5em;
-        margin: 0.5em 1em;
+        margin: 0.25em 1em;
     }
 }
 
 .g-add-button {
     display: flex;
-    margin: 0.25em 1em;
+    margin: 0.5em 1em;
     font-size: 1.25em;
     justify-content: space-around;
     &__field {
@@ -145,6 +145,9 @@ $primary-color: rgb(53, 53, 53);
     margin: 0.25em 0.25em;
     padding: 0.6em 0.5em;
     font-size: 1.3em;
+    &__val {
+        display: block;
+    }
 }
 
 .c-save-death {
@@ -164,19 +167,18 @@ $primary-color: rgb(53, 53, 53);
     }
 }
 
-// .equipment {
-//     &__title {
-//     }
-// }
-
 .c-item {
-    margin: 0.5em 0.5em 0;
-    border: 1px solid $primary-color;
-    padding: 0.75em;
-    // &__name {
-    // }
-    // &__description {
-    // }
+    &__name {
+        margin: 0.5em 0.5em 0;
+        border: 1px solid $primary-color;
+        padding: 0.75em;
+    }
+    &__desc {
+        background-color: $primary-color;
+        color: white;
+        margin: 0 0.5em;
+        padding: 0.75em;
+    }
 }
 
 .c-story {
@@ -282,3 +284,27 @@ $primary-color: rgb(53, 53, 53);
         padding: 1em;
     }
 }
+
+.g-input-num {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25em;
+    margin: 0 1em;
+    align-items: centery;
+    // text-align: center;
+    // &__label {
+    // }
+    &__val {
+        text-align: center;
+        background-color: $primary-color;
+        color: white;
+        margin: 0 1.25em 0 0;
+        width: 2em;
+    }
+}
+
+// input::-webkit-outer-spin-button, //turn off arrows on number inputs
+// input::-webkit-inner-spin-button {
+    // -webkit-appearance: none;
+    // margin: 0;
+// }

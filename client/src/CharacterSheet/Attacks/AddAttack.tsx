@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { characterContext } from '../../../context/Character';
-import { Types } from '../../../context/Character/reducer';
+import { characterContext } from '../../context/Character';
+import { Types } from '../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
 
 interface IProps {
@@ -8,7 +8,6 @@ interface IProps {
 }
 
 const AddAttack: React.FC<IProps> = ({ formVisibility }) => {
-
   const { dispatch } = useContext(characterContext);
   const [newAttack, setNewAttack] = useState({
     name: "",

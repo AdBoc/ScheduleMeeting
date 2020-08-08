@@ -2,10 +2,10 @@ import React from 'react';
 
 interface IProps {
   handleClick: (arg: string | null) => () => void;
-  selectedName: string | null;
+  selectedPlayer: string | null;
 }
 
-const Players: React.FC<IProps> = ({ handleClick, selectedName }) => {
+const Players: React.FC<IProps> = ({ handleClick, selectedPlayer: selectedName }) => {
 
   const players = ['Witek', 'Sławek', 'Potrek', 'Janek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
 

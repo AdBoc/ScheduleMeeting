@@ -21,13 +21,8 @@ const StatButtons: React.FC<IProps> = ({ prop, propName, fieldName }) => {
 
   const { dispatch } = useContext(characterContext);
 
-  const increment = () => {
-    dispatch({ type: Types.INCREMENT_STAT, payload: { property: propName } });
-  };
-
-  const decrement = () => {
-    dispatch({ type: Types.DECREMENT_STAT, payload: { property: propName } });
-  }
+  const increment = () => dispatch({ type: Types.INCREMENT_STAT, payload: { property: propName } });
+  const decrement = () => dispatch({ type: Types.DECREMENT_STAT, payload: { property: propName } });
 
   return (
     <div className="g-add-button">
