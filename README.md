@@ -34,7 +34,8 @@ npm run start
 
 <details><summary>FrontEnd Folder Structure</summary>
 <p>CLI command: tree /F</p>
-<p>
+
+```
 .
 │   f.txt
 │   package-lock.json
@@ -140,6 +141,7 @@ npm run start
     │       
     └───ts
             interfaces.ts
-            
+```           
+ 
 </P>
 </details>
