@@ -9,8 +9,8 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
   let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
-  const { prevMonth, nextMonth, parseWithName, parseNoName, dateProps: { currentMonth, currentYear } } = useCalendar();
-
+  const { prevMonth, nextMonth, parseWithName, parseNoName, dateProps } = useCalendar();
+  const { currentMonth, currentYear } = dateProps;
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
   const [responseStatus, setResponseStatus] = useState({});
 
@@ -40,6 +40,7 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
         })}
       </div>
       <Days
+        dateProps={dateProps}
         selectedPlayer={selectedPlayer}
         daysFilteredByName={daysFilteredByName}
         setStatusResponse={setResponseStatus}
