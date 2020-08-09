@@ -4,12 +4,10 @@ import * as immutable from 'object-path-immutable';
 export enum Types {
   INCREMENT_STAT = "INCREMENT_STAT",
   DECREMENT_STAT = "DECREMENT_STAT",
-  SWITCH_STAT = "SWITCH_STAT",
+  CHANGE_STAT = "CHANGE_STAT",
   EDIT_TEXT = "EDIT_TEXT",
-  ADD_ATTACK = "ADD_ATTACK",
-  ADD_EQUIPMENT = "ADD_EQUIPMENT",
-  TAG_PROP = "TAG_PROP",
-  CHANGE_SPEED = "CHANGE_SPEED"
+  ADD_TO_ARRAY = "ADD_TO_ARRAY",
+  TAG_PROP = "TAG_PROP"
 };
 
 export type ContextProps = {
@@ -34,7 +32,7 @@ type SettingsPayload = {
   [Types.DECREMENT_STAT]: {
     property: string;
   };
-  [Types.SWITCH_STAT]: {
+  [Types.CHANGE_STAT]: {
     property: string;
     newValue: number;
   };
@@ -42,17 +40,12 @@ type SettingsPayload = {
     property: string;
     newValue: string;
   };
-  [Types.ADD_ATTACK]: {
-    attackData: Attack;
-  };
-  [Types.ADD_EQUIPMENT]: {
-    newItem: BackpackObj;
-  };
+  [Types.ADD_TO_ARRAY]: {
+    property: string;
+    newValue: Attack[] | BackpackObj[];
+  }
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
-  };
-  [Types.CHANGE_SPEED]: {
-    newSpeed: number;
   };
 };
 
@@ -121,8 +114,10 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
       return immutable.update(character, action.payload.property, v => v + 1) as any;
     case Types.DECREMENT_STAT:
       return immutable.update(character, action.payload.property, v => v - 1) as any;
-    case Types.SWITCH_STAT:
+    case Types.CHANGE_STAT:
       return immutable.set(character, action.payload.property, +action.payload.newValue);
+    case Types.ADD_TO_ARRAY:
+      return immutable.push(character, action.payload.property, action.payload.newValue);
     case Types.TAG_PROP:
       return {
         ...character,
@@ -130,18 +125,6 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
           ...character.Other,
           TaggedThrows: action.payload.newArray
         }
-      };
-    case Types.ADD_ATTACK:
-      const copyAttack = character.Attacks.concat(action.payload.attackData);
-      return {
-        ...character,
-        Attacks: copyAttack
-      };
-    case Types.ADD_EQUIPMENT:
-      const copyEquipment = character.Equipment.concat(action.payload.newItem);
-      return {
-        ...character,
-        Equipment: copyEquipment
       };
     case Types.EDIT_TEXT:
       return {
@@ -151,14 +134,6 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
           [action.payload.property]: action.payload.newValue
         }
       };
-    case Types.CHANGE_SPEED:
-      return {
-        ...character,
-        MainStats: {
-          ...character.MainStats,
-          Speed: +action.payload.newSpeed
-        }
-      }
     default:
       return character;
   };

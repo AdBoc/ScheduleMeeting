@@ -193,10 +193,10 @@ $primary-color: rgb(53, 53, 53);
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    .g-input__label {
+    &__label {
         flex-grow: 1.1;
     }
-    .g-input__field {
+    &__field {
         background-color: $primary-color;
         color: white;
         padding: 0.25em;
@@ -240,6 +240,8 @@ $primary-color: rgb(53, 53, 53);
     padding: 0.5em;
     margin: 0.5em auto;
     min-width: 10em;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     &--red {
         background-color: rgba(230, 41, 41, 0.918);
     }
@@ -291,9 +293,6 @@ $primary-color: rgb(53, 53, 53);
     font-size: 1.25em;
     margin: 0 1em;
     align-items: centery;
-    // text-align: center;
-    // &__label {
-    // }
     &__val {
         text-align: center;
         background-color: $primary-color;
@@ -303,8 +302,28 @@ $primary-color: rgb(53, 53, 53);
     }
 }
 
+.c-change-usr {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-color;
+    &__btn {
+        background-color: white;
+        color: $primary-color;
+        padding: 0.85rem;
+        min-width: 12.5em;
+        margin: 0.5em auto;
+    }
+}
+
 // input::-webkit-outer-spin-button, //turn off arrows on number inputs
 // input::-webkit-inner-spin-button {
-    // -webkit-appearance: none;
-    // margin: 0;
+// -webkit-appearance: none;
+// margin: 0;
 // }

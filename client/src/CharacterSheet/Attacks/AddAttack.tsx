@@ -21,7 +21,7 @@ const AddAttack: React.FC<IProps> = ({ formVisibility }) => {
     e.preventDefault();
     let attackData: any = { ...newAttack };
     attackData.id = uuidv4();
-    dispatch({ type: Types.ADD_ATTACK, payload: { attackData } });
+    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Attacks", newValue: attackData } });
     formVisibility();
   };
 

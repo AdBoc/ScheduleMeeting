@@ -18,7 +18,7 @@ const AddEquipment: React.FC<IProps> = ({ formVisibility }) => {
     e.preventDefault();
     let newItem: any = { ...item };
     newItem.id = uuidv4();
-    dispatch({ type: Types.ADD_EQUIPMENT, payload: { newItem } })
+    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Equipment", newValue: newItem } })
     formVisibility();
   };
 

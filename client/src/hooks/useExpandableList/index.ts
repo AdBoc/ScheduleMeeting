@@ -5,14 +5,13 @@ import { CharacterInterface } from "../../ts/interfaces";
 export const useExpandableList = (property: "Equipment" | "Attacks") => {
   const { character } = useContext(characterContext);
   let initialState: any = (character[property] as Array<CharacterInterface["Equipment" | "Attacks"][0]>).slice(0).map(item => ({ ...item, active: false }));
-  const charDependency = character[property];
   const [extItems, setExtItems] = useState(initialState);
   const [extVisible, setExtVisible] = useState(false);
 
   useEffect(() => {
     let initialState: any = (character[property] as any).slice(0).map((item: any) => ({ ...item, active: false }));
     setExtItems(initialState);
-  }, [charDependency]);
+  }, [character, property]);
 
   const showDetails = (id: string) => () => {
     const copy = JSON.parse(JSON.stringify(extItems));

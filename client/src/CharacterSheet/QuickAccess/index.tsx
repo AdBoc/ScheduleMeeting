@@ -1,19 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import StatButtons from '../../components/StatButtons';
 import { characterContext } from '../../context/Character';
 import { initialCharacter, Types } from '../../context/Character/reducer';
 import { history } from '../../Services/History';
+import { Link } from 'react-router-dom';
+import ChangeUser from './ChangeUser';
 
 const QuickAccess: React.FC = () => {
+  const [playerVisiblity, setPlayerVisiblity] = useState(false);
   const { dispatch, character } = useContext(characterContext);
 
   const clearStorage = () => {
     localStorage.removeItem("character");
     localStorage.setItem("character", JSON.stringify(initialCharacter));
     history.go(0);
-  }
+  };
 
-  const changeSpeed = ({ target }: any) => dispatch({ type: Types.CHANGE_SPEED, payload: { newSpeed: target.value } });
+  const changeSpeed = ({ target }: any) => dispatch({ type: Types.CHANGE_STAT, payload: { property: "MainStats.Speed", newValue: target.value } });
+  const changeUser = () => setPlayerVisiblity(prev => !prev);
 
   return (
     <div className="c-story">
@@ -27,14 +31,15 @@ const QuickAccess: React.FC = () => {
         <p className="g-input-num__label">Speed</p>
         <input className="g-input-num__val" type="number" value={character.MainStats.Speed} onChange={changeSpeed} /></div>
       <div className="c-story__buttons">
-        <button className="g-btn">Send To Backend</button>
-        <button className="g-btn">Show Calendar</button>
-        <button className="g-btn">Change User</button>
-        <button className="g-btn" onClick={clearStorage}>Clear Local Storage</button>
-        <button className="g-btn g-btn--red">Delete character</button>
+        {/* <button className="g-btn">Send To Backend</button> */}
+        <Link to="/"><button className="g-btn">Show Calendar</button></Link>
+        <button className="g-btn" onClick={changeUser}>Change User</button>
+        <button className="g-btn g-btn--red" onClick={clearStorage}>Clear Local Storage</button>
+        {/* <button className="g-btn g-btn--red">Delete character</button> */}
+        {playerVisiblity && <ChangeUser setVisibility={setPlayerVisiblity} />}
       </div>
     </div>
   )
-}
+};
 
 export default QuickAccess;

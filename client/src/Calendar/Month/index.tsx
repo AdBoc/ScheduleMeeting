@@ -10,7 +10,7 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
   let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
   const { prevMonth, nextMonth, parseWithName, parseNoName, dateProps: { currentMonth, currentYear } } = useCalendar();
-  
+
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
   const [responseStatus, setResponseStatus] = useState({});
 
@@ -29,8 +29,9 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
     <div className="calendar">
       <div className="month-indicator">
         <button className="month-indicator__button" onClick={prevMonth}>{"<"}</button>
-        <p className="month-indicator__label">{monthsInYear[currentMonth - 1]}</p>
-        <p className="month-indicator__label">{currentYear}</p>
+        <div className="month-indicator__full">
+          <p className="month-indicator__label">{monthsInYear[currentMonth - 1]} {currentYear}</p>
+        </div>
         <button className="month-indicator__button" onClick={nextMonth}>{">"}</button>
       </div>
       <div className="day-of-week">

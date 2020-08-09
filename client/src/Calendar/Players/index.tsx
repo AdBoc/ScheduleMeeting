@@ -5,10 +5,9 @@ interface IProps {
   selectedPlayer: string | null;
 }
 
+export const players = ['Witek', 'Sławek', 'Potrek', 'Janek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
+
 const Players: React.FC<IProps> = ({ handleClick, selectedPlayer: selectedName }) => {
-
-  const players = ['Witek', 'Sławek', 'Potrek', 'Janek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
-
   return (
     <div className="person-container">
       {players.map((person, index) => {
