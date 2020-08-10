@@ -29,7 +29,7 @@ type FullDate struct {
 
 // MonthData has data for current month
 type MonthData struct {
-	Day   string `json:"day,omitempty" bson:"day,omitempty"`
+	Day  string `json:"day,omitempty" bson:"day,omitempty"`
 	Name string `json:"name,omitempty" bson:"name,omitempty"`
 }
 
@@ -69,7 +69,7 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedOrigins: []string{"https://dnd.moreoverandabove.com"},
 		AllowedMethods: []string{"POST", "GET", "OPTIONS", "PUT", "DELETE", "PATCH"},
 		AllowedHeaders: []string{"Accept", "content-type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"},
 	})
@@ -163,7 +163,7 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 			"date": req.Date,
 			"daysData": bson.A{
 				bson.M{
-					"day":   req.Day,
+					"day":  req.Day,
 					"name": req.Name},
 			},
 		}

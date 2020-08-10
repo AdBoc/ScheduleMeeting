@@ -1,7 +1,7 @@
 class ApiService {
   async getSelectedMonthData(date: string) {
     const rBody = { date };
-    const response = await fetch("http://localhost:8080/", {
+    const response = await fetch("https://dnd.moreoverandabove.com/", {
       method: "POST",
       body: JSON.stringify(rBody)
     });
@@ -14,7 +14,7 @@ class ApiService {
 
   async addSelectedDay(date: string, day: string, name: string) {
     const rBody = { date, day, name };
-    const response = await fetch("http://localhost:8080/new", {
+    const response = await fetch("https://dnd.moreoverandabove.com/new", {
       method: "POST",
       body: JSON.stringify(rBody)
     });
@@ -26,7 +26,7 @@ class ApiService {
 
   async unselectDay(date: string, day: string, name: string) {
     const rBody = { date, day, name };
-    const response = await fetch("http://localhost:8080/", {
+    const response = await fetch("https://dnd.moreoverandabove.com/", {
       method: "PATCH",
       body: JSON.stringify(rBody)
     });
