@@ -42,6 +42,7 @@ export type Attack = {
     hitDc: string;
     range: string;
     type: string;
+    abilityMod: string;
 };
 
 export type BackpackObj = {

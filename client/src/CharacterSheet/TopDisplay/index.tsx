@@ -6,8 +6,20 @@ import { charMethods } from '../../Services/CharacterMethods';
 const TopDisplay: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);
 
-  const incrementHp = () => dispatch({ type: Types.INCREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
+  const incrementHp = () => {
+    if (character.TemporaryHitPoints < character.MainStats.HitPoints)
+      dispatch({ type: Types.INCREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
+  };
   const decrementHp = () => dispatch({ type: Types.DECREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
+  const watchHp = () => {
+    let className = "c-sheet__hp";
+    let result = character.TemporaryHitPoints / character.MainStats.HitPoints;
+    if (result <= 0.25)
+      return className += " --low-hp";
+    if (result <= 0.5)
+      return className += " --mid-hp";
+    return className;
+  };
 
   return (
     <div className="c-sheet">
@@ -16,7 +28,7 @@ const TopDisplay: React.FC = () => {
           <p className="c-player__name">{character.Story.Name}</p>
           <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level}</p>
         </div>
-        <div className="c-sheet__hp">
+        <div className={watchHp()}>
           <button className="decrement-hp" onClick={decrementHp} aria-label="decrement hp" />
           {character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP
           <button className="increment-hp" onClick={incrementHp} aria-label="increment hp" />
@@ -45,3 +57,7 @@ const TopDisplay: React.FC = () => {
 };
 
 export default TopDisplay;
+
+    // if (character.TemporaryHitPoints === 0) {
+    //   alert("Press F to pay respects");
+    // }

@@ -37,11 +37,8 @@ npm run start
 
 ```
 .
-│   f.txt
-│   package-lock.json
 │   package.json
 │   tsconfig.json
-│   
 ├───public
 │       favicon.svg
 │       index.html
@@ -49,96 +46,74 @@ npm run start
 │       logo512.png
 │       manifest.json
 │       robots.txt
-│       
 └───src
     │   App.tsx
     │   index.tsx
     │   react-app-env.d.ts
     │   serviceWorker.ts
-    │   
     ├───assets
     │       GitHub-Mark-64px.png
     │       index.css
     │       Roboto-Light.ttf
-    │       
     ├───Calendar
     │   │   Calendar.scss
     │   │   Calendar.tsx
     │   │   index.ts
-    │   │   
     │   ├───Footer
     │   │       index.tsx
-    │   │       
     │   ├───Month
-    │   │   │   index.tsx
-    │   │   │   
-    │   │   └───Days
-    │   │           index.tsx
-    │   │           
+    │   │       Days.tsx
+    │   │       index.tsx
     │   └───Players
     │           index.tsx
-    │           
     ├───CharacterSheet
     │   │   CharacterSheet.scss
     │   │   CharacterSheet.tsx
     │   │   index.ts
-    │   │   
     │   ├───Attacks
-    │   │   │   Attacks.tsx
-    │   │   │   
-    │   │   └───AddAttack
-    │   │           AddAttack.tsx
-    │   │           
+    │   │       AddAttack.tsx
+    │   │       index.tsx
     │   ├───Equipment
-    │   │   │   Equipment.tsx
-    │   │   │   
-    │   │   └───AddEquipment
-    │   │           AddEquipment.tsx
-    │   │           
+    │   │       AddEquipment.tsx
+    │   │       index.tsx
     │   ├───QuickAccess
-    │   │       QuickAccess.tsx
-    │   │       
+    │   │       ChangeUser.tsx
+    │   │       index.tsx
     │   ├───SavingThrows
-    │   │       SavingThrows.tsx
-    │   │       
+    │   │       index.tsx
     │   ├───Skills
-    │   │       Skills.tsx
-    │   │       
+    │   │       index.tsx
     │   ├───Stats
-    │   │       Stats.tsx
-    │   │       
-    │   └───Story
-    │           Story.tsx
-    │           
+    │   │       index.tsx
+    │   ├───Story
+    │   │       index.tsx
+    │   └───TopDisplay
+    │           index.tsx
     ├───components
     │       InputField.tsx
+    │       InputNumber.tsx
     │       NumberSelect.tsx
     │       StatButtons.tsx
     │       TextAreaField.tsx
-    │       
     ├───context
     │   └───Character
     │           index.tsx
     │           reducer.ts
-    │           
     ├───hooks
-    │   ├───UseCalendar
-    │   │       index.tsx
-    │   │       
-    │   └───UseExpandableList
-    │           index.tsx
-    │           
+    │   ├───useCalendar
+    │   │       index.ts
+    │   └───useExpandableList
+    │           index.ts
     ├───Services
     │   ├───CalendarFetch
     │   │       index.ts
-    │   │       
+    │   ├───CharacterMethods
+    │   │       index.ts
     │   └───History
     │           index.ts
-    │           
     ├───tests
     │       App.test.tsx
     │       setupTests.ts
-    │       
     └───ts
             interfaces.ts
 ```           

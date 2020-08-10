@@ -27,10 +27,10 @@ const StatButtons: React.FC<IProps> = ({ prop, propName, fieldName }) => {
   return (
     <div className="g-add-button">
       <p className="g-add-button__field">{fieldName}</p>
-      <button className={prop <= -5 ? "g-add-button__btn hide" : "g-add-button__btn"} onClick={decrement} > -</button>
+      <button className={prop <= -5 ? "g-add-button__btn hide" : "g-add-button__btn"} onClick={decrement} >-</button>
       <p className="g-add-button__val">{prop}</p>
       <button className="g-add-button__btn" onClick={increment}>+</button>
-    </div >
+    </div>
   );
 };
 

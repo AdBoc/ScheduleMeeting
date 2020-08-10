@@ -15,7 +15,6 @@ interface IProps {
 * InpuField that allows to change values of Story property in character object
 */
 const InputField: React.FC<IProps> = ({ fieldName, property }) => {
-
   const { character, dispatch } = useContext(characterContext);
 
   const handleInput = ({ target }: any) => dispatch({ type: Types.EDIT_TEXT, payload: { property, newValue: target.value } });

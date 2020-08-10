@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FilteredByName, FilteredAllNames, DateProps } from '../../../ts/interfaces';
-import { apiService } from '../../../Services/CalendarFetch';
-import { useCalendar } from '../../../hooks/useCalendar';
+import { FilteredByName, FilteredAllNames, DateProps } from '../../ts/interfaces';
+import { apiService } from '../../Services/CalendarFetch';
+import { useCalendar } from '../../hooks/useCalendar';
 
 interface IProps {
   dateProps: DateProps;
@@ -11,7 +11,6 @@ interface IProps {
 }
 
 const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setStatusResponse }) => {
-
   const { dateProps: { daysOfMonth, firstDayOfMonth } } = useCalendar();
   const [isFetching, setIsFetching] = useState(false);
   const { currentMonth, currentYear } = dateProps;

@@ -115,10 +115,10 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
     case Types.DECREMENT_STAT:
       return immutable.update(character, action.payload.property, v => v - 1) as any;
     case Types.CHANGE_STAT:
-      return immutable.set(character, action.payload.property, +action.payload.newValue);
+      return immutable.set(character, action.payload.property, +action.payload.newValue); //+"" = 0
     case Types.ADD_TO_ARRAY:
       return immutable.push(character, action.payload.property, action.payload.newValue);
-    case Types.TAG_PROP:
+      case Types.TAG_PROP:
       return {
         ...character,
         Other: {
