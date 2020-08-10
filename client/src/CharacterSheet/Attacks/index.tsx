@@ -8,34 +8,38 @@ interface AttackActive extends Attack {
 };
 
 const Attacks: React.FC = () => {
-  const { extItems, extVisible, showDetails, formVisiblity } = useExpandableList("Attacks");
+  const { extItems, extVisible, showDetails, formVisiblity, deleteItem } = useExpandableList("Attacks");
 
   return (
-    <div className="sheet--view--attacks">
+    <>
       <button className="g-btn" onClick={formVisiblity}>+ Add Attack</button>
       {extVisible && <AddAttack formVisibility={formVisiblity} />}
-      {extItems.map((attack: AttackActive) => {
-        return (
-          <div key={attack.id} onClick={showDetails(attack.id)}>
-            <div className="c-atk">
-              <p className="c-atk__field">{attack.name}</p>
-              <p className="c-atk__field">{attack.diceType}</p>
-              <p className="c-atk__field">{attack.range}</p>
+      <div className="c-list-scroll">
+        {extItems.map((attack: AttackActive) => {
+          return (
+            <div key={attack.id}>
+              <div className="c-atk">
+                <p className="c-atk__field">{attack.name}</p>
+                <p className="c-atk__field">{attack.diceType}</p>
+                <p className="c-atk__field">{attack.range}</p>
+                <button onClick={showDetails(attack.id)}>show</button>
+                <button className="c-atk__field" name={attack.id} onClick={deleteItem}>delete</button>
+              </div>
+              {attack.active && (
+                <>
+                  <p className="c-atk__drop">Name: {attack.name}</p>
+                  <p className="c-atk__drop">Ability Mod: {attack.abilityMod}</p>
+                  <p className="c-atk__drop">Dice: {attack.diceType}</p>
+                  <p className="c-atk__drop">HitDc: {attack.hitDc}</p>
+                  <p className="c-atk__drop">Range: {attack.range}</p>
+                  <p className="c-atk__drop">Type: {attack.type}</p>
+                </>
+              )}
             </div>
-            {attack.active && (
-              <>
-                <p className="c-atk__drop">Name: {attack.name}</p>
-                <p className="c-atk__drop">Ability Mod: {attack.abilityMod}</p>
-                <p className="c-atk__drop">Dice: {attack.diceType}</p>
-                <p className="c-atk__drop">HitDc: {attack.hitDc}</p>
-                <p className="c-atk__drop">Range: {attack.range}</p>
-                <p className="c-atk__drop">Type: {attack.type}</p>
-              </>
-            )}
-          </div>
-        )
-      })}
-    </div>
+          )
+        })}
+      </div>
+    </>
   )
 };
 

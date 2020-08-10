@@ -29,7 +29,7 @@ const QuickAccess: React.FC = () => {
       <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
       <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" fieldName="Inspiration Points" />
       {/* <button className="g-btn">Send To Backend</button> */}
-      <Link to="/"><button className="g-btn">Show Calendar</button></Link>
+      <Link to="/"><button className="g-btn section-break">Show Calendar</button></Link>
       <button className="g-btn" onClick={changeUser}>Change User</button>
       <button className="g-btn g-btn--red" onClick={clearStorage}>Clear Local Storage</button>
       {/* <button className="g-btn g-btn--red">Delete character</button> */}

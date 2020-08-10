@@ -25,7 +25,7 @@ const StatButtons: React.FC<IProps> = ({ prop, propName, fieldName }) => {
   const decrement = () => dispatch({ type: Types.DECREMENT_STAT, payload: { property: propName } });
 
   return (
-    <div className="g-add-button">
+    <div className="g-add-button skills-margin">
       <p className="g-add-button__field">{fieldName}</p>
       <button className={prop <= -5 ? "g-add-button__btn hide" : "g-add-button__btn"} onClick={decrement} >-</button>
       <p className="g-add-button__val">{prop}</p>

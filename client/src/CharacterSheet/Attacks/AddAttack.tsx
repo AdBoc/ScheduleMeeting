@@ -33,9 +33,9 @@ const AddAttack: React.FC<IProps> = ({ formVisibility }) => {
 
   return (
     <form className="c-new-atk" onSubmit={submitNewAttack}>
-      <input className="c-new-atk__input" placeholder="name" onChange={handleInput} name="name" value={newAttack.name} />
-      <input className="c-new-atk__input" placeholder="abilityMod" onChange={handleInput} name="abilityMod" value={newAttack.abilityMod} />
-      <input className="c-new-atk__input" placeholder="dice" onChange={handleInput} name="diceType" value={newAttack.diceType} />
+      <input className="c-new-atk__input" placeholder="name" onChange={handleInput} name="name" value={newAttack.name} required/>
+      <input className="c-new-atk__input" placeholder="abilityMod" onChange={handleInput} name="abilityMod" value={newAttack.abilityMod} required/>
+      <input className="c-new-atk__input" placeholder="dice" onChange={handleInput} name="diceType" value={newAttack.diceType} required/>
       <input className="c-new-atk__input" placeholder="HitDC" onChange={handleInput} name="hitDc" value={newAttack.hitDc} />
       <input className="c-new-atk__input" placeholder="range" onChange={handleInput} name="range" value={newAttack.range} />
       <input className="c-new-atk__input" placeholder="type" onChange={handleInput} name="type" value={newAttack.type} />

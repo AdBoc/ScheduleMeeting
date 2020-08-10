@@ -8,23 +8,29 @@ interface BackpackObjActive extends BackpackObj {
 }
 
 const Equipment: React.FC = () => {
-  const { extItems, extVisible, showDetails, formVisiblity } = useExpandableList("Equipment");
+  const { extItems, extVisible, showDetails, formVisiblity, deleteItem } = useExpandableList("Equipment");
 
   return (
     <div className="c-equipment">
       <button className="g-btn" onClick={formVisiblity}>+ Add Equipment</button>
       {extVisible && <AddEquipment formVisibility={formVisiblity} />}
-      {extItems.map((item: BackpackObjActive) => {
-        return (
-          <div key={item.id} className="c-item" onClick={showDetails(item.id)}>
-            <p className="c-item__name">{item.name}</p>
-            {item.active && <p className="c-item__desc">{item.description}</p>}
-          </div>
-        )
-      })}
+      <div className="c-list-scroll">
+        {extItems.map((item: BackpackObjActive) => {
+          return (
+            <div key={item.id}>
+              <div className="c-item">
+                <p className="c-item__field">{item.name}</p>
+                <p className="c-item__field" onClick={showDetails(item.id)}>show</p>
+                <button className="c-item__field" name={item.id} onClick={deleteItem}>delete</button>
+              </div>
+              {item.active && <p className="c-item__drop">{item.description}</p>}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
-}
+};
 
 export default Equipment;
 

@@ -12,7 +12,7 @@ $primary-color: rgb(53, 53, 53);
     }
     &__hp {
         font-size: 1.2em;
-        margin: 1em;
+        margin: 0.25em 0.25em 0.8em;
         padding: 1em;
         position: relative;
     }
@@ -156,11 +156,8 @@ $primary-color: rgb(53, 53, 53);
     word-wrap: break-word;
     flex: 1 0 33%;
     margin: 0.25em 0.25em;
-    padding: 0.6em 0.5em;
-    font-size: 1.3em;
-    &__val {
-        display: block;
-    }
+    padding: 0.7em 0.5em;
+    font-size: 1.2em;
 }
 
 .c-save-death {
@@ -181,17 +178,30 @@ $primary-color: rgb(53, 53, 53);
 }
 
 .c-item {
-    &__name {
-        margin: 0.5em 0.5em 0;
-        border: 1px solid $primary-color;
-        padding: 0.75em;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $primary-color;
+    margin: 0.5em;
+    &__field {
+        padding: 0.5em;
     }
-    &__desc {
+    &__drop {
+        margin: 0 0.5em;
         background-color: $primary-color;
         color: white;
-        margin: 0 0.5em;
-        padding: 0.75em;
+        padding: 1em;
     }
+    // &__name {
+    //     margin: 0.5em 0.5em 0;
+    //     border: 1px solid $primary-color;
+    //     padding: 0.75em;
+    // }
+    // &__desc {
+    //     background-color: $primary-color;
+    //     color: white;
+    //     margin: 0 0.5em;
+    //     padding: 0.75em;
+    // }
 }
 
 .c-story {
@@ -274,6 +284,11 @@ $primary-color: rgb(53, 53, 53);
     }
 }
 
+.c-list-scroll {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
 .c-new-atk {
     &__input {
         display: block;
@@ -292,7 +307,6 @@ $primary-color: rgb(53, 53, 53);
         padding: 0.5em;
     }
     &__drop {
-        // border: 1px solid $primary-color;
         margin: 0 0.5em;
         background-color: $primary-color;
         color: white;
@@ -335,6 +349,29 @@ $primary-color: rgb(53, 53, 53);
         min-width: 12.5em;
         margin: 0.5em auto;
     }
+}
+
+.c-checkbox {
+    width: 2em;
+    height: 2em;
+    margin: 0.5em;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.--success {
+    background-color: rgb(136, 255, 136);
+}
+.--fail {
+    background-color: rgb(255, 78, 78);
+    // border: none;
+    // background-image: url(../assets/1650654.png); // background: url(../assets/1650654.png) no-repeat;
+    // background-image: url(../assets/1650654.svg);
+    // background-size: 100% 100%;
+}
+
+.section-break {
+    margin-top: 3em;
 }
 
 // input::-webkit-outer-spin-button, //turn off arrows on number inputs

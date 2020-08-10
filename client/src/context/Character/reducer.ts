@@ -7,7 +7,8 @@ export enum Types {
   CHANGE_STAT = "CHANGE_STAT",
   EDIT_TEXT = "EDIT_TEXT",
   ADD_TO_ARRAY = "ADD_TO_ARRAY",
-  TAG_PROP = "TAG_PROP"
+  TAG_PROP = "TAG_PROP",
+  DELETE_IN_ARRAY = "DELETE_IN_ARRAY"
 };
 
 export type ContextProps = {
@@ -46,6 +47,10 @@ type SettingsPayload = {
   }
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
+  };
+  [Types.DELETE_IN_ARRAY]: {
+    property: "Equipment" | "Attacks";
+    id: string;
   };
 };
 
@@ -118,7 +123,9 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
       return immutable.set(character, action.payload.property, +action.payload.newValue); //+"" = 0
     case Types.ADD_TO_ARRAY:
       return immutable.push(character, action.payload.property, action.payload.newValue);
-      case Types.TAG_PROP:
+    case Types.DELETE_IN_ARRAY:
+      return immutable.set(character, action.payload.property, (character[action.payload.property] as Array<CharacterInterface["Equipment" | "Attacks"][0]>).filter(element => element.id !== action.payload.id));
+    case Types.TAG_PROP:
       return {
         ...character,
         Other: {
