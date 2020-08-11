@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CalendarProps, SelectedDays } from '../../ts/interfaces';
-import { apiService } from '../../Services/CalendarFetch';
+import { apiService } from '../../Services/FetchAPI';
 import { useCalendar } from '../../hooks/useCalendar';
 import Days from './Days';
 

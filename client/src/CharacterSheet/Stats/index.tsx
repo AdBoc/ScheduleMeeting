@@ -4,7 +4,6 @@ import { characterContext } from '../../context/Character';
 import { charMethods } from '../../Services/CharacterMethods';
 
 const Stats: React.FC = () => {
-
   const { character } = useContext(characterContext);
 
   const generateStats = () => {

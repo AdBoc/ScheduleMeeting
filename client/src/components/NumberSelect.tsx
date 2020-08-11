@@ -18,8 +18,8 @@ interface IProps {
 };
 
 const NumberSelect: React.FC<IProps> = ({ range, name, value }) => {
-
   const { dispatch } = useContext(characterContext);
+  
   const onChange = ({ target }: any) => {
     dispatch({ type: Types.CHANGE_STAT, payload: { property: name, newValue: target.value } });
   }

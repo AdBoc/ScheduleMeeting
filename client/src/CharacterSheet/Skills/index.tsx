@@ -3,7 +3,6 @@ import StatButtons from '../../components/StatButtons';
 import { characterContext } from '../../context/Character';
 
 const Skills: React.FC = () => {
-
   const { character } = useContext(characterContext);
 
   return (
