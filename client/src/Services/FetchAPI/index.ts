@@ -1,7 +1,7 @@
 class ApiService {
   async getSelectedMonthData(date: string) {
     const rBody = { date };
-    const response = await fetch("https://dnd.moreoverandabove.com/:8080", {
+    const response = await fetch("http://dnd.moreoverandabove.com/:8080", {
       method: "POST",
       body: JSON.stringify(rBody)
     });
@@ -14,7 +14,7 @@ class ApiService {
 
   async addSelectedDay(date: string, day: string, name: string) {
     const rBody = { date, day, name };
-    const response = await fetch("https://dnd.moreoverandabove.com/new:8080", {
+    const response = await fetch("http://dnd.moreoverandabove.com/new:8080", {
       method: "POST",
       body: JSON.stringify(rBody)
     });
@@ -26,7 +26,7 @@ class ApiService {
 
   async unselectDay(date: string, day: string, name: string) {
     const rBody = { date, day, name };
-    const response = await fetch("https://dnd.moreoverandabove.com/:8080", {
+    const response = await fetch("http://dnd.moreoverandabove.com/:8080", {
       method: "PATCH",
       body: JSON.stringify(rBody)
     });
@@ -40,7 +40,7 @@ class ApiService {
     const rBody = {
       user: localStorage.getItem('user')
     };
-    const response = await fetch("http://localhost:8080/character", {
+    const response = await fetch("http://dnd.moreoverandabove.com/character:8080", {
       method: "POST",
       body: JSON.stringify(rBody)
     });
@@ -55,7 +55,7 @@ class ApiService {
       user: localStorage.getItem('user'),
       character: localStorage.getItem('character')
     };
-    const response = await fetch("http://localhost:8080/character", {
+    const response = await fetch("http://dnd.moreoverandabove.com/character:8080", {
       method: "PATCH",
       body: JSON.stringify(rBody)
     });
