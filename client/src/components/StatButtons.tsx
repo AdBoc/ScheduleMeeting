@@ -18,7 +18,6 @@ interface IProps {
 }
 
 const StatButtons: React.FC<IProps> = ({ prop, propName, fieldName }) => {
-
   const { dispatch } = useContext(characterContext);
 
   const increment = () => dispatch({ type: Types.INCREMENT_STAT, payload: { property: propName } });

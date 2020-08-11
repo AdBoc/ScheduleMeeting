@@ -3,7 +3,6 @@ import InputField from '../../components/InputField';
 import TextAreaField from '../../components/TextAreaField';
 
 const Story: React.FC = () => {
-
   return (
     <>
       <InputField fieldName="Name" property="Name" />

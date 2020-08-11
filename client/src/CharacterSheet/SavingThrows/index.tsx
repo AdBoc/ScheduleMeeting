@@ -20,7 +20,7 @@ const SavingThrows: React.FC = () => {
     dispatch({ type: Types.TAG_PROP, payload: { newArray } });
   };
 
-  const generateSavingThrows = () => {
+  const generateThrowsValue = () => {
     let isTagged: boolean;
     return Object.entries(character.Stats).map((stat, index) => {
       isTagged = character.Other.TaggedThrows[0] === stat[0] || character.Other.TaggedThrows[1] === stat[0];
@@ -32,7 +32,7 @@ const SavingThrows: React.FC = () => {
     });
   };
 
-  const handleThrows = ({ target }: any) => {
+  const handleDeathThrows = ({ target }: any) => {
     const newThrows = throws.slice(0);
     newThrows[target.name] = !newThrows[target.name];
     setThrows(newThrows);
@@ -42,19 +42,19 @@ const SavingThrows: React.FC = () => {
     <>
       <p className="c-save-throws__title">Saving throws</p>
       <div className="c-save-throws">
-        {generateSavingThrows()}
+        {generateThrowsValue()}
       </div>
       <p className="c-save-throws__tag">tagged {charMethods.countTaggedThrows(character.Other.TaggedThrows)}/2</p>
       <div className="c-save-death">
         <p className="c-save-death__title">Death save</p>
         <p className="c-save-death__label">Successes</p>
-        <button className={throws[0] ? "c-checkbox --success" : "c-checkbox"} name="0" onClick={handleThrows} />
-        <button className={throws[1] ? "c-checkbox --success" : "c-checkbox"} name="1" onClick={handleThrows} />
-        <button className={throws[2] ? "c-checkbox --success" : "c-checkbox"} name="2" onClick={handleThrows} />
+        <button className={throws[0] ? "c-checkbox --success" : "c-checkbox"} name="0" onClick={handleDeathThrows} />
+        <button className={throws[1] ? "c-checkbox --success" : "c-checkbox"} name="1" onClick={handleDeathThrows} />
+        <button className={throws[2] ? "c-checkbox --success" : "c-checkbox"} name="2" onClick={handleDeathThrows} />
         <p className="c-save-death__label">Failures</p>
-        <button className={throws[3] ? "c-checkbox --fail" : "c-checkbox"} name="3" onClick={handleThrows} />
-        <button className={throws[4] ? "c-checkbox --fail" : "c-checkbox"} name="4" onClick={handleThrows} />
-        <button className={throws[5] ? "c-checkbox --fail" : "c-checkbox"} name="5" onClick={handleThrows} />
+        <button className={throws[3] ? "c-checkbox --fail" : "c-checkbox"} name="3" onClick={handleDeathThrows} />
+        <button className={throws[4] ? "c-checkbox --fail" : "c-checkbox"} name="4" onClick={handleDeathThrows} />
+        <button className={throws[5] ? "c-checkbox --fail" : "c-checkbox"} name="5" onClick={handleDeathThrows} />
       </div>
     </>
   )

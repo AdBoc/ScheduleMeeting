@@ -15,7 +15,6 @@ interface IProps {
 * TextArea that changes values of Story property in character object
 */
 const TextAreaField: React.FC<IProps> = ({ fieldName, property }) => {
-
   const { character, dispatch } = useContext(characterContext);
 
   const handleTextArea = ({ target }: any) => dispatch({ type: Types.EDIT_TEXT, payload: { property, newValue: target.value } });

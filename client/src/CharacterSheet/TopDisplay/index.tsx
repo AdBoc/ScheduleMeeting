@@ -10,8 +10,10 @@ const TopDisplay: React.FC = () => {
     if (character.TemporaryHitPoints < character.MainStats.HitPoints)
       dispatch({ type: Types.INCREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
   };
+  
   const decrementHp = () => dispatch({ type: Types.DECREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
-  const watchHp = () => {
+  
+  const styleHp = () => {
     let className = "c-sheet__hp";
     let result = character.TemporaryHitPoints / character.MainStats.HitPoints;
     if (result <= 0.25)
@@ -28,7 +30,7 @@ const TopDisplay: React.FC = () => {
           <p className="c-player__name">{character.Story.Name}</p>
           <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level}</p>
         </div>
-        <div className={watchHp()}>
+        <div className={styleHp()}>
           <button className="decrement-hp" onClick={decrementHp} aria-label="decrement hp" />
           {character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP
           <button className="increment-hp" onClick={incrementHp} aria-label="increment hp" />
