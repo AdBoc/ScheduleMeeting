@@ -8,7 +8,8 @@ export enum Types {
   EDIT_TEXT = "EDIT_TEXT",
   ADD_TO_ARRAY = "ADD_TO_ARRAY",
   TAG_PROP = "TAG_PROP",
-  DELETE_IN_ARRAY = "DELETE_IN_ARRAY"
+  DELETE_IN_ARRAY = "DELETE_IN_ARRAY",
+  SET_CHARACTER = "SET_CHARACTER"
 };
 
 export type ContextProps = {
@@ -51,6 +52,9 @@ type SettingsPayload = {
   [Types.DELETE_IN_ARRAY]: {
     property: "Equipment" | "Attacks";
     id: string;
+  };
+  [Types.SET_CHARACTER]: {
+    newCharacter: CharacterInterface;
   };
 };
 
@@ -140,6 +144,10 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
           ...character.Story,
           [action.payload.property]: action.payload.newValue
         }
+      };
+    case Types.SET_CHARACTER:
+      return {
+        ...action.payload.newCharacter
       };
     default:
       return character;

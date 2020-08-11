@@ -29,7 +29,7 @@ type FullDate struct {
 
 // MonthData has data for current month
 type MonthData struct {
-	Day   string `json:"day,omitempty" bson:"day,omitempty"`
+	Day  string `json:"day,omitempty" bson:"day,omitempty"`
 	Name string `json:"name,omitempty" bson:"name,omitempty"`
 }
 
@@ -42,7 +42,12 @@ type monthDataRequest struct {
 	MonthData
 }
 
+type player struct {
+	User string `json:"user,omitempty" bson:"user,omitempty"`
+}
+
 var collection *mongo.Collection
+var collectionCharacter *mongo.Collection
 
 func main() {
 	//Run CRON schedule
@@ -64,6 +69,7 @@ func main() {
 	}()
 	fmt.Println("DBconnected")
 	collection = client.Database("calendar_app").Collection("month/year")
+	collectionCharacter = client.Database("calendar_app").Collection("users")
 
 	//ROUTER
 	router := mux.NewRouter().StrictSlash(true)
@@ -77,6 +83,8 @@ func main() {
 	router.HandleFunc("/", getDataForMonth).Methods("POST")
 	router.HandleFunc("/new", postDataForMonth).Methods("POST")
 	router.HandleFunc("/", patchDataForMonth).Methods("PATCH")
+	router.HandleFunc("/character", getCharacter).Methods("POST")
+	router.HandleFunc("/character", sendCharacter).Methods("PATCH")
 
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
@@ -163,7 +171,7 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 			"date": req.Date,
 			"daysData": bson.A{
 				bson.M{
-					"day":   req.Day,
+					"day":  req.Day,
 					"name": req.Name},
 			},
 		}
@@ -202,6 +210,59 @@ func patchDataForMonth(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-// func addNewMonth() {
+func getCharacter(w http.ResponseWriter, r *http.Request) {
+	req := player{}
+	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+	err := decoder.Decode(&req)
+	if err != nil {
+		fmt.Println("Error While Parsing Request Body")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-// }
+	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+	defer error()
+
+	var searchResult interface{}
+	errFind := collectionCharacter.FindOne(ctx, bson.M{"user": req.User}).Decode(&searchResult)
+
+	if errFind != nil {
+		fmt.Println("Data does not exist")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(searchResult)
+}
+
+func sendCharacter(w http.ResponseWriter, r *http.Request) {
+	req := make(map[string]interface{})
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&req)
+	if err != nil {
+		fmt.Println("Error While Parsing Request Body")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+	defer error()
+	
+	mongoResult := collectionCharacter.FindOneAndReplace(ctx, bson.M{"user": req["user"]}, req)
+	if mongoResult.Err() != nil {
+		fmt.Println(mongoResult.Err())
+		_, nextErr := collectionCharacter.InsertOne(ctx, req)
+		if nextErr != nil {
+			fmt.Println("Error while adding new character data")
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}

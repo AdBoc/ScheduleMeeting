@@ -35,5 +35,34 @@ class ApiService {
     }
     return response.status;
   }
+
+  async getCharacter() {
+    const rBody = {
+      user: localStorage.getItem('user')
+    };
+    const response = await fetch("http://localhost:8080/character", {
+      method: "POST",
+      body: JSON.stringify(rBody)
+    });
+    if (response.status >= 400 && response.status <= 600) {
+      return Promise.reject("Failed to GET data");
+    }
+    return response.json();
+  };
+
+  async sendCharacter() {
+    const rBody = {
+      user: localStorage.getItem('user'),
+      character: localStorage.getItem('character')
+    };
+    const response = await fetch("http://localhost:8080/character", {
+      method: "PATCH",
+      body: JSON.stringify(rBody)
+    });
+    if (response.status >= 400 && response.status <= 600) {
+      return Promise.reject("Failed to send data");
+    }
+    return response.status;
+  };
 }
 export const apiService = new ApiService();

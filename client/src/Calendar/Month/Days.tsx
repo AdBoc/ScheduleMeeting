@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FilteredByName, FilteredAllNames, DateProps } from '../../ts/interfaces';
-import { apiService } from '../../Services/CalendarFetch';
+import { apiService } from '../../Services/FetchAPI';
 import { useCalendar } from '../../hooks/useCalendar';
 
 interface IProps {
