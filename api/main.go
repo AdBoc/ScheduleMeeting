@@ -69,7 +69,7 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"https://dnd.moreoverandabove.com"},
+		AllowedOrigins: []string{"https://dnd.moreoverandabove.com:3000"},
 		AllowedMethods: []string{"POST", "GET", "OPTIONS", "PUT", "DELETE", "PATCH"},
 		AllowedHeaders: []string{"Accept", "content-type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"},
 	})
