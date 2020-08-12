@@ -20,8 +20,8 @@ const Equipment: React.FC = () => {
             <div key={item.id}>
               <div className="c-item">
                 <p className="c-item__field">{item.name}</p>
-                <p className="c-item__field" onClick={showDetails(item.id)}>show</p>
-                <button className="c-item__field" name={item.id} onClick={deleteItem}>delete</button>
+                <p className="i-expand" onClick={showDetails(item.id)} />
+                <button className="i-trash" name={item.id} onClick={deleteItem} />
               </div>
               {item.active && <p className="c-item__drop">{item.description}</p>}
             </div>

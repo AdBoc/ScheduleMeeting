@@ -42,7 +42,6 @@ const QuickAccess: React.FC = () => {
       <button className="g-btn" onClick={changeUser}>Change User</button>
       {playerVisiblity && <ChangeUserAndData setVisibility={setPlayerVisiblity} />}
       <button className="g-btn g-btn--red" onClick={clearStorage}>Clear Local Storage</button>
-      {/* <button className="g-btn g-btn--red">Delete character</button> */}
     </div>
   )
 };

@@ -22,8 +22,8 @@ const Attacks: React.FC = () => {
                 <p className="c-atk__field">{attack.name}</p>
                 <p className="c-atk__field">{attack.diceType}</p>
                 <p className="c-atk__field">{attack.range}</p>
-                <button onClick={showDetails(attack.id)}>show</button>
-                <button className="c-atk__field" name={attack.id} onClick={deleteItem}>delete</button>
+                <p className="i-expand" onClick={showDetails(attack.id)} />
+                <button className="i-trash" name={attack.id} onClick={deleteItem} />
               </div>
               {attack.active && (
                 <>
