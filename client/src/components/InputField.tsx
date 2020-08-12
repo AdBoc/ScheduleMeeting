@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { characterContext } from '../context/Character';
 import { Types } from '../context/Character/reducer';
 import { CharacterInterface } from '../ts/interfaces';
-import { validate } from 'uuid';
 
 interface IProps {
   /**
