@@ -11,8 +11,11 @@ interface IProps {
 const InputNumber: React.FC<IProps> = ({ fieldName, propName, prop }) => {
   const { dispatch } = useContext(characterContext);
 
-  const handleChange = ({ target }: any) => dispatch({ type: Types.CHANGE_STAT, payload: { property: propName, newValue: target.value } });
- 
+  const handleChange = ({ target }: any) => {
+    if (target.value > 2000)
+      return;
+    dispatch({ type: Types.CHANGE_STAT, payload: { property: propName, newValue: target.value } });
+  }
   return (
     <div className="g-input-num">
       <p className="g-input-num__label">{fieldName}</p>

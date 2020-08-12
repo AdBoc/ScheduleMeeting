@@ -112,6 +112,7 @@ $primary-color: rgb(53, 53, 53);
 }
 
 .g-add-button {
+    //
     display: flex;
     margin: 0.5em 1em;
     font-size: 1.25em;
@@ -184,6 +185,7 @@ $primary-color: rgb(53, 53, 53);
     margin: 0.5em;
     &__field {
         padding: 0.5em;
+        flex: 1.1;
     }
     &__drop {
         margin: 0 0.5em;
@@ -191,17 +193,6 @@ $primary-color: rgb(53, 53, 53);
         color: white;
         padding: 1em;
     }
-    // &__name {
-    //     margin: 0.5em 0.5em 0;
-    //     border: 1px solid $primary-color;
-    //     padding: 0.75em;
-    // }
-    // &__desc {
-    //     background-color: $primary-color;
-    //     color: white;
-    //     margin: 0 0.5em;
-    //     padding: 0.75em;
-    // }
 }
 
 .c-story {
@@ -305,12 +296,36 @@ $primary-color: rgb(53, 53, 53);
     margin: 0.5em;
     &__field {
         padding: 0.5em;
+        flex: 1.1;
     }
     &__drop {
         margin: 0 0.5em;
         background-color: $primary-color;
         color: white;
         padding: 1em;
+    }
+}
+
+.i-trash {
+    background-image: url(../assets/icons8-trash.svg);
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    margin: auto 0.5em auto 0;
+    cursor: pointer;
+    &:active {
+        display: block;
+    }
+}
+.i-expand {
+    background-image: url(../assets/UI_icon_expand.svg);
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    margin: auto 2.55em auto 0;
+    cursor: pointer;
+    &:active {
+        display: block;
     }
 }
 
@@ -360,14 +375,10 @@ $primary-color: rgb(53, 53, 53);
     cursor: pointer;
 }
 .--success {
-    background-color: rgb(136, 255, 136);
+    background-color: rgb(125, 255, 125);
 }
 .--fail {
     background-color: rgb(255, 78, 78);
-    // border: none;
-    // background-image: url(../assets/1650654.png); // background: url(../assets/1650654.png) no-repeat;
-    // background-image: url(../assets/1650654.svg);
-    // background-size: 100% 100%;
 }
 
 .section-break {
@@ -379,3 +390,6 @@ $primary-color: rgb(53, 53, 53);
 // -webkit-appearance: none;
 // margin: 0;
 // }
+
+// transform: rotate(180deg);
+// transition: transform 10s;

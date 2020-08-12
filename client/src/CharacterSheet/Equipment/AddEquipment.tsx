@@ -23,6 +23,8 @@ const AddEquipment: React.FC<IProps> = ({ formVisibility }) => {
   };
 
   const handleInput = ({ target }: any) => {
+    if (target.value.length > 20)
+      return;
     const { name, value } = target;
     setItem({ ...item, [name]: value });
   };
