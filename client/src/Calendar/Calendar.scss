@@ -21,10 +21,19 @@ $janek--color: rgb(0, 51, 102);
 $potrek--color: rgb(255, 77, 240);
 $krzysiek--color: rgb(0, 51, 102);
 
+.sheet-link {
+    display: block;
+    text-align: center;
+    margin: 0.25em 0.75em 0.25em 0.25em;
+    padding: 0.55em;
+    background-color: $main-theme;
+    color: $text-light;
+}
+
 .calendar {
     font-family: Roboto;
     max-width: max-content;
-    margin: 3em auto 0 auto;
+    margin: 2em auto 0 auto;
     padding: 1.5em;
     border: 2px solid $main-theme;
     border-radius: 8px;
@@ -41,7 +50,7 @@ $krzysiek--color: rgb(0, 51, 102);
         margin: 0.5em;
         padding: 0.4em 0.7em;
         background-color: $main-theme;
-        color: white;
+        color: $text-light;
         cursor: pointer;
         &:focus,
         &:active,
@@ -71,7 +80,7 @@ $krzysiek--color: rgb(0, 51, 102);
 .day {
     -webkit-tap-highlight-color: transparent;
     font-size: 0.85em;
-    background-color: white;
+    background-color: $text-light;
     border: 0;
     padding: 0.75em;
     margin: 0.1em;
@@ -160,7 +169,6 @@ $krzysiek--color: rgb(0, 51, 102);
     background-color: $potrek--color;
     color: $text-light;
 }
-
 // .Potrek {
 //     position: relative;
 //     width: 2.9em;
@@ -207,7 +215,6 @@ $krzysiek--color: rgb(0, 51, 102);
     background-color: $krzysiek--color;
     color: $text-light;
 }
-
 .count1 {
     background-color: $count1;
     color: $text-dark;
@@ -255,7 +262,7 @@ $krzysiek--color: rgb(0, 51, 102);
 
 .currentDay {
     background-color: #ff000098; // border-radius: 0;
-    color: white;
+    color: $text-light;
 }
 
 // @media (hover: hover) and (pointer: fine) {
