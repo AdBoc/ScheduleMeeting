@@ -393,3 +393,40 @@ $primary-color: rgb(53, 53, 53);
 
 // transform: rotate(180deg);
 // transition: transform 10s;
+
+@media screen and (min-width: 450px) {
+    .sheet--view {
+        max-width: 25em;
+        margin: 0 auto;
+    }
+    .c-save-throws {
+        max-width: 30em;
+        margin: 0 auto;
+    }
+    .c-list-scroll {
+        max-width: 50em;
+        margin: 0 auto;
+    }
+    .g-input {
+        max-width: 25em;
+        margin: 0.5em auto;
+    }
+    .g-text-area {
+        max-width: 35em;
+        margin: 1em auto;
+    }
+    .c-story {
+        max-width: 25em;
+        margin: 0 auto;
+    }
+    .c-skills {
+        max-width: 25em;
+        margin: 1.5em auto;
+    }
+    .c-sheet__player{
+        justify-content: space-around;
+    }
+    // .c-sheet__buttons{
+    //     justify-content: center;
+    // }
+}
