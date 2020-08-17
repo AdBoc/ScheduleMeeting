@@ -1,18 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { charMethods } from '../../Services/CharacterMethods';
 
 const TopDisplay: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);
+  const [showHpInput, setShowHpInput] = useState(false);
 
-  const incrementHp = () => {
-    if (character.TemporaryHitPoints < character.MainStats.HitPoints)
-      dispatch({ type: Types.INCREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    let MaxHP = character.MainStats.HitPoints;
+    let currHP = character.TemporaryHitPoints;
+    let input = parseInt(e.target.HpMod.value);
+    currHP = currHP + input;
+    if (currHP <= 0)
+      currHP = 0;
+    else if (currHP > MaxHP)
+      currHP = MaxHP;
+    dispatch({ type: Types.CHANGE_STAT, payload: { property: "TemporaryHitPoints", newValue: currHP } });
+    setShowHpInput(prev => !prev);
   };
-  
-  const decrementHp = () => dispatch({ type: Types.DECREMENT_STAT, payload: { property: "TemporaryHitPoints" } });
-  
+
   const styleHp = () => {
     let className = "c-sheet__hp";
     let result = character.TemporaryHitPoints / character.MainStats.HitPoints;
@@ -30,10 +38,14 @@ const TopDisplay: React.FC = () => {
           <p className="c-player__name">{character.Story.Name}</p>
           <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level}</p>
         </div>
-        <div className={styleHp()}>
-          <button className="decrement-hp" onClick={decrementHp} aria-label="decrement hp" />
-          {character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP
-          <button className="increment-hp" onClick={incrementHp} aria-label="increment hp" />
+        <div className="relative">
+          <p className={styleHp()} onClick={() => setShowHpInput(prev => !prev)}>{character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP</p>
+          {
+            showHpInput && <form className="c-sheet__hp-form" onSubmit={handleSubmit}>
+              <input className="c-sheet__hp-form__input" type="number" name="HpMod" autoFocus required />
+              <input className="c-sheet__hp-form__submit" type="submit" value="OK" />
+            </form>
+          }
         </div>
       </div>
       <div className="c-sheet__stats">
@@ -59,7 +71,3 @@ const TopDisplay: React.FC = () => {
 };
 
 export default TopDisplay;
-
-    // if (character.TemporaryHitPoints === 0) {
-    //   alert("Press F to pay respects");
-    // }

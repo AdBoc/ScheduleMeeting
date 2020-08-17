@@ -59,9 +59,8 @@ class ApiService {
       method: "PATCH",
       body: JSON.stringify(rBody)
     });
-    if (response.status >= 400 && response.status <= 600) {
-      return Promise.reject("Failed to send data");
-    }
+    if (response.status >= 400 && response.status <= 600)
+      Promise.reject("Failed to send data");
     return response.status;
   };
 }

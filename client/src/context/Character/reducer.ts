@@ -28,7 +28,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 };
 
 type SettingsPayload = {
-  [Types.INCREMENT_STAT]: { //undefined if property does not exist
+  [Types.INCREMENT_STAT]: {
     property: string;
   };
   [Types.DECREMENT_STAT]: {

@@ -16,6 +16,18 @@ $primary-color: rgb(53, 53, 53);
         padding: 1em;
         position: relative;
     }
+    &__hp-form {
+        background-color: white;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 0.2em;
+        min-width: 6em;
+        &__input {
+            max-width: 3em;
+        }
+    }
     &__stats {
         display: flex;
         flex-wrap: nowrap;
@@ -29,6 +41,9 @@ $primary-color: rgb(53, 53, 53);
         white-space: nowrap;
         border-bottom: 1px solid $primary-color;
     }
+}
+.relative {
+    position: relative;
 }
 
 .--mid-hp {
@@ -67,24 +82,6 @@ $primary-color: rgb(53, 53, 53);
     margin: 0.25em;
 }
 
-.decrement-hp {
-    position: absolute;
-    height: 100%;
-    width: 50%;
-    left: 0;
-    top: 0;
-    cursor: pointer;
-}
-
-.increment-hp {
-    position: absolute;
-    height: 100%;
-    width: 50%;
-    right: 0;
-    top: 0;
-    cursor: pointer;
-}
-
 .c-stats {
     display: flex;
     padding: 0.7em;
@@ -112,7 +109,6 @@ $primary-color: rgb(53, 53, 53);
 }
 
 .g-add-button {
-    //
     display: flex;
     margin: 0.5em 1em;
     font-size: 1.25em;
@@ -423,10 +419,7 @@ $primary-color: rgb(53, 53, 53);
         max-width: 25em;
         margin: 1.5em auto;
     }
-    .c-sheet__player{
+    .c-sheet__player {
         justify-content: space-around;
     }
-    // .c-sheet__buttons{
-    //     justify-content: center;
-    // }
 }

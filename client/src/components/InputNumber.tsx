@@ -19,7 +19,7 @@ const InputNumber: React.FC<IProps> = ({ fieldName, propName, prop }) => {
   return (
     <div className="g-input-num">
       <p className="g-input-num__label">{fieldName}</p>
-      <input className="g-input-num__val" type="number" value={prop} onChange={handleChange} />
+      <input className="g-input-num__val" type="number" value={prop} onChange={handleChange} onFocus={(e: any) => e.target.select()} />
     </div>
   )
 };
