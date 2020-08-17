@@ -6,7 +6,6 @@ import CharacterSheet from './CharacterSheet/CharacterSheet';
 import CharacterContextProvider from './context/Character';
 
 function App(): JSX.Element {
-
   return (
     <Router history={history}>
       <Switch>
@@ -14,7 +13,7 @@ function App(): JSX.Element {
         <CharacterContextProvider>
           <Route exact path="/sheet" component={CharacterSheet}></Route>
         </CharacterContextProvider>
-        <Route component={() => (<p>Route does not exist</p>)} />
+        <Route component={() => <p>Route does not exist</p>} />
       </Switch>
     </Router>
   )

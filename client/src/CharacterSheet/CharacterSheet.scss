@@ -1,5 +1,11 @@
 $primary-color: rgb(53, 53, 53);
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .c-sheet {
     font-family: Roboto;
     color: white;
@@ -380,15 +386,6 @@ $primary-color: rgb(53, 53, 53);
 .section-break {
     margin-top: 3em;
 }
-
-// input::-webkit-outer-spin-button, //turn off arrows on number inputs
-// input::-webkit-inner-spin-button {
-// -webkit-appearance: none;
-// margin: 0;
-// }
-
-// transform: rotate(180deg);
-// transition: transform 10s;
 
 @media screen and (min-width: 450px) {
     .sheet--view {
