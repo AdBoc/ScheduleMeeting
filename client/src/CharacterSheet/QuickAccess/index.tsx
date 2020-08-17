@@ -7,8 +7,11 @@ import { Link } from 'react-router-dom';
 import ChangeUserAndData from './ChangeUserAndData';
 import InputNumber from '../../components/InputNumber';
 import { apiService } from '../../Services/FetchAPI';
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
 
 const QuickAccess: React.FC = () => {
+  const notyf = new Notyf();
   const [playerVisiblity, setPlayerVisiblity] = useState(false);
   const { character } = useContext(characterContext);
 
@@ -18,14 +21,13 @@ const QuickAccess: React.FC = () => {
     history.go(0);
   };
 
-  const changeUser = () => setPlayerVisiblity(prev => !prev);
-
-  const sendToBackend = () => {
-    if (!localStorage.getItem("user")) {
-      alert("Choose user first");
-      return;
-    }
-    apiService.sendCharacter();
+  const sendToBackend = async () => {
+    if (!localStorage.getItem("user"))
+      return notyf.error("You must pick user");
+    const status = await apiService.sendCharacter();
+    if (status === 200)
+      return notyf.success("Changes have been saved");
+    return notyf.error("Error while sending data");
   };
 
   return (
@@ -39,7 +41,7 @@ const QuickAccess: React.FC = () => {
       <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" fieldName="Inspiration Points" />
       <Link to="/"><button className="g-btn section-break">Show Calendar</button></Link>
       <button className="g-btn" onClick={sendToBackend}>Store in DB</button>
-      <button className="g-btn" onClick={changeUser}>Change User</button>
+      <button className="g-btn" onClick={() => setPlayerVisiblity(prev => !prev)}>Change User</button>
       {playerVisiblity && <ChangeUserAndData setVisibility={setPlayerVisiblity} />}
       <button className="g-btn g-btn--red" onClick={clearStorage}>Clear Local Storage</button>
     </div>

@@ -18,8 +18,8 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
-      setSelectedDays(response.daysData);
+      const { daysData } = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
+      setSelectedDays(daysData);
     };
 
     fetchData();
@@ -43,7 +43,7 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
         dateProps={dateProps}
         selectedPlayer={selectedPlayer}
         daysFilteredByName={daysFilteredByName}
-        setStatusResponse={setResponseStatus}
+        setResponseStatus={setResponseStatus}
       />
     </div>
   )

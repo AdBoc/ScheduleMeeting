@@ -7,10 +7,10 @@ interface IProps {
   dateProps: DateProps;
   selectedPlayer: string | null;
   daysFilteredByName: FilteredByName | FilteredAllNames;
-  setStatusResponse: React.Dispatch<React.SetStateAction<object>>;
+  setResponseStatus: React.Dispatch<React.SetStateAction<object>>;
 }
 
-const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setStatusResponse }) => {
+const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setResponseStatus }) => {
   const { dateProps: { daysOfMonth, firstDayOfMonth } } = useCalendar();
   const [isFetching, setIsFetching] = useState(false);
   const { currentMonth, currentYear } = dateProps;
@@ -21,12 +21,12 @@ const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName,
     if (doesNotExist && !isFetching) {
       setIsFetching(prev => !prev);
       await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
-      setStatusResponse({}); //if status=200 update or show error
+      setResponseStatus({});
       setIsFetching(prev => !prev);
     } else if (!doesNotExist && !isFetching) {
       setIsFetching(prev => !prev);
       await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
-      setStatusResponse({});
+      setResponseStatus({});
       setIsFetching(prev => !prev);
     }
   }

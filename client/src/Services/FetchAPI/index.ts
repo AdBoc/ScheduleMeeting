@@ -6,8 +6,7 @@ class ApiService {
       body: JSON.stringify(rBody)
     });
     if (response.status >= 400 && response.status <= 600) {
-      Promise.reject("Could not receieve data for month");
-      return { daysData: [] };
+      return { daysData: [] }; // Promise.reject("Could not receieve data for month");
     }
     return response.json();
   };
@@ -18,9 +17,6 @@ class ApiService {
       method: "POST",
       body: JSON.stringify(rBody)
     });
-    if (response.status >= 400 && response.status <= 600) {
-      return Promise.reject("Failed to add new Data");
-    }
     return response.status;
   }
 
@@ -30,9 +26,6 @@ class ApiService {
       method: "PATCH",
       body: JSON.stringify(rBody)
     });
-    if (response.status >= 400 && response.status <= 600) {
-      return Promise.reject("Failed while changing data");
-    }
     return response.status;
   }
 
@@ -45,7 +38,7 @@ class ApiService {
       body: JSON.stringify(rBody)
     });
     if (response.status >= 400 && response.status <= 600) {
-      return Promise.reject("Failed to GET data");
+      return 'error';
     }
     return response.json();
   };
@@ -59,8 +52,6 @@ class ApiService {
       method: "PATCH",
       body: JSON.stringify(rBody)
     });
-    if (response.status >= 400 && response.status <= 600)
-      Promise.reject("Failed to send data");
     return response.status;
   };
 }
