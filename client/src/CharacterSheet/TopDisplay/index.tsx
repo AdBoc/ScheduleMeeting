@@ -3,7 +3,7 @@ import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { charMethods } from '../../Services/CharacterMethods';
 
-const TopDisplay: React.FC = () => {
+const TopDisplay = () => {
   const { character, dispatch } = useContext(characterContext);
   const [showHpInput, setShowHpInput] = useState(false);
 
@@ -70,4 +70,4 @@ const TopDisplay: React.FC = () => {
   )
 };
 
-export default TopDisplay;
+export default React.memo(TopDisplay);

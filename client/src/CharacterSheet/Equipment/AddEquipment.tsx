@@ -2,12 +2,13 @@ import React, { useContext, useState } from 'react';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
+import { BackpackObj } from '../../ts/interfaces';
 
 interface IProps {
-  formVisibility: () => void;
+  setRenderForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddEquipment: React.FC<IProps> = ({ formVisibility }) => {
+const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
   const { dispatch } = useContext(characterContext);
   const [item, setItem] = useState({
     name: "",
@@ -18,8 +19,8 @@ const AddEquipment: React.FC<IProps> = ({ formVisibility }) => {
     e.preventDefault();
     let newItem: any = { ...item };
     newItem.id = uuidv4();
-    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Equipment", newValue: newItem } });
-    formVisibility();
+    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Equipment", newValue: newItem as BackpackObj } });
+    setRenderForm(prev => !prev);
   };
 
   const handleInput = ({ target }: any) => {

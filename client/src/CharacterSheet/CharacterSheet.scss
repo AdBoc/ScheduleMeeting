@@ -185,6 +185,7 @@ input::-webkit-inner-spin-button {
     justify-content: space-between;
     border: 1px solid $primary-color;
     margin: 0.5em;
+    background-color: white;
     &__field {
         padding: 0.5em;
         flex: 1.1;
@@ -193,8 +194,12 @@ input::-webkit-inner-spin-button {
         margin: 0 0.5em;
         background-color: $primary-color;
         color: white;
-        padding: 1em;
+        padding: 0.75em;
     }
+}
+
+.dragged {
+    background-color: rgb(173, 255, 173);
 }
 
 .c-story {
@@ -308,28 +313,28 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.i-trash {
-    background-image: url(../assets/icons8-trash.svg);
-    width: 24px;
-    height: 24px;
-    background-size: cover;
-    margin: auto 0.5em auto 0;
-    cursor: pointer;
-    &:active {
-        display: block;
-    }
-}
-.i-expand {
-    background-image: url(../assets/UI_icon_expand.svg);
-    width: 20px;
-    height: 20px;
-    background-size: cover;
-    margin: auto 2.55em auto 0;
-    cursor: pointer;
-    &:active {
-        display: block;
-    }
-}
+// .i-trash {
+//     background-image: url(../assets/icons8-trash.svg);
+//     width: 24px;
+//     height: 24px;
+//     background-size: cover;
+//     margin: auto 0.5em auto 0;
+//     cursor: pointer;
+//     &:active {
+//         display: block;
+//     }
+// }
+// .i-expand {
+//     background-image: url(../assets/UI_icon_expand.svg);
+//     width: 20px;
+//     height: 20px;
+//     background-size: cover;
+//     margin: auto 2.55em auto 0;
+//     cursor: pointer;
+//     &:active {
+//         display: block;
+//     }
+// }
 
 .g-input-num {
     display: flex;

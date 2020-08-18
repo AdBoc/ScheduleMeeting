@@ -9,7 +9,8 @@ export enum Types {
   ADD_TO_ARRAY = "ADD_TO_ARRAY",
   TAG_PROP = "TAG_PROP",
   DELETE_IN_ARRAY = "DELETE_IN_ARRAY",
-  SET_CHARACTER = "SET_CHARACTER"
+  SET_CHARACTER = "SET_CHARACTER",
+  REORDER_ARRAY = "REORDER_ARRAY"
 };
 
 export type ContextProps = {
@@ -44,7 +45,7 @@ type SettingsPayload = {
   };
   [Types.ADD_TO_ARRAY]: {
     property: string;
-    newValue: Attack[] | BackpackObj[];
+    newValue: Attack | BackpackObj;
   }
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
@@ -55,6 +56,9 @@ type SettingsPayload = {
   };
   [Types.SET_CHARACTER]: {
     newCharacter: CharacterInterface;
+  };
+  [Types.REORDER_ARRAY]: {
+    newArr: any[]
   };
 };
 
@@ -148,6 +152,11 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
     case Types.SET_CHARACTER:
       return {
         ...action.payload.newCharacter
+      };
+    case Types.REORDER_ARRAY:
+      return {
+        ...character,
+        Equipment: action.payload.newArr
       };
     default:
       return character;
