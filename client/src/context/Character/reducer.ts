@@ -58,7 +58,8 @@ type SettingsPayload = {
     newCharacter: CharacterInterface;
   };
   [Types.REORDER_ARRAY]: {
-    newArr: any[]
+    property: "Equipment" | "Attacks";
+    newArr: BackpackObj[] | Attack[];
   };
 };
 
@@ -133,6 +134,8 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
       return immutable.push(character, action.payload.property, action.payload.newValue);
     case Types.DELETE_IN_ARRAY:
       return immutable.set(character, action.payload.property, (character[action.payload.property] as Array<CharacterInterface["Equipment" | "Attacks"][0]>).filter(element => element.id !== action.payload.id));
+    case Types.REORDER_ARRAY:
+      return immutable.set(character, action.payload.property, action.payload.newArr);
     case Types.TAG_PROP:
       return {
         ...character,
@@ -152,11 +155,6 @@ export const reducer = (character: CharacterInterface, action: ScheetActions): C
     case Types.SET_CHARACTER:
       return {
         ...action.payload.newCharacter
-      };
-    case Types.REORDER_ARRAY:
-      return {
-        ...character,
-        Equipment: action.payload.newArr
       };
     default:
       return character;

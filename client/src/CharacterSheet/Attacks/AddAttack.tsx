@@ -4,10 +4,10 @@ import { Types } from '../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
 
 interface IProps {
-  formVisibility: () => void;
+  setRenderForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddAttack: React.FC<IProps> = ({ formVisibility }) => {
+const AddAttack: React.FC<IProps> = ({ setRenderForm }) => {
   const { dispatch } = useContext(characterContext);
   const [newAttack, setNewAttack] = useState({
     name: "",
@@ -23,7 +23,7 @@ const AddAttack: React.FC<IProps> = ({ formVisibility }) => {
     let attackData: any = { ...newAttack };
     attackData.id = uuidv4();
     dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Attacks", newValue: attackData } });
-    formVisibility();
+    setRenderForm(prev => !prev);
   };
 
   const handleInput = ({ target }: any) => {
