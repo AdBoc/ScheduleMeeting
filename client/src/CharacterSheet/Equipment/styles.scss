@@ -1,0 +1,29 @@
+@import "../CharacterSheet.scss";
+
+.c-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $primary-color;
+    margin: 0.5em;
+    background-color: white;
+    &__field {
+        padding: 0.5em;
+        flex: 1.1;
+    }
+    &__drop {
+        margin: 0 0.5em;
+        background-color: $primary-color;
+        color: white;
+        padding: 0.75em;
+    }
+}
+
+.c-new-eq {
+    &__input {
+        display: block;
+        margin: 0.5em auto;
+        border: 1px solid $primary-color;
+        padding: 0.3em;
+    }
+}

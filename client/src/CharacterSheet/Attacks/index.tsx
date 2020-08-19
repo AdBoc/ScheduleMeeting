@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import AddAttack from './AddAttack';
+import './styles.scss';
 
 const Attacks: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);
@@ -51,10 +52,9 @@ const Attacks: React.FC = () => {
                 <Draggable key={attack.id} draggableId={attack.id} index={index}>
                   {(provided, snapshot) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                      <div className={snapshot.isDragging ? "c-item dragged" : "c-item"}>
-                        <p className="c-item__field">{attack.name}</p>
-                        <p className="c-item__field">{attack.diceType}</p>
-                        <p className="c-item__field">{attack.hitDc}</p>
+                      <div className={snapshot.isDragging ? "c-atk dragged" : `c-atk ${attack.type}`}>
+                        <p className="c-atk__field">{attack.name}</p>
+                        <p>{attack.baseDmg} + {attack.diceType} + {attack.abilityMod}</p>
                         <button onClick={showDetails(attack.id)}>S</button>
                         <button name={attack.id} onClick={deleteItem}>D</button>
                       </div>
@@ -64,7 +64,7 @@ const Attacks: React.FC = () => {
                             <p className="c-atk__drop">Name: {attack.name}</p>
                             <p className="c-atk__drop">Ability Mod: {attack.abilityMod}</p>
                             <p className="c-atk__drop">Dice: {attack.diceType}</p>
-                            <p className="c-atk__drop">HitDc: {attack.hitDc}</p>
+                            <p className="c-atk__drop">Base Dmg: {attack.baseDmg}</p>
                             <p className="c-atk__drop">Range: {attack.range}</p>
                             <p className="c-atk__drop">Type: {attack.type}</p>
                           </>

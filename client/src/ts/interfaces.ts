@@ -39,7 +39,7 @@ export type Attack = {
     id: string;
     name: string;
     diceType: string;
-    hitDc: string;
+    baseDmg: string;
     range: string;
     type: string;
     abilityMod: string;

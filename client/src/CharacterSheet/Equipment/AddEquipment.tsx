@@ -3,6 +3,7 @@ import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
 import { BackpackObj } from '../../ts/interfaces';
+import './styles.scss';
 
 interface IProps {
   setRenderForm: React.Dispatch<React.SetStateAction<boolean>>

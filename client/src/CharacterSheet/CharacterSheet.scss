@@ -6,112 +6,16 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.c-sheet {
-    font-family: Roboto;
-    color: white;
-    background-color: $primary-color;
-    &__player {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-    }
-    &__hp {
-        font-size: 1.2em;
-        margin: 0.25em 0.25em 0.8em;
-        padding: 1em;
-        position: relative;
-    }
-    &__hp-form {
-        background-color: white;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%);
-        padding: 0.2em;
-        min-width: 6em;
-        &__input {
-            max-width: 3em;
-        }
-    }
-    &__stats {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    &__buttons {
-        display: flex; //w media query uzyc: justify-content: center;
-        overflow-x: auto;
-        white-space: nowrap;
-        border-bottom: 1px solid $primary-color;
-    }
-}
-.relative {
-    position: relative;
+.c-btns {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 1px solid $primary-color;
 }
 
-.--mid-hp {
-    color: rgb(255, 220, 20);
-}
-
-.--low-hp {
-    color: rgb(255, 44, 44);
-}
-
-.c-player {
-    margin: 0 0 0 1em;
-    &__name {
-        font-size: 1.2em;
-    }
-    &__details {
-        font-size: 0.8em;
-    }
-}
-
-.c-stat {
-    flex: 0 0 4em;
-    margin: 0 0.5em 1em;
-    min-height: 3em;
-    &__value {
-        font-size: 1.3em;
-        margin-bottom: 0.25em;
-    }
-    &__label {
-        font-size: 0.75em;
-    }
-}
-
-.button {
+.c-btn {
     padding: 0.75em;
     margin: 0.25em;
-}
-
-.c-stats {
-    display: flex;
-    padding: 0.7em;
-    font-size: 1.5em;
-    justify-content: space-around;
-    align-items: center;
-    &__stat {
-        margin: 0 0 0 0.5em;
-        flex-grow: 1.1;
-    }
-    &__mod-val {
-        min-width: 2em;
-        text-align: center;
-    }
-}
-
-.c-skills {
-    display: flex;
-    flex-direction: column;
-    &__skill {
-        border-bottom: 1px solid $primary-color;
-        font-size: 1.5em;
-        margin: 0.25em 1em;
-    }
 }
 
 .g-add-button {
@@ -138,74 +42,9 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.c-save-throws {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    text-align: center;
-    &__title {
-        text-align: center;
-        font-size: 1.75em;
-        margin: 0.75em 0;
-    }
-    &__tag {
-        display: block;
-        text-align: right;
-        margin: 1em 0.5em 0;
-    }
-}
-
-.c-save-throw {
-    word-wrap: break-word;
-    flex: 1 0 33%;
-    margin: 0.25em 0.25em;
-    padding: 0.7em 0.5em;
-    font-size: 1.2em;
-}
-
-.c-save-death {
-    text-align: center;
-    margin-top: 1em;
-    &__title {
-        font-size: 1.75em;
-    }
-    &__label {
-        margin-top: 1em;
-        font-size: 1.2em;
-    }
-    &__checkbox {
-        margin: 0.5em;
-        height: 1.75em;
-        width: 1.75em;
-    }
-}
-
-.c-item {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid $primary-color;
-    margin: 0.5em;
-    background-color: white;
-    &__field {
-        padding: 0.5em;
-        flex: 1.1;
-    }
-    &__drop {
-        margin: 0 0.5em;
-        background-color: $primary-color;
-        color: white;
-        padding: 0.75em;
-    }
-}
-
 .dragged {
-    background-color: rgb(173, 255, 173);
-}
-
-.c-story {
-    &__buttons {
-        margin: 2.5em 0 0;
-    }
+    background-color: $primary-color;
+    color: white;
 }
 
 .g-input {
@@ -273,69 +112,6 @@ input::-webkit-inner-spin-button {
     color: white;
 }
 
-.c-new-eq {
-    &__input {
-        display: block;
-        margin: 0.5em auto;
-        border: 1px solid $primary-color;
-        padding: 0.3em;
-    }
-}
-
-.c-list-scroll {
-    max-height: 70vh;
-    overflow-y: auto;
-}
-
-.c-new-atk {
-    &__input {
-        display: block;
-        margin: 0.5em auto;
-        border: 1px solid $primary-color;
-        padding: 0.3em;
-    }
-}
-
-.c-atk {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid $primary-color;
-    margin: 0.5em;
-    &__field {
-        padding: 0.5em;
-        flex: 1.1;
-    }
-    &__drop {
-        margin: 0 0.5em;
-        background-color: $primary-color;
-        color: white;
-        padding: 1em;
-    }
-}
-
-// .i-trash {
-//     background-image: url(../assets/icons8-trash.svg);
-//     width: 24px;
-//     height: 24px;
-//     background-size: cover;
-//     margin: auto 0.5em auto 0;
-//     cursor: pointer;
-//     &:active {
-//         display: block;
-//     }
-// }
-// .i-expand {
-//     background-image: url(../assets/UI_icon_expand.svg);
-//     width: 20px;
-//     height: 20px;
-//     background-size: cover;
-//     margin: auto 2.55em auto 0;
-//     cursor: pointer;
-//     &:active {
-//         display: block;
-//     }
-// }
-
 .g-input-num {
     display: flex;
     justify-content: space-between;
@@ -351,45 +127,6 @@ input::-webkit-inner-spin-button {
         margin: 0 1.25em 0 0;
         width: 2em;
     }
-}
-
-.c-change-usr {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 20;
-    padding-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    background-color: $primary-color;
-    &__btn {
-        background-color: white;
-        color: $primary-color;
-        padding: 0.85rem;
-        min-width: 12.5em;
-        margin: 0.5em auto;
-    }
-}
-
-.c-checkbox {
-    width: 2em;
-    height: 2em;
-    margin: 0.5em;
-    border: 1px solid black;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.--success {
-    background-color: rgb(125, 255, 125);
-}
-.--fail {
-    background-color: rgb(255, 78, 78);
-}
-
-.section-break {
-    margin-top: 3em;
 }
 
 @media screen and (min-width: 450px) {
@@ -425,3 +162,26 @@ input::-webkit-inner-spin-button {
         justify-content: space-around;
     }
 }
+
+// .i-trash {
+//     background-image: url(../assets/icons8-trash.svg);
+//     width: 24px;
+//     height: 24px;
+//     background-size: cover;
+//     margin: auto 0.5em auto 0;
+//     cursor: pointer;
+//     &:active {
+//         display: block;
+//     }
+// }
+// .i-expand {
+//     background-image: url(../assets/UI_icon_expand.svg);
+//     width: 20px;
+//     height: 20px;
+//     background-size: cover;
+//     margin: auto 2.55em auto 0;
+//     cursor: pointer;
+//     &:active {
+//         display: block;
+//     }
+// }

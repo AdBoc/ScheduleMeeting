@@ -1,0 +1,25 @@
+@import "../CharacterSheet.scss";
+
+.c-change-usr {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-color;
+    &__btn {
+        background-color: white;
+        color: $primary-color;
+        padding: 0.85rem;
+        min-width: 12.5em;
+        margin: 0.5em auto;
+    }
+}
+
+.section-break {
+    margin-top: 3em;
+}

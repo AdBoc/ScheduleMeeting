@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import StatButtons from '../../components/StatButtons';
 import { characterContext } from '../../context/Character';
+import './styles.scss';
 
 const Skills: React.FC = () => {
   const { character } = useContext(characterContext);

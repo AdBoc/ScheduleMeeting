@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { charMethods } from '../../Services/CharacterMethods';
+import './styles.scss';
 
 const TopDisplay = () => {
   const { character, dispatch } = useContext(characterContext);

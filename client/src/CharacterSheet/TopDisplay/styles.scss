@@ -1,0 +1,73 @@
+@import "../CharacterSheet.scss";
+
+.c-sheet {
+    font-family: Roboto;
+    color: white;
+    background-color: $primary-color;
+    &__player {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__hp {
+        font-size: 1.2em;
+        margin: 0.25em 0.25em 0.8em;
+        padding: 1em;
+        position: relative;
+    }
+    &__hp-form {
+        background-color: white;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 0.2em;
+        min-width: 6em;
+        &__input {
+            max-width: 3em;
+        }
+    }
+    &__stats {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.c-player {
+    margin: 0 0 0 1em;
+    &__name {
+        font-size: 1.2em;
+    }
+    &__details {
+        font-size: 0.8em;
+    }
+}
+
+.c-stat {
+    flex: 0 0 4em;
+    margin: 0 0.5em 1em;
+    min-height: 3em;
+    &__value {
+        font-size: 1.3em;
+        margin-bottom: 0.25em;
+    }
+    &__label {
+        font-size: 0.75em;
+    }
+}
+
+.relative {
+    position: relative;
+}
+
+.--mid-hp {
+    color: rgb(255, 220, 20);
+}
+
+.--low-hp {
+    color: rgb(255, 44, 44);
+}

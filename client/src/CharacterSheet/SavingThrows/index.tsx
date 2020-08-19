@@ -1,36 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { characterContext } from '../../context/Character';
-import { Types } from '../../context/Character/reducer';
-import { charMethods } from '../../Services/CharacterMethods';
+import React, { useState } from 'react';
+import './styles.scss';
+import ThrowsValues from './ThrowsValues';
 
 const SavingThrows: React.FC = () => {
-  const { character, dispatch } = useContext(characterContext);
   const [throws, setThrows] = useState([false, false, false, false, false, false]);
-
-  const tagElement = ({ target }: any) => {
-    const newArray = character.Other.TaggedThrows;
-    if (target.name === newArray[0]) {
-      newArray[0] = null;
-    } else if (target.name === newArray[1]) {
-      newArray[1] = null;
-    } else {
-      newArray.pop();
-      newArray.unshift(target.name);
-    }
-    dispatch({ type: Types.TAG_PROP, payload: { newArray } });
-  };
-
-  const generateThrowsValue = () => {
-    let isTagged: boolean;
-    return Object.entries(character.Stats).map((stat, index) => {
-      isTagged = character.Other.TaggedThrows[0] === stat[0] || character.Other.TaggedThrows[1] === stat[0];
-      return (
-        <button key={index} name={stat[0]} className={isTagged ? "c-save-throw g-tagged" : "c-save-throw"} onClick={tagElement}>
-          {stat[0]} {charMethods.calcSavingThrowMod(character.MainStats.Level, stat[1], isTagged)}
-        </button>
-      )
-    });
-  };
 
   const handleDeathThrows = ({ target }: any) => {
     const newThrows = throws.slice(0);
@@ -41,10 +14,7 @@ const SavingThrows: React.FC = () => {
   return (
     <>
       <p className="c-save-throws__title">Saving throws</p>
-      <div className="c-save-throws">
-        {generateThrowsValue()}
-      </div>
-      <p className="c-save-throws__tag">tagged {charMethods.countTaggedThrows(character.Other.TaggedThrows)}/2</p>
+      <ThrowsValues />
       <div className="c-save-death">
         <p className="c-save-death__title">Death save</p>
         <p className="c-save-death__label">Successes</p>

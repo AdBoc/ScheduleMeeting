@@ -3,6 +3,7 @@ import AddEquipment from './AddEquipment';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
+import './styles.scss';
 
 const Equipment: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);

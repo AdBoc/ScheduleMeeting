@@ -1,0 +1,11 @@
+@import "../CharacterSheet.scss";
+
+.c-skills {
+    display: flex;
+    flex-direction: column;
+    &__skill {
+        border-bottom: 1px solid $primary-color;
+        font-size: 1.5em;
+        margin: 0.25em 1em;
+    }
+}

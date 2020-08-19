@@ -1,0 +1,70 @@
+@import "../CharacterSheet.scss";
+
+.c-new-atk {
+    &__input {
+        display: block;
+        margin: 0.5em auto;
+        border: 1px solid $primary-color;
+        padding: 0.3em;
+        min-width: 14em;
+    }
+}
+
+.c-atk {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $primary-color;
+    align-items: center;
+    margin: 0.5em;
+    &__field {
+        padding: 0.5em;
+        flex: 1.1;
+    }
+    &__drop {
+        margin: 0 0.5em;
+        background-color: $primary-color;
+        color: white;
+        padding: 1em;
+    }
+}
+
+.Slashing {
+    background-color: rgb(255, 255, 255);
+}
+.Bluegoing {
+    background-color: rgb(255, 255, 255);
+}
+.Piercing {
+    background-color: rgb(255, 255, 255);
+}
+.Force {
+    background-color: red;
+}
+.Fire {
+    background-color: rgb(255, 185, 81);
+}
+.Cold {
+    background-color: rgb(123, 213, 255);
+}
+.Lightning {
+    background-color: rgb(255, 252, 101);
+}
+.Thunder {
+    background-color: rgb(87, 88, 160);
+}
+.Poison {
+    background-color: rgb(142, 252, 120);
+}
+.Acid {
+    background-color: rgb(127, 165, 117);
+}
+.Psychic {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+.Necrotic {
+    background-color: rgb(137, 93, 150);
+}
+.Radiant {
+    background-color: rgb(254, 255, 176);
+}

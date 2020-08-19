@@ -5,6 +5,7 @@ import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
+import './styles.scss';
 
 interface IProps {
   setVisibility: React.Dispatch<React.SetStateAction<boolean>>

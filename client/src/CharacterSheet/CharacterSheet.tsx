@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './index';
 import { characterContext } from '../context/Character';
 import { Tabs } from '../ts/interfaces';
-import './CharacterSheet.scss';
 import TopDisplay from './TopDisplay';
+import './CharacterSheet.scss';
 
 const CharacterSheet: React.FC = () => {
   const [currentView, setCurrentView] = useState<Tabs>("stats");
@@ -37,14 +37,14 @@ const CharacterSheet: React.FC = () => {
   return (
     <>
       <TopDisplay />
-      <div className="c-sheet__buttons">
-        <button className="button" onClick={toggleView} name="stats">Stats</button>
-        <button className="button" onClick={toggleView} name="skills">Skills</button>
-        <button className="button" onClick={toggleView} name="savingThrows">Saving Throws</button>
-        <button className="button" onClick={toggleView} name="attacks">Attacks</button>
-        <button className="button" onClick={toggleView} name="equipment">Equipment</button>
-        <button className="button" onClick={toggleView} name="story">Background</button>
-        <button className="button" onClick={toggleView} name="quickAccess">Quick Access</button>
+      <div className="c-btns">
+        <button className="c-btn" onClick={toggleView} name="stats">Stats</button>
+        <button className="c-btn" onClick={toggleView} name="skills">Skills</button>
+        <button className="c-btn" onClick={toggleView} name="savingThrows">Saving Throws</button>
+        <button className="c-btn" onClick={toggleView} name="attacks">Attacks</button>
+        <button className="c-btn" onClick={toggleView} name="equipment">Equipment</button>
+        <button className="c-btn" onClick={toggleView} name="story">Background</button>
+        <button className="c-btn" onClick={toggleView} name="quickAccess">Quick Access</button>
       </div>
       {renderView()}
     </>
