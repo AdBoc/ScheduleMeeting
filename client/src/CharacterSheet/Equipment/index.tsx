@@ -4,12 +4,14 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import './styles.scss';
+import Gold from './Gold';
 
 const Equipment: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);
-  const [renderForm, setRenderForm] = useState(false);
   const initialState = character.Equipment.slice(0).map(item => ({ ...item, active: false }));
   const [eqItems, setEqItems] = useState(initialState);
+  const [renderForm, setRenderForm] = useState(false);
+  const [rednerGold, setRenderGold] = useState(false);
 
   useEffect(() => {
     const initialState = character.Equipment.slice(0).map(item => ({ ...item, active: false }));
@@ -42,8 +44,12 @@ const Equipment: React.FC = () => {
 
   return (
     <div className="c-equipment">
-      <button className="g-btn" onClick={() => setRenderForm(prev => !prev)}>+ Add Equipment</button>
+      <div className="c-eq__btns">
+        <button className="c-eq__btns__btn" onClick={() => setRenderGold(prev => !prev)}>Total Gp: {character.Other.GP}</button>
+        <button className="c-eq__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+ Add</button>
+      </div>
       {renderForm && <AddEquipment setRenderForm={setRenderForm} />}
+      {rednerGold && <Gold />}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="list">
           {provided => (

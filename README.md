@@ -37,87 +37,85 @@ npm run start
 
 ```
 .
-│   App.test.tsx
 │   App.tsx
 │   index.tsx
-│   logo.svg
 │   react-app-env.d.ts
 │   serviceWorker.ts
-│   setupTests.ts
-│   tree.txt
-├───components
-│   ├───Backlog
-│   │   │   Backlog.scss
-│   │   │   Backlog.tsx
-│   │   │   initialValues.ts
-│   │   ├───BookListElement
-│   │   │       BookListElement.scss
-│   │   │       BookListElement.tsx
-│   │   └───BooksList
-│   │           BookList.tsx
-│   ├───CurrentReads
-│   │       CurrentReads.scss
-│   │       CurrentReads.tsx
-│   ├───Customization
-│   │       Customization.scss
-│   │       Customization.tsx
-│   ├───Home
-│   │       Home.scss
-│   │       Home.tsx
-│   │       index.ts
-│   ├───Login
-│   │       Login.scss
-│   │       Login.tsx
-│   ├───NavBar
-│   │   │   NavBar.scss
-│   │   │   NavBar.tsx
-│   │   ├───SideBar
-│   │   │       SideBar.scss
-│   │   │       SideBar.tsx
-│   │   ├───SideDrawer
-│   │   │       SideDrawer.scss
-│   │   │       SideDrawer.tsx
-│   │   └───TopBar
-│   │           TopBar.scss
-│   │           TopBar.tsx
-│   ├───Register
-│   │       Register.scss
-│   │       Register.tsx
-│   └───ReusableComponents
-│           Form.tsx
-│           NewBookForm.tsx
-│           Select.tsx
+├───assets
+│       GitHub-Mark-64px.png
+│       icons8-trash.svg
+│       index.css
+│       Roboto-Light.ttf
+│       UI_icon_expand.svg
+├───Calendar
+│   │   Calendar.scss
+│   │   Calendar.tsx
+│   │   index.ts
+│   ├───Footer
+│   │       index.tsx
+│   ├───Month
+│   │       Days.tsx
+│   │       index.tsx
+│   └───Players
+│           index.tsx
+├───CharacterSheet
+│   │   CharacterSheet.scss
+│   │   CharacterSheet.tsx
+│   │   CurrentComponent.tsx
+│   │   index.ts
+│   ├───Attacks
+│   │       AddAttack.tsx
+│   │       index.tsx
+│   │       styles.scss
+│   ├───Equipment
+│   │       AddEquipment.tsx
+│   │       index.tsx
+│   │       styles.scss
+│   ├───QuickAccess
+│   │       ChangeUserAndData.tsx
+│   │       index.tsx
+│   │       styles.scss
+│   ├───SavingThrows
+│   │       index.tsx
+│   │       styles.scss
+│   │       ThrowsValues.tsx
+│   ├───Skills
+│   │       index.tsx
+│   │       styles.scss
+│   ├───Stats
+│   │       index.tsx
+│   │       styles.scss
+│   ├───Story
+│   │       index.tsx
+│   │       styles.scss
+│   └───TopDisplay
+│           index.tsx
 │           styles.scss
-├───hooks
-│   │   FormValidation.tsx
-│   └───useContext
-│       └───contexts
-│               themeContext.tsx
-├───redux
-│   │   store.ts
-│   ├───Books
-│   │       actions.ts
-│   │       interfaces.ts
-│   │       reducer.ts
-│   └───User
-│           actions.ts
-│           interfaces.ts
+├───components
+│       InputField.tsx
+│       InputNumber.tsx
+│       NumberSelect.tsx
+│       StatButtons.tsx
+│       TextAreaField.tsx
+├───context
+│   └───Character
+│           index.tsx
 │           reducer.ts
-├───styles
-│   └───scss
-│           index.scss
-│           mixins.scss
-│           variables.scss
-├───ts
-│   ├───interfaces
-│   │       interfaces.ts
-│   └───types
-│           types.ts
-└───_helpers
-        history.ts
-        privateRoute.tsx
-        PublicRoute.tsx
-        sorting.ts
+├───hooks
+│   └───useCalendar
+│           index.ts
+├───Services
+│   ├───CharacterMethods
+│   │       index.ts
+│   ├───FetchAPI
+│   │       index.ts
+│   └───History
+│           index.ts
+├───tests
+│       App.test.tsx
+│       setupTests.ts
+└───ts
+        interfaces.ts
 ```           
 </P>
 </details>

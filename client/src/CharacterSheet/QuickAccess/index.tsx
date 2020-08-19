@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
-import StatButtons from '../../components/StatButtons';
+import { Notyf } from 'notyf';
 import { characterContext } from '../../context/Character';
 import { initialCharacter } from '../../context/Character/reducer';
 import { history } from '../../Services/History';
 import { Link } from 'react-router-dom';
+import { apiService } from '../../Services/FetchAPI'
+import StatButtons from '../../components/StatButtons';
 import ChangeUserAndData from './ChangeUserAndData';
 import InputNumber from '../../components/InputNumber';
-import { apiService } from '../../Services/FetchAPI';
-import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 
 const QuickAccess: React.FC = () => {

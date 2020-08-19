@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './index';
 import { characterContext } from '../context/Character';
 import { Tabs } from '../ts/interfaces';
 import TopDisplay from './TopDisplay';
 import './CharacterSheet.scss';
+import CurrentComponent from './CurrentComponent';
 
 const CharacterSheet: React.FC = () => {
   const [currentView, setCurrentView] = useState<Tabs>("stats");
@@ -14,25 +14,6 @@ const CharacterSheet: React.FC = () => {
   }, [character]);
 
   const toggleView = ({ target }: any) => setCurrentView(target.name);
-
-  const renderView = () => {
-    switch (currentView) {
-      case 'stats':
-        return <Stats />
-      case 'skills':
-        return <Skills />
-      case 'savingThrows':
-        return <SavingThrows />
-      case 'attacks':
-        return <Attacks />
-      case 'equipment':
-        return <Equipment />
-      case 'story':
-        return <Story />
-      case 'quickAccess':
-        return <QuickAccess />
-    };
-  };
 
   return (
     <>
@@ -46,9 +27,13 @@ const CharacterSheet: React.FC = () => {
         <button className="c-btn" onClick={toggleView} name="story">Background</button>
         <button className="c-btn" onClick={toggleView} name="quickAccess">Quick Access</button>
       </div>
-      {renderView()}
+      <CurrentComponent current={currentView} />
     </>
   )
 };
 
 export default CharacterSheet;
+
+//DODAC ILOSC I WAGE W EQ
+//dodac gold w EQ
+//po lewej GOLD po prawej +Add 

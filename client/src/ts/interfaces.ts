@@ -105,5 +105,6 @@ export interface CharacterInterface {
     }
     Other: {
         TaggedThrows: [string | null, string | null];
+        GP: number;
     }
 }

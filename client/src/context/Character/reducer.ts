@@ -118,7 +118,8 @@ export const initialCharacter: CharacterInterface = {
   Attacks: [],
   Equipment: [],
   Other: {
-    TaggedThrows: [null, null]
+    TaggedThrows: [null, null],
+    GP: 0
   }
 };
 
