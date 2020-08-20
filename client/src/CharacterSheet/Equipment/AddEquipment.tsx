@@ -37,8 +37,8 @@ const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
 
   return (
     <form className="c-new-eq" onSubmit={submitNewEq}>
-      <input className="c-new-eq__input" placeholder="name" onChange={handleInput} name="name" value={item.name} maxLength={20} aria-label="item name" required />
-      <input className="c-new-eq__input" placeholder="description" onChange={handleInput} name="description" value={item.description} aria-label="description" maxLength={30} />
+      <input className="c-new-eq__input" placeholder="name" onChange={handleInput} name="name" value={item.name} maxLength={20} aria-label="item name" autoComplete="off" required />
+      <input className="c-new-eq__input" placeholder="description" onChange={handleInput} name="description" value={item.description} aria-label="description" autoComplete="off" maxLength={30} />
       <div className="c-new-eq-flex">
         <label className="c-new-eq__label" htmlFor="quantity">Quantity:</label>
         <input className="c-new-eq__num" type="number" placeholder="quantity" onChange={handleInput} name="quantity" value={item.quantity} aria-label="quantity" onFocus={(e: any) => e.target.select()} />
