@@ -49,6 +49,9 @@ export type BackpackObj = {
     id: string;
     name: string;
     description: string;
+    quantity: number;
+    weight: number;
+    type: string;
 }
 
 export interface CharacterInterface {

@@ -28,6 +28,18 @@
     }
 }
 
+.c-atk__btns {
+    display: flex;
+    justify-content: space-between;
+    &__btn {
+        margin: 0.5em 0.5em 0;
+        padding: 0.5em;
+        background-color: $primary-color;
+        color: white;
+        min-width: 6em;
+    }
+}
+
 .Slashing {
     background-color: rgb(255, 255, 255);
 }

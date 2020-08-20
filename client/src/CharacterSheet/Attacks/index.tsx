@@ -42,7 +42,10 @@ const Attacks: React.FC = () => {
 
   return (
     <>
-      <button className="g-btn" onClick={() => setRenderForm(prev => !prev)}>+ Add Attack</button>
+      <div className="c-atk__btns">
+        <button className="c-atk__btns__btn">Attacks</button>
+        <button className="c-atk__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+ Add</button>
+      </div>
       {renderForm && <AddAttack setRenderForm={setRenderForm} />}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="list">
