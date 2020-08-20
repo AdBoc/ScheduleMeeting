@@ -1,17 +1,32 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Multiselect from 'react-multi-select-component';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import AddEquipment from './AddEquipment';
 import Gold from './Gold';
 import './styles.scss';
+import { BackpackObj } from '../../ts/interfaces';
+
+interface ActiveObject extends BackpackObj {
+  active: boolean;
+};
 
 const Equipment: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);
   const initialState = character.Equipment.slice(0).map(item => ({ ...item, active: false }));
-  const [eqItems, setEqItems] = useState(initialState);
+  const [eqItems, setEqItems] = useState<ActiveObject[]>(initialState);
   const [renderForm, setRenderForm] = useState(false);
   const [rednerGold, setRenderGold] = useState(false);
+  const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
+  const options = [
+    { label: "other", value: "Other" },
+    { label: "armors", value: "Armors" },
+    { label: "attunement", value: "Attunement" },
+    { label: "weapons", value: "Weapons" },
+    { label: "potions", value: "Potions" },
+    { label: "food", value: "Food" },
+    { label: "rings", value: "Rings" }
+  ];
 
   useEffect(() => {
     const initialState = character.Equipment.slice(0).map(item => ({ ...item, active: false }));
@@ -19,18 +34,6 @@ const Equipment: React.FC = () => {
   }, [character]);
 
   const deleteItem = ({ target }: any) => dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Equipment", id: target.name } });
-
-  const onDragEnd = (result: any) => {
-    if (!result.destination) return;
-    if (
-      result.source.droppableId === result.destination.droppableId &&
-      result.source.index === result.destination.index
-    ) return;
-    const newArr = Array.from(character.Equipment);
-    const [removed] = newArr.splice(result.source.index, 1);
-    newArr.splice(result.destination.index, 0, removed);
-    dispatch({ type: Types.REORDER_ARRAY, payload: { property: "Equipment", newArr } });
-  };
 
   const showDetails = (id: string) => () => {
     const copy = JSON.parse(JSON.stringify(eqItems));
@@ -42,6 +45,20 @@ const Equipment: React.FC = () => {
     setEqItems([...copy]);
   };
 
+  const eqItemsSort = () => {
+    if (select.length !== 0) {
+      const newObj = eqItems.reduce((accumulator, item) => {
+        select.forEach((selected) => {
+          if (item.type === selected.label)
+            accumulator.push(item);
+        })
+        return accumulator;
+      }, [] as never | ActiveObject[]);
+      return newObj.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return eqItems.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
   return (
     <div className="c-equipment">
       <div className="c-eq__btns">
@@ -50,33 +67,28 @@ const Equipment: React.FC = () => {
       </div>
       {renderForm && <AddEquipment setRenderForm={setRenderForm} />}
       {rednerGold && <Gold />}
-      {/* <div className="c-eqq"> */}
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="list">
-          {provided => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {eqItems.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                      <div className={snapshot.isDragging ? "c-item dragged" : "c-item"}>
-                        <p className="c-item__field">{item.name}</p>
-                        <button onClick={showDetails(item.id)}>S</button>
-                        <button name={item.id} onClick={deleteItem}>D</button>
-                      </div>
-                      <div>
-                        {item.active && <p className="c-item__drop">{item.description}</p>}
-                      </div>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
+      <Multiselect className="multiselect" options={options} value={select} onChange={setSelect} labelledBy={"Select"} hasSelectAll={false} disableSearch={true} />
+      <div className="c-grid">
+        <div className="c-grid-table-row">
+          <p className="c-grid_table-cell grid-label">NAME</p>
+          <p className="c-grid_table-cell grid-label">WEIGHT</p>
+          <p className="c-grid_table-cell grid-label">QTY</p>
+        </div>
+        {eqItemsSort().map((item) => (
+          <div key={item.id}>
+            <div className="c-grid-table-row" onClick={showDetails(item.id)}>
+              <p className="c-grid_table-cell">{item.name}</p>
+              <p className="c-grid_table-cell">{item.weight}</p>
+              <p className="c-grid_table-cell">{item.quantity}</p>
             </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-      {/* </div> */}
+            <div>
+              {item.active && <label className="c-cell-desc">Quantity<input className="c-cell-input" type="number" value={item.quantity} onChange={() => { }} onFocus={(e: any) => e.target.select()} /></label>}
+              {item.active && <p className="c-cell-desc">{item.description}</p>}
+              {item.active && <button className="c-cell-desc" name={item.id} onClick={deleteItem}>Delete</button>}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
