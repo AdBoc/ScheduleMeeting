@@ -30,7 +30,7 @@ export type Tabs =
     | "stats"
     | "skills"
     | "savingThrows"
-    | "attacks"
+    | "allActions"
     | "equipment"
     | "story"
     | "quickAccess";

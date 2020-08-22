@@ -1,4 +1,4 @@
-import Attacks from './Attacks';
+import AllActions from './AllActions/AllActions'
 import Equipment from './Equipment';
 import QuickAccess from './QuickAccess';
 import SavingThrows from './SavingThrows';
@@ -7,5 +7,5 @@ import Stats from './Stats';
 import Story from './Story';
 
 export {
-    Attacks, Equipment, QuickAccess, SavingThrows, Skills, Stats, Story
+    AllActions, Equipment, QuickAccess, SavingThrows, Skills, Stats, Story
 };

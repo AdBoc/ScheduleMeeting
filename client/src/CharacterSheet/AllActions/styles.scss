@@ -30,14 +30,19 @@
 
 .c-atk__btns {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     &__btn {
-        margin: 0.5em 0.5em 0;
-        padding: 0.5em;
-        background-color: $primary-color;
-        color: white;
-        min-width: 6em;
+        flex: 1 1;
+        background-color: rgb(223, 223, 223);
+        color: rgb(77, 77, 77);
+        padding: 0.25em;
+        margin: 0.5em 0.25em 0;
     }
+}
+
+.--active {
+    background-color: $primary-color;
+    color: white;
 }
 
 .Slashing {

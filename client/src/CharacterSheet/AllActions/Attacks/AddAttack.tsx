@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { characterContext } from '../../context/Character';
-import { Types } from '../../context/Character/reducer';
+import { characterContext } from '../../../context/Character';
+import { Types } from '../../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
-import './styles.scss';
+import '../styles.scss';
 
 interface IProps {
   setRenderForm: React.Dispatch<React.SetStateAction<boolean>>

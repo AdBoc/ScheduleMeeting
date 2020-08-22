@@ -82,7 +82,3 @@ const Equipment: React.FC = () => {
 }
 
 export default Equipment;
-
-// {details && <label className="c-cell-desc">Quantity<input className="c-cell-input" type="number" value={item.quantity} onChange={() => { }} onFocus={(e: any) => e.target.select()} /></label>}
-// {details && <p className="c-cell-desc">{item.description}</p>}
-// {details && <button className="c-cell-desc" name={item.id} onClick={deleteItem}>Delete</button>}

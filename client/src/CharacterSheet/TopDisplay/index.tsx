@@ -37,7 +37,7 @@ const TopDisplay = () => {
       <div className="c-sheet__player">
         <div className="c-player">
           <p className="c-player__name">{character.Story.Name}</p>
-          <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level}</p>
+          <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level ? character.MainStats.Level : null}</p>
         </div>
         <div className="relative">
           <p className={styleHp()} onClick={() => setShowHpInput(prev => !prev)}>{character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP</p>

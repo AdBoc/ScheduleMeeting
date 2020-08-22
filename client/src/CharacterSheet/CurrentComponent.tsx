@@ -1,5 +1,5 @@
 import React from 'react';
-import { SavingThrows, Skills, Stats, Story, Attacks, Equipment, QuickAccess } from './index';
+import { SavingThrows, Skills, Stats, Story, AllActions, Equipment, QuickAccess } from './index';
 import { Tabs } from '../ts/interfaces';
 
 interface IProps {
@@ -14,8 +14,8 @@ const CurrentComponent: React.FC<IProps> = ({ current }) => {
       return <Skills />
     case 'savingThrows':
       return <SavingThrows />
-    case 'attacks':
-      return <Attacks />
+    case 'allActions':
+      return <AllActions />
     case 'equipment':
       return <Equipment />
     case 'story':
