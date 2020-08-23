@@ -48,6 +48,11 @@ const Equipment: React.FC = () => {
     return character.Equipment.sort((a, b) => a.name.localeCompare(b.name));
   }
 
+  const handleQuantity = ({ target }: any) => {
+    if (!target.value) return;
+    dispatch({ type: Types.SET_ITEM_QTY, payload: { id: target.name, newValue: target.value } });
+  };
+
   return (
     <div className="c-equipment">
       <div className="c-eq__btns">
@@ -73,6 +78,7 @@ const Equipment: React.FC = () => {
         {details ? (
           <div className="details">
             <p className="details__text">{details.description}</p>
+            <input className="details__text" type="number" name={details.id} value={details.quantity} onChange={handleQuantity} onFocus={(e: any) => e.target.select()} />
             <button className="details__text" name={details.id} onClick={deleteItem}>DELETE</button>
           </div>
         ) : null}

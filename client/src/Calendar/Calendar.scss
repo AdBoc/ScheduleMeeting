@@ -21,248 +21,210 @@ $janek--color: rgb(0, 51, 102);
 $potrek--color: rgb(255, 77, 240);
 $krzysiek--color: rgb(0, 51, 102);
 
+.calendar-app {
+  font-family: Roboto;
+}
+
 .sheet-link {
-    display: block;
-    text-align: center;
-    margin: 0.25em 0.75em 0.25em 0.25em;
-    padding: 0.55em;
-    background-color: $main-theme;
-    color: $text-light;
+  display: block;
+  text-align: center;
+  margin: 0.25em 0.75em 0.25em 0.25em;
+  padding: 0.55em;
+  background-color: $main-theme;
+  color: $text-light;
 }
 
 .calendar {
-    font-family: Roboto;
-    max-width: max-content;
-    margin: 2em auto 0 auto;
-    padding: 1.5em;
-    border: 2px solid $main-theme;
-    border-radius: 8px;
+  max-width: max-content;
+  margin: 2em auto 0 auto;
+  padding: 1.5em;
+  border: 2px solid $main-theme;
+  border-radius: 8px;
 }
 
 .month-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &__button {
-        font-size: 1.25em;
-        font-weight: bold;
-        display: inline-block;
-        margin: 0.5em;
-        padding: 0.4em 0.7em;
-        background-color: $main-theme;
-        color: $text-light;
-        cursor: pointer;
-        &:focus,
-        &:active,
-        &:focus:active {
-            background-image: none;
-            outline: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-        }
-    }
-    &__full {
-        min-width: 5em;
-        font-size: 1.75em;
-        padding: 0 0.1em;
-        text-align: center;
-    }
-}
-
-.day-of-week,
-.days-of-month {
-    margin-top: 1em;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-}
-
-.day {
-    -webkit-tap-highlight-color: transparent;
-    font-size: 0.85em;
-    background-color: $text-light;
-    border: 0;
-    padding: 0.75em;
-    margin: 0.1em;
-    border-radius: 50%;
-    color: $main-theme;
-    outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__button {
+    font-size: 1.25em;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0.5em;
+    padding: 0.4em 0.7em;
+    background-color: $main-theme;
+    color: $text-light;
     cursor: pointer;
     &:focus,
     &:active,
     &:focus:active {
-        background-image: none;
-        outline: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
+      background-image: none;
+      outline: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
     }
+  }
+  &__full {
+    min-width: 5em;
+    font-size: 1.75em;
+    padding: 0 0.1em;
+    text-align: center;
+  }
+}
+
+.day-of-week,
+.days-of-month {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.day {
+  -webkit-tap-highlight-color: transparent;
+  font-size: 0.85em;
+  background-color: $text-light;
+  border: 0;
+  padding: 0.75em;
+  margin: 0.1em;
+  border-radius: 50%;
+  color: $main-theme;
+  outline: none;
+  cursor: pointer;
+  &:focus,
+  &:active,
+  &:focus:active {
+    background-image: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 }
 
 .person-container {
-    font-family: Roboto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 1em auto;
-    max-width: fit-content;
-    &__person {
-        text-align: center;
-        flex: 0 0 50%;
-        padding: 0.75em 0;
-        cursor: pointer;
-        &--active {
-            @extend .person-container__person;
-            background-color: $main-theme;
-            color: white;
-        }
-        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-        -webkit-tap-highlight-color: transparent; // i.e. Nexus5/Chrome and Kindle Fire HD 7''
-        &:focus,
-        &:active,
-        &:focus:active {
-            background-image: none;
-            outline: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-        }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1em auto;
+  max-width: fit-content;
+  &__person {
+    text-align: center;
+    flex: 0 0 50%;
+    padding: 0.75em 0;
+    cursor: pointer;
+    &--active {
+      @extend .person-container__person;
+      background-color: $main-theme;
+      color: white;
     }
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent; // i.e. Nexus5/Chrome and Kindle Fire HD 7''
+    &:focus,
+    &:active,
+    &:focus:active {
+      background-image: none;
+      outline: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+  }
 }
 
 .footer {
-    font-family: Roboto;
-    display: flex;
-    border-top: 1px solid $main-theme;
-    margin: 0.5em 1em;
-    justify-content: flex-end;
-    align-items: center;
-    &__git-icon {
-        margin: 0.5em;
-        width: 32px;
-    }
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid $main-theme;
+  margin: 0.5em 1em;
+  align-items: center;
+  &__version {
+    flex-grow: 1.1;
+  }
+  &__git-icon {
+    margin: 0.5em;
+    width: 32px;
+  }
 }
 
 .Witek {
-    background-color: $witek--color;
-    color: $text-light;
+  background-color: $witek--color;
+  color: $text-light;
 }
 .Sławek {
-    background-color: $sławek--color;
-    color: $text-light;
+  background-color: $sławek--color;
+  color: $text-light;
 }
 .Janek {
-    background-color: $janek--color;
-    color: $text-light;
+  background-color: $janek--color;
+  color: $text-light;
 }
 .Adrian {
-    background-color: $adrian--color;
-    color: $text-light;
+  background-color: $adrian--color;
+  color: $text-light;
 }
 .Adam {
-    background-color: $adam--color;
-    color: $text-light;
+  background-color: $adam--color;
+  color: $text-light;
 }
 .Maciek {
-    background-color: $maciek--color;
-    color: $text-light;
+  background-color: $maciek--color;
+  color: $text-light;
 }
 .Potrek {
-    background-color: $potrek--color;
-    color: $text-light;
+  background-color: $potrek--color;
+  color: $text-light;
 }
-// .Potrek {
-//     position: relative;
-//     width: 2.9em;
-//     height: 2.9em;
-//     // float: left;
-// }
-// .Potrek:before,
-// .Potrek:after {
-//     position: absolute;
-//     content: "";
-//     left: 1em;
-//     top: 0.85em;
-//     width: 12.5px;
-//     height: 20px;
-//     background: #fc2e5a;
-//     -moz-border-radius: 50px 50px 0 0;
-//     border-radius: 50px 50px 0 0;
-//     -webkit-transform: rotate(-45deg);
-//     -moz-transform: rotate(-45deg);
-//     -ms-transform: rotate(-45deg);
-//     -o-transform: rotate(-45deg);
-//     transform: rotate(-45deg);
-//     -webkit-transform-origin: 0 100%;
-//     -moz-transform-origin: 0 100%;
-//     -ms-transform-origin: 0 100%;
-//     -o-transform-origin: 0 100%;
-//     transform-origin: 0 100%;
-// }
-// .Potrek:after {
-//     left: 0;
-//     -webkit-transform: rotate(45deg);
-//     -moz-transform: rotate(45deg);
-//     -ms-transform: rotate(45deg);
-//     -o-transform: rotate(45deg);
-//     transform: rotate(45deg);
-//     -webkit-transform-origin: 100% 100%;
-//     -moz-transform-origin: 100% 100%;
-//     -ms-transform-origin: 100% 100%;
-//     -o-transform-origin: 100% 100%;
-//     transform-origin: 100% 100%;
-// }
-
 .Krzysiek {
-    background-color: $krzysiek--color;
-    color: $text-light;
+  background-color: $krzysiek--color;
+  color: $text-light;
 }
 .count1 {
-    background-color: $count1;
-    color: $text-dark;
+  background-color: $count1;
+  color: $text-dark;
 }
 .count2 {
-    background-color: $count2;
-    color: $text-dark;
+  background-color: $count2;
+  color: $text-dark;
 }
 .count3 {
-    background-color: $count3;
-    color: $text-dark;
+  background-color: $count3;
+  color: $text-dark;
 }
 .count4 {
-    background-color: $count4;
-    color: $text-light;
+  background-color: $count4;
+  color: $text-light;
 }
 .count5 {
-    background-color: $count5;
-    color: $text-light;
+  background-color: $count5;
+  color: $text-light;
 }
 .count6 {
-    background-color: $count6;
-    color: $text-light;
+  background-color: $count6;
+  color: $text-light;
 }
 .count7 {
-    background-color: $count7;
-    color: $text-light;
+  background-color: $count7;
+  color: $text-light;
 }
 .count8 {
-    background-color: $count8;
-    color: $text-light;
+  background-color: $count8;
+  color: $text-light;
 }
 
 @media screen and (min-width: 354px) {
-    .day {
-        padding: 1em;
-    }
+  .day {
+    padding: 1em;
+  }
 }
 
 @media screen and (min-width: 960px) {
-    .person {
-        flex: 0 0 25%;
-    }
+  .person {
+    flex: 0 0 25%;
+  }
 }
 
 .currentDay {
-    background-color: #ff000098; // border-radius: 0;
-    color: $text-light;
+  background-color: #ff000098; // border-radius: 0;
+  color: $text-light;
 }
 
 // @media (hover: hover) and (pointer: fine) {

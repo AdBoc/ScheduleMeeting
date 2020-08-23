@@ -26,16 +26,18 @@ const AllActions: React.FC = () => {
 
   return (
     <>
-      <div className="c-atk__btns">
-        <button className={`c-atk__btns__btn ${activeTab === "attacks" ? "--active " : ""}`} onClick={handleClick} name="attacks">Attacks</button>
-        <button className={`c-atk__btns__btn ${activeTab === "spells" ? "--active " : ""}`} onClick={handleClick} name="spells">Spells</button>
-        <button className={`c-atk__btns__btn ${activeTab === "cantrips" ? "--active " : ""}`} onClick={handleClick} name="cantrips">Cantrips</button>
-        <button className={`c-atk__btns__btn ${activeTab === "actions" ? "--active " : ""}`} onClick={handleClick} name="actions" >Actions</button>
-        <button className={`c-atk__btns__btn ${activeTab === "effects" ? "--active " : ""}`} onClick={handleClick} name="effects">Effects</button>
-        <button className="c-atk__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+Add</button>
+      <div className="c-action__btns">
+        <button className={`c-action__btns__btn ${activeTab === "attacks" ? "--active " : ""}`} onClick={handleClick} name="attacks">Attacks</button>
+        <button className={`c-action__btns__btn ${activeTab === "spells" ? "--active " : ""}`} onClick={handleClick} name="spells">Spells</button>
+        <button className={`c-action__btns__btn ${activeTab === "cantrips" ? "--active " : ""}`} onClick={handleClick} name="cantrips">Cantrips</button>
+        <button className={`c-action__btns__btn ${activeTab === "actions" ? "--active " : ""}`} onClick={handleClick} name="actions" >Actions</button>
+        <button className={`c-action__btns__btn ${activeTab === "effects" ? "--active " : ""}`} onClick={handleClick} name="effects">Effects</button>
+        <button className="c-action__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+Add</button>
       </div>
       {renderForm && ACTIVE_ADD[activeTab]}
-      {ACTIVE_TAB[activeTab]}
+      <div className="c-action__tab">
+        {ACTIVE_TAB[activeTab]}
+      </div>
     </>
   )
 }

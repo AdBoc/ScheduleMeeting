@@ -12,8 +12,7 @@ const SavingThrows: React.FC = () => {
   };
 
   return (
-    <>
-      <p className="c-save-throws__title">Saving throws</p>
+    <div className="c-saving-throws">
       <ThrowsValues />
       <div className="c-save-death">
         <p className="c-save-death__title">Death save</p>
@@ -26,7 +25,7 @@ const SavingThrows: React.FC = () => {
         <button className={throws[4] ? "c-checkbox --fail" : "c-checkbox"} name="4" onClick={handleDeathThrows} />
         <button className={throws[5] ? "c-checkbox --fail" : "c-checkbox"} name="5" onClick={handleDeathThrows} />
       </div>
-    </>
+    </div>
   )
 };
 

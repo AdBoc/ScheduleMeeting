@@ -1,5 +1,5 @@
 import { CharacterInterface, Attack, BackpackObj } from "../../ts/interfaces";
-import * as immutable from 'object-path-immutable';
+import * as immutable from "object-path-immutable";
 
 export enum Types {
   INCREMENT_STAT = "INCREMENT_STAT",
@@ -10,8 +10,9 @@ export enum Types {
   TAG_PROP = "TAG_PROP",
   DELETE_IN_ARRAY = "DELETE_IN_ARRAY",
   SET_CHARACTER = "SET_CHARACTER",
-  REORDER_ARRAY = "REORDER_ARRAY"
-};
+  REORDER_ARRAY = "REORDER_ARRAY",
+  SET_ITEM_QTY = "SET_ITEM_QTY",
+}
 
 export type ContextProps = {
   children: React.ReactNode;
@@ -19,13 +20,13 @@ export type ContextProps = {
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
-  ? {
-    type: Key;
-  }
-  : {
-    type: Key;
-    payload: M[Key];
-  }
+    ? {
+        type: Key;
+      }
+    : {
+        type: Key;
+        payload: M[Key];
+      };
 };
 
 type SettingsPayload = {
@@ -46,7 +47,7 @@ type SettingsPayload = {
   [Types.ADD_TO_ARRAY]: {
     property: string;
     newValue: Attack | BackpackObj;
-  }
+  };
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
   };
@@ -61,9 +62,15 @@ type SettingsPayload = {
     property: "Equipment" | "Attacks";
     newArr: BackpackObj[] | Attack[];
   };
+  [Types.SET_ITEM_QTY]: {
+    id: string;
+    newValue: number;
+  };
 };
 
-export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
+export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<
+  SettingsPayload
+>];
 
 export const initialCharacter: CharacterInterface = {
   TemporaryHitPoints: 1,
@@ -74,7 +81,7 @@ export const initialCharacter: CharacterInterface = {
     Initiative: 1,
     Speed: 1,
     PassivePercepion: 1,
-    Inspiration: 0
+    Inspiration: 0,
   },
   Stats: {
     Strength: 0,
@@ -82,7 +89,7 @@ export const initialCharacter: CharacterInterface = {
     Constitution: 0,
     Intelligence: 0,
     Wisdom: 0,
-    Charisma: 0
+    Charisma: 0,
   },
   Skills: {
     Athletics: 0,
@@ -102,7 +109,7 @@ export const initialCharacter: CharacterInterface = {
     Deception: 0,
     Intimidation: 0,
     Performance: 0,
-    Persuasion: 0
+    Persuasion: 0,
   },
   Story: {
     Name: "",
@@ -113,51 +120,90 @@ export const initialCharacter: CharacterInterface = {
     ExperiencePoints: "",
     ProficienciesAndLanguage: "",
     Race: "",
-    Story: ""
+    Story: "",
   },
   Attacks: [],
   Equipment: [],
   Other: {
     TaggedThrows: [null, null],
-    GP: 0
-  }
+    GP: 0,
+  },
 };
 
-export const reducer = (character: CharacterInterface, action: ScheetActions): CharacterInterface => {
+export const reducer = (
+  character: CharacterInterface,
+  action: ScheetActions
+): CharacterInterface => {
   switch (action.type) {
     case Types.INCREMENT_STAT:
-      return immutable.update(character, action.payload.property, v => v + 1) as any;
+      return immutable.update(
+        character,
+        action.payload.property,
+        (v) => v + 1
+      ) as any;
     case Types.DECREMENT_STAT:
-      return immutable.update(character, action.payload.property, v => v - 1) as any;
+      return immutable.update(
+        character,
+        action.payload.property,
+        (v) => v - 1
+      ) as any;
     case Types.CHANGE_STAT:
-      return immutable.set(character, action.payload.property, +action.payload.newValue); //+"" = 0
+      return immutable.set(
+        character,
+        action.payload.property,
+        +action.payload.newValue
+      ); //+"" = 0
     case Types.ADD_TO_ARRAY:
-      return immutable.push(character, action.payload.property, action.payload.newValue);
+      return immutable.push(
+        character,
+        action.payload.property,
+        action.payload.newValue
+      );
     case Types.DELETE_IN_ARRAY:
-      return immutable.set(character, action.payload.property, (character[action.payload.property] as Array<CharacterInterface["Equipment" | "Attacks"][0]>).filter(element => element.id !== action.payload.id));
+      return immutable.set(
+        character,
+        action.payload.property,
+        (character[action.payload.property] as Array<
+          CharacterInterface["Equipment" | "Attacks"][0]
+        >).filter((element) => element.id !== action.payload.id)
+      );
     case Types.REORDER_ARRAY:
-      return immutable.set(character, action.payload.property, action.payload.newArr);
-    case Types.TAG_PROP:
+      return immutable.set(
+        character,
+        action.payload.property,
+        action.payload.newArr
+      );
+    case Types.SET_CHARACTER:
       return {
-        ...character,
-        Other: {
-          ...character.Other,
-          TaggedThrows: action.payload.newArray
-        }
+        ...action.payload.newCharacter,
       };
     case Types.EDIT_TEXT:
       return {
         ...character,
         Story: {
           ...character.Story,
-          [action.payload.property]: action.payload.newValue
-        }
+          [action.payload.property]: action.payload.newValue,
+        },
       };
-    case Types.SET_CHARACTER:
+    case Types.TAG_PROP:
       return {
-        ...action.payload.newCharacter
+        ...character,
+        Other: {
+          ...character.Other,
+          TaggedThrows: action.payload.newArray,
+        },
+      };
+    case Types.SET_ITEM_QTY:
+      const itemIndex = character.Equipment.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      const newItemArray = character.Equipment.slice(0);
+      newItemArray[itemIndex].quantity = action.payload.newValue;
+      return {
+        ...character,
+        Equipment: newItemArray,
       };
     default:
       return character;
-  };
+  }
 };

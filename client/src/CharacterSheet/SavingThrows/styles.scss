@@ -1,56 +1,61 @@
+.c-saving-throws {
+    max-width: 30em;
+    margin: auto;
+}
+
 .c-save-throws {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  &__title {
     text-align: center;
-    &__title {
-        text-align: center;
-        font-size: 1.75em;
-        margin: 0.75em 0;
-    }
-    &__tag {
-        display: block;
-        text-align: right;
-        margin: 1em 0.5em 0;
-    }
+    font-size: 1.75em;
+    margin: 0.75em 0;
+  }
+  &__tag {
+    display: block;
+    text-align: right;
+    margin: 1em 0.5em 0;
+  }
 }
 
 .c-save-throw {
-    word-wrap: break-word;
-    flex: 1 0 33%;
-    margin: 0.25em 0.25em;
-    padding: 0.7em 0.5em;
-    font-size: 1.2em;
+  word-wrap: break-word;
+  flex: 1 0 33%;
+  margin: 0.25em 0.25em;
+  padding: 0.7em 0.5em;
+  font-size: 1.2em;
 }
 
 .c-save-death {
-    text-align: center;
+  text-align: center;
+  margin-top: 1em;
+  &__title {
+    font-size: 1.75em;
+  }
+  &__label {
     margin-top: 1em;
-    &__title {
-        font-size: 1.75em;
-    }
-    &__label {
-        margin-top: 1em;
-        font-size: 1.2em;
-    }
-    &__checkbox {
-        margin: 0.5em;
-        height: 1.75em;
-        width: 1.75em;
-    }
+    font-size: 1.2em;
+  }
+  &__checkbox {
+    margin: 0.5em;
+    height: 1.75em;
+    width: 1.75em;
+  }
 }
 
 .c-checkbox {
-    width: 2em;
-    height: 2em;
-    margin: 0.5em;
-    border: 1px solid black;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 2em;
+  height: 2em;
+  margin: 0.5em;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .--success {
-    background-color: rgb(125, 255, 125);
+  background-color: rgb(125, 255, 125);
 }
 .--fail {
-    background-color: rgb(255, 78, 78);
+  background-color: rgb(255, 78, 78);
 }

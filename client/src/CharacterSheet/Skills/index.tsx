@@ -12,7 +12,7 @@ const Skills: React.FC = () => {
       <StatButtons fieldName="Athletics" prop={character.Skills.Athletics} propName="Skills.Athletics" />
       <p className="c-skills__skill">Dexterity</p>
       <StatButtons fieldName="Acrobatics" prop={character.Skills.Acrobatics} propName="Skills.Acrobatics" />
-      <StatButtons fieldName="SleightOfHands" prop={character.Skills.SleightOfHand} propName="Skills.SleightOfHand" />
+      <StatButtons fieldName="Sleight Of Hands" prop={character.Skills.SleightOfHand} propName="Skills.SleightOfHand" />
       <StatButtons fieldName="Stealth" prop={character.Skills.Stealth} propName="Skills.Stealth" />
       <p className="c-skills__skill">Intelligence</p>
       <StatButtons fieldName="Arcana" prop={character.Skills.Arcana} propName="Skills.Arcana" />
