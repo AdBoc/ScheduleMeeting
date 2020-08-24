@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
-import '../styles.scss';
 
 interface IProps {
   setRenderForm: React.Dispatch<React.SetStateAction<boolean>>
@@ -21,15 +20,12 @@ const AddAttack: React.FC<IProps> = ({ setRenderForm }) => {
 
   const submitNewAttack = (e: any) => {
     e.preventDefault();
-    let attackData: any = { ...newAttack };
-    attackData.id = uuidv4();
-    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Attacks", newValue: attackData } });
+    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Attacks", newValue: { ...newAttack, id: uuidv4() } } });
     setRenderForm(prev => !prev);
   };
 
   const handleInput = ({ target }: any) => {
-    if (target.value.length > 20)
-      return;
+    if (target.value.length > 20) return;
     const { name, value } = target;
     setNewAttack({ ...newAttack, [name]: value });
   };
@@ -37,13 +33,13 @@ const AddAttack: React.FC<IProps> = ({ setRenderForm }) => {
   const handleSelect = ({ target }: any) => setNewAttack({ ...newAttack, type: target.value });
 
   return (
-    <form className="c-new-atk" onSubmit={submitNewAttack}>
-      <input className="c-new-atk__input" placeholder="Name" onChange={handleInput} name="name" value={newAttack.name} autoComplete="off" required />
-      <input className="c-new-atk__input" type="number" placeholder="Modifier" onChange={handleInput} name="abilityMod" value={newAttack.abilityMod} autoComplete="off" required />
-      <input className="c-new-atk__input" placeholder="Dice" onChange={handleInput} name="diceType" value={newAttack.diceType} autoComplete="off" required />
-      <input className="c-new-atk__input" type="number" placeholder="Base Dmg" onChange={handleInput} name="baseDmg" value={newAttack.baseDmg} autoComplete="off" required />
-      <input className="c-new-atk__input" type="number" placeholder="Range" onChange={handleInput} name="range" value={newAttack.range} autoComplete="off" />
-      <select className="c-new-atk__input" onChange={handleSelect}>
+    <form className="c-form" onSubmit={submitNewAttack}>
+      <input className="c-form__input" placeholder="Name" onChange={handleInput} name="name" value={newAttack.name} autoComplete="off" required />
+      <input className="c-form__input" type="number" placeholder="Modifier" onChange={handleInput} name="abilityMod" value={newAttack.abilityMod} autoComplete="off" required />
+      <input className="c-form__input" placeholder="Dice" onChange={handleInput} name="diceType" value={newAttack.diceType} autoComplete="off" required />
+      <input className="c-form__input" type="number" placeholder="Base Dmg" onChange={handleInput} name="baseDmg" value={newAttack.baseDmg} autoComplete="off" required />
+      <input className="c-form__input" type="number" placeholder="Range" onChange={handleInput} name="range" value={newAttack.range} autoComplete="off" />
+      <select className="c-form__input" onChange={handleSelect}>
         <option value="Slashing">Slashing</option>
         <option value="Bluegoing">Bluegoing</option>
         <option value="Piercing">Piercing</option>
@@ -58,7 +54,7 @@ const AddAttack: React.FC<IProps> = ({ setRenderForm }) => {
         <option value="Necrotic">Necrotic</option>
         <option value="Radiant">Radiant</option>
       </select>
-      <button className="c-new-atk__submit g-btn" type="submit">Submit</button>
+      <button className="g-btn" type="submit">Submit</button>
     </form>
   )
 };

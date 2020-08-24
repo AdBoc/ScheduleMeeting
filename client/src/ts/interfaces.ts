@@ -1,113 +1,139 @@
 export interface CalendarProps {
-    selectedPlayer: string | null;
+  selectedPlayer: string | null;
 }
 
 export interface SelectedDay {
-    day: string;
-    name: string;
+  day: string;
+  name: string;
 }
 
-export interface SelectedDays extends Array<SelectedDay> { }
+export interface SelectedDays extends Array<SelectedDay> {}
 
 export interface FilteredByName {
-    [day: string]: string
+  [day: string]: string;
 }
 
 export interface FilteredAllNames {
-    [day: string]: string[]
+  [day: string]: string[];
 }
 
 export interface DateProps {
-    currentDay: number;
-    currentMonth: number;
-    currentYear: number;
-    firstDayOfMonth: number;
-    daysOfMonth: string[];
+  currentDay: number;
+  currentMonth: number;
+  currentYear: number;
+  firstDayOfMonth: number;
+  daysOfMonth: string[];
 }
 
 //Character Sheet
 export type Tabs =
-    | "stats"
-    | "skills"
-    | "savingThrows"
-    | "allActions"
-    | "equipment"
-    | "story"
-    | "quickAccess";
+  | "stats"
+  | "skills"
+  | "savingThrows"
+  | "allActions"
+  | "equipment"
+  | "story"
+  | "quickAccess";
 
 export type Attack = {
-    id: string;
-    name: string;
-    diceType: string;
-    baseDmg: string;
-    range: string;
-    type: string;
-    abilityMod: string;
+  id: string;
+  name: string;
+  diceType: string;
+  baseDmg: string;
+  range: string;
+  type: string;
+  abilityMod: string;
 };
 
 export type BackpackObj = {
-    id: string;
-    name: string;
-    description: string;
-    quantity: number;
-    weight: number;
-    type: string;
-}
+  id: string;
+  name: string;
+  description: string;
+  quantity: number;
+  weight: number;
+  type: string;
+};
+
+export type Effect = {
+  id: string;
+  name: string;
+  active: string;
+  description: string;
+};
+
+export type Cantrip = {
+  id: string;
+  name: string;
+};
+
+export type Spell = {
+  id: string;
+  name: string;
+};
+
+export type Action = {
+  id: string;
+  name: string;
+};
 
 export interface CharacterInterface {
-    TemporaryHitPoints: number;
-    MainStats: {
-        ArmorClass: number;
-        HitPoints: number;
-        Level: number;
-        Initiative: number;
-        Inspiration: number;
-        Speed: number;
-        PassivePercepion: number;
-    },
-    Stats: {
-        Charisma: number;
-        Constitution: number;
-        Dexterity: number;
-        Intelligence: number;
-        Strength: number;
-        Wisdom: number;
-    },
-    Skills: {
-        Acrobatics: number;
-        Athletics: number;
-        AnimalHandling: number;
-        Arcana: number;
-        Deception: number;
-        Intimidation: number;
-        Insight: number;
-        History: number;
-        Invesigation: number;
-        Nature: number;
-        Religion: number;
-        Medicine: number;
-        Perception: number;
-        Performance: number;
-        Persuasion: number;
-        Survival: number;
-        SleightOfHand: number;
-        Stealth: number;
-    },
-    Attacks: Attack[] | never;
-    Equipment: BackpackObj[] | never;
-    Story: {
-        Alignment: string;
-        Background: string;
-        Class: string;
-        ExperiencePoints: string;
-        FeaturesAndTraits: string;
-        Name: string;
-        ProficienciesAndLanguage: string;
-        Race: string;
-        Story: string;
-    }
-    Other: {
-        TaggedThrows: [string | null, string | null];
-        GP: number;
-    }
+  TemporaryHitPoints: number;
+  MainStats: {
+    ArmorClass: number;
+    HitPoints: number;
+    Level: number;
+    Initiative: number;
+    Inspiration: number;
+    Speed: number;
+    PassivePercepion: number;
+  };
+  Stats: {
+    Charisma: number;
+    Constitution: number;
+    Dexterity: number;
+    Intelligence: number;
+    Strength: number;
+    Wisdom: number;
+  };
+  Skills: {
+    Acrobatics: number;
+    Athletics: number;
+    AnimalHandling: number;
+    Arcana: number;
+    Deception: number;
+    Intimidation: number;
+    Insight: number;
+    History: number;
+    Invesigation: number;
+    Nature: number;
+    Religion: number;
+    Medicine: number;
+    Perception: number;
+    Performance: number;
+    Persuasion: number;
+    Survival: number;
+    SleightOfHand: number;
+    Stealth: number;
+  };
+  Attacks: Attack[] | never;
+  Equipment: BackpackObj[] | never;
+  Effects: Effect[];
+  Cantrips: Cantrip[];
+  Spells: Spell[];
+  Actions: Action[];
+  Story: {
+    Alignment: string;
+    Background: string;
+    Class: string;
+    ExperiencePoints: string;
+    FeaturesAndTraits: string;
+    Name: string;
+    ProficienciesAndLanguage: string;
+    Race: string;
+    Story: string;
+  };
+  Other: {
+    TaggedThrows: [string | null, string | null];
+    GP: number;
+  };
 }

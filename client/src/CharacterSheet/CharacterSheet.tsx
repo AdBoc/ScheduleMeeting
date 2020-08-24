@@ -3,7 +3,7 @@ import { characterContext } from '../context/Character';
 import { Tabs } from '../ts/interfaces';
 import TopDisplay from './TopDisplay';
 import CurrentComponent from './CurrentComponent';
-import './CharacterSheet.scss';
+import './styles.scss';
 
 const CharacterSheet: React.FC = () => {
   const [currentView, setCurrentView] = useState<Tabs>("stats");

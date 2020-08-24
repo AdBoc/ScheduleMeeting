@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AddEffect = () => {
+const AddEffect: React.FC = () => {
   return (
-    <div></div>
+    <div>Add Effect</div>
   )
 }
 

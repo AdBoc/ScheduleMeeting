@@ -2,8 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
-import '../styles.scss';
-
 
 const Attacks: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);

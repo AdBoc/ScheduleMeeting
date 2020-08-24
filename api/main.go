@@ -73,6 +73,7 @@ func main() {
 
 	//ROUTER
 	router := mux.NewRouter().StrictSlash(true)
+	api := router.PathPrefix("/api").Subrouter()
 
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
@@ -80,11 +81,11 @@ func main() {
 		AllowedHeaders: []string{"Accept", "content-type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"},
 	})
 
-	router.HandleFunc("/", getDataForMonth).Methods("POST")
-	router.HandleFunc("/new", postDataForMonth).Methods("POST")
-	router.HandleFunc("/", patchDataForMonth).Methods("PATCH")
-	router.HandleFunc("/character", getCharacter).Methods("POST")
-	router.HandleFunc("/character", sendCharacter).Methods("PATCH")
+	api.HandleFunc("/", getDataForMonth).Methods("POST")
+	api.HandleFunc("/new", postDataForMonth).Methods("POST")
+	api.HandleFunc("/", patchDataForMonth).Methods("PATCH")
+	api.HandleFunc("/character", getCharacter).Methods("POST")
+	api.HandleFunc("/character", sendCharacter).Methods("PATCH")
 
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
@@ -251,7 +252,7 @@ func sendCharacter(w http.ResponseWriter, r *http.Request) {
 
 	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
 	defer error()
-	
+
 	mongoResult := collectionCharacter.FindOneAndReplace(ctx, bson.M{"user": req["user"]}, req)
 	if mongoResult.Err() != nil {
 		fmt.Println(mongoResult.Err())

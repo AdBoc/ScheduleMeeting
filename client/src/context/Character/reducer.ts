@@ -124,6 +124,10 @@ export const initialCharacter: CharacterInterface = {
   },
   Attacks: [],
   Equipment: [],
+  Effects: [],
+  Cantrips: [],
+  Spells: [],
+  Actions: [],
   Other: {
     TaggedThrows: [null, null],
     GP: 0,
