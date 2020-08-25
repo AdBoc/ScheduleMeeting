@@ -5,3 +5,5 @@ const Spells = () => {
 };
 
 export default Spells;
+
+//number of spell slots

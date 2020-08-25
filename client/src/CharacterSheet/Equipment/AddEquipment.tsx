@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
 import { BackpackObj } from '../../ts/interfaces';
 import './styles.scss';
+import { useForm } from 'react-hook-form';
 
 interface IProps {
   setRenderForm: React.Dispatch<React.SetStateAction<boolean>>
@@ -11,43 +12,29 @@ interface IProps {
 
 const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
   const { dispatch } = useContext(characterContext);
-  const [item, setItem] = useState({
-    name: "",
-    description: "",
-    quantity: 0,
-    weight: 0,
-    type: "other"
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      type: "other"
+    }
+  });
+  const onSubmit = handleSubmit((data) => {
+    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Equipment", newValue: { ...data, id: uuidv4() } as BackpackObj } });
+    setRenderForm(prev => !prev);
   });
 
-  const submitNewEq = (e: any) => {
-    e.preventDefault();
-    let newItem: BackpackObj = { ...item, id: uuidv4() };
-    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Equipment", newValue: newItem } });
-    setRenderForm(prev => !prev);
-  };
-
-  const handleInput = ({ target }: any) => {
-    if (target.value.length > 20)
-      return;
-    const { name, value } = target;
-    setItem({ ...item, [name]: value });
-  };
-
-  const handleSelect = ({ target }: any) => setItem({ ...item, type: target.value });
-
   return (
-    <form className="c-new-eq" onSubmit={submitNewEq}>
-      <input className="c-new-eq__input" placeholder="name" onChange={handleInput} name="name" value={item.name} aria-label="item name" autoComplete="off" required />
-      <input className="c-new-eq__input" placeholder="description" onChange={handleInput} name="description" value={item.description} aria-label="description" autoComplete="off" />
+    <form className="c-new-eq" onSubmit={onSubmit}>
+      <input className="c-new-eq__input" ref={register} placeholder="name" name="name" aria-label="item name" autoComplete="off" required />
+      <input className="c-new-eq__input" ref={register} placeholder="description" name="description" aria-label="description" autoComplete="off" />
       <div className="c-new-eq-flex">
         <label className="c-new-eq__label" htmlFor="quantity">Quantity:</label>
-        <input className="c-new-eq__num" type="number" placeholder="quantity" onChange={handleInput} name="quantity" value={item.quantity} aria-label="quantity" onFocus={(e: any) => e.target.select()} />
+        <input className="c-new-eq__num" ref={register} type="number" name="quantity" aria-label="quantity" onFocus={(e: any) => e.target.select()} />
       </div>
       <div className="c-new-eq-flex">
         <label className="c-new-eq__label" htmlFor="weight">Weight:</label>
-        <input className="c-new-eq__num" type="number" placeholder="weight" onChange={handleInput} name="weight" value={item.weight} aria-label="quantity" onFocus={(e: any) => e.target.select()} />
+        <input className="c-new-eq__num" ref={register} type="number" name="weight" aria-label="quantity" onFocus={(e: any) => e.target.select()} />
       </div>
-      <select className="c-new-eq__input" onChange={handleSelect}>
+      <select className="c-new-eq__input" name="type" ref={register}>
         <option value="other">Other</option>
         <option value="armors">Armors</option>
         <option value="attunement">Attunement</option>
@@ -56,7 +43,7 @@ const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
         <option value="food">Food</option>
         <option value="rings">Rings</option>
       </select>
-      <button className="g-btn" type="submit">Submit</button>
+      <input className="g-btn" type="submit" value="Submit" />
     </form>
   )
 };

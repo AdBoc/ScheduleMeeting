@@ -1,4 +1,12 @@
-import { CharacterInterface, Attack, BackpackObj } from "../../ts/interfaces";
+import {
+  CharacterInterface,
+  Attack,
+  BackpackObj,
+  Effect,
+  Cantrip,
+  Spell,
+  Action,
+} from "../../ts/interfaces";
 import * as immutable from "object-path-immutable";
 
 export enum Types {
@@ -45,8 +53,14 @@ type SettingsPayload = {
     newValue: string;
   };
   [Types.ADD_TO_ARRAY]: {
-    property: string;
-    newValue: Attack | BackpackObj;
+    property:
+      | "Attacks"
+      | "Equipment"
+      | "Effects"
+      | "Cantrips"
+      | "Spells"
+      | "Actions";
+    newValue: Attack | BackpackObj | Effect | Cantrip | Spell | Action;
   };
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];

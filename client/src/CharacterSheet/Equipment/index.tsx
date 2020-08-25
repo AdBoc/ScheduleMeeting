@@ -75,13 +75,13 @@ const Equipment: React.FC = () => {
             <p className="c-grid_table-cell">{item.quantity}</p>
           </div>
         ))}
-        {details ? (
+        {details && (
           <div className="details">
             <p className="details__text">{details.description}</p>
             <input className="details__text" type="number" name={details.id} value={details.quantity} onChange={handleQuantity} onFocus={(e: any) => e.target.select()} />
             <button className="details__text" name={details.id} onClick={deleteItem}>DELETE</button>
           </div>
-        ) : null}
+        )}
       </div>
     </div >
   )

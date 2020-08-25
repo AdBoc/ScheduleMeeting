@@ -7,3 +7,14 @@ const AddSpell = () => {
 }
 
 export default AddSpell;
+
+//name
+//level
+//school
+//casting time
+//ritual
+//concentration
+//description
+//duration
+//components
+//range

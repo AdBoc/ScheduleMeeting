@@ -1,45 +1,34 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
+import { useForm } from 'react-hook-form';
+import { Attack } from '../../../ts/interfaces';
 
 interface IProps {
-  setRenderForm: React.Dispatch<React.SetStateAction<boolean>>
+  handleClose: () => void
 }
 
-const AddAttack: React.FC<IProps> = ({ setRenderForm }) => {
+const AddAttack: React.FC<IProps> = ({ handleClose }) => {
   const { dispatch } = useContext(characterContext);
-  const [newAttack, setNewAttack] = useState({
-    name: "",
-    abilityMod: "",
-    diceType: "",
-    baseDmg: "",
-    range: "",
-    type: "Slashing"
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      type: "Slashing"
+    }
+  });
+  const onSubmit = handleSubmit((data) => {
+    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: 'Attacks', newValue: { ...data, id: uuidv4() } as Attack } })
+    handleClose();
   });
 
-  const submitNewAttack = (e: any) => {
-    e.preventDefault();
-    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Attacks", newValue: { ...newAttack, id: uuidv4() } } });
-    setRenderForm(prev => !prev);
-  };
-
-  const handleInput = ({ target }: any) => {
-    if (target.value.length > 20) return;
-    const { name, value } = target;
-    setNewAttack({ ...newAttack, [name]: value });
-  };
-
-  const handleSelect = ({ target }: any) => setNewAttack({ ...newAttack, type: target.value });
-
   return (
-    <form className="c-form" onSubmit={submitNewAttack}>
-      <input className="c-form__input" placeholder="Name" onChange={handleInput} name="name" value={newAttack.name} autoComplete="off" required />
-      <input className="c-form__input" type="number" placeholder="Modifier" onChange={handleInput} name="abilityMod" value={newAttack.abilityMod} autoComplete="off" required />
-      <input className="c-form__input" placeholder="Dice" onChange={handleInput} name="diceType" value={newAttack.diceType} autoComplete="off" required />
-      <input className="c-form__input" type="number" placeholder="Base Dmg" onChange={handleInput} name="baseDmg" value={newAttack.baseDmg} autoComplete="off" required />
-      <input className="c-form__input" type="number" placeholder="Range" onChange={handleInput} name="range" value={newAttack.range} autoComplete="off" />
-      <select className="c-form__input" onChange={handleSelect}>
+    <form className="c-form" onSubmit={onSubmit}>
+      <input className="c-form__input" ref={register} placeholder="Name" name="name" autoComplete="off" required />
+      <input className="c-form__input" ref={register} placeholder="Modifier" name=" abilityMod" autoComplete="off" type="number" required />
+      <input className="c-form__input" ref={register} placeholder="Dice" name="diceType" autoComplete="off" required />
+      <input className="c-form__input" ref={register} placeholder="Base Dmg" name="baseDmg" autoComplete="off" type="number" required />
+      <input className="c-form__input" ref={register} placeholder="Range" name="range" type="number" autoComplete="off" />
+      <select className="c-form__input" ref={register} name="type">
         <option value="Slashing">Slashing</option>
         <option value="Bluegoing">Bluegoing</option>
         <option value="Piercing">Piercing</option>
@@ -54,7 +43,7 @@ const AddAttack: React.FC<IProps> = ({ setRenderForm }) => {
         <option value="Necrotic">Necrotic</option>
         <option value="Radiant">Radiant</option>
       </select>
-      <button className="g-btn" type="submit">Submit</button>
+      <input className="g-btn" type="submit" value="Submit" />
     </form>
   )
 };

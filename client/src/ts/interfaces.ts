@@ -57,7 +57,7 @@ export type BackpackObj = {
 export type Effect = {
   id: string;
   name: string;
-  active: string;
+  active: boolean;
   description: string;
 };
 

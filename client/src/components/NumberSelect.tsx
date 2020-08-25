@@ -35,8 +35,3 @@ const NumberSelect: React.FC<IProps> = ({ range, name, value }) => {
 };
 
 export default NumberSelect;
-
-//MOZE ZAMIAST W TEN SPOSOB MOGE TO ZROBIC TAK 
-//const numselect = (range, ...props) => {
-//reutrn <select {...props}></select>
-//}
