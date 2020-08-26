@@ -36,7 +36,7 @@ const QuickAccess: React.FC = () => {
       <InputNumber prop={character.MainStats.Speed} propName="MainStats.Speed" fieldName="Speed" />
       <StatButtons prop={character.MainStats.Level} propName="MainStats.Level" fieldName="Level" />
       <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" fieldName="Armor Class" />
-      <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiaive" />
+      <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiative" />
       <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
       <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" fieldName="Inspiration Points" />
       <Link to="/"><button className="g-btn section-break">Show Calendar</button></Link>

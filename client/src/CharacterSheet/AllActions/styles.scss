@@ -1,6 +1,14 @@
 @import "../variables.scss";
 
 .c-form {
+  border: 3px double $primary-color;
+  margin: 1em;
+  padding: 1em;
+  &__label {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 0.75em;
+  }
   &__input {
     display: block;
     margin: 0.5em auto;
@@ -28,11 +36,19 @@
   }
 }
 
-.c-action__btns {
+.c-action-form {
+  display: flex;
+  margin: 0.5em;
+}
+.c-action-field {
+  flex-grow: 1.1;
+}
+
+.c-action-btns {
   display: flex;
   flex-wrap: wrap;
   &__btn {
-    flex: 1 1;
+    flex: 1 1 20%;
     background-color: rgb(223, 223, 223);
     color: rgb(77, 77, 77);
     padding: 0.25em;
@@ -53,6 +69,45 @@
 .--add {
   background-color: rgb(109, 207, 109);
   color: white;
+}
+
+.toggle-switch {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.toggle-text {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 20px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+  &:active::after {
+    width: 25px;
+  }
+}
+
+.toggle-switch:checked + .toggle-text {
+  background: #9cbd32;
+}
+.toggle-switch:checked + .toggle-text::after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
 }
 
 .Slashing {

@@ -20,6 +20,7 @@ export enum Types {
   SET_CHARACTER = "SET_CHARACTER",
   REORDER_ARRAY = "REORDER_ARRAY",
   SET_ITEM_QTY = "SET_ITEM_QTY",
+  CHANGE_EFFECT_STATUS = "CHANGE_EFFECT_STATUS",
 }
 
 export type ContextProps = {
@@ -53,20 +54,14 @@ type SettingsPayload = {
     newValue: string;
   };
   [Types.ADD_TO_ARRAY]: {
-    property:
-      | "Attacks"
-      | "Equipment"
-      | "Effects"
-      | "Cantrips"
-      | "Spells"
-      | "Actions";
+    property: "Attacks" | "Equipment" | "Effects" | "Cantrips" | "Spells" | "Actions";
     newValue: Attack | BackpackObj | Effect | Cantrip | Spell | Action;
   };
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
   };
   [Types.DELETE_IN_ARRAY]: {
-    property: "Equipment" | "Attacks";
+    property: "Attacks" | "Equipment" | "Effects" | "Cantrips" | "Spells" | "Actions";
     id: string;
   };
   [Types.SET_CHARACTER]: {
@@ -80,11 +75,12 @@ type SettingsPayload = {
     id: string;
     newValue: number;
   };
+  [Types.CHANGE_EFFECT_STATUS]: {
+    newobj: any[];
+  };
 };
 
-export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<
-  SettingsPayload
->];
+export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
 
 export const initialCharacter: CharacterInterface = {
   TemporaryHitPoints: 1,
@@ -154,29 +150,13 @@ export const reducer = (
 ): CharacterInterface => {
   switch (action.type) {
     case Types.INCREMENT_STAT:
-      return immutable.update(
-        character,
-        action.payload.property,
-        (v) => v + 1
-      ) as any;
+      return immutable.update(character, action.payload.property, (v) => v + 1) as any;
     case Types.DECREMENT_STAT:
-      return immutable.update(
-        character,
-        action.payload.property,
-        (v) => v - 1
-      ) as any;
+      return immutable.update(character, action.payload.property, (v) => v - 1) as any;
     case Types.CHANGE_STAT:
-      return immutable.set(
-        character,
-        action.payload.property,
-        +action.payload.newValue
-      ); //+"" = 0
+      return immutable.set(character, action.payload.property, +action.payload.newValue); //+"" = 0
     case Types.ADD_TO_ARRAY:
-      return immutable.push(
-        character,
-        action.payload.property,
-        action.payload.newValue
-      );
+      return immutable.push(character, action.payload.property, action.payload.newValue);
     case Types.DELETE_IN_ARRAY:
       return immutable.set(
         character,
@@ -186,11 +166,7 @@ export const reducer = (
         >).filter((element) => element.id !== action.payload.id)
       );
     case Types.REORDER_ARRAY:
-      return immutable.set(
-        character,
-        action.payload.property,
-        action.payload.newArr
-      );
+      return immutable.set(character, action.payload.property, action.payload.newArr);
     case Types.SET_CHARACTER:
       return {
         ...action.payload.newCharacter,
@@ -212,14 +188,17 @@ export const reducer = (
         },
       };
     case Types.SET_ITEM_QTY:
-      const itemIndex = character.Equipment.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      const newItemArray = character.Equipment.slice(0);
-      newItemArray[itemIndex].quantity = action.payload.newValue;
+      const itemIndex = character.Equipment.findIndex((item) => item.id === action.payload.id);
+      const newItemsArray = character.Equipment.slice(0);
+      newItemsArray[itemIndex].quantity = action.payload.newValue;
       return {
         ...character,
-        Equipment: newItemArray,
+        Equipment: newItemsArray,
+      };
+    case Types.CHANGE_EFFECT_STATUS:
+      return {
+        ...character,
+        Effects: action.payload.newobj,
       };
     default:
       return character;

@@ -69,6 +69,12 @@ export type Cantrip = {
 export type Spell = {
   id: string;
   name: string;
+  level: string;
+  school: string;
+  castingTime: string;
+  range: string;
+  components: string;
+  description: string;
 };
 
 export type Action = {

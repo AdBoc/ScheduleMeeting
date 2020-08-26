@@ -23,6 +23,7 @@ const AddAttack: React.FC<IProps> = ({ handleClose }) => {
 
   return (
     <form className="c-form" onSubmit={onSubmit}>
+      <p className="c-form__label">New Attack</p>
       <input className="c-form__input" ref={register} placeholder="Name" name="name" autoComplete="off" required />
       <input className="c-form__input" ref={register} placeholder="Modifier" name=" abilityMod" autoComplete="off" type="number" required />
       <input className="c-form__input" ref={register} placeholder="Dice" name="diceType" autoComplete="off" required />

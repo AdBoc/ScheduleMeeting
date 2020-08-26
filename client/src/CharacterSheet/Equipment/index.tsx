@@ -23,8 +23,8 @@ const Equipment: React.FC = () => {
     { label: "rings", value: "Rings" }
   ];
 
-  const deleteItem = ({ target }: any) => {
-    dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Equipment", id: target.name } })
+  const deleteItem = () => {
+    dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Equipment", id: details!.id } });
     setDetails(null);
   };
 
@@ -79,7 +79,7 @@ const Equipment: React.FC = () => {
           <div className="details">
             <p className="details__text">{details.description}</p>
             <input className="details__text" type="number" name={details.id} value={details.quantity} onChange={handleQuantity} onFocus={(e: any) => e.target.select()} />
-            <button className="details__text" name={details.id} onClick={deleteItem}>DELETE</button>
+            <button className="details__text" onClick={deleteItem}>DELETE</button>
           </div>
         )}
       </div>

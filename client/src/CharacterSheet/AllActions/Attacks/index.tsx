@@ -1,79 +1,39 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useState, useContext } from 'react';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
+import { Attack } from '../../../ts/interfaces';
 
 const Attacks: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);
-  const initialState = character.Attacks.slice(0).map(item => ({ ...item, active: false }));
-  const [attacks, setAttacks] = useState(initialState);
-
-  useEffect(() => {
-    const initialState = character.Attacks.slice(0).map(item => ({ ...item, active: false }));
-    setAttacks(initialState);
-  }, [character]);
+  const [details, setDetails] = useState<Attack | null>(null);
 
   const deleteItem = ({ target }: any) => dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Attacks", id: target.name } });
-
-  const onDragEnd = (result: any) => {
-    if (!result.destination) return;
-    if (
-      result.source.droppableId === result.destination.droppableId &&
-      result.source.index === result.destination.index
-    ) return;
-    const newArr = Array.from(character.Attacks);
-    const [removed] = newArr.splice(result.source.index, 1);
-    newArr.splice(result.destination.index, 0, removed);
-    dispatch({ type: Types.REORDER_ARRAY, payload: { property: "Attacks", newArr } });
-  };
-
-  const showDetails = (id: string) => () => {
-    const copy = JSON.parse(JSON.stringify(attacks));
-    copy.forEach((item: any) => {
-      if (item.id === id) {
-        item.active = !item.active
-      }
-    });
-    setAttacks([...copy]);
+  const showDetails = (attack: Attack) => () => {
+    if (details) return setDetails(null);
+    setDetails(attack);
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="list">
-        {provided => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            {attacks.map((attack, index) => (
-              <Draggable key={attack.id} draggableId={attack.id} index={index}>
-                {(provided, snapshot) => (
-                  <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                    <div className={snapshot.isDragging ? "c-atk dragged" : `c-atk ${attack.type}`}>
-                      <p className="c-atk__field">{attack.name}</p>
-                      <p>{attack.baseDmg} + {attack.diceType} + {attack.abilityMod}</p>
-                      <button onClick={showDetails(attack.id)}>S</button>
-                      <button name={attack.id} onClick={deleteItem}>D</button>
-                    </div>
-                    <div>
-                      {attack.active && (
-                        <>
-                          <p className="c-atk__drop">Name: {attack.name}</p>
-                          <p className="c-atk__drop">Ability Mod: {attack.abilityMod}</p>
-                          <p className="c-atk__drop">Dice: {attack.diceType}</p>
-                          <p className="c-atk__drop">Base Dmg: {attack.baseDmg}</p>
-                          <p className="c-atk__drop">Range: {attack.range}</p>
-                          <p className="c-atk__drop">Type: {attack.type}</p>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      {character.Attacks.map((attack) => (
+        <div key={attack.id} className={`c-atk ${attack.type}`} onClick={showDetails(attack)}>
+          <p className="c-atk__field">{attack.name}</p>
+          <p>{attack.baseDmg} + {attack.diceType} + {attack.abilityMod}</p>
+          <button name={attack.id} onClick={deleteItem}>D</button>
+        </div>
+      ))}
+      {details && <>
+        <p className="c-atk__drop">Name: {details.name}</p>
+        <p className="c-atk__drop">Ability Mod: {details.abilityMod}</p>
+        <p className="c-atk__drop">Dice: {details.diceType}</p>
+        <p className="c-atk__drop">Base Dmg: {details.baseDmg}</p>
+        <p className="c-atk__drop">Range: {details.range}</p>
+        <p className="c-atk__drop">Type: {details.type}</p>
+        <button className="c-atk__drop" name={details.id} onClick={deleteItem}>DELETE</button>
+      </>
+      }
+    </>
   )
-}
+};
 
 export default Attacks;
