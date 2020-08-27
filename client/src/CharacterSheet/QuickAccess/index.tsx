@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Notyf } from 'notyf';
 import { characterContext } from '../../context/Character';
-import { initialCharacter } from '../../context/Character/reducer';
+import { initialCharacter, Types } from '../../context/Character/reducer';
 import { history } from '../../Services/History';
 import { Link } from 'react-router-dom';
 import { apiService } from '../../Services/FetchAPI'
@@ -13,7 +13,7 @@ import 'notyf/notyf.min.css';
 const QuickAccess: React.FC = () => {
   const notyf = new Notyf();
   const [playerVisiblity, setPlayerVisiblity] = useState(false);
-  const { character } = useContext(characterContext);
+  const { character, dispatch } = useContext(characterContext);
 
   const clearStorage = () => {
     localStorage.removeItem("character");
@@ -30,6 +30,10 @@ const QuickAccess: React.FC = () => {
     return notyf.error("Error while sending data");
   };
 
+  const handleInspiration = () => {
+    dispatch({ type: Types.CHANGE_INSPIRATION, payload: { newValue: !character.Other.Inspiration } });
+  };
+
   return (
     <div className="c-story">
       <InputNumber prop={character.MainStats.HitPoints} propName="MainStats.HitPoints" fieldName="Max Hit Points" />
@@ -38,7 +42,10 @@ const QuickAccess: React.FC = () => {
       <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" fieldName="Armor Class" />
       <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiative" />
       <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
-      <StatButtons prop={character.MainStats.Inspiration} propName="MainStats.Inspiration" fieldName="Inspiration Points" />
+      <div className="c-ins-checkbox">
+        <label htmlFor="c-checkbox__box">Inspiration</label>
+        <input className="c-ins-checkbox__box" id="c-checkbox__box" type="checkbox" checked={character.Other.Inspiration} onChange={handleInspiration} />
+      </div>
       <Link to="/"><button className="g-btn section-break">Show Calendar</button></Link>
       <button className="g-btn" onClick={sendToBackend}>Store in DB</button>
       <button className="g-btn" onClick={() => setPlayerVisiblity(prev => !prev)}>Change User</button>

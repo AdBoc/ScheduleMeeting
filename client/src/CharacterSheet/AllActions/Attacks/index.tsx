@@ -18,15 +18,15 @@ const Attacks: React.FC = () => {
       {character.Attacks.map((attack) => (
         <div key={attack.id} className={`c-atk ${attack.type}`} onClick={showDetails(attack)}>
           <p className="c-atk__field">{attack.name}</p>
-          <p>{attack.baseDmg} + {attack.diceType} + {attack.abilityMod}</p>
+          <p>{attack.bonusDamage} + {attack.diceType} + {attack.profMod}</p>
           <button name={attack.id} onClick={deleteItem}>D</button>
         </div>
       ))}
       {details && <>
         <p className="c-atk__drop">Name: {details.name}</p>
-        <p className="c-atk__drop">Ability Mod: {details.abilityMod}</p>
+        <p className="c-atk__drop">Ability Mod: {details.profMod}</p>
         <p className="c-atk__drop">Dice: {details.diceType}</p>
-        <p className="c-atk__drop">Base Dmg: {details.baseDmg}</p>
+        <p className="c-atk__drop">Base Dmg: {details.bonusDamage}</p>
         <p className="c-atk__drop">Range: {details.range}</p>
         <p className="c-atk__drop">Type: {details.type}</p>
         <button className="c-atk__drop" name={details.id} onClick={deleteItem}>DELETE</button>

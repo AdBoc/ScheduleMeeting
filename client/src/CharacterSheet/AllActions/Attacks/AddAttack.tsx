@@ -13,11 +13,12 @@ const AddAttack: React.FC<IProps> = ({ handleClose }) => {
   const { dispatch } = useContext(characterContext);
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      type: "Slashing"
+      type: "Slashing",
+      profMod: "Strength"
     }
   });
   const onSubmit = handleSubmit((data) => {
-    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: 'Attacks', newValue: { ...data, id: uuidv4() } as Attack } })
+    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: 'Attacks', newValue: { ...data, id: uuidv4() } as Attack } });
     handleClose();
   });
 
@@ -25,10 +26,17 @@ const AddAttack: React.FC<IProps> = ({ handleClose }) => {
     <form className="c-form" onSubmit={onSubmit}>
       <p className="c-form__label">New Attack</p>
       <input className="c-form__input" ref={register} placeholder="Name" name="name" autoComplete="off" required />
-      <input className="c-form__input" ref={register} placeholder="Modifier" name=" abilityMod" autoComplete="off" type="number" required />
       <input className="c-form__input" ref={register} placeholder="Dice" name="diceType" autoComplete="off" required />
-      <input className="c-form__input" ref={register} placeholder="Base Dmg" name="baseDmg" autoComplete="off" type="number" required />
       <input className="c-form__input" ref={register} placeholder="Range" name="range" type="number" autoComplete="off" />
+      <input className="c-form__input" ref={register} placeholder="Bonus Damage" name="bonusDamage" autoComplete="off" type="number" required />
+      <select className="c-form__input" ref={register} name="profMod">
+        <option value="Strength">Strength</option>
+        <option value="Dexterity">Dexterity</option>
+        <option value="Constitution">Constitution</option>
+        <option value="Charisma">Charisma</option>
+        <option value="Intelligence">Intelligence</option>
+        <option value="Wisdom">Wisdom</option>
+      </select>
       <select className="c-form__input" ref={register} name="type">
         <option value="Slashing">Slashing</option>
         <option value="Bluegoing">Bluegoing</option>

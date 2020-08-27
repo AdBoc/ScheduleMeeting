@@ -119,3 +119,10 @@ npm run start
 ```           
 </P>
 </details>
+
+## TO DO:
+Better typescript integration while calculating currency
+Better current active effects style
+
+automatyczna kalkulacja skillow
+checkbox zeby ktos zaznaczyl czy w ataku ma proficiency

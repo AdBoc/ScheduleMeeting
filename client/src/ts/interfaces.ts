@@ -39,10 +39,10 @@ export type Attack = {
   id: string;
   name: string;
   diceType: string;
-  baseDmg: string;
+  bonusDamage: string;
   range: string;
   type: string;
-  abilityMod: string;
+  profMod: string;
 };
 
 export type BackpackObj = {
@@ -89,7 +89,6 @@ export interface CharacterInterface {
     HitPoints: number;
     Level: number;
     Initiative: number;
-    Inspiration: number;
     Speed: number;
     PassivePercepion: number;
   };
@@ -121,8 +120,8 @@ export interface CharacterInterface {
     SleightOfHand: number;
     Stealth: number;
   };
-  Attacks: Attack[] | never;
-  Equipment: BackpackObj[] | never;
+  Attacks: Attack[];
+  Equipment: BackpackObj[];
   Effects: Effect[];
   Cantrips: Cantrip[];
   Spells: Spell[];
@@ -140,6 +139,15 @@ export interface CharacterInterface {
   };
   Other: {
     TaggedThrows: [string | null, string | null];
-    GP: number;
+    Currency: {
+      PP: number;
+      GP: number;
+      EP: number;
+      SP: number;
+      CP: number;
+    };
+    Inspiration: boolean;
+    SpellSlots: [number, number, number, number, number, number, number, number, number];
+    SpellProficiency: null | string;
   };
 }

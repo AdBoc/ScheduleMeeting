@@ -71,13 +71,3 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
 };
 
 export default AddSpell;
-//automatyczna kalkulacja proficiency
-//spell save DC = 8 + proficeincy bonus + modifier do atrybutu rzucania zaklec (wybierz proficiency)
-//spell atak bonus = proficienty + modifier
-//spell sloty
-//base damage -> zmiania na dodatkowy dmg ktory ktos sobie moze dodac
-//checkbox zeby ktos zaznaczyl czy w ataku jest proficiency
-//kazdy rodzaj valuty
-//mozna miec najwyzej jeden inspiracji
-//powpisywac akcje do akcji
-//weight 

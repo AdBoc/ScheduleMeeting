@@ -21,6 +21,7 @@ export enum Types {
   REORDER_ARRAY = "REORDER_ARRAY",
   SET_ITEM_QTY = "SET_ITEM_QTY",
   CHANGE_EFFECT_STATUS = "CHANGE_EFFECT_STATUS",
+  CHANGE_INSPIRATION = "CHANGE_INSPIRATION",
 }
 
 export type ContextProps = {
@@ -78,6 +79,9 @@ type SettingsPayload = {
   [Types.CHANGE_EFFECT_STATUS]: {
     newobj: any[];
   };
+  [Types.CHANGE_INSPIRATION]: {
+    newValue: boolean;
+  };
 };
 
 export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
@@ -91,7 +95,6 @@ export const initialCharacter: CharacterInterface = {
     Initiative: 1,
     Speed: 1,
     PassivePercepion: 1,
-    Inspiration: 0,
   },
   Stats: {
     Strength: 0,
@@ -140,7 +143,16 @@ export const initialCharacter: CharacterInterface = {
   Actions: [],
   Other: {
     TaggedThrows: [null, null],
-    GP: 0,
+    Currency: {
+      PP: 0,
+      GP: 0,
+      EP: 0,
+      SP: 0,
+      CP: 0,
+    },
+    Inspiration: false,
+    SpellSlots: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    SpellProficiency: null,
   },
 };
 
@@ -200,7 +212,16 @@ export const reducer = (
         ...character,
         Effects: action.payload.newobj,
       };
+    case Types.CHANGE_INSPIRATION:
+      return {
+        ...character,
+        Other: {
+          ...character.Other,
+          Inspiration: action.payload.newValue,
+        },
+      };
     default:
       return character;
   }
 };
+//czy te nested w spread syntax nie sa kopiowane przez referencje??

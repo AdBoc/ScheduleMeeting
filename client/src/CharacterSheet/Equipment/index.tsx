@@ -3,9 +3,11 @@ import Multiselect from 'react-multi-select-component';
 import { characterContext } from '../../context/Character';
 import { Types } from '../../context/Character/reducer';
 import { BackpackObj } from '../../ts/interfaces';
+import { charMethods } from '../../Services/CharacterMethods';
 import AddEquipment from './AddEquipment';
 import Gold from './Gold';
 import './styles.scss';
+
 
 const Equipment: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);
@@ -56,7 +58,7 @@ const Equipment: React.FC = () => {
   return (
     <div className="c-equipment">
       <div className="c-eq__btns">
-        <button className="c-eq__btns__btn" onClick={() => setRenderGold(prev => !prev)}>Total Gp: {character.Other.GP}</button>
+        <button className="c-eq__btns__btn" onClick={() => setRenderGold(prev => !prev)}>Total Gp: {charMethods.countTotalGP(character.Other.Currency)}</button>
         <button className="c-eq__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+ Add</button>
       </div>
       {renderForm && <AddEquipment setRenderForm={setRenderForm} />}
