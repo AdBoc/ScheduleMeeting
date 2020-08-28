@@ -138,7 +138,7 @@ export interface CharacterInterface {
   };
   Other: {
     TaggedThrows: [string | null, string | null];
-    TaggedSkills: [string | null, string | null, string | null, string | null, string | null];
+    TaggedSkills: string[];
     Currency: {
       PP: number;
       GP: number;

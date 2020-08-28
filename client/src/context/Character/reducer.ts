@@ -18,7 +18,7 @@ export enum Types {
   TAG_PROP = "TAG_PROP",
   DELETE_IN_ARRAY = "DELETE_IN_ARRAY",
   SET_CHARACTER = "SET_CHARACTER",
-  REORDER_ARRAY = "REORDER_ARRAY",
+  SET_ARRAY = "SET_ARRAY",
   SET_ITEM_QTY = "SET_ITEM_QTY",
   CHANGE_EFFECT_STATUS = "CHANGE_EFFECT_STATUS",
   CHANGE_INSPIRATION = "CHANGE_INSPIRATION",
@@ -55,22 +55,36 @@ type SettingsPayload = {
     newValue: string;
   };
   [Types.ADD_TO_ARRAY]: {
-    property: "Attacks" | "Equipment" | "Effects" | "Cantrips" | "Spells" | "Actions";
-    newValue: Attack | BackpackObj | Effect | Cantrip | Spell | Action;
+    property:
+      | "Attacks"
+      | "Equipment"
+      | "Effects"
+      | "Cantrips"
+      | "Spells"
+      | "Actions"
+      | "Other.TaggedSkills";
+    newValue: Attack | BackpackObj | Effect | Cantrip | Spell | Action | string;
   };
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
   };
   [Types.DELETE_IN_ARRAY]: {
-    property: "Attacks" | "Equipment" | "Effects" | "Cantrips" | "Spells" | "Actions";
+    property:
+      | "Attacks"
+      | "Equipment"
+      | "Effects"
+      | "Cantrips"
+      | "Spells"
+      | "Actions"
+      | "Other.TaggedSkills";
     id: string;
   };
   [Types.SET_CHARACTER]: {
     newCharacter: CharacterInterface;
   };
-  [Types.REORDER_ARRAY]: {
-    property: "Equipment" | "Attacks";
-    newArr: BackpackObj[] | Attack[];
+  [Types.SET_ARRAY]: {
+    property: string;
+    newArr: BackpackObj[] | Attack[] | string[];
   };
   [Types.SET_ITEM_QTY]: {
     id: string;
@@ -105,24 +119,24 @@ export const initialCharacter: CharacterInterface = {
     Charisma: 0,
   },
   Skills: {
-    Athletics: 0,
-    Acrobatics: 0,
-    SleightOfHand: 0,
-    Stealth: 0,
-    Arcana: 0,
-    History: 0,
-    Invesigation: 0,
-    Nature: 0,
-    Religion: 0,
-    AnimalHandling: 0,
-    Insight: 0,
-    Medicine: 0,
-    Perception: 0,
-    Survival: 0,
-    Deception: 0,
-    Intimidation: 0,
-    Performance: 0,
-    Persuasion: 0,
+    Athletics: -5,
+    Acrobatics: -5,
+    SleightOfHand: -5,
+    Stealth: -5,
+    Arcana: -5,
+    History: -5,
+    Invesigation: -5,
+    Nature: -5,
+    Religion: -5,
+    AnimalHandling: -5,
+    Insight: -5,
+    Medicine: -5,
+    Perception: -5,
+    Survival: -5,
+    Deception: -5,
+    Intimidation: -5,
+    Performance: -5,
+    Persuasion: -5,
   },
   Story: {
     Name: "",
@@ -143,6 +157,7 @@ export const initialCharacter: CharacterInterface = {
   Actions: [],
   Other: {
     TaggedThrows: [null, null],
+    TaggedSkills: [],
     Currency: {
       PP: 0,
       GP: 0,
@@ -175,16 +190,14 @@ export const reducer = (
       return immutable.set(
         character,
         action.payload.property,
-        (character[action.payload.property] as Array<
-          CharacterInterface["Equipment" | "Attacks"][0]
-        >).filter((element) => element.id !== action.payload.id)
+        ((character as any)[action.payload.property] as Array<any>).filter(
+          (element) => element.id !== action.payload.id
+        )
       );
-    case Types.REORDER_ARRAY:
+    case Types.SET_ARRAY:
       return immutable.set(character, action.payload.property, action.payload.newArr);
     case Types.SET_CHARACTER:
-      return {
-        ...action.payload.newCharacter,
-      };
+      return action.payload.newCharacter;
     case Types.TAG_PROP:
       return {
         ...character,
