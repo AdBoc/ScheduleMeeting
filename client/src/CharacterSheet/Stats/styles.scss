@@ -1,15 +1,15 @@
 .c-stats {
-    display: flex;
-    padding: 0.7em;
-    font-size: 1.5em;
-    justify-content: space-around;
-    align-items: center;
-    &__stat {
-        margin: 0 0 0 0.5em;
-        flex-grow: 1.1;
-    }
-    &__mod-val {
-        min-width: 2em;
-        text-align: center;
-    }
+  display: flex;
+  padding: 0.7em;
+  font-size: 1.5em;
+  justify-content: space-around;
+  align-items: center;
+  &__stat {
+    margin: 0 0 0 0.5em;
+    flex-grow: 1.1;
+  }
+  &__mod-val {
+    min-width: 2em;
+    text-align: center;
+  }
 }

@@ -30,10 +30,6 @@ const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
         <label className="c-new-eq__label" htmlFor="quantity">Quantity:</label>
         <input className="c-new-eq__num" ref={register} type="number" name="quantity" aria-label="quantity" onFocus={(e: any) => e.target.select()} />
       </div>
-      <div className="c-new-eq-flex">
-        <label className="c-new-eq__label" htmlFor="weight">Weight:</label>
-        <input className="c-new-eq__num" ref={register} type="number" name="weight" aria-label="quantity" onFocus={(e: any) => e.target.select()} />
-      </div>
       <select className="c-new-eq__input" name="type" ref={register}>
         <option value="other">Other</option>
         <option value="armors">Armors</option>

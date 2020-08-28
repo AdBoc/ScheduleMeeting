@@ -50,7 +50,6 @@ export type BackpackObj = {
   name: string;
   description: string;
   quantity: number;
-  weight: number;
   type: string;
 };
 
@@ -139,6 +138,7 @@ export interface CharacterInterface {
   };
   Other: {
     TaggedThrows: [string | null, string | null];
+    TaggedSkills: [string | null, string | null, string | null, string | null, string | null];
     Currency: {
       PP: number;
       GP: number;

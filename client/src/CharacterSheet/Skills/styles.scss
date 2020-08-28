@@ -1,11 +1,17 @@
 @import "../variables.scss";
 
 .c-skills {
-    display: flex;
-    flex-direction: column;
-    &__skill {
-        border-bottom: 1px solid $primary-color;
-        font-size: 1.5em;
-        margin: 0.25em 1em;
-    }
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  &__edit {
+      position: absolute;
+      top: 0;
+      right: 0;
+  }
+  &__skill {
+    border-bottom: 1px solid $primary-color;
+    font-size: 1.5em;
+    margin: 0.25em 1em;
+  }
 }

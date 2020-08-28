@@ -121,8 +121,9 @@ npm run start
 </details>
 
 ## TO DO:
-Better typescript integration while calculating currency
+Better typescript integration especially while calculating currency
 Better current active effects style
 
 automatyczna kalkulacja skillow
 checkbox zeby ktos zaznaczyl czy w ataku ma proficiency
+tylko przy zmiania proficiency rekalkulowane sa awartosci takie jak spell save dc zamiast za kazdym renderem, spell save dc i bonus attack musza miec wtedy swoje pola w obiekcie

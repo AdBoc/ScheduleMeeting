@@ -8,7 +8,7 @@ interface IProps {
   * value of P tag
   */
   fieldName: string;
-  property: keyof CharacterInterface["Story"];
+  property: string;
 }
 
 /**
@@ -26,7 +26,7 @@ const InputField: React.FC<IProps> = ({ fieldName, property }) => {
   return (
     <div className="g-input">
       <p className="g-input__label">{fieldName}</p>
-      <input className="g-input__field" type="text" onChange={handleInput} value={character.Story[property]} />
+      <input className="g-input__field" type="text" onChange={handleInput} value={character.Story[property as keyof CharacterInterface['Story']]} autoComplete="false" autoCorrect="false" spellCheck="false" />
     </div>
   )
 }

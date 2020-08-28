@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import StatButtons from '../../components/StatButtons';
 import { characterContext } from '../../context/Character';
 import './styles.scss';
 
 const Skills: React.FC = () => {
   const { character } = useContext(characterContext);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleEdit = () => setIsEdit(prev => !prev);
 
   return (
     <div className="c-skills">
+      <p className="c-skills__edit" onClick={handleEdit}>EDIT</p>
       <p className="c-skills__skill">Strength</p>
       <StatButtons fieldName="Athletics" prop={character.Skills.Athletics} propName="Skills.Athletics" />
       <p className="c-skills__skill">Dexterity</p>

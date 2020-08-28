@@ -67,13 +67,11 @@ const Equipment: React.FC = () => {
       <div className="c-grid">
         <div className="c-grid-table-row">
           <p className="c-grid_table-cell grid-label">NAME</p>
-          <p className="c-grid_table-cell grid-label">WEIGHT</p>
           <p className="c-grid_table-cell grid-label">QTY</p>
         </div>
         {eqItemsSort().map(item => (
           <div key={item.id} className="c-grid-table-row" onClick={showDetails(item)}>
             <p className="c-grid_table-cell">{item.name}</p>
-            <p className="c-grid_table-cell">{item.weight}</p>
             <p className="c-grid_table-cell">{item.quantity}</p>
           </div>
         ))}

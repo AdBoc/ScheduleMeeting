@@ -8,7 +8,7 @@ interface IProps {
   * value of P tag name of Story property
   */
   fieldName: string;
-  property: keyof CharacterInterface["Story"];
+  property: string;
 }
 
 /**
@@ -26,7 +26,7 @@ const TextAreaField: React.FC<IProps> = ({ fieldName, property }) => {
   return (
     <div className="g-text-area">
       <p className="g-text-area__label">{fieldName}</p>
-      <textarea className="g-text-area__field" onChange={handleTextArea} value={character.Story[property]} />
+      <textarea className="g-text-area__field" onChange={handleTextArea} value={character.Story[property as keyof CharacterInterface['Story']]} />
     </div>
   )
 }

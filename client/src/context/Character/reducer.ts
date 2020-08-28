@@ -167,6 +167,8 @@ export const reducer = (
       return immutable.update(character, action.payload.property, (v) => v - 1) as any;
     case Types.CHANGE_STAT:
       return immutable.set(character, action.payload.property, +action.payload.newValue); //+"" = 0
+    case Types.EDIT_TEXT:
+      return immutable.set(character, action.payload.property, action.payload.newValue);
     case Types.ADD_TO_ARRAY:
       return immutable.push(character, action.payload.property, action.payload.newValue);
     case Types.DELETE_IN_ARRAY:
@@ -182,14 +184,6 @@ export const reducer = (
     case Types.SET_CHARACTER:
       return {
         ...action.payload.newCharacter,
-      };
-    case Types.EDIT_TEXT:
-      return {
-        ...character,
-        Story: {
-          ...character.Story,
-          [action.payload.property]: action.payload.newValue,
-        },
       };
     case Types.TAG_PROP:
       return {

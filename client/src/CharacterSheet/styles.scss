@@ -2,165 +2,165 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .c-btns {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    border-bottom: 1px solid $primary-color;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1px solid $primary-color;
 }
 
 .c-btn {
-    padding: 0.75em;
-    margin: 0.25em;
+  padding: 0.75em;
+  margin: 0.25em;
 }
 
 .g-add-button {
-    display: flex;
-    margin: 0.5em 1em;
-    font-size: 1.25em;
-    justify-content: space-around;
-    &__field {
-        flex-grow: 1.1;
-    }
-    &__btn {
-        margin: 0 0.3em;
-        border-radius: 20%;
-        color: white;
-        background-color: $primary-color;
-        min-width: 1em;
-        min-height: 1em;
-        padding: 0;
-        cursor: pointer;
-    }
-    &__val {
-        text-align: center;
-        min-width: 1.2em;
-    }
+  display: flex;
+  margin: 0.5em 1em;
+  font-size: 1.25em;
+  justify-content: space-around;
+  &__field {
+    flex-grow: 1.1;
+  }
+  &__btn {
+    margin: 0 0.3em;
+    border-radius: 20%;
+    color: white;
+    background-color: $primary-color;
+    min-width: 1em;
+    min-height: 1em;
+    padding: 0;
+    cursor: pointer;
+  }
+  &__val {
+    text-align: center;
+    min-width: 1.2em;
+  }
 }
 
 .dragged {
-    background-color: $primary-color;
-    color: white;
+  background-color: $primary-color;
+  color: white;
 }
 
 .g-input {
-    margin: 0.5em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    &__label {
-        flex-grow: 1.1;
-    }
-    &__field {
-        background-color: $primary-color;
-        color: white;
-        padding: 0.25em;
-    }
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  &__label {
+    flex-grow: 1.1;
+  }
+  &__field {
+    background-color: $primary-color;
+    color: white;
+    padding: 0.25em;
+  }
 }
 
 .g-text-area {
-    text-align: center;
-    &__label {
-        font-size: 1.25em;
-        margin: 1em auto 0.5em;
-    }
-    &__field {
-        margin: 0 auto;
-        background-color: $primary-color;
-        color: white;
-        width: 75%;
-        height: 7em;
-    }
+  text-align: center;
+  &__label {
+    font-size: 1.25em;
+    margin: 1em auto 0.5em;
+  }
+  &__field {
+    margin: 0 auto;
+    background-color: $primary-color;
+    color: white;
+    width: 75%;
+    height: 7em;
+  }
 }
 
 .generic-select {
-    appearance: none;
-    color: black;
-    padding: 0.1em;
-    font-size: 1.5em;
-    text-align-last: center;
-    &:focus {
-        outline: none;
-    }
+  appearance: none;
+  color: black;
+  padding: 0.1em;
+  font-size: 1.5em;
+  text-align-last: center;
+  &:focus {
+    outline: none;
+  }
 }
 
 .hide {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .g-btn {
-    display: block;
-    color: white;
-    background-color: $primary-color;
-    padding: 0.5em;
-    margin: 0.5em auto;
-    min-width: 10em;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    &--red {
-        background-color: rgba(230, 41, 41, 0.918);
-    }
+  display: block;
+  color: white;
+  background-color: $primary-color;
+  padding: 0.5em;
+  margin: 0.5em auto;
+  min-width: 10em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  &--red {
+    background-color: rgba(230, 41, 41, 0.918);
+  }
 }
 
 .g-tagged {
-    background-color: $primary-color;
-    color: white;
+  background-color: $primary-color;
+  color: white;
 }
 
 .g-input-num {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.25em;
-    margin: 0.25em 1em;
-    align-items: center;
-    &__val {
-        border: 1px solid black;
-        padding: 0.3em;
-        text-align: center;
-        background-color: $primary-color;
-        color: white;
-        margin: 0 1.25em 0 0;
-        width: 2em;
-    }
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25em;
+  margin: 0.25em 1em;
+  align-items: center;
+  &__val {
+    border: 1px solid black;
+    padding: 0.3em;
+    text-align: center;
+    background-color: $primary-color;
+    color: white;
+    margin: 0 1.25em 0 0;
+    width: 2em;
+  }
 }
 
 @media screen and (min-width: 450px) {
-    .sheet--view {
-        max-width: 25em;
-        margin: 0 auto;
-    }
-    .c-save-throws {
-        max-width: 30em;
-        margin: 0 auto;
-    }
-    .c-list-scroll {
-        max-width: 50em;
-        margin: 0 auto;
-    }
-    .g-input {
-        max-width: 25em;
-        margin: 0.5em auto;
-    }
-    .g-text-area {
-        max-width: 35em;
-        margin: 1em auto;
-    }
-    .c-story {
-        max-width: 25em;
-        margin: 0 auto;
-    }
-    .c-skills {
-        max-width: 25em;
-        margin: 1.5em auto;
-    }
-    .c-sheet__player {
-        justify-content: space-around;
-    }
+  .sheet--view {
+    max-width: 25em;
+    margin: 0 auto;
+  }
+  .c-save-throws {
+    max-width: 30em;
+    margin: 0 auto;
+  }
+  .c-list-scroll {
+    max-width: 50em;
+    margin: 0 auto;
+  }
+  .g-input {
+    max-width: 25em;
+    margin: 0.5em auto;
+  }
+  .g-text-area {
+    max-width: 35em;
+    margin: 1em auto;
+  }
+  .c-story {
+    max-width: 25em;
+    margin: 0 auto;
+  }
+  .c-skills {
+    max-width: 25em;
+    margin: 1.5em auto;
+  }
+  .c-sheet__player {
+    justify-content: space-around;
+  }
 }
 
 // .i-trash {
