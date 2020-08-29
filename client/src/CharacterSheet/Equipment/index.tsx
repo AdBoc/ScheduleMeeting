@@ -72,13 +72,13 @@ const Equipment: React.FC = () => {
         {eqItemsSort().map(item => (
           <div key={item.id} className="c-grid-table-row" onClick={showDetails(item)}>
             <p className="c-grid_table-cell">{item.name}</p>
-            <p className="c-grid_table-cell">{item.quantity}</p>
+            <p className="c-grid_table-cell">{item.quantity ? item.quantity : "-"}</p>
           </div>
         ))}
         {details && (
           <div className="details">
-            <p className="details__text">{details.description}</p>
-            <input className="details__text" type="number" name={details.id} value={details.quantity} onChange={handleQuantity} onFocus={(e: any) => e.target.select()} />
+            <p className="details__desc">{details.description}</p>
+            {details.quantity && <input className="details__text" type="number" name={details.id} value={details.quantity} onChange={handleQuantity} onFocus={(e: any) => e.target.select()} />}
             <button className="details__text" onClick={deleteItem}>DELETE</button>
           </div>
         )}

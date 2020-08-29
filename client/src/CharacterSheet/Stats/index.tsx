@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import StatsSelect from '../../components/StatsSelect';
 import { characterContext } from '../../context/Character';
 import { charMethods } from '../../Services/CharacterMethods';
 import './styles.scss';
+import StatsSelect from './StatsSelect';
 
 const Stats: React.FC = () => {
   const { character } = useContext(characterContext);

@@ -43,6 +43,7 @@ export type Attack = {
   range: string;
   type: string;
   profMod: string;
+  proficient: boolean;
 };
 
 export type BackpackObj = {

@@ -35,7 +35,7 @@ const Spells = () => {
       <div className="spells">
         {character.Spells.map((spell) => (
           <div className="spell" key={spell.id}>
-            Spell
+            {spell.name}
           </div>
         ))}
       </div>

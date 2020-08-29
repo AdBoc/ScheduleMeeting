@@ -64,17 +64,17 @@ input::-webkit-inner-spin-button {
 }
 
 .g-text-area {
+  margin-top: 1.5em;
   text-align: center;
   &__label {
     font-size: 1.25em;
-    margin: 1em auto 0.5em;
   }
   &__field {
-    margin: 0 auto;
+    display: block;
+    margin: 0.5em auto;
+    width: 80%;
     background-color: $primary-color;
     color: white;
-    width: 75%;
-    height: 7em;
   }
 }
 
