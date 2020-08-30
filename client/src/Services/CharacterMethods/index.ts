@@ -18,7 +18,7 @@ class CharMethods {
    * @param isTagged  if its tagged then character proficienty is added to final result
    */
   calcSavingThrowMod(level: number, statVal: number, isTagged: boolean) {
-    if (isTagged) return this.calcStatModificator(level) + this.calcProficiency(statVal);
+    if (isTagged) return this.calcProficiency(level) + this.calcStatModificator(statVal);
     return this.calcStatModificator(statVal);
   }
   /**

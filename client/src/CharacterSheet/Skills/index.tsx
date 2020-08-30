@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { characterContext } from '../../context/Character';
+import React, { useState } from 'react';
 import './styles.scss';
 import Skill from './Skill';
 

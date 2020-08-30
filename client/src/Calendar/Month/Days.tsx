@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FilteredByName, FilteredAllNames, DateProps } from '../../ts/interfaces';
+import React from 'react';
+import { FilteredByName, FilteredAllNames, DateProps, SelectedDays } from '../../ts/interfaces';
 import { apiService } from '../../Services/FetchAPI';
 import { useCalendar } from '../../hooks/useCalendar';
 
@@ -7,27 +7,26 @@ interface IProps {
   dateProps: DateProps;
   selectedPlayer: string | null;
   daysFilteredByName: FilteredByName | FilteredAllNames;
-  setResponseStatus: React.Dispatch<React.SetStateAction<object>>;
+  selectedDays: SelectedDays;
+  setSelectedDays: React.Dispatch<React.SetStateAction<SelectedDays>>;
 }
 
-const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setResponseStatus }) => {
+const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setSelectedDays, selectedDays }) => {
   const { dateProps: { daysOfMonth, firstDayOfMonth } } = useCalendar();
-  const [isFetching, setIsFetching] = useState(false);
   const { currentMonth, currentYear } = dateProps;
 
   const handleDaySelect = async ({ target }: any) => {
     const { value, className } = target;
     const doesNotExist = /\b(\undefined)$/.test(className);
-    if (doesNotExist && !isFetching) {
-      setIsFetching(prev => !prev);
-      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
-      setResponseStatus({});
-      setIsFetching(prev => !prev);
-    } else if (!doesNotExist && !isFetching) {
-      setIsFetching(prev => !prev);
+    if (doesNotExist) {
+      if (selectedPlayer)
+        setSelectedDays([...selectedDays, { day: value, name: selectedPlayer }]);
+      const respo = await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
+      console.log(respo);
+    } else if (!doesNotExist) {
+      const testCopy = [...selectedDays];
+      setSelectedDays(testCopy.filter((date) => (date.name !== selectedPlayer || (date.day !== value && date.name === selectedPlayer))));
       await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
-      setResponseStatus({});
-      setIsFetching(prev => !prev);
     }
   }
 

@@ -2,8 +2,9 @@
 
 .c-form {
   border: 3px double $primary-color;
-  margin: 1em;
-  padding: 1em;
+  margin: 1em auto;
+  padding: 2em;
+  width: fit-content;
   &__label {
     font-size: 1.5em;
     text-align: center;
@@ -15,6 +16,13 @@
     border: 1px solid $primary-color;
     padding: 0.3em;
     min-width: 14em;
+  }
+  &__box-label {
+    display: block;
+    text-align: center;
+  }
+  &__checkbox {
+    margin: 0 0.5em;
   }
 }
 
@@ -120,14 +128,9 @@
   }
 }
 
-.spells {
-}
-.spell {
-}
-
 .spell-slots {
   text-align: center;
-  margin-top: 2em;
+  margin-top: 0.5em;
   font-size: 1.25em;
 }
 .spell-slot {
@@ -180,4 +183,15 @@
 }
 .Radiant {
   background-color: rgb(254, 255, 176);
+}
+
+.actions {
+  text-align: center;
+  &__title {
+    font-weight: 600;
+    margin-bottom: 1em;
+  }
+  &__action {
+    padding: 0.5em;
+  }
 }

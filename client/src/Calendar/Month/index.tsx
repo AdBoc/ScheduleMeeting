@@ -12,7 +12,6 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
   const { prevMonth, nextMonth, parseWithName, parseNoName, dateProps } = useCalendar();
   const { currentMonth, currentYear } = dateProps;
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
-  const [responseStatus, setResponseStatus] = useState({});
 
   const daysFilteredByName = selectedPlayer ? parseWithName(selectedDays, selectedPlayer) : parseNoName(selectedDays);
 
@@ -23,7 +22,7 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
     };
 
     fetchData();
-  }, [currentMonth, currentYear, responseStatus]);
+  }, [currentMonth, currentYear]);
 
   return (
     <div className="calendar">
@@ -43,7 +42,8 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
         dateProps={dateProps}
         selectedPlayer={selectedPlayer}
         daysFilteredByName={daysFilteredByName}
-        setResponseStatus={setResponseStatus}
+        selectedDays={selectedDays}
+        setSelectedDays={setSelectedDays}
       />
     </div>
   )

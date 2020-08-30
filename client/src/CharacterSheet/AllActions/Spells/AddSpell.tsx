@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 import { characterContext } from '../../../context/Character';
 import { useForm } from 'react-hook-form';
 import { Types } from '../../../context/Character/reducer';
@@ -13,9 +14,7 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
   const { dispatch } = useContext(characterContext);
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      level: "1",
       school: "Conjuration",
-      components: "V"
     }
   });
   const onSubmit = handleSubmit((data) => {
@@ -25,8 +24,10 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
 
   return (
     <form className="c-form" onSubmit={onSubmit}>
-      <input ref={register} className="c-form__input" name="name" placeholder="Name" />
-      <select ref={register} className="c-form__input" name="level">
+      <p className="c-form__label">Add Spell</p>
+      <input ref={register} className="c-form__input" name="name" placeholder="Name" required />
+      <select ref={register} className="c-form__input" name="level" required>
+        <option value="">--Spell Level--</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -58,13 +59,18 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="12 hours">12 hours</option>
         <option value="24 hours">24 hours</option>
       </select>
-      <input ref={register} className="c-form__input" name="range" placeholder="range" type="number" />
-      <select ref={register} className="c-form__input" name="components">
+      <input ref={register} className="c-form__input" name="range" placeholder="Range" type="number" />
+      <select ref={register} className="c-form__input" name="components" required>
+        <option value="">--Components--</option>
         <option value="V">V</option>
         <option value="S">S</option>
         <option value="M">M</option>
+        <option value="V, S">V, S</option>
+        <option value="V, M">V, M</option>
+        <option value="S, M">S, M</option>
+        <option value="V, S, M">V, S, M</option>
       </select>
-      <input ref={register} className="c-form__input" name="description" placeholder="Description" />
+      <TextareaAutosize ref={register} className="c-form__input" name="description" placeholder="Description" rows={1} />
       <input className="g-btn" type="submit" value="Submit" />
     </form>
   )

@@ -5,11 +5,14 @@
 REST API made in GO and MongoDB
 
 API Routes
-- post "/" - sends month and retrieved data for said month 
-- post "/new" - adds new data to DB
-- patch "/" - deletes data in DB
 
-Install Locally: 
+- post "/api/" - sends month and retrieved data for said month
+- post "/api/new" - adds new day to month
+- patch "/api/" - deletes selected day from month
+- post "/api/character" - get selected character data
+- patch "/api/character" - store character in DB
+
+Install Locally:
 
 ```sh
  go mod download
@@ -22,8 +25,10 @@ Install Locally:
 Front - React(Typescript) and SCSS
 
 Front Routes
+
 - "/" - calendar component
 - "/sheet" - character sheet
+- "/reset" - use in emergency, clears all localStorage
 
 Install Locally:
 
@@ -116,15 +121,16 @@ npm run start
 │       setupTests.ts
 └───ts
         interfaces.ts
-```           
+```
+
 </P>
 </details>
 
 ## TO DO:
+
 Better typescript integration especially while calculating currency
 Better current active effects style
+Change notyf to other library
+Add Extra layer to details view with handler to hide it on click
 
-automatyczna kalkulacja skillow
-checkbox zeby ktos zaznaczyl czy w ataku ma proficiency
-tylko przy zmiania proficiency rekalkulowane sa awartosci takie jak spell save dc zamiast za kazdym renderem, spell save dc i bonus attack musza miec wtedy swoje pola w obiekcie
-//specjalny route do usuwania storage
+Performance idea -> values like spell save DC only changed when level (proficiency) values is changed

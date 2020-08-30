@@ -37,7 +37,7 @@ const Effects = () => {
         )
       }
       {details && <div className="details">
-        <p className="details__text">{details.description}</p>
+        <p className="details__desc">{details.description}</p>
         <button className="details__text" name={details.id} onClick={delteEffect}>DELETE</button>
       </div>
       }
