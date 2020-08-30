@@ -84,7 +84,7 @@ type SettingsPayload = {
   };
   [Types.SET_ARRAY]: {
     property: string;
-    newArr: BackpackObj[] | Attack[] | string[];
+    newArr: BackpackObj[] | Attack[] | string[] | number[];
   };
   [Types.SET_ITEM_QTY]: {
     id: string;
@@ -167,6 +167,7 @@ export const initialCharacter: CharacterInterface = {
     },
     Inspiration: false,
     SpellSlots: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    CurrentSlots: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     SpellProficiency: null,
   },
 };

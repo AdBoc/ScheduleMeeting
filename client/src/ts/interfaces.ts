@@ -149,6 +149,7 @@ export interface CharacterInterface {
     };
     Inspiration: boolean;
     SpellSlots: [number, number, number, number, number, number, number, number, number];
+    CurrentSlots: [number, number, number, number, number, number, number, number, number];
     SpellProficiency: null | string;
   };
 }

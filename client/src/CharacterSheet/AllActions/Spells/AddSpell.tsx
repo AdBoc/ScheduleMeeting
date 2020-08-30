@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { characterContext } from '../../../context/Character';
 import { useForm } from 'react-hook-form';

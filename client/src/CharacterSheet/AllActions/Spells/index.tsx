@@ -34,9 +34,9 @@ const Spells = () => {
       {isSlots && <SpellSlots />}
       <div className="spells">
         {character.Spells.map((spell) => (
-          <div className="spell" key={spell.id}>
+          <p className="spell" key={spell.id}>
             {spell.name}
-          </div>
+          </p>
         ))}
       </div>
     </>
