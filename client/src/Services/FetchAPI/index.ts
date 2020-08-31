@@ -1,5 +1,5 @@
 class ApiService {
-  url = "https://dev.moreoverandabove.com/api";
+  url = "http://localhost:8080/api";
   async getSelectedMonthData(date: string) {
     const rBody = { date };
     const response = await fetch(`${this.url}/`, {
@@ -57,3 +57,20 @@ class ApiService {
   }
 }
 export const apiService = new ApiService();
+
+// async getSelectedMonthData(date: string) {
+//   const rBody = { date };
+//   try {
+//     const response = await fetch(`${this.url}/`, {
+//       method: "POST",
+//       body: JSON.stringify(rBody),
+//     });
+//     if (response.status >= 400 && response.status <= 600) {
+//       return { daysData: [] };
+//     }
+//     return response.json();
+//   } catch (error) {
+//     console.log(error);
+//     return { daysData: [] };
+//   }
+// } w odpowiedzi przesylac obiekt z propery {datsData: [], error} i jesli te error jest to odpowiedni komunikat

@@ -5,20 +5,22 @@ import { useCalendar } from '../../hooks/useCalendar';
 import Days from './Days';
 
 const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
-
   let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
-  const { prevMonth, nextMonth, parseWithName, parseNoName, dateProps } = useCalendar();
+  const { prevMonth, nextMonth, parseUser, parseNoUser, dateProps } = useCalendar();
   const { currentMonth, currentYear } = dateProps;
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays>([]);
+  const [isFetching, setIsFetching] = useState(false);
 
-  const daysFilteredByName = selectedPlayer ? parseWithName(selectedDays, selectedPlayer) : parseNoName(selectedDays);
+  const daysFilteredByName = selectedPlayer ? parseUser(selectedDays, selectedPlayer) : parseNoUser(selectedDays);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsFetching(true);
       const { daysData } = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
       setSelectedDays(daysData);
+      setIsFetching(false);
     };
 
     fetchData();
@@ -29,7 +31,7 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
       <div className="month-indicator">
         <button className="month-indicator__button" onClick={prevMonth}>{"<"}</button>
         <div className="month-indicator__full">
-          <p className="month-indicator__label">{monthsInYear[currentMonth - 1]} {currentYear}</p>
+          <p className="month-indicator__label">{monthsInYear[currentMonth]} {currentYear}</p>
         </div>
         <button className="month-indicator__button" onClick={nextMonth}>{">"}</button>
       </div>
@@ -38,6 +40,7 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
           return <p key={index} className="top">{day}</p>
         })}
       </div>
+      {isFetching && <div className="calendar__fetching"><p className="calendar__fetching__text">...Loading</p></div>}
       <Days
         dateProps={dateProps}
         selectedPlayer={selectedPlayer}

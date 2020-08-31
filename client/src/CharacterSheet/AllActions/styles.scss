@@ -84,7 +84,7 @@
 
 .c-action__tab {
   max-width: 40em;
-  margin: 1.5em auto 0 auto;
+  margin: 0 auto;
 }
 
 .--active {
@@ -135,6 +135,39 @@
 }
 .spell-slot {
   margin: 0.5em;
+}
+
+.spells__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em 0.25em;
+}
+
+.slots {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+}
+
+.slot {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+  &__input {
+    text-align: center;
+    width: 1em;
+  }
+}
+
+.menu__button {
+  margin: 0 !important;
+}
+
+.menu__info {
+  display: flex;
+  flex-direction: column;
 }
 
 .toggle-switch:checked + .toggle-text {
@@ -189,7 +222,7 @@
   text-align: center;
   &__title {
     font-weight: 600;
-    margin-bottom: 1em;
+    margin: 1em;
   }
   &__action {
     padding: 0.5em;

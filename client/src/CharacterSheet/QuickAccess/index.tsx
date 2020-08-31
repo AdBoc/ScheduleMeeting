@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { Notyf } from 'notyf';
 import { characterContext } from '../../context/Character';
 import { initialCharacter, Types } from '../../context/Character/reducer';
 import { history } from '../../Services/History';
@@ -8,12 +7,12 @@ import { apiService } from '../../Services/FetchAPI'
 import StatButtons from '../../components/StatButtons';
 import ChangeUserAndData from './ChangeUserAndData';
 import InputNumber from '../../components/InputNumber';
-import 'notyf/notyf.min.css';
 
 const QuickAccess: React.FC = () => {
-  const notyf = new Notyf();
   const [playerVisiblity, setPlayerVisiblity] = useState(false);
   const { character, dispatch } = useContext(characterContext);
+
+  const handleInspiration = () => dispatch({ type: Types.CHANGE_INSPIRATION, payload: { newValue: !character.Other.Inspiration } });
 
   const clearStorage = () => {
     localStorage.removeItem("character");
@@ -23,15 +22,13 @@ const QuickAccess: React.FC = () => {
 
   const sendToBackend = async () => {
     if (!localStorage.getItem("user"))
-      return notyf.error("You must pick user");
-    const status = await apiService.sendCharacter();
-    if (status === 200)
-      return notyf.success("Changes have been saved");
-    return notyf.error("Error while sending data");
-  };
-
-  const handleInspiration = () => {
-    dispatch({ type: Types.CHANGE_INSPIRATION, payload: { newValue: !character.Other.Inspiration } });
+      return
+    await apiService.sendCharacter();
+    // return notification error "pick user"
+    // const status = await apiService.sendCharacter();
+    // if (status === 200)
+    // return notification success
+    // return notification data sending error 
   };
 
   return (

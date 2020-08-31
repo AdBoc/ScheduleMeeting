@@ -1,7 +1,6 @@
 import React from 'react';
 import { FilteredByName, FilteredAllNames, DateProps, SelectedDays } from '../../ts/interfaces';
 import { apiService } from '../../Services/FetchAPI';
-import { useCalendar } from '../../hooks/useCalendar';
 
 interface IProps {
   dateProps: DateProps;
@@ -12,8 +11,7 @@ interface IProps {
 }
 
 const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setSelectedDays, selectedDays }) => {
-  const { dateProps: { daysOfMonth, firstDayOfMonth } } = useCalendar();
-  const { currentMonth, currentYear } = dateProps;
+  const { currentMonth, currentYear, firstDayOfMonth, daysOfMonth } = dateProps;
 
   const handleDaySelect = async ({ target }: any) => {
     const { value, className } = target;
@@ -21,8 +19,7 @@ const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName,
     if (doesNotExist) {
       if (selectedPlayer)
         setSelectedDays([...selectedDays, { day: value, name: selectedPlayer }]);
-      const respo = await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
-      console.log(respo);
+      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
     } else if (!doesNotExist) {
       const testCopy = [...selectedDays];
       setSelectedDays(testCopy.filter((date) => (date.name !== selectedPlayer || (date.day !== value && date.name === selectedPlayer))));
@@ -47,7 +44,7 @@ const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName,
     const newCurrentDay = new Date();
     let className = `day ${day}`;
     className += daysFilteredByName[day] !== undefined ? ` count${daysFilteredByName[day].length}` : "";
-    if (currentMonth - 1 === newCurrentDay.getMonth() && currentYear === newCurrentDay.getFullYear() && +day === newCurrentDay.getDate()) {
+    if (currentMonth === newCurrentDay.getMonth() && currentYear === newCurrentDay.getFullYear() && +day === newCurrentDay.getDate()) {
       className += " currentDay";
     }
     return className;

@@ -30,30 +30,29 @@ const SpellSlots = () => {
     for (let i = 0; i < slotsCopy.length; i++) {
       slotsCopy[i] += character.Other.ShortRestSlots[i];
     }
-    console.log(slotsCopy);
     dispatch({ type: Types.SET_ARRAY, payload: { property: "Other.CurrentSlots", newArr: slotsCopy } });
   };
 
   return (
     <>
-      <button onClick={handleLongRest}>LONG REST</button>
-      <button onClick={handleShortRest}>SHORT REST</button>
-      <p>MAX SLOTS VALUES</p>
-      <div>
-        {character.Other.SpellSlots.map((slot, index) => (
-          <label key={index}>lvl {index + 1}<input type="number" name={index.toString()} value={slot} onChange={handleChange} onFocus={(e: any) => e.target.select()} /></label>
-        ))}
-      </div>
-      <p>SHORT REST VALUES</p>
-      <div>
-        {character.Other.ShortRestSlots.map((slot, index) => (
-          <label key={index}>lvl {index + 1}<input type="number" name={index.toString()} value={slot} onChange={handleChangeRest} onFocus={(e: any) => e.target.select()} /></label>
-        ))}
-      </div>
+      <button className="g-btn" onClick={handleLongRest}>LONG REST</button>
+      <button className="g-btn" onClick={handleShortRest}>SHORT REST</button>
       <p>CURRENT SLOTS</p>
       <div className="spell-slots">
         {character.Other.CurrentSlots.map((slot, index) => (
           <button key={index} className="spell-slot" name={index.toString()} onClick={handleDecrement}>Level {index + 1}: {slot}</button>
+        ))}
+      </div>
+      <p>MAX SLOTS VALUES</p>
+      <div className="slots">
+        {character.Other.SpellSlots.map((slot, index) => (
+          <label key={index} className="slot">{index + 1}<input className="slot__input" type="number" name={index.toString()} value={slot} onChange={handleChange} onFocus={(e: any) => e.target.select()} /></label>
+        ))}
+      </div>
+      <p>SHORT REST VALUES</p>
+      <div className="slots">
+        {character.Other.ShortRestSlots.map((slot, index) => (
+          <label key={index} className="slot">{index + 1}<input className="slot__input" type="number" name={index.toString()} value={slot} onChange={handleChangeRest} onFocus={(e: any) => e.target.select()} /></label>
         ))}
       </div>
     </>

@@ -18,9 +18,13 @@ const Spells = () => {
 
   return (
     <>
-      <button className="g-btn" onClick={handleSlots}>Spell Slots</button>
-      <p>Spell Save DC: {character.Other.SpellProficiency !== null ? <span>{8 + charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
-      <p>Spell Attack Bonus: {character.Other.SpellProficiency !== null ? <span>{charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
+      <div className="spells__menu">
+        <div className="menu__info">
+          <p className="">Save DC: {character.Other.SpellProficiency !== null ? <span>{8 + charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
+          <p className="">Attack Bonus: {character.Other.SpellProficiency !== null ? <span>{charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
+        </div>
+        <button className="g-btn menu__button" onClick={handleSlots}>Spell Slots</button>
+      </div>
       {isProfSelect && (
         <select className="c-form__input" onChange={handleSelect}>
           <option value="Strength">Strength</option>
