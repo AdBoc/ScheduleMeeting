@@ -59,7 +59,7 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="12 hours">12 hours</option>
         <option value="24 hours">24 hours</option>
       </select>
-      <input ref={register} className="c-form__input" name="range" placeholder="Range" type="number" />
+      <input ref={register} className="c-form__input" name="range" placeholder="Range" type="number" required />
       <select ref={register} className="c-form__input" name="components" required>
         <option value="">--Components--</option>
         <option value="V">V</option>

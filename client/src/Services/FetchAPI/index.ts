@@ -2,15 +2,20 @@ class ApiService {
   url = "http://localhost:8080/api";
   async getSelectedMonthData(date: string) {
     const rBody = { date };
-    const response = await fetch(`${this.url}/`, {
-      method: "POST",
-      body: JSON.stringify(rBody),
-    });
-    if (response.status >= 400 && response.status <= 600) {
+    try {
+      const response = await fetch(`${this.url}/`, {
+        method: "POST",
+        body: JSON.stringify(rBody),
+      });
+      if (response.status >= 400 && response.status <= 600) {
+        return { daysData: [] };
+      }
+      return response.json();
+    } catch (error) {
+      console.log(error);
       return { daysData: [] };
     }
-    return response.json();
-  }
+  } //w odpowiedzi przesylac obiekt z propery {datsData: [], error} i jesli te error jest to odpowiedni komunikat
 
   async addSelectedDay(date: string, day: string, name: string) {
     const rBody = { date, day, name };
@@ -60,17 +65,12 @@ export const apiService = new ApiService();
 
 // async getSelectedMonthData(date: string) {
 //   const rBody = { date };
-//   try {
-//     const response = await fetch(`${this.url}/`, {
-//       method: "POST",
-//       body: JSON.stringify(rBody),
-//     });
-//     if (response.status >= 400 && response.status <= 600) {
-//       return { daysData: [] };
-//     }
-//     return response.json();
-//   } catch (error) {
-//     console.log(error);
+//   const response = await fetch(`${this.url}/`, {
+//     method: "POST",
+//     body: JSON.stringify(rBody),
+//   });
+//   if (response.status >= 400 && response.status <= 600) {
 //     return { daysData: [] };
 //   }
-// } w odpowiedzi przesylac obiekt z propery {datsData: [], error} i jesli te error jest to odpowiedni komunikat
+//   return response.json();
+// }

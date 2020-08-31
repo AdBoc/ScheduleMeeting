@@ -144,6 +144,18 @@
   margin: 0.5em 0.25em;
 }
 
+.spells {
+  border: 1px solid black;
+}
+
+.spells-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5em;
+  margin: 0.5em 1.5em;
+  font-size: 0.9em;
+}
+
 .slots {
   display: flex;
   justify-content: center;
@@ -220,6 +232,8 @@
 
 .actions {
   text-align: center;
+  // display: flex;
+  // flex-direction: column;
   &__title {
     font-weight: 600;
     margin: 1em;

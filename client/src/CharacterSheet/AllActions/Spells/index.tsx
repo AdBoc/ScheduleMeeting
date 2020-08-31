@@ -3,18 +3,28 @@ import SpellSlots from './SpellSlots';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
 import { charMethods } from '../../../Services/CharacterMethods';
+import { Spell } from '../../../ts/interfaces';
 
 const Spells = () => {
   const { character, dispatch } = useContext(characterContext);
   const [isSlots, setIsSlots] = useState(false);
   const [isProfSelect, setIsProfSelect] = useState(false);
+  const [details, setDetails] = useState<Spell | null>(null);
 
   const handleProf = () => setIsProfSelect(prev => !prev);
   const handleSlots = () => setIsSlots(prev => !prev);
   const handleSelect = ({ target }: any) => {
     dispatch({ type: Types.EDIT_TEXT, payload: { property: "Other.SpellProficiency", newValue: target.value } });
     setIsProfSelect(prev => !prev);
-  }
+  };
+  const handleDetails = (spell: Spell) => () => {
+    if (details) return setDetails(null);
+    setDetails(spell);
+  };
+  const deleteItem = ({ target }: any) => {
+    dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Spells", id: target.name } });
+    setDetails(null);
+  };
 
   return (
     <>
@@ -37,12 +47,33 @@ const Spells = () => {
       )}
       {isSlots && <SpellSlots />}
       <div className="spells">
+        <div className="spells-grid">
+          <p>Name</p>
+          <p>Level</p>
+          <p>Range</p>
+          <p>School</p>
+          <p>Components</p>
+        </div>
         {character.Spells.map((spell) => (
-          <p className="spell" key={spell.id}>
-            {spell.name}
-          </p>
+          <div className="spells-grid" key={spell.id} onClick={handleDetails(spell)}>
+            <p>{spell.name}</p>
+            <p>{spell.level}</p>
+            <p>{spell.range}</p>
+            <p>{spell.school}</p>
+            <p>{spell.components}</p>
+          </div>
         ))}
       </div>
+      {details &&
+        <div className="details">
+          <p className="details__text">Name: {details.name}</p>
+          <p className="details__text">Time: {details.castingTime}</p>
+          <p className="details__text">Comp: {details.components}</p>
+          <p className="details__text">Range: {details.range}</p>
+          <p className="details__text">Name: {details.description}</p>
+          <button className="details__text" name={details.id} onClick={deleteItem}>DELETE</button>
+        </div>
+      }
     </>
   )
 };

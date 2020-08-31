@@ -19,7 +19,7 @@ const Attacks: React.FC = () => {
 
   return (
     <>
-      {character.Attacks.map((attack) => (
+      {character.Attacks.sort((a, b) => a.name.localeCompare(b.name)).map((attack) => (
         <div key={attack.id} className={`c-atk ${attack.type}`} onClick={showDetails(attack)}>
           <p className="c-atk__field">{attack.name}</p>
           {attack.proficient ? <p>{charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]])}</p> :

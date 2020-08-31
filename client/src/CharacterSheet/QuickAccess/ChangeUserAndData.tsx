@@ -13,7 +13,7 @@ const ChangeUserAndData: React.FC<IProps> = ({ setVisibility }) => {
   const { dispatch } = useContext(characterContext);
 
   const handlePlayers = async ({ target }: any) => {
-    localStorage.setItem("user", `${target.value}`)
+    localStorage.setItem("user", `${target.value}`);
     setVisibility(prev => !prev);
     const characterData = await apiService.getCharacter();
     // if (characterData === 'error')

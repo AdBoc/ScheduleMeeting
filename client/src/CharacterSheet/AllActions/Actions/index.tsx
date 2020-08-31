@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Actions = () => {
   const [currentAction, setCurrentAction] = useState<null | number>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setCurrentAction(null), 5000);
+    return () => clearTimeout(timer);
+  }, [currentAction]);
 
   const actionsDescription = [
     "The most common action to take in combat is the Attack action, whether you are swinging a sword, firing an arrow from a bow, or brawling with your fists.",
@@ -16,26 +21,13 @@ const Actions = () => {
     "When an object requires your action for its use, you take the Use an Object action."
   ];
 
-
+  const actions = ["Attack", "Cast spell", "Dash", "Disengage", "Dodge", "Help", "Hide", "Ready", "Search", "Use an Object"];
+  const handleDetails = ({ target }: any) => setCurrentAction(target.value);
 
   return (
     <div className="actions">
       <h1 className="actions__title">List of common actions</h1>
-      <p className="actions__action" onClick={() => {
-        setCurrentAction(0);
-        setTimeout(function () {
-          setCurrentAction(null)
-        }, 3000)
-      }}>Attack</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(1) }}>Cast spell</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(2) }}>Dash</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(3) }}>Disengage</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(4) }}>Dodge</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(5) }}>Help</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(6) }}>Hide</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(7) }}>Ready</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(8) }}>Search</p>
-      <p className="actions__action" onClick={() => { setCurrentAction(9) }}>Use an Object</p>
+      {actions.map((action, index) => <button key={index} className="actions__action" value={index} onClick={handleDetails}>{action}</button>)}
       {currentAction !== null && <p>{actionsDescription[currentAction]}</p>}
     </div>
   )
