@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { SelectedDays, DateProps, FilteredByName, FilteredAllNames } from "../../ts/interfaces";
+import { useState } from 'react';
+import { SelectedDays, DateProps, FilteredByName, FilteredAllNames } from '../../ts/interfaces';
 
 export const useCalendar = () => {
   const today = new Date();
@@ -8,7 +8,7 @@ export const useCalendar = () => {
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
   const daysInMonth = 32 - new Date(currentYear, currentMonth, 32).getDate(); // const currentLocalDate = '' // const firstDayOfMonthDate =
-  const firstDayOfMonth = new Date(currentMonth + "/1/" + currentYear).getDay(); //ktora pozycja w gridzie moge dorenderowac puste elementy forem
+  const firstDayOfMonth = new Date(currentMonth + "/1/" + currentYear).getDay(); //ktora pozycja w gridzie moge dorenderowac puste elementy forem 
   const daysOfMonth: string[] = [];
   for (let i = 1; i <= daysInMonth; i++) {
     daysOfMonth.push(i.toString());
@@ -33,12 +33,10 @@ export const useCalendar = () => {
   };
 
   const parseWithName = (selectedDays: SelectedDays, selectedName: string) => {
-    return selectedDays
-      .filter((item) => item.name === selectedName)
-      .reduce((obj: FilteredByName, item) => {
-        obj[item.day] = item.name;
-        return obj;
-      }, {});
+    return selectedDays.filter(item => item.name === selectedName).reduce((obj: FilteredByName, item) => {
+      obj[item.day] = item.name;
+      return obj;
+    }, {})
   };
 
   const parseNoName = (selectedDays: SelectedDays) => {
@@ -49,7 +47,7 @@ export const useCalendar = () => {
         obj[item.day] = [item.name];
       }
       return obj;
-    }, {});
+    }, {})
   };
 
   const dateProps: DateProps = {
@@ -57,7 +55,7 @@ export const useCalendar = () => {
     currentMonth,
     currentYear,
     firstDayOfMonth,
-    daysOfMonth,
+    daysOfMonth
   };
 
   return {
@@ -65,6 +63,6 @@ export const useCalendar = () => {
     nextMonth,
     prevMonth,
     parseNoName,
-    parseWithName,
+    parseWithName
   };
-};
+}

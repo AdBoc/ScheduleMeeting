@@ -1,5 +1,5 @@
 class ApiService {
-  url = "http://localhost:8080/api";
+  url = "https://moreoverandabove.com/api";
   async getSelectedMonthData(date: string) {
     const rBody = { date };
     const response = await fetch(`${this.url}/`, {

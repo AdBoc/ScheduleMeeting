@@ -129,11 +129,8 @@ npm run start
 ## TO DO:
 
 Better typescript integration especially while calculating currency
-
 Better current active effects style
-
 Change notyf to other library
-
 Add Extra layer to details view with handler to hide it on click
 
 Performance idea -> values like spell save DC only changed when level (proficiency) values is changed
