@@ -167,6 +167,7 @@ export const initialCharacter: CharacterInterface = {
     },
     Inspiration: false,
     SpellSlots: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ShortRestSlots: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     CurrentSlots: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     SpellProficiency: null,
   },
