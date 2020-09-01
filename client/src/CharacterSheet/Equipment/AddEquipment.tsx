@@ -32,12 +32,11 @@ const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
       </div>
       <select className="c-new-eq__input" name="type" ref={register}>
         <option value="other">Other</option>
-        <option value="armors">Armors</option>
-        <option value="attunement">Attunement</option>
         <option value="weapons">Weapons</option>
+        <option value="armors">Armors</option>
         <option value="potions">Potions</option>
-        <option value="food">Food</option>
-        <option value="rings">Rings</option>
+        <option value="magic">Magic Items</option>
+        <option value="tools">Tools</option>
       </select>
       <input className="g-btn" type="submit" value="Submit" />
     </form>

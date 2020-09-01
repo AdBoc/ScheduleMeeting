@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import SpellSlots from './SpellSlots';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
@@ -7,9 +7,24 @@ import { Spell } from '../../../ts/interfaces';
 
 const Spells = () => {
   const { character, dispatch } = useContext(characterContext);
+  const [sortType, setSortType] = useState({ type: 'name', inverted: false });
+  const [spells, setSpells] = useState(character.Spells);
   const [isSlots, setIsSlots] = useState(false);
   const [isProfSelect, setIsProfSelect] = useState(false);
   const [details, setDetails] = useState<Spell | null>(null);
+
+  useEffect(() => {
+    setSpells(character.Spells);
+  }, [character.Spells]);
+
+  useEffect(() => {
+    const copySpells = spells.slice(0);
+    copySpells.sort((a, b) => a[sortType.type as keyof Spell].localeCompare(b[sortType.type as keyof Spell]));
+    if (sortType.inverted)
+      copySpells.reverse();
+    setSpells(copySpells);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortType]);
 
   const handleProf = () => setIsProfSelect(prev => !prev);
   const handleSlots = () => setIsSlots(prev => !prev);
@@ -25,13 +40,17 @@ const Spells = () => {
     dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Spells", id: target.name } });
     setDetails(null);
   };
+  const handleSortOption = ({ target }: any) => setSortType(prev => {
+    if (prev.type === target.name) return { type: target.name, inverted: !prev.inverted };
+    return { type: target.name, inverted: false };
+  });
 
   return (
     <>
       <div className="spells__menu">
         <div className="menu__info">
-          <p className="">Save DC: {character.Other.SpellProficiency !== null ? <span>{8 + charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
-          <p className="">Attack Bonus: {character.Other.SpellProficiency !== null ? <span>{charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
+          <p>Save DC: {character.Other.SpellProficiency !== null ? <span>{8 + charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
+          <p>Attack Bonus: {character.Other.SpellProficiency !== null ? <span>{charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
         </div>
         <button className="g-btn menu__button" onClick={handleSlots}>Spell Slots</button>
       </div>
@@ -46,15 +65,15 @@ const Spells = () => {
         </select>
       )}
       {isSlots && <SpellSlots />}
-      <div className="spells">
-        <div className="spells-grid">
-          <p>Name</p>
-          <p>Level</p>
-          <p>Range</p>
-          <p>School</p>
+      <div>
+        <div className="grid-border spells-grid">
+          <button name="name" onClick={handleSortOption}>Name</button>
+          <button name="level" onClick={handleSortOption}>Level</button>
+          <button name="range" onClick={handleSortOption}>Range</button>
+          <button name="school" onClick={handleSortOption}>School</button>
           <p>Components</p>
         </div>
-        {character.Spells.map((spell) => (
+        {spells.map((spell) => (
           <div className="spells-grid" key={spell.id} onClick={handleDetails(spell)}>
             <p>{spell.name}</p>
             <p>{spell.level}</p>

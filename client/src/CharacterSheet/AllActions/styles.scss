@@ -26,24 +26,6 @@
   }
 }
 
-.c-atk {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid $primary-color;
-  align-items: center;
-  margin: 0.5em;
-  &__field {
-    padding: 0.5em;
-    flex: 1.1;
-  }
-  &__drop {
-    margin: 0 0.5em;
-    background-color: $primary-color;
-    color: white;
-    padding: 1em;
-  }
-}
-
 .c-action-form {
   display: flex;
   margin: 0.5em;
@@ -144,16 +126,16 @@
   margin: 0.5em 0.25em;
 }
 
-.spells {
-  border: 1px solid black;
-}
-
 .spells-grid {
+  justify-items: center;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0.5em;
-  margin: 0.5em 1.5em;
+  padding: 0.5em 0;
   font-size: 0.9em;
+  &:nth-of-type(odd) {
+    background-color: rgb(230, 230, 230);
+  }
 }
 
 .slots {
@@ -166,11 +148,25 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  margin: 0.5em;
   &__input {
     text-align: center;
-    width: 1em;
+    width: 2em;
   }
+}
+
+.attacks-grid {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5em;
+  margin: 0.5em 0;
+  font-size: 0.9em;
+}
+
+.grid-border {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 0.5em 0;
 }
 
 .menu__button {
@@ -232,8 +228,6 @@
 
 .actions {
   text-align: center;
-  // display: flex;
-  // flex-direction: column;
   &__title {
     font-weight: 600;
     margin: 1em;

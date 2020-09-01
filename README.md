@@ -130,7 +130,16 @@ npm run start
 
 Better typescript integration especially while calculating currency
 Better current active effects style
-Change notyf to other library
 Add Extra layer to details view with handler to hide it on click
 
-Performance idea -> values like spell save DC only changed when level (proficiency) values is changed
+Performance idea -> values like spell save DC only changed when level (proficiency)
+Zapisywac bonus damage w attack jako number
+
+UsePrevious hook 
+export function usePrevious(value: any) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}

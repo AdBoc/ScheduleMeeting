@@ -40,6 +40,7 @@ export type Attack = {
   name: string;
   diceType: string;
   bonusDamage: string;
+  bonusHit: string;
   range: string;
   type: string;
   profMod: string;

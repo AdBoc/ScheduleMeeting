@@ -16,13 +16,12 @@ const Equipment: React.FC = () => {
   const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
   const [details, setDetails] = useState<null | BackpackObj>(null);
   const options = [
-    { label: "other", value: "Other" },
-    { label: "armors", value: "Armors" },
-    { label: "attunement", value: "Attunement" },
-    { label: "weapons", value: "Weapons" },
-    { label: "potions", value: "Potions" },
-    { label: "food", value: "Food" },
-    { label: "rings", value: "Rings" }
+    { label: "Other", value: "other" },
+    { label: "Weapons", value: "weapons" },
+    { label: "Armors", value: "armors" },
+    { label: "Potions", value: "potions" },
+    { label: "Magic Items", value: "magic" },
+    { label: "Tools", value: "tools" }
   ];
 
   const deleteItem = () => {
@@ -36,23 +35,24 @@ const Equipment: React.FC = () => {
     setDetails(item);
   };
 
+  const handleQuantity = ({ target }: any) => {
+    if (!target.value) return;
+    dispatch({ type: Types.SET_ITEM_QTY, payload: { id: target.name, newValue: target.value } });
+  };
+
   const eqItemsSort = () => {
     if (select.length !== 0) {
       const newObj = character.Equipment.reduce((accumulator, item) => {
         select.forEach((selected) => {
-          if (item.type === selected.label)
+          if (item.type === selected.value)
             accumulator.push(item);
         })
         return accumulator;
       }, [] as never | BackpackObj[]);
       return newObj.sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+      return character.Equipment.slice(0).sort((a, b) => a.name.localeCompare(b.name));
     }
-    return character.Equipment.sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  const handleQuantity = ({ target }: any) => {
-    if (!target.value) return;
-    dispatch({ type: Types.SET_ITEM_QTY, payload: { id: target.name, newValue: target.value } });
   };
 
   return (
@@ -83,8 +83,8 @@ const Equipment: React.FC = () => {
           </div>
         )}
       </div>
-    </div >
+    </div>
   )
-}
+};
 
 export default Equipment;

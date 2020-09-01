@@ -18,6 +18,7 @@ const SpellSlots = () => {
   };
 
   const handleDecrement = ({ target }: any) => {
+    if (!character.Other.CurrentSlots[target.name]) return;
     const slotsCopy = [...character.Other.CurrentSlots];
     slotsCopy[target.name] = slotsCopy[target.name] - 1;
     dispatch({ type: Types.SET_ARRAY, payload: { property: "Other.CurrentSlots", newArr: slotsCopy } });
