@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast, Slide } from 'react-toastify';
 import { CalendarProps, SelectedDays } from '../../ts/interfaces';
 import { apiService } from '../../Services/FetchAPI';
 import { useCalendar } from '../../hooks/useCalendar';
@@ -18,8 +19,10 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsFetching(true);
-      const { daysData } = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
+      const { daysData, error } = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
       setSelectedDays(daysData);
+      if (error)
+        toast.error("Connection error");
       setIsFetching(false);
     };
 
@@ -48,6 +51,7 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
         selectedDays={selectedDays}
         setSelectedDays={setSelectedDays}
       />
+      <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar newestOnTop />
     </div>
   )
 }

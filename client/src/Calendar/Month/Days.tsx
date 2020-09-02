@@ -1,6 +1,7 @@
 import React from 'react';
 import { FilteredByName, FilteredAllNames, DateProps, SelectedDays } from '../../ts/interfaces';
 import { apiService } from '../../Services/FetchAPI';
+import { toast } from 'react-toastify';
 
 interface IProps {
   dateProps: DateProps;
@@ -13,32 +14,37 @@ interface IProps {
 const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setSelectedDays, selectedDays }) => {
   const { currentMonth, currentYear, firstDayOfMonth, daysOfMonth } = dateProps;
 
+  const emptyButtons: JSX.Element[] = [];
+  let days: number;
+  if (firstDayOfMonth)
+    days = firstDayOfMonth - 1;
+  else
+    days = 6;
+  for (let i = 0; i < days; i++) {
+    emptyButtons.push(<button key={i} className="day"></button>);
+  }
+
   const handleDaySelect = async ({ target }: any) => {
     const { value, className } = target;
     const doesNotExist = /\b(\undefined)$/.test(className);
     if (doesNotExist) {
       if (selectedPlayer)
         setSelectedDays([...selectedDays, { day: value, name: selectedPlayer }]);
-      await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
+      const response = await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
+      if (response === 403)
+        toast.error("Month out of bounds");
+      else if (response !== 200)
+        toast.error("Connection error");
     } else if (!doesNotExist) {
       const testCopy = [...selectedDays];
       setSelectedDays(testCopy.filter((date) => (date.name !== selectedPlayer || (date.day !== value && date.name === selectedPlayer))));
-      await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
+      const response = await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
+      if (response === 403)
+        toast.error("Month out of bounds");
+      else if (response !== 200)
+        toast.error("Connection error");
     }
   }
-
-  const addEmptyButtons = () => {
-    const buttons = [];
-    let days: number;
-    if (firstDayOfMonth)
-      days = firstDayOfMonth - 1;
-    else
-      days = 6;
-    for (let i = 0; i < days; i++) {
-      buttons.push(<button key={i} className="day"></button>);
-    }
-    return buttons;
-  };
 
   const composeClassName = (day: string) => {
     const newCurrentDay = new Date();
@@ -52,8 +58,8 @@ const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName,
 
   return (
     <div className="days-of-month">
-      {addEmptyButtons()}
-      {!!selectedPlayer ?
+      {emptyButtons && emptyButtons}
+      {selectedPlayer ?
         <>
           {daysOfMonth.map((day, index) => {
             return <button key={index} className={`day ${day} ` + daysFilteredByName[day]} value={day} onClick={handleDaySelect}>{day}</button>
@@ -67,6 +73,6 @@ const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName,
       }
     </div>
   )
-}
+};
 
 export default Days;

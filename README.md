@@ -128,8 +128,12 @@ npm run start
 
 ## TO DO:
 
+Select All, Remove All for current month
+
 Better typescript integration especially while calculating currency
+
 Better current active effects style
+
 Add Extra layer to details view with handler to hide it on click
 
 Performance idea -> values like spell save DC only changed when level (proficiency)
