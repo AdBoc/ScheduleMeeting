@@ -36,14 +36,13 @@ const Attacks: React.FC = () => {
         </div>
         {attacks.sort((a, b) => a.name.localeCompare(b.name)).map((attack) => (
           <div key={attack.id} className={`attacks-grid ${attack.type}`} onClick={showDetails(attack)}>
-            <p>{attack.name}</p>
-            {attack.proficient ? <p>{attack.diceType} + {(charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + charMethods.calcProficiency(character.MainStats.Level) + +attack.bonusDamage)}</p> :
-              <p> {attack.diceType} + {(charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + +attack.bonusDamage)}</p>}
-            {attack.proficient ? <p>d20 + {charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + charMethods.calcProficiency(character.MainStats.Level) + +attack.bonusHit}</p> :
-              <p>d20 + {charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + +attack.bonusHit}</p>
-            }
-            <p>{attack.range}</p>
-          </div>
+          <p>{attack.name}</p>
+          <p> {attack.diceType} + {(charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + +attack.bonusDamage)}</p>
+          {attack.proficient ? <p>d20 + {charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + charMethods.calcProficiency(character.MainStats.Level) + +attack.bonusHit}</p> :
+            <p>d20 + {charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + +attack.bonusHit}</p>
+          }
+          <p>{attack.range}</p>
+        </div>
         ))}
       </>
       {details &&
