@@ -1,6 +1,6 @@
 # DND character sheet and calendar
 
-## Website description
+## How to use
 
 HP -> Tap on HP to add or subtract from total pool of HP.
 
@@ -67,7 +67,7 @@ npm i
 npm run start
 ```
 
-<details><summary style="font-size: 20px">FrontEnd Folder Structure</summary>
+<details><summary>Frontend Structure</summary>
 <p>CLI command: tree /F >tree.txt</p>
 
 ```
@@ -76,7 +76,6 @@ npm run start
 │   index.tsx
 │   react-app-env.d.ts
 │   serviceWorker.ts
-│   tree.txt
 ├───assets
 │       GitHub-Mark-64px.png
 │       icons8-trash.svg
@@ -172,7 +171,7 @@ npm run start
 </P>
 </details>
 
-## TO DO:
+### TO DO:
 
 Select All, Remove All in current month
 
@@ -181,4 +180,3 @@ Better typescript integration (currency)
 Improve styles and css structure
 
 Add Extra layer to details view with handler to hide it on click
-
