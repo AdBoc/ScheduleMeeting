@@ -5,7 +5,7 @@ interface IProps {
   selectedPlayer: string | null;
 }
 
-export const players = ['Witek', 'Sławek', 'Potrek', 'Janek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
+export const players = ['Test', 'Witek', 'Sławek', 'Potrek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
 
 const Players: React.FC<IProps> = ({ handleClick, selectedPlayer: selectedName }) => {
   return (

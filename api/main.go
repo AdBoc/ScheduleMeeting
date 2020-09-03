@@ -124,9 +124,8 @@ func getDataForMonth(w http.ResponseWriter, r *http.Request) {
 	var foundData FullDate
 	errFind := collection.FindOne(ctx, bson.M{"date": req.Date}).Decode(&foundData)
 	if errFind != nil {
-		fmt.Println("Data for selected month does not exist")
-		w.WriteHeader(http.StatusBadRequest)
-		return
+		foundData.Date = req.Date
+		foundData.DaysData = []MonthData{}
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -153,18 +152,14 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 	update := bson.M{"$push": bson.M{"daysData": bson.M{"day": req.Day, "name": req.Name}}}
 	singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&updatedData)
 	if singleResult != nil {
-		monthArray := [12]string{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
-		tNow := time.Now()
-		parts := strings.Split(req.Date, "/")
-		work, _ := strconv.Atoi(parts[0])
-		dateFront := parts[1] + "-" + monthArray[work-1] + "-01"
-		tNew, dateErr := time.Parse("2006-Jan-02", dateFront)
-		if dateErr != nil {
-			fmt.Println(tNew)
-		}
-		dateDiff := tNew.Sub(tNow)
+		selectedMonth, _ := strconv.Atoi(strings.Split(req.dateFromFront.Date, "/")[0])
 
-		if dateDiff.Hours() > 1460 {
+		tNow := time.Now()
+		thisMonth := int(tNow.Month()) - 1
+
+		if thisMonth == 11 && selectedMonth < 3 {
+		} else if selectedMonth < thisMonth || selectedMonth-thisMonth > 2 {
+			w.WriteHeader(http.StatusForbidden)
 			return
 		}
 
@@ -176,6 +171,7 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 					"name": req.Name},
 			},
 		}
+
 		_, nextErr := collection.InsertOne(ctx, month)
 		if nextErr != nil {
 			fmt.Println("Error while adding new data")
@@ -183,6 +179,8 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 }
 
@@ -208,6 +206,7 @@ func patchDataForMonth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 }
 
@@ -265,5 +264,6 @@ func sendCharacter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 }

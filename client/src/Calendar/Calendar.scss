@@ -35,23 +35,21 @@ $krzysiek--color: rgb(0, 51, 102);
 }
 
 .calendar {
-  position: relative;
   max-width: max-content;
   margin: 2em auto 0 auto;
   padding: 1.5em;
   border: 2px solid $main-theme;
   border-radius: 8px;
   &__fetching {
-    position: absolute;
     width: 100%;
-    height: 80%;
+    height: 15em;
     text-align: center;
     background-color: white;
     bottom: 2px;
     border-radius: 5px;
     left: 0;
     &__text {
-      margin: auto;
+      padding: 2em;
     }
   }
 }
@@ -155,10 +153,13 @@ $krzysiek--color: rgb(0, 51, 102);
   }
   &__git-icon {
     margin: 0.5em;
-    width: 32px;
   }
 }
 
+.Test {
+  background-color: $witek--color;
+  color: $text-light;
+}
 .Witek {
   background-color: $witek--color;
   color: $text-light;
@@ -222,12 +223,6 @@ $krzysiek--color: rgb(0, 51, 102);
 .count8 {
   background-color: $count8;
   color: $text-light;
-}
-
-@media screen and (min-width: 354px) {
-  .day {
-    padding: 1em;
-  }
 }
 
 @media screen and (min-width: 960px) {

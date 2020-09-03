@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { characterContext } from '../../../context/Character';
 import { Effect } from '../../../ts/interfaces';
 import { Types } from '../../../context/Character/reducer';
+import useOutsideClick from '../../../hooks/useOutsideClick';
 
 const Effects = () => {
   const { character, dispatch } = useContext(characterContext);
   const [details, setDetails] = useState<Effect | null>(null);
+
+  const ref = useRef(null);
+  useOutsideClick(ref, () => { if (details) setDetails(null) });
 
   const changeActivity = ({ target }: any) => {
     const effectIndex = character.Effects.findIndex((effect) => effect.id === target.name);
@@ -15,8 +19,6 @@ const Effects = () => {
   };
 
   const showDetails = (item: Effect) => () => {
-    if (details)
-      return setDetails(null);
     setDetails(item);
   };
 
@@ -27,16 +29,15 @@ const Effects = () => {
 
   return (
     <>
-      {
-        character.Effects.map((effect) =>
-          <div className="c-action-form" key={effect.id}>
-            <p className="c-action-field" onClick={showDetails(effect)}>{effect.name}</p>
-            <input className="toggle-switch" id={effect.id} type="checkbox" name={effect.id} onChange={changeActivity} checked={effect.active} />
-            <label className="toggle-text" htmlFor={effect.id}>Toggle</label>
-          </div>
-        )
+      {character.Effects.map((effect) =>
+        <div className="c-action-form" key={effect.id}>
+          <p className="c-action-field" onClick={showDetails(effect)}>{effect.name}</p>
+          <input className="toggle-switch" id={effect.id} type="checkbox" name={effect.id} onChange={changeActivity} checked={effect.active} />
+          <label className="toggle-text" htmlFor={effect.id}>Toggle</label>
+        </div>
+      )
       }
-      {details && <div className="details">
+      {details && <div className="details" ref={ref}>
         <p className="details__desc">{details.description}</p>
         <button className="details__text" name={details.id} onClick={delteEffect}>DELETE</button>
       </div>

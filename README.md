@@ -1,8 +1,38 @@
 # DND character sheet and calendar
 
+## How to use
+
+HP -> Tap on HP to add or subtract from total pool of HP.
+
+Stats -> In order to change stat tap on number.
+
+Sills -> Skills values are recalculated with every stat change. Press edit to tag and manually increment skill value.
+
+Save throws -> Tap on saving throw to tag it. Only two can be tagged simultaneously.
+
+Actions -> Tab with attacks, spells, actions and effects.
+
+Actons -> Attacks -> Add attacks. Attaks are sorted alphabetically. To give attacks high order give it name with special characters. (example: -Sword- is higher in order than Sword).
+
+Actons -> Spells -> Add spells, Manage spell slots, Tap on Save DC to select appropriate stat. Click on labels to sort spells.
+
+Actons -> Actions -> Tap to see description of all generic actions.
+
+Actons -> Effects -> Create and activate effects.
+
+Equipment -> Add items and use Select to filter them, items are sorted alphabetically.
+
+Equipment -> Gold -> Tap on total GP to manage your currencies.
+
+Background -> Describe your character here.
+
+Quick Accsess -> Change some stats.
+
 ## Backend
 
-REST API made in GO and MongoDB
+REST API written in GO 
+
+Database: MongoDB
 
 API Routes
 
@@ -37,7 +67,7 @@ npm i
 npm run start
 ```
 
-<details><summary>FrontEnd Folder Structure</summary>
+<details><summary>Frontend Structure</summary>
 <p>CLI command: tree /F >tree.txt</p>
 
 ```
@@ -64,16 +94,30 @@ npm run start
 │   └───Players
 │           index.tsx
 ├───CharacterSheet
-│   │   CharacterSheet.scss
 │   │   CharacterSheet.tsx
 │   │   CurrentComponent.tsx
 │   │   index.ts
-│   ├───Attacks
-│   │       AddAttack.tsx
-│   │       index.tsx
-│   │       styles.scss
+│   │   styles.scss
+│   │   variables.scss
+│   ├───AllActions
+│   │   │   AllActions.tsx
+│   │   │   index.ts
+│   │   │   styles.scss
+│   │   ├───Actions
+│   │   │       index.tsx
+│   │   ├───Attacks
+│   │   │       AddAttack.tsx
+│   │   │       index.tsx
+│   │   ├───Effects
+│   │   │       AddEffect.tsx
+│   │   │       index.tsx
+│   │   └───Spells
+│   │           AddSpell.tsx
+│   │           index.tsx
+│   │           SpellSlots.tsx
 │   ├───Equipment
 │   │       AddEquipment.tsx
+│   │       Gold.tsx
 │   │       index.tsx
 │   │       styles.scss
 │   ├───QuickAccess
@@ -86,9 +130,11 @@ npm run start
 │   │       ThrowsValues.tsx
 │   ├───Skills
 │   │       index.tsx
+│   │       Skill.tsx
 │   │       styles.scss
 │   ├───Stats
 │   │       index.tsx
+│   │       StatsSelect.tsx
 │   │       styles.scss
 │   ├───Story
 │   │       index.tsx
@@ -99,7 +145,7 @@ npm run start
 ├───components
 │       InputField.tsx
 │       InputNumber.tsx
-│       NumberSelect.tsx
+│       Reset.tsx
 │       StatButtons.tsx
 │       TextAreaField.tsx
 ├───context
@@ -107,7 +153,9 @@ npm run start
 │           index.tsx
 │           reducer.ts
 ├───hooks
-│   └───useCalendar
+│   ├───useCalendar
+│   │        index.ts
+│   └───useOutsideClick
 │           index.ts
 ├───Services
 │   ├───CharacterMethods
@@ -122,15 +170,15 @@ npm run start
 └───ts
         interfaces.ts
 ```
-
 </P>
 </details>
 
-## TO DO:
+### TO DO:
 
-Better typescript integration especially while calculating currency
-Better current active effects style
-Change notyf to other library
+Select All, Remove All in current month
+
+Better typescript integration (currency)
+
+Improve styles and css structure
+
 Add Extra layer to details view with handler to hide it on click
-
-Performance idea -> values like spell save DC only changed when level (proficiency) values is changed

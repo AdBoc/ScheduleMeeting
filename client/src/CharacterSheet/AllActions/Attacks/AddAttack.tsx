@@ -29,6 +29,7 @@ const AddAttack: React.FC<IProps> = ({ handleClose }) => {
       <input className="c-form__input" ref={register} placeholder="Dice" name="diceType" autoComplete="off" required />
       <input className="c-form__input" ref={register} placeholder="Range" name="range" type="number" autoComplete="off" required />
       <input className="c-form__input" ref={register} placeholder="Bonus Damage" name="bonusDamage" autoComplete="off" type="number" required />
+      <input className="c-form__input" ref={register} placeholder="Bonus hit" name="bonusHit" autoComplete="off" type="number" required />
       <label className="c-form__box-label">Proficiency<input ref={register} className="c-form__checkbox" type="checkbox" name="proficient" /></label>
       <select className="c-form__input" ref={register} name="profMod">
         <option value="Strength">Strength</option>
