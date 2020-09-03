@@ -1,18 +1,21 @@
 import React from 'react';
-import { FilteredByName, FilteredAllNames, DateProps, SelectedDays } from '../../ts/interfaces';
+import { DateProps, SelectedDays } from '../../ts/interfaces';
 import { apiService } from '../../Services/FetchAPI';
 import { toast } from 'react-toastify';
+import { useCalendar } from '../../hooks/useCalendar';
 
 interface IProps {
   dateProps: DateProps;
   selectedPlayer: string | null;
-  daysFilteredByName: FilteredByName | FilteredAllNames;
   selectedDays: SelectedDays;
-  setSelectedDays: React.Dispatch<React.SetStateAction<SelectedDays>>;
+  setSelectedDays: React.Dispatch<React.SetStateAction<SelectedDays | false>>;
 }
 
-const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, daysFilteredByName, setSelectedDays, selectedDays }) => {
+const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, setSelectedDays, selectedDays }) => {
   const { currentMonth, currentYear, firstDayOfMonth, daysOfMonth } = dateProps;
+  const { parseUser, parseNoUser } = useCalendar();
+
+  const daysFilteredByName = selectedPlayer ? parseUser(selectedDays, selectedPlayer) : parseNoUser(selectedDays);
 
   const emptyButtons: JSX.Element[] = [];
   let days: number;
