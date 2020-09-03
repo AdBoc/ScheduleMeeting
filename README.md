@@ -153,7 +153,9 @@ npm run start
 │           index.tsx
 │           reducer.ts
 ├───hooks
-│   └───useCalendar
+│   ├───useCalendar
+│   │        index.ts
+│   └───useOutsideClick
 │           index.ts
 ├───Services
 │   ├───CharacterMethods

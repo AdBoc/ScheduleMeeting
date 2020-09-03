@@ -1,9 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import SpellSlots from './SpellSlots';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
 import { charMethods } from '../../../Services/CharacterMethods';
 import { Spell } from '../../../ts/interfaces';
+import useOutsideClick from '../../../hooks/useOutsideClick';
 
 const Spells = () => {
   const { character, dispatch } = useContext(characterContext);
@@ -12,6 +13,9 @@ const Spells = () => {
   const [isSlots, setIsSlots] = useState(false);
   const [isProfSelect, setIsProfSelect] = useState(false);
   const [details, setDetails] = useState<Spell | null>(null);
+
+  const ref = useRef(null);
+  useOutsideClick(ref, () => { if (details) setDetails(null) });
 
   useEffect(() => {
     setSpells(character.Spells);
@@ -33,7 +37,6 @@ const Spells = () => {
     setIsProfSelect(prev => !prev);
   };
   const handleDetails = (spell: Spell) => () => {
-    if (details) return setDetails(null);
     setDetails(spell);
   };
   const deleteItem = ({ target }: any) => {
@@ -84,7 +87,7 @@ const Spells = () => {
         ))}
       </div>
       {details &&
-        <div className="details">
+        <div className="details" ref={ref}>
           <p className="details__text">Name: {details.name}</p>
           <p className="details__text">Time: {details.castingTime}</p>
           <p className="details__text">Comp: {details.components}</p>

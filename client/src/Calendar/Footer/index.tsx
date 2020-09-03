@@ -13,5 +13,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
-{/* <img className="footer__git-icon" alt="Github link" src={require('../../assets/GitHub-Mark-64px.png')}></img> */}
