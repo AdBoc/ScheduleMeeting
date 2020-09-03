@@ -1,14 +1,16 @@
 class ApiService {
   url = "http://localhost:8080/api";
-  async getSelectedMonthData(date: string) {
+  async getSelectedMonthData(date: string, controller: AbortController) {
     const rBody = { date };
     try {
       const response = await fetch(`${this.url}/`, {
         method: "POST",
         body: JSON.stringify(rBody),
+        signal: controller.signal,
       });
       return response.json();
     } catch (error) {
+      if (controller.signal.aborted) return { daysData: false };
       return { daysData: [], error: true };
     }
   }

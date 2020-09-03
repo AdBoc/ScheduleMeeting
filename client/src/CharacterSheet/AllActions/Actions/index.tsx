@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const Actions = () => {
-  const [currentAction, setCurrentAction] = useState<null | number>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setCurrentAction(null), 5000);
-    return () => clearTimeout(timer);
-  }, [currentAction]);
-
   const actionsDescription = [
     "The most common action to take in combat is the Attack action, whether you are swinging a sword, firing an arrow from a bow, or brawling with your fists.",
     "Spellcasters such as wizards and clerics, as well as many monsters, have access to spells and can use them to great effect in combat.",
@@ -22,13 +17,16 @@ const Actions = () => {
   ];
 
   const actions = ["Attack", "Cast spell", "Dash", "Disengage", "Dodge", "Help", "Hide", "Ready", "Search", "Use an Object"];
-  const handleDetails = ({ target }: any) => setCurrentAction(target.value);
 
   return (
     <div className="actions">
       <h1 className="actions__title">List of common actions</h1>
-      {actions.map((action, index) => <button key={index} className="actions__action" value={index} onClick={handleDetails}>{action}</button>)}
-      {currentAction !== null && <p>{actionsDescription[currentAction]}</p>}
+      {actions.map((action, index) => (
+        <Tippy key={index} content={actionsDescription[index]} placement="bottom">
+          <button className="actions__action" value={index}>{action}</button>
+        </Tippy>
+      )
+      )}
     </div>
   )
 };

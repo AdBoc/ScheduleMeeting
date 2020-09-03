@@ -17,16 +17,23 @@ const Month: React.FC<CalendarProps> = ({ selectedPlayer }) => {
   const daysFilteredByName = selectedPlayer ? parseUser(selectedDays, selectedPlayer) : parseNoUser(selectedDays);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     const fetchData = async () => {
       setIsFetching(true);
-      const { daysData, error } = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear);
-      setSelectedDays(daysData);
+      const { daysData, error } = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear, abortController);
+      if (daysData)
+        setSelectedDays(daysData);
       if (error)
         toast.error("Connection error");
       setIsFetching(false);
     };
 
     fetchData();
+
+    return () => {
+      abortController.abort();
+    };
   }, [currentMonth, currentYear]);
 
   return (

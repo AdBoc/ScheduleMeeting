@@ -1,5 +1,21 @@
 # DND character sheet and calendar
 
+## Website description
+
+HP -> Tap on HP to add or subtract from total pool of HP.
+Stats -> In order to change stat tap on number.
+Sills -> Skills values are recalculated with every stat change. Press edit to tag and manually increment skill value.
+Save throws -> Tap on saving throw to tag it. Only two can be tagged simultaneously.
+Actions -> Tab with attacks, spells, actions and effects.
+Actons -> Attacks -> Add attacks. Attaks are sorted alphabetically. To give attacks high order give it name with special characters. (example: -Sword- is higher in order than Sword).
+Actons -> Spells -> Add spells, Manage spell slots, Tap on Save DC to select appropriate stat. Click on labels to sort spells.
+Actons -> Actions -> Tap to see description of all generic actions.
+Actons -> Effects -> Create and activate effects.
+Equipment -> Add items and use Select to filter them, items are sorted alphabetically.
+Equipment -> Gold -> Tap on total GP to manage your currencies.
+Background -> Describe your character here.
+Quick Accsess -> Change some stats.
+
 ## Backend
 
 REST API made in GO and MongoDB
@@ -139,11 +155,11 @@ Add Extra layer to details view with handler to hide it on click
 Performance idea -> values like spell save DC only changed when level (proficiency)
 Zapisywac bonus damage w attack jako number
 
-UsePrevious hook 
+UsePrevious hook
 export function usePrevious(value: any) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
+const ref = useRef();
+useEffect(() => {
+ref.current = value;
+});
+return ref.current;
 }
