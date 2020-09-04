@@ -28,7 +28,7 @@ const ThrowsValues = () => {
           Object.entries(character.Stats).map((stat, index) => {
             isTagged = character.Other.TaggedThrows[0] === stat[0] || character.Other.TaggedThrows[1] === stat[0];
             return (
-              <button key={index} name={stat[0]} className={`c-save-throw ${isTagged ? "g-tagged" : ""}`} onClick={tagElement}>
+              <button key={index} name={stat[0]} className={`c-save-throw ${isTagged ? "c-tagged" : ""}`} onClick={tagElement}>
                 {stat[0]} {charMethods.calcSavingThrowMod(character.MainStats.Level, stat[1], isTagged)}
               </button>
             )

@@ -36,21 +36,23 @@ const SpellSlots = () => {
 
   return (
     <>
-      <button className="g-btn" onClick={handleLongRest}>LONG REST</button>
-      <button className="g-btn" onClick={handleShortRest}>SHORT REST</button>
-      <p>CURRENT SLOTS</p>
+      <div className="spell-buttons">
+        <button className="spell-button" onClick={handleLongRest}>LONG REST</button>
+        <button className="spell-button" onClick={handleShortRest}>SHORT REST</button>
+      </div>
+      <p className="slots-label">CURRENT SLOTS</p>
       <div className="spell-slots">
         {character.Other.CurrentSlots.map((slot, index) => (
           <button key={index} className="spell-slot" name={index.toString()} onClick={handleDecrement}>Level {index + 1}: {slot}</button>
         ))}
       </div>
-      <p>MAX SLOTS VALUES</p>
+      <p className="slots-label">MAX SLOTS VALUES</p>
       <div className="slots">
         {character.Other.SpellSlots.map((slot, index) => (
           <label key={index} className="slot">{index + 1}<input className="slot__input" type="number" name={index.toString()} value={slot} onChange={handleChange} onFocus={(e: any) => e.target.select()} /></label>
         ))}
       </div>
-      <p>SHORT REST VALUES</p>
+      <p className="slots-label">SHORT REST VALUES</p>
       <div className="slots">
         {character.Other.ShortRestSlots.map((slot, index) => (
           <label key={index} className="slot">{index + 1}<input className="slot__input" type="number" name={index.toString()} value={slot} onChange={handleChangeRest} onFocus={(e: any) => e.target.select()} /></label>

@@ -18,11 +18,11 @@ const AddEffect: React.FC<IProps> = ({ handleClose }) => {
   });
 
   return (
-    <form className="c-form" onSubmit={onSubmit}>
-      <p className="c-form__label">New Effect</p>
-      <input className="c-form__input" name="name" placeholder="name" ref={register} />
-      <input className="c-form__input" name="description" placeholder="description" ref={register} />
-      <input className="g-btn" type="submit" value="Submit" />
+    <form className="form-effect" onSubmit={onSubmit}>
+      <p className="form-effect__label">New Effect</p>
+      <input className="form-effect__input" name="name" placeholder="name" ref={register} />
+      <input className="form-effect__input" name="description" placeholder="description" ref={register} />
+      <input className="effect-btn" type="submit" value="Submit" />
     </form>
   )
 };

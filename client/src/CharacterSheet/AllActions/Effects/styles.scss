@@ -1,0 +1,57 @@
+@import "../../mixins.scss";
+
+.form-effect {
+  @include add-form;
+}
+
+.effect-btn {
+  @include def-button;
+}
+
+.c-action-form {
+  display: flex;
+  margin: 0.5em;
+}
+
+.c-action-field {
+  flex-grow: 1.1;
+}
+
+.toggle-switch {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.toggle-text {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 20px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+  &:active::after {
+    width: 25px;
+  }
+}
+
+.toggle-switch:checked + .toggle-text {
+  background: #9cbd32;
+}
+.toggle-switch:checked + .toggle-text::after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}

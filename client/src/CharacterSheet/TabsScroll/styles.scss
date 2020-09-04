@@ -1,0 +1,13 @@
+@import "../variables.scss";
+
+.c-btns {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1px solid $primary-color;
+}
+
+.c-btn {
+  padding: 0.75em;
+  margin: 0.25em;
+}

@@ -3,6 +3,7 @@ import { characterContext } from '../../../context/Character';
 import { Effect } from '../../../ts/interfaces';
 import { Types } from '../../../context/Character/reducer';
 import useOutsideClick from '../../../hooks/useOutsideClick';
+import './styles.scss';
 
 const Effects = () => {
   const { character, dispatch } = useContext(characterContext);
@@ -128,3 +129,9 @@ export default Effects;
 // }
 
 // export default Attacks;
+
+
+// .dragged {
+  // background-color: $primary-color;
+  // color: white;
+// }

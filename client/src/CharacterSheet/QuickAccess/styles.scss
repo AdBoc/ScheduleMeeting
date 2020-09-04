@@ -1,4 +1,9 @@
 @import "../variables.scss";
+@import "../mixins.scss";
+
+.quick-btn {
+  @include def-button;
+}
 
 .c-ins-checkbox {
   display: flex;

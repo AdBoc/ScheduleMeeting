@@ -23,15 +23,15 @@ const AddAttack: React.FC<IProps> = ({ handleClose }) => {
   });
 
   return (
-    <form className="c-form" onSubmit={onSubmit}>
-      <p className="c-form__label">New Attack</p>
-      <input className="c-form__input" ref={register} placeholder="Name" name="name" autoComplete="off" required />
-      <input className="c-form__input" ref={register} placeholder="Dice" name="diceType" autoComplete="off" required />
-      <input className="c-form__input" ref={register} placeholder="Range" name="range" type="number" autoComplete="off" required />
-      <input className="c-form__input" ref={register} placeholder="Bonus Damage" name="bonusDamage" autoComplete="off" type="number" required />
-      <input className="c-form__input" ref={register} placeholder="Bonus hit" name="bonusHit" autoComplete="off" type="number" required />
-      <label className="c-form__box-label">Proficiency<input ref={register} className="c-form__checkbox" type="checkbox" name="proficient" /></label>
-      <select className="c-form__input" ref={register} name="profMod">
+    <form className="form-atk" onSubmit={onSubmit}>
+      <p className="form-atk__label">New Attack</p>
+      <input className="form-atk__input" ref={register} placeholder="Name" name="name" autoComplete="off" required />
+      <input className="form-atk__input" ref={register} placeholder="Dice" name="diceType" autoComplete="off" required />
+      <input className="form-atk__input" ref={register} placeholder="Range" name="range" type="number" autoComplete="off" required />
+      <input className="form-atk__input" ref={register} placeholder="Bonus Damage" name="bonusDamage" autoComplete="off" type="number" required />
+      <input className="form-atk__input" ref={register} placeholder="Bonus hit" name="bonusHit" autoComplete="off" type="number" required />
+      <label className="form-atk__box-label">Proficiency<input ref={register} className="form-atk__checkbox" type="checkbox" name="proficient" /></label>
+      <select className="form-atk__input" ref={register} name="profMod">
         <option value="Strength">Strength</option>
         <option value="Dexterity">Dexterity</option>
         <option value="Constitution">Constitution</option>
@@ -39,7 +39,7 @@ const AddAttack: React.FC<IProps> = ({ handleClose }) => {
         <option value="Intelligence">Intelligence</option>
         <option value="Wisdom">Wisdom</option>
       </select>
-      <select className="c-form__input" ref={register} name="type">
+      <select className="form-atk__input" ref={register} name="type">
         <option value="Slashing">Slashing</option>
         <option value="Bluegoing">Bluegoing</option>
         <option value="Piercing">Piercing</option>
@@ -54,7 +54,7 @@ const AddAttack: React.FC<IProps> = ({ handleClose }) => {
         <option value="Necrotic">Necrotic</option>
         <option value="Radiant">Radiant</option>
       </select>
-      <input className="g-btn" type="submit" value="Submit" />
+      <input className="atk-btn" type="submit" value="Submit" />
     </form>
   )
 };

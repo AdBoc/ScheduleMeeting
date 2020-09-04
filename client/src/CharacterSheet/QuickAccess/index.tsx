@@ -55,12 +55,12 @@ const QuickAccess: React.FC = () => {
         <label htmlFor="c-checkbox__box">Inspiration</label>
         <input className="c-ins-checkbox__box" id="c-checkbox__box" type="checkbox" checked={character.Other.Inspiration} onChange={handleInspiration} />
       </div>
-      <Link to="/"><button className="g-btn section-break">Show Calendar</button></Link>
-      <button className="g-btn" onClick={handleUpload}>Store in DB</button>
-      <button className="g-btn" onClick={handleDownload}>Download Character</button>
-      <button className="g-btn" onClick={() => setPlayerVisiblity(prev => !prev)}>Select User</button>
+      <Link to="/"><button className="quick-btn section-break">Show Calendar</button></Link>
+      <button className="quick-btn" onClick={handleUpload}>Store in DB</button>
+      <button className="quick-btn" onClick={handleDownload}>Download Character</button>
+      <button className="quick-btn" onClick={() => setPlayerVisiblity(prev => !prev)}>Select User</button>
       {playerVisiblity && <ChangeUserAndData setVisibility={setPlayerVisiblity} />}
-      <button className="g-btn g-btn--red" onClick={clearStorage}>Clear Local Storage</button>
+      <button className="quick-btn quick-btn--red" onClick={clearStorage}>Clear Local Storage</button>
       <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar />
     </div>
   )

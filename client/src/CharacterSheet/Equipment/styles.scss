@@ -1,9 +1,14 @@
 @import "../variables.scss";
+@import "../mixins.scss";
 
 // background-color: rgb(255, 249, 225);
 // background-color: rgb(255, 249, 225);
 // background-color: rgb(255, 249, 225);
 // border: 1px solid rgb(179, 167, 63)
+
+.eq-btn {
+  @include def-button;
+}
 
 .c-new-eq {
   padding: 2em;

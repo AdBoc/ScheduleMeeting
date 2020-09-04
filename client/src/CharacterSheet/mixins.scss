@@ -1,0 +1,47 @@
+@import "./variables.scss";
+
+@mixin def-button {
+  display: block;
+  color: white;
+  background-color: $primary-color;
+  padding: 0.5em;
+  margin: 0.5em auto;
+  min-width: 10em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  &--red {
+    background-color: rgba(230, 41, 41, 0.918);
+  }
+}
+
+@mixin add-form {
+  border: 3px double $primary-color;
+  margin: 1em auto;
+  padding: 2em;
+  width: fit-content;
+  &__label {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 0.75em;
+  }
+  &__input {
+    display: block;
+    margin: 0.5em auto;
+    border: 1px solid $primary-color;
+    padding: 0.3em;
+    min-width: 14em;
+  }
+  &__box-label {
+    display: block;
+    text-align: center;
+  }
+  &__checkbox {
+    margin: 0 0.5em;
+  }
+}
+
+@mixin grid-label {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 0.5em 0;
+}

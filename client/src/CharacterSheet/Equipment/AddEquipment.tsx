@@ -38,7 +38,7 @@ const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
         <option value="magic">Magic Items</option>
         <option value="tools">Tools</option>
       </select>
-      <input className="g-btn" type="submit" value="Submit" />
+      <input className="eq-btn" type="submit" value="Submit" />
     </form>
   )
 };

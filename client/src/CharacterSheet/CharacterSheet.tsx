@@ -3,6 +3,7 @@ import { characterContext } from '../context/Character';
 import { Tabs } from '../ts/interfaces';
 import TopDisplay from './TopDisplay';
 import CurrentComponent from './CurrentComponent';
+import TabsScroll from './TabsScroll';
 import './styles.scss';
 
 const CharacterSheet: React.FC = () => {
@@ -13,20 +14,10 @@ const CharacterSheet: React.FC = () => {
     localStorage.setItem("character", JSON.stringify(character));
   }, [character]);
 
-  const toggleView = ({ target }: any) => setCurrentView(target.name);
-
   return (
     <>
       <TopDisplay />
-      <div className="c-btns">
-        <button className="c-btn" onClick={toggleView} name="stats">Stats</button>
-        <button className="c-btn" onClick={toggleView} name="skills">Skills</button>
-        <button className="c-btn" onClick={toggleView} name="savingThrows">Saving Throws</button>
-        <button className="c-btn" onClick={toggleView} name="allActions">Actions</button>
-        <button className="c-btn" onClick={toggleView} name="equipment">Equipment</button>
-        <button className="c-btn" onClick={toggleView} name="story">Background</button>
-        <button className="c-btn" onClick={toggleView} name="quickAccess">Quick Access</button>
-      </div>
+      <TabsScroll setCurrentView={setCurrentView} />
       <CurrentComponent current={currentView} />
     </>
   )
