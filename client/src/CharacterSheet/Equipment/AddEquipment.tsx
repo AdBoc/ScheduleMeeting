@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import { characterContext } from '../../context/Character';
-import { Types } from '../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
-import { BackpackObj } from '../../ts/interfaces';
-import './styles.scss';
 import { useForm } from 'react-hook-form';
+import TextareaAutosize from 'react-autosize-textarea';
+import { BackpackObj } from '../../ts/interfaces';
+import { Types } from '../../context/Character/reducer';
+import './styles.scss';
 
 interface IProps {
-  setRenderForm: React.Dispatch<React.SetStateAction<boolean>>
+  setRenderForm: React.Dispatch<React.SetStateAction<boolean>>;
+  nodeRef: React.MutableRefObject<any>;
 }
 
-const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
+const AddEquipment: React.FC<IProps> = ({ setRenderForm, nodeRef }) => {
   const { dispatch } = useContext(characterContext);
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -23,9 +25,9 @@ const AddEquipment: React.FC<IProps> = ({ setRenderForm }) => {
   });
 
   return (
-    <form className="c-new-eq" onSubmit={onSubmit}>
-      <input className="c-new-eq__input" ref={register} placeholder="name" name="name" aria-label="item name" autoComplete="off" required />
-      <input className="c-new-eq__input" ref={register} placeholder="description" name="description" aria-label="description" autoComplete="off" />
+    <form className="c-new-eq" onSubmit={onSubmit} ref={nodeRef}>
+      <input className="c-new-eq__input" ref={register} placeholder="Name" name="name" aria-label="item name" autoComplete="off" required />
+      <TextareaAutosize ref={register} className="c-new-eq__input" name="description" placeholder="Description" rows={1} />
       <div className="c-new-eq-flex">
         <label className="c-new-eq__label" htmlFor="quantity">Quantity:</label>
         <input className="c-new-eq__num" ref={register} type="number" name="quantity" aria-label="quantity" onFocus={(e: any) => e.target.select()} />

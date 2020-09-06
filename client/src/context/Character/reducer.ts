@@ -171,6 +171,10 @@ export const initialCharacter: CharacterInterface = {
     CurrentSlots: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     SpellProficiency: null,
   },
+  DiceSim: {
+    status: false,
+    dices: [],
+  },
 };
 
 export const reducer = (

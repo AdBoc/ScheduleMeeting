@@ -5,9 +5,14 @@
   @include def-button;
 }
 
+.c-story {
+  padding-top: 1em;
+}
+
 .c-ins-checkbox {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.5em 1em;
   font-size: 1.25em;
   &__box {

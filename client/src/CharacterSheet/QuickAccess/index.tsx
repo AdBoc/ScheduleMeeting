@@ -45,16 +45,23 @@ const QuickAccess: React.FC = () => {
 
   return (
     <div className="c-story">
-      <InputNumber prop={character.MainStats.HitPoints} propName="MainStats.HitPoints" fieldName="Max Hit Points" />
+      <InputNumber prop={character.MainStats.HitPoints} propName="MainStats.HitPoints" fieldName="Max HP" />
       <InputNumber prop={character.MainStats.Speed} propName="MainStats.Speed" fieldName="Speed" />
+      <hr />
       <StatButtons prop={character.MainStats.Level} propName="MainStats.Level" fieldName="Level" />
       <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" fieldName="Armor Class" />
       <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiative" />
       <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
+      <hr />
       <div className="c-ins-checkbox">
-        <label htmlFor="c-checkbox__box">Inspiration</label>
-        <input className="c-ins-checkbox__box" id="c-checkbox__box" type="checkbox" checked={character.Other.Inspiration} onChange={handleInspiration} />
+        <label htmlFor="inspiration">Inspiration</label>
+        <input className="c-ins-checkbox__box" id="inspiration" type="checkbox" checked={character.Other.Inspiration} onChange={handleInspiration} />
       </div>
+      <div className="c-ins-checkbox">
+        <label htmlFor="diceSim">DiceSim</label>
+        <input className="c-ins-checkbox__box" id="diceSim" type="checkbox" />
+      </div>
+      <hr />
       <Link to="/"><button className="quick-btn section-break">Show Calendar</button></Link>
       <button className="quick-btn" onClick={handleUpload}>Store in DB</button>
       <button className="quick-btn" onClick={handleDownload}>Download Character</button>

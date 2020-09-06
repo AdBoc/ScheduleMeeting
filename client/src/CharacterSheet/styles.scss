@@ -28,10 +28,10 @@
   margin: 0.5em;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   &__label {
-    flex-grow: 1.1;
+    min-width: 6em;
   }
   &__field {
     background-color: $primary-color;
@@ -61,17 +61,19 @@
 
 .g-input-num {
   display: flex;
-  justify-content: space-between;
-  font-size: 1.25em;
+  justify-content: center;
   margin: 0.25em 1em;
   align-items: center;
   &__val {
     border: 1px solid black;
-    padding: 0.3em;
+    padding: 0.2em;
     text-align: center;
     background-color: $primary-color;
     color: white;
-    width: 3.5em;
+    width: 3em;
+  }
+  &__label {
+    min-width: 4em;
   }
 }
 

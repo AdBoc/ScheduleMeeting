@@ -12,7 +12,6 @@ export const characterContext = createContext<{
 });
 
 const CharacterContextProvider: React.FC = ({ children }) => {
-
   let getCharacter: string | null | CharacterInterface = localStorage.getItem("character");
   if (getCharacter) {
     getCharacter = JSON.parse(getCharacter);

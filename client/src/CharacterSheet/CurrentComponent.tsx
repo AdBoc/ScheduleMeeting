@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SavingThrows, Skills, Stats, Story, AllActions, Equipment, QuickAccess } from './index';
-import { Tabs } from '../ts/interfaces';
+import { tabContext } from '../context/TabView';
 
-interface IProps {
-  current: Tabs;
-}
 
-const CurrentComponent: React.FC<IProps> = ({ current }) => {
-  switch (current) {
+const CurrentComponent: React.FC = () => {
+  const { currentView } = useContext(tabContext);
+  switch (currentView) {
     case 'stats':
       return <Stats />
     case 'skills':

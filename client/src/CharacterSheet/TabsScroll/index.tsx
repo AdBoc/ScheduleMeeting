@@ -1,13 +1,20 @@
-import React from 'react';
-import { Tabs } from '../../ts/interfaces';
+import React, { useContext } from 'react';
 import './styles.scss';
+import { tabContext } from '../../context/TabView';
 
-interface IProps {
-  setCurrentView: React.Dispatch<React.SetStateAction<Tabs>>
-};
 
-const TabsScroll: React.FC<IProps> = ({ setCurrentView }) => {
+const TabsScroll: React.FC = () => {
+  const { setCurrentView, indexRef } = useContext(tabContext);
   const toggleView = ({ target }: any) => setCurrentView(target.name);
+  // const toggleView = () => setCurrentView(tabs[6]);
+  const plusView = () => {
+    console.log('next');
+    indexRef.current = indexRef.current + 1;
+    console.log(indexRef.current);
+  };
+
+  const minusView = () => { };
+
   return (
     <div className="c-btns">
       <button className="c-btn" onClick={toggleView} name="stats">Stats</button>
@@ -17,6 +24,9 @@ const TabsScroll: React.FC<IProps> = ({ setCurrentView }) => {
       <button className="c-btn" onClick={toggleView} name="equipment">Equipment</button>
       <button className="c-btn" onClick={toggleView} name="story">Background</button>
       <button className="c-btn" onClick={toggleView} name="quickAccess">Quick Access</button>
+
+      <button className="c-btn" onClick={plusView}>PLUS</button>
+      <button className="c-btn" onClick={minusView}>MINUS</button>
     </div>
   )
 };
