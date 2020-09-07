@@ -15,7 +15,8 @@ const QuickAccess: React.FC = () => {
   const [playerVisiblity, setPlayerVisiblity] = useState(false);
   const { character, dispatch } = useContext(characterContext);
 
-  const handleInspiration = () => dispatch({ type: Types.CHANGE_INSPIRATION, payload: { newValue: !character.Other.Inspiration } });
+  const handleInspiration = () => dispatch({ type: Types.CHANGE_BOOL, payload: { property: "Other.Inspiration", newValue: !character.Other.Inspiration } });
+  const handleDiceSim = () => dispatch({ type: Types.CHANGE_BOOL, payload: { property: "DiceSim.status", newValue: !character.DiceSim.status } });
 
   const clearStorage = () => {
     localStorage.removeItem("character");
@@ -59,7 +60,7 @@ const QuickAccess: React.FC = () => {
       </div>
       <div className="c-ins-checkbox">
         <label htmlFor="diceSim">DiceSim</label>
-        <input className="c-ins-checkbox__box" id="diceSim" type="checkbox" />
+        <input className="c-ins-checkbox__box" id="diceSim" type="checkbox" checked={character.DiceSim.status} onChange={handleDiceSim} />
       </div>
       <hr />
       <Link to="/"><button className="quick-btn section-break">Show Calendar</button></Link>

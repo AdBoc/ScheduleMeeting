@@ -5,7 +5,6 @@ import Calendar from './Calendar/Calendar';
 import CharacterSheet from './CharacterSheet/CharacterSheet';
 import CharacterContextProvider from './context/Character';
 import Reset from './components/Reset';
-import TabContextProvider from './context/TabView';
 
 function App(): JSX.Element {
   return (
@@ -14,9 +13,7 @@ function App(): JSX.Element {
         <Route exact path="/" component={Calendar}></Route>
         <Route exact path="/reset" component={Reset}></Route>
         <CharacterContextProvider>
-          <TabContextProvider>
-            <Route exact path="/sheet" component={CharacterSheet}></Route>
-          </TabContextProvider>
+          <Route exact path="/sheet" component={CharacterSheet}></Route>
         </CharacterContextProvider>
       </Switch>
     </Router >

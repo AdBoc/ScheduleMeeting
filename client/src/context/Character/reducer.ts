@@ -3,9 +3,8 @@ import {
   Attack,
   BackpackObj,
   Effect,
-  Cantrip,
   Spell,
-  Action,
+  Dice,
 } from "../../ts/interfaces";
 import * as immutable from "object-path-immutable";
 
@@ -13,6 +12,7 @@ export enum Types {
   INCREMENT_STAT = "INCREMENT_STAT",
   DECREMENT_STAT = "DECREMENT_STAT",
   CHANGE_STAT = "CHANGE_STAT",
+  CHANGE_BOOL = "CHANGE_BOOL",
   EDIT_TEXT = "EDIT_TEXT",
   ADD_TO_ARRAY = "ADD_TO_ARRAY",
   TAG_PROP = "TAG_PROP",
@@ -59,24 +59,16 @@ type SettingsPayload = {
       | "Attacks"
       | "Equipment"
       | "Effects"
-      | "Cantrips"
       | "Spells"
-      | "Actions"
+      | "DiceSim.dices"
       | "Other.TaggedSkills";
-    newValue: Attack | BackpackObj | Effect | Cantrip | Spell | Action | string;
+    newValue: Attack | BackpackObj | Effect | Spell | Dice | string;
   };
   [Types.TAG_PROP]: {
     newArray: [string | null, string | null];
   };
   [Types.DELETE_IN_ARRAY]: {
-    property:
-      | "Attacks"
-      | "Equipment"
-      | "Effects"
-      | "Cantrips"
-      | "Spells"
-      | "Actions"
-      | "Other.TaggedSkills";
+    property: "Attacks" | "Equipment" | "Effects" | "Spells" | "Other.TaggedSkills";
     id: string;
   };
   [Types.SET_CHARACTER]: {
@@ -93,7 +85,8 @@ type SettingsPayload = {
   [Types.CHANGE_EFFECT_STATUS]: {
     newobj: any[];
   };
-  [Types.CHANGE_INSPIRATION]: {
+  [Types.CHANGE_BOOL]: {
+    property: "DiceSim.status" | "Other.Inspiration";
     newValue: boolean;
   };
 };
@@ -152,9 +145,7 @@ export const initialCharacter: CharacterInterface = {
   Attacks: [],
   Equipment: [],
   Effects: [],
-  Cantrips: [],
   Spells: [],
-  Actions: [],
   Other: {
     TaggedThrows: [null, null],
     TaggedSkills: [],
@@ -190,6 +181,8 @@ export const reducer = (
       return immutable.set(character, action.payload.property, +action.payload.newValue); //+"" = 0
     case Types.EDIT_TEXT:
       return immutable.set(character, action.payload.property, action.payload.newValue);
+    case Types.CHANGE_BOOL:
+      return immutable.set(character, action.payload.property, action.payload.newValue);
     case Types.ADD_TO_ARRAY:
       return immutable.push(character, action.payload.property, action.payload.newValue);
     case Types.DELETE_IN_ARRAY:
@@ -224,14 +217,6 @@ export const reducer = (
       return {
         ...character,
         Effects: action.payload.newobj,
-      };
-    case Types.CHANGE_INSPIRATION:
-      return {
-        ...character,
-        Other: {
-          ...character.Other,
-          Inspiration: action.payload.newValue,
-        },
       };
     default:
       return character;

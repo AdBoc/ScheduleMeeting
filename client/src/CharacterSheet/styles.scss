@@ -1,5 +1,14 @@
 @import "./variables.scss";
 
+.try-flex {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+.flex-content {
+  flex: 1;
+}
+
 .g-add-button {
   display: flex;
   margin: 0.5em 1em;

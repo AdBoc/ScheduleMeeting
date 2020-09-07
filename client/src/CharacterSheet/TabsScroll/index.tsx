@@ -1,32 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './styles.scss';
-import { tabContext } from '../../context/TabView';
 
+interface IProps {
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+}
 
-const TabsScroll: React.FC = () => {
-  const { setCurrentView, indexRef } = useContext(tabContext);
-  const toggleView = ({ target }: any) => setCurrentView(target.name);
-  // const toggleView = () => setCurrentView(tabs[6]);
-  const plusView = () => {
-    console.log('next');
-    indexRef.current = indexRef.current + 1;
-    console.log(indexRef.current);
-  };
+const TabsScroll: React.FC<IProps> = ({ setCurrentIndex }) => {
 
-  const minusView = () => { };
+  const toggleView = ({ target }: any) => setCurrentIndex(+target.value);
 
   return (
     <div className="c-btns">
-      <button className="c-btn" onClick={toggleView} name="stats">Stats</button>
-      <button className="c-btn" onClick={toggleView} name="skills">Skills</button>
-      <button className="c-btn" onClick={toggleView} name="savingThrows">Saving Throws</button>
-      <button className="c-btn" onClick={toggleView} name="allActions">Actions</button>
-      <button className="c-btn" onClick={toggleView} name="equipment">Equipment</button>
-      <button className="c-btn" onClick={toggleView} name="story">Background</button>
-      <button className="c-btn" onClick={toggleView} name="quickAccess">Quick Access</button>
-
-      <button className="c-btn" onClick={plusView}>PLUS</button>
-      <button className="c-btn" onClick={minusView}>MINUS</button>
+      <button className="c-btn" onClick={toggleView} value={0}>Stats</button>
+      <button className="c-btn" onClick={toggleView} value={1}>Skills</button>
+      <button className="c-btn" onClick={toggleView} value={2}>Saving Throws</button>
+      <button className="c-btn" onClick={toggleView} value={3}>Actions</button>
+      <button className="c-btn" onClick={toggleView} value={4}>Equipment</button>
+      <button className="c-btn" onClick={toggleView} value={5}>Background</button>
+      <button className="c-btn" onClick={toggleView} value={6}>Quick Access</button>
     </div>
   )
 };

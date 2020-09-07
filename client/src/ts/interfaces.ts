@@ -52,9 +52,9 @@ export type Effect = {
   description: string;
 };
 
-export type Cantrip = {
-  id: string;
-  name: string;
+export type Dice = {
+  number: number;
+  value: number;
 };
 
 export type Spell = {
@@ -66,11 +66,6 @@ export type Spell = {
   range: string;
   components: string;
   description: string;
-};
-
-export type Action = {
-  id: string;
-  name: string;
 };
 
 export interface CharacterInterface {
@@ -114,9 +109,7 @@ export interface CharacterInterface {
   Attacks: Attack[];
   Equipment: BackpackObj[];
   Effects: Effect[];
-  Cantrips: Cantrip[];
   Spells: Spell[];
-  Actions: Action[];
   Story: {
     Alignment: string;
     Background: string;
@@ -146,6 +139,6 @@ export interface CharacterInterface {
   };
   DiceSim: {
     status: boolean;
-    dices: any[];
+    dices: Dice[];
   };
 }

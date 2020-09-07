@@ -31,7 +31,7 @@ const Equipment: React.FC = () => {
     { label: "Tools", value: "tools" }
   ];
 
-  let equipment: BackpackObj[]; //is refreshed only because of state change in renderForm, also rerenders when gold info is changed
+  let equipment: BackpackObj[]; //is refreshed only because of state change in renderForm when submitted, also rerenders when gold info is changed
   if (select.length !== 0) {
     const newObj = character.Equipment.reduce((accumulator, item) => {
       select.forEach((selected) => {
@@ -65,13 +65,7 @@ const Equipment: React.FC = () => {
         <button className="c-eq__btns__btn" onClick={() => setRenderGold(prev => !prev)}>Total Gp: {charMethods.countTotalGP(character.Other.Currency)}</button>
         <button className="c-eq__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+ Add</button>
       </div>
-      <CSSTransition
-        in={renderForm}
-        nodeRef={eqRef}
-        timeout={1000}
-        classNames="render-form"
-        unmountOnExit
-      >
+      <CSSTransition in={renderForm} nodeRef={eqRef} timeout={1000} classNames="render-form" unmountOnExit>
         <AddEquipment nodeRef={eqRef} setRenderForm={setRenderForm} />
       </CSSTransition>
       {rednerGold && <Gold />}

@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { useForm } from 'react-hook-form';
 import { characterContext } from '../../../context/Character';
 import { Types } from '../../../context/Character/reducer';
 import { v4 as uuidv4 } from 'uuid';
 import { Effect } from '../../../ts/interfaces';
+import TextareaAutosize from 'react-autosize-textarea';
 
 interface IProps {
-  handleClose: () => void
-}
+  handleClose: () => void;
+};
 
 const AddEffect: React.FC<IProps> = ({ handleClose }) => {
   const { dispatch } = useContext(characterContext);
