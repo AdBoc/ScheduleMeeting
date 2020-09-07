@@ -25,16 +25,6 @@ export interface DateProps {
   daysOfMonth: string[];
 }
 
-//Character Sheet
-export type Tabs =
-  | "stats"
-  | "skills"
-  | "savingThrows"
-  | "allActions"
-  | "equipment"
-  | "story"
-  | "quickAccess";
-
 export type Attack = {
   id: string;
   name: string;
@@ -62,9 +52,9 @@ export type Effect = {
   description: string;
 };
 
-export type Cantrip = {
-  id: string;
-  name: string;
+export type Dice = {
+  number: number;
+  value: number;
 };
 
 export type Spell = {
@@ -76,11 +66,6 @@ export type Spell = {
   range: string;
   components: string;
   description: string;
-};
-
-export type Action = {
-  id: string;
-  name: string;
 };
 
 export interface CharacterInterface {
@@ -124,9 +109,7 @@ export interface CharacterInterface {
   Attacks: Attack[];
   Equipment: BackpackObj[];
   Effects: Effect[];
-  Cantrips: Cantrip[];
   Spells: Spell[];
-  Actions: Action[];
   Story: {
     Alignment: string;
     Background: string;
@@ -153,5 +136,9 @@ export interface CharacterInterface {
     CurrentSlots: [number, number, number, number, number, number, number, number, number];
     ShortRestSlots: [number, number, number, number, number, number, number, number, number];
     SpellProficiency: null | string;
+  };
+  DiceSim: {
+    status: boolean;
+    dices: Dice[];
   };
 }

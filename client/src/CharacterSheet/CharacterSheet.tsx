@@ -1,34 +1,48 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { characterContext } from '../context/Character';
-import { Tabs } from '../ts/interfaces';
 import TopDisplay from './TopDisplay';
 import CurrentComponent from './CurrentComponent';
+import TabsScroll from './TabsScroll';
 import './styles.scss';
 
 const CharacterSheet: React.FC = () => {
-  const [currentView, setCurrentView] = useState<Tabs>("stats");
+  const tabs = ["stats", "skills", "savingThrows", "allActions", "equipment", "story", "quickAccess"];
+  let startX = 0;
+
   const { character } = useContext(characterContext);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentView, setCurrentView] = useState(tabs[currentIndex]);
 
   useEffect(() => {
     localStorage.setItem("character", JSON.stringify(character));
   }, [character]);
 
-  const toggleView = ({ target }: any) => setCurrentView(target.name);
+  useEffect(() => {
+    setCurrentView(tabs[currentIndex]);
+  }, [currentIndex, tabs]);
+
+  const handleTouchStart = (e: any) => {
+    startX = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: any) => {
+    if (e.changedTouches[0].clientX - startX > 50) {
+      if (currentIndex === 0) return setCurrentIndex(6);
+      setCurrentIndex(prev => prev - 1);
+    } else if (e.changedTouches[0].clientX - startX < -50) {
+      if (currentIndex === 6) return setCurrentIndex(0);
+      setCurrentIndex(prev => prev + 1);
+    }
+  };
 
   return (
-    <>
+    <div className="try-flex">
       <TopDisplay />
-      <div className="c-btns">
-        <button className="c-btn" onClick={toggleView} name="stats">Stats</button>
-        <button className="c-btn" onClick={toggleView} name="skills">Skills</button>
-        <button className="c-btn" onClick={toggleView} name="savingThrows">Saving Throws</button>
-        <button className="c-btn" onClick={toggleView} name="allActions">Actions</button>
-        <button className="c-btn" onClick={toggleView} name="equipment">Equipment</button>
-        <button className="c-btn" onClick={toggleView} name="story">Background</button>
-        <button className="c-btn" onClick={toggleView} name="quickAccess">Quick Access</button>
+      <TabsScroll setCurrentIndex={setCurrentIndex} />
+      <div className="flex-content" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <CurrentComponent currentView={currentView} />
       </div>
-      <CurrentComponent current={currentView} />
-    </>
+    </div>
   )
 };
 

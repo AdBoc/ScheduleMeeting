@@ -1,13 +1,14 @@
 import React, { useState, useContext, useRef } from 'react';
-import Multiselect from 'react-multi-select-component';
+import { CSSTransition } from 'react-transition-group';
 import { characterContext } from '../../context/Character';
-import { Types } from '../../context/Character/reducer';
-import { BackpackObj } from '../../ts/interfaces';
+import useOutsideClick from '../../hooks/useOutsideClick';
 import { charMethods } from '../../Services/CharacterMethods';
 import AddEquipment from './AddEquipment';
 import Gold from './Gold';
+import Multiselect from 'react-multi-select-component';
+import { Types } from '../../context/Character/reducer';
+import { BackpackObj } from '../../ts/interfaces';
 import './styles.scss';
-import useOutsideClick from '../../hooks/useOutsideClick';
 
 
 const Equipment: React.FC = () => {
@@ -16,6 +17,7 @@ const Equipment: React.FC = () => {
   const [rednerGold, setRenderGold] = useState(false);
   const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
   const [details, setDetails] = useState<null | BackpackObj>(null);
+  const eqRef = useRef(null);
 
   const ref = useRef(null);
   useOutsideClick(ref, () => { if (details) setDetails(null) });
@@ -29,7 +31,7 @@ const Equipment: React.FC = () => {
     { label: "Tools", value: "tools" }
   ];
 
-  let equipment: BackpackObj[]; //is refreshed only because of state change in renderForm, also rerenders when gold info is changed
+  let equipment: BackpackObj[]; //is refreshed only because of state change in renderForm when submitted, also rerenders when gold info is changed
   if (select.length !== 0) {
     const newObj = character.Equipment.reduce((accumulator, item) => {
       select.forEach((selected) => {
@@ -63,7 +65,9 @@ const Equipment: React.FC = () => {
         <button className="c-eq__btns__btn" onClick={() => setRenderGold(prev => !prev)}>Total Gp: {charMethods.countTotalGP(character.Other.Currency)}</button>
         <button className="c-eq__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+ Add</button>
       </div>
-      {renderForm && <AddEquipment setRenderForm={setRenderForm} />}
+      <CSSTransition in={renderForm} nodeRef={eqRef} timeout={1000} classNames="render-form" unmountOnExit>
+        <AddEquipment nodeRef={eqRef} setRenderForm={setRenderForm} />
+      </CSSTransition>
       {rednerGold && <Gold />}
       <Multiselect className="multiselect" options={options} value={select} onChange={setSelect} labelledBy={"Select"} hasSelectAll={false} disableSearch={true} />
       <div className="c-grid">

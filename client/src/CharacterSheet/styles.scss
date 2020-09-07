@@ -1,25 +1,12 @@
 @import "./variables.scss";
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.c-btns {
+.try-flex {
   display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  border-bottom: 1px solid $primary-color;
+  flex-flow: column;
+  min-height: 100vh;
 }
-
-.c-btn {
-  padding: 0.75em;
-  margin: 0.25em;
+.flex-content {
+  flex: 1;
 }
 
 .g-add-button {
@@ -46,19 +33,14 @@ input[type="number"] {
   }
 }
 
-.dragged {
-  background-color: $primary-color;
-  color: white;
-}
-
 .g-input {
   margin: 0.5em;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   &__label {
-    flex-grow: 1.1;
+    min-width: 6em;
   }
   &__field {
     background-color: $primary-color;
@@ -82,53 +64,25 @@ input[type="number"] {
   }
 }
 
-.generic-select {
-  appearance: none;
-  color: black;
-  padding: 0.1em;
-  font-size: 1.5em;
-  text-align-last: center;
-  &:focus {
-    outline: none;
-  }
-}
-
 .hide {
   visibility: hidden;
 }
 
-.g-btn {
-  display: block;
-  color: white;
-  background-color: $primary-color;
-  padding: 0.5em;
-  margin: 0.5em auto;
-  min-width: 10em;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  &--red {
-    background-color: rgba(230, 41, 41, 0.918);
-  }
-}
-
-.g-tagged {
-  background-color: $primary-color;
-  color: white;
-}
-
 .g-input-num {
   display: flex;
-  justify-content: space-between;
-  font-size: 1.25em;
+  justify-content: center;
   margin: 0.25em 1em;
   align-items: center;
   &__val {
     border: 1px solid black;
-    padding: 0.3em;
+    padding: 0.2em;
     text-align: center;
     background-color: $primary-color;
     color: white;
-    width: 3.5em;
+    width: 3em;
+  }
+  &__label {
+    min-width: 4em;
   }
 }
 
@@ -165,26 +119,3 @@ input[type="number"] {
     justify-content: space-around;
   }
 }
-
-// .i-trash {
-//     background-image: url(../assets/icons8-trash.svg);
-//     width: 24px;
-//     height: 24px;
-//     background-size: cover;
-//     margin: auto 0.5em auto 0;
-//     cursor: pointer;
-//     &:active {
-//         display: block;
-//     }
-// }
-// .i-expand {
-//     background-image: url(../assets/UI_icon_expand.svg);
-//     width: 20px;
-//     height: 20px;
-//     background-size: cover;
-//     margin: auto 2.55em auto 0;
-//     cursor: pointer;
-//     &:active {
-//         display: block;
-//     }
-// }

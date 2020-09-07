@@ -1,0 +1,77 @@
+@import "../../mixins.scss";
+
+.form-spell {
+  @include add-form;
+}
+
+.spell-btn {
+  @include def-button;
+}
+
+.spell-buttons {
+  display: flex;
+}
+.spell-button {
+  @include def-button;
+}
+
+.slots-label {
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+.spells-grid {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5em;
+  padding: 0.5em 0;
+  font-size: 0.9em;
+  &:nth-of-type(odd) {
+    background-color: rgb(230, 230, 230);
+  }
+}
+
+.slots {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+}
+
+.slot {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  &__input {
+    text-align: center;
+    width: 2em;
+  }
+}
+
+.spell-slots {
+  text-align: center;
+  font-size: 1.25em;
+}
+.spell-slot {
+  margin: 0.5em;
+}
+
+.spells__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em 0.25em;
+}
+
+.menu__button {
+  margin: 0 !important;
+}
+
+.menu__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-border {
+  @include grid-label;
+}

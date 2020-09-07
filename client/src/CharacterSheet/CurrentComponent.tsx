@@ -1,13 +1,12 @@
 import React from 'react';
 import { SavingThrows, Skills, Stats, Story, AllActions, Equipment, QuickAccess } from './index';
-import { Tabs } from '../ts/interfaces';
 
 interface IProps {
-  current: Tabs;
+  currentView: string;
 }
 
-const CurrentComponent: React.FC<IProps> = ({ current }) => {
-  switch (current) {
+const CurrentComponent: React.FC<IProps> = ({ currentView }) => {
+  switch (currentView) {
     case 'stats':
       return <Stats />
     case 'skills':

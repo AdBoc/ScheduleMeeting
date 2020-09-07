@@ -196,10 +196,7 @@ textarea {
 button:focus,
 button:active,
 button:focus:active {
-  background-image: none;
   outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 
 body {
@@ -216,4 +213,14 @@ code {
 
 button {
   cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

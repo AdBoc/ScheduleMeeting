@@ -12,7 +12,7 @@ const InputNumber: React.FC<IProps> = ({ fieldName, propName, prop }) => {
   const { dispatch } = useContext(characterContext);
 
   const handleChange = ({ target }: any) => {
-    if (target.value > 2000)
+    if (target.value > 9999)
       return;
     dispatch({ type: Types.CHANGE_STAT, payload: { property: propName, newValue: target.value } });
   }

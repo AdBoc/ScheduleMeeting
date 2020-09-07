@@ -23,10 +23,10 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
   });
 
   return (
-    <form className="c-form" onSubmit={onSubmit}>
-      <p className="c-form__label">Add Spell</p>
-      <input ref={register} className="c-form__input" name="name" placeholder="Name" required />
-      <select ref={register} className="c-form__input" name="level" required>
+    <form className="form-spell" onSubmit={onSubmit}>
+      <p className="form-spell__label">Add Spell</p>
+      <input ref={register} className="form-spell__input" name="name" placeholder="Name" required />
+      <select ref={register} className="form-spell__input" name="level" required>
         <option value="">--Spell Level--</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -39,7 +39,7 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="9">9</option>
         <option value="cantrip">cantrip</option>
       </select>
-      <select ref={register} className="c-form__input" name="school">
+      <select ref={register} className="form-spell__input" name="school">
         <option value="Conjuration">Conjuration</option>
         <option value="Necromancy">Necromancy</option>
         <option value="Evocation">Evocation</option>
@@ -49,7 +49,7 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="Enchantment">Enchantment</option>
         <option value="Illusion">Illusion</option>
       </select>
-      <select ref={register} className="c-form__input" name="castingTime">
+      <select ref={register} className="form-spell__input" name="castingTime">
         <option value="1 action">1 action</option>
         <option value="bonus action">bonus action</option>
         <option value="1 minute">1 minute</option>
@@ -59,8 +59,8 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="12 hours">12 hours</option>
         <option value="24 hours">24 hours</option>
       </select>
-      <input ref={register} className="c-form__input" name="range" placeholder="Range" type="number" required />
-      <select ref={register} className="c-form__input" name="components" required>
+      <input ref={register} className="form-spell__input" name="range" placeholder="Range" type="number" required />
+      <select ref={register} className="form-spell__input" name="components" required>
         <option value="">--Components--</option>
         <option value="V">V</option>
         <option value="S">S</option>
@@ -70,8 +70,8 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="S, M">S, M</option>
         <option value="V, S, M">V, S, M</option>
       </select>
-      <TextareaAutosize ref={register} className="c-form__input" name="description" placeholder="Description" rows={1} />
-      <input className="g-btn" type="submit" value="Submit" />
+      <TextareaAutosize ref={register} className="form-spell__input" name="description" placeholder="Description" rows={1} />
+      <input className="spell-btn" type="submit" value="Submit" />
     </form>
   )
 };

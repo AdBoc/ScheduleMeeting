@@ -5,6 +5,7 @@ import { Types } from '../../../context/Character/reducer';
 import { charMethods } from '../../../Services/CharacterMethods';
 import { Spell } from '../../../ts/interfaces';
 import useOutsideClick from '../../../hooks/useOutsideClick';
+import './styles.scss';
 
 const Spells = () => {
   const { character, dispatch } = useContext(characterContext);
@@ -55,10 +56,10 @@ const Spells = () => {
           <p>Save DC: {character.Other.SpellProficiency !== null ? <span>{8 + charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
           <p>Attack Bonus: {character.Other.SpellProficiency !== null ? <span>{charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
         </div>
-        <button className="g-btn menu__button" onClick={handleSlots}>Spell Slots</button>
+        <button className="spell-btn menu__button" onClick={handleSlots}>Spell Slots</button>
       </div>
       {isProfSelect && (
-        <select className="c-form__input" onChange={handleSelect}>
+        <select className="form-spell__input" onChange={handleSelect}>
           <option value="Strength">Strength</option>
           <option value="Dexterity">Dexterity</option>
           <option value="Constitution">Constitution</option>

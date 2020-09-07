@@ -1,8 +1,18 @@
 @import "../variables.scss";
+@import "../mixins.scss";
+
+.quick-btn {
+  @include def-button;
+}
+
+.c-story {
+  padding-top: 1em;
+}
 
 .c-ins-checkbox {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.5em 1em;
   font-size: 1.25em;
   &__box {
@@ -16,7 +26,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 1;
   padding-top: 4rem;
   display: flex;
   flex-direction: column;

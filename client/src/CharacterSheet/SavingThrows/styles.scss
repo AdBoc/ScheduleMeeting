@@ -1,3 +1,5 @@
+@import "../variables.scss";
+
 .c-saving-throws {
     max-width: 30em;
     margin: auto;
@@ -28,6 +30,11 @@
   font-size: 1.2em;
 }
 
+.c-tagged {
+  background-color: $primary-color;
+  color: white;
+}
+
 .c-save-death {
   text-align: center;
   margin-top: 1em;
@@ -54,8 +61,8 @@
   cursor: pointer;
 }
 .--success {
-  background-color: rgb(125, 255, 125);
+  background-color: rgb(96, 146, 96);
 }
 .--fail {
-  background-color: rgb(255, 78, 78);
+  background-color: rgb(148, 12, 12);
 }

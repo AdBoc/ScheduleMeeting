@@ -13,3 +13,14 @@
     text-align: center;
   }
 }
+
+.stats-select {
+  appearance: none;
+  color: black;
+  padding: 0.1em;
+  font-size: 1.5em;
+  text-align-last: center;
+  &:focus {
+    outline: 2px solid rgb(29, 29, 29);
+  }
+}

@@ -1,12 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { characterContext } from '../../context/Character';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import DiceSim from '../DiceSim';
 import { Types } from '../../context/Character/reducer';
 import { charMethods } from '../../Services/CharacterMethods';
 import './styles.scss';
 
 const TopDisplay = () => {
   const { character, dispatch } = useContext(characterContext);
-  const [showHpInput, setShowHpInput] = useState(false);
+  const [isHpInput, setIsHpInput] = useState(false);
+  const [isDiceSim, setIsDiceSim] = useState(false);
+
+  const diceRef = useRef(null);
+  useOutsideClick(diceRef, () => {
+    if (isDiceSim) setIsDiceSim(prev => !prev);
+  });
+
+  const hpRef = useRef(null);
+  useOutsideClick(hpRef, () => {
+    if (isHpInput) setIsHpInput(prev => !prev);
+  });
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -19,7 +32,7 @@ const TopDisplay = () => {
     else if (currHP > MaxHP)
       currHP = MaxHP;
     dispatch({ type: Types.CHANGE_STAT, payload: { property: "TemporaryHitPoints", newValue: currHP } });
-    setShowHpInput(prev => !prev);
+    setIsHpInput(prev => !prev);
   };
 
   const styleHp = () => {
@@ -33,41 +46,45 @@ const TopDisplay = () => {
   };
 
   return (
-    <div className="c-sheet">
-      <div className="c-sheet__player">
-        <div className="c-player">
-          <p className="c-player__name">{character.Story.Name}</p>
-          <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level ? character.MainStats.Level : null}</p>
+    <>
+      <div className="c-sheet">
+        <div className="c-sheet__player">
+          <div className="c-player">
+            <p className="c-player__name">{character.Story.Name}</p>
+            <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level ? character.MainStats.Level : null}</p>
+          </div>
+          <div className="relative">
+            <p className={styleHp()} onClick={() => setIsHpInput(prev => !prev)}>{character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP</p>
+            {
+              isHpInput && <form className="c-sheet__hp-form" onSubmit={handleSubmit} ref={hpRef}>
+                <input className="c-sheet__hp-form__input" type="number" name="HpMod" autoFocus required />
+                <input className="c-sheet__hp-form__submit" type="submit" value="OK" />
+              </form>
+            }
+          </div>
         </div>
-        <div className="relative">
-          <p className={styleHp()} onClick={() => setShowHpInput(prev => !prev)}>{character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP</p>
-          {
-            showHpInput && <form className="c-sheet__hp-form" onSubmit={handleSubmit}>
-              <input className="c-sheet__hp-form__input" type="number" name="HpMod" autoFocus required />
-              <input className="c-sheet__hp-form__submit" type="submit" value="OK" />
-            </form>
-          }
+        <div className="c-sheet__stats">
+          <div className="c-stat">
+            <p className="c-stat__value">{character.MainStats.ArmorClass}</p>
+            <p className="c-stat__label">Armor Class</p>
+          </div>
+          <div className="c-stat">
+            <p className="c-stat__value">{character.MainStats.Initiative}</p>
+            <p className="c-stat__label">Initiative</p>
+          </div>
+          <div className="c-stat">
+            <p className="c-stat__value">{character.MainStats.PassivePercepion}</p>
+            <p className="c-stat__label">Passive Percepion</p>
+          </div>
+          <div className="c-stat">
+            <p className="c-stat__value">{charMethods.calcProficiency(character.MainStats.Level)}</p>
+            <p className="c-stat__label">Proficiency Bonus</p>
+          </div>
         </div>
+        {character.DiceSim.status && <img className="dice-icon" alt="dice sim button" src={require('../../assets/dices.svg')} onClick={() => setIsDiceSim(prev => !prev)}></img>}
       </div>
-      <div className="c-sheet__stats">
-        <div className="c-stat">
-          <p className="c-stat__value">{character.MainStats.ArmorClass}</p>
-          <p className="c-stat__label">Armor Class</p>
-        </div>
-        <div className="c-stat">
-          <p className="c-stat__value">{character.MainStats.Initiative}</p>
-          <p className="c-stat__label">Initiative</p>
-        </div>
-        <div className="c-stat">
-          <p className="c-stat__value">{character.MainStats.PassivePercepion}</p>
-          <p className="c-stat__label">Passive Percepion</p>
-        </div>
-        <div className="c-stat">
-          <p className="c-stat__value">{charMethods.calcProficiency(character.MainStats.Level)}</p>
-          <p className="c-stat__label">Proficiency Bonus</p>
-        </div>
-      </div>
-    </div>
+      {isDiceSim && <div ref={diceRef}><DiceSim /></div>}
+    </>
   )
 };
 

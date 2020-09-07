@@ -64,7 +64,7 @@ const StatsSelect: React.FC<IProps> = ({ range, name, value }) => {
   };
 
   return (
-    <select className="generic-select" value={value} name={name} onChange={onChange}>
+    <select className="stats-select" value={value} name={name} onChange={onChange}>
       {options}
     </select>
   );

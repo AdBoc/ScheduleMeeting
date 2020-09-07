@@ -4,6 +4,7 @@ import { Types } from '../../../context/Character/reducer';
 import { Attack, CharacterInterface } from '../../../ts/interfaces';
 import { charMethods } from '../../../Services/CharacterMethods';
 import useOutsideClick from '../../../hooks/useOutsideClick';
+import './styles.scss';
 
 const Attacks: React.FC = () => {
   const { character, dispatch } = useContext(characterContext);

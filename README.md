@@ -182,3 +182,10 @@ Better typescript integration (currency)
 Improve styles and css structure
 
 Add Extra layer to details view with handler to hide it on click
+
+today: 
+diceSim
+animations on form 
+select/unselect All days
+delete swipe provider and use normal state instead or use custom hook
+change details view to sticky
