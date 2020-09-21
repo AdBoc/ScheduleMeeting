@@ -45,9 +45,16 @@
   color: rgb(153, 153, 153);
 }
 
+.dice-dices{
+  display: flex;
+  flex-flow: column wrap;
+  max-height: 80%;
+}
+
 .dice-dice {
   @include def-button;
-  min-width: 6em;
+  min-width: 4.5em;
+  padding: 0.3em;
 }
 
 .dice-result {
