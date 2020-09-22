@@ -138,13 +138,10 @@
 }
 
 .details {
-  position: absolute;
-  border-radius: 1em;
+  position: sticky;
   background-color: $primary-color;
   bottom: 0;
-  left: 0;
   width: 100%;
-  height: fit-content;
   &__desc {
     color: white;
     margin: 0.75em auto 0.25em;
@@ -156,7 +153,7 @@
     text-align: center;
     color: white;
     font-size: 1.25em;
-    margin: 0.25em auto;
+    margin: 0 auto;
     padding: 0.5em;
   }
 }
@@ -164,19 +161,18 @@
 .render-form-enter {
   opacity: 0;
   transform: translate(-500px, 0);
-  transform: translate3d(-500px, 0, 0);
 }
 .render-form-enter-active {
   opacity: 1;
   transition: opacity 2s ease;
   transform: translate(0, 0);
-  transform: translate3d(0, 0, 0);
   transition-property: transform, opacity;
   transition-duration: 500ms;
   transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
 .render-form-exit {
   opacity: 1;
+  padding: 4em;
 }
 .render-form-exit-active {
   opacity: 0;

@@ -27,11 +27,12 @@ const DiceSim = () => {
       )}
       </div>
       <form className="dice-form" onSubmit={onSubmit}>
-        <input className="dice-input" type="nubmer" name="number" ref={register} autoComplete="false" required />
+        <input className="dice-input" type="number" name="number" ref={register} autoComplete="off" required />
         <p className="dice-label">D</p>
-        <input className="dice-input" type="nubmer" name="value" ref={register} autoComplete="false" required />
+        <input className="dice-input" type="number" name="value" ref={register} autoComplete="off" required />
         <input className="dice-btn" type="submit" value="Add" />
       </form>
+      <img className="dice-trash" alt="delete dice" src={require('../../assets/trash-can.svg')} />
     </div>
   )
 };

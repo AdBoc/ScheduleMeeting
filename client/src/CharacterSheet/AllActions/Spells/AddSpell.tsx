@@ -25,7 +25,7 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
   return (
     <form className="form-spell" onSubmit={onSubmit}>
       <p className="form-spell__label">Add Spell</p>
-      <input ref={register} className="form-spell__input" name="name" placeholder="Name" required />
+      <input ref={register} className="form-spell__input" name="name" placeholder="Name" autoComplete="off" required />
       <select ref={register} className="form-spell__input" name="level" required>
         <option value="">--Spell Level--</option>
         <option value="1">1</option>

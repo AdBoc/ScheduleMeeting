@@ -23,7 +23,7 @@ const InputField: React.FC<IProps> = ({ fieldName, prop, propPath }) => {
   return (
     <div className="g-input">
       <p className="g-input__label">{fieldName}</p>
-      <input className="g-input__field" type="text" onChange={handleInput} value={prop} autoComplete="false" autoCorrect="false" spellCheck="false" />
+      <input className="g-input__field" type="text" onChange={handleInput} value={prop} autoComplete="off" autoCorrect="false" spellCheck="false" />
     </div>
   )
 }
