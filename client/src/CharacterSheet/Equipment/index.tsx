@@ -18,6 +18,7 @@ const Equipment: React.FC = () => {
   const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
   const [details, setDetails] = useState<null | BackpackObj>(null);
   const eqRef = useRef(null);
+  const goldRef = useRef(null);
 
   const ref = useRef(null);
   useOutsideClick(ref, () => { if (details) setDetails(null) });
@@ -50,25 +51,35 @@ const Equipment: React.FC = () => {
     setDetails(null);
   };
 
-  const showDetails = (item: BackpackObj) => () => {
-    setDetails(item);
-  };
+  const showDetails = (item: BackpackObj) => () => setDetails(item);
 
   const handleQuantity = ({ target }: any) => {
     if (!target.value) return;
     dispatch({ type: Types.SET_ITEM_QTY, payload: { id: target.name, newValue: target.value } });
   };
 
+  const handleRenderGold = () => {
+    if (renderForm) setRenderForm(false);
+    setRenderGold(prev => !prev);
+  };
+
+  const handleRenderForm = () => {
+    if (rednerGold) setRenderGold(false);
+    setRenderForm(prev => !prev);
+  };
+
   return (
     <div className="c-equipment">
       <div className="c-eq__btns">
-        <button className="c-eq__btns__btn" onClick={() => setRenderGold(prev => !prev)}>Total Gp: {charMethods.countTotalGP(character.Other.Currency)}</button>
-        <button className="c-eq__btns__btn" onClick={() => setRenderForm(prev => !prev)}>+ Add</button>
+        <button className="c-eq__btns__btn" onClick={handleRenderGold}>Total Gp: {charMethods.countTotalGP(character.Other.Currency)}</button>
+        <button className="c-eq__btns__btn" onClick={handleRenderForm}>Add</button>
       </div>
       <CSSTransition in={renderForm} nodeRef={eqRef} timeout={1000} classNames="render-form" unmountOnExit>
         <AddEquipment nodeRef={eqRef} setRenderForm={setRenderForm} />
       </CSSTransition>
-      {rednerGold && <Gold />}
+      <CSSTransition in={rednerGold} nodeRef={goldRef} timeout={1000} classNames="render-form" unmountOnExit>
+        <Gold nodeRef={goldRef} />
+      </CSSTransition>
       <Multiselect className="multiselect" options={options} value={select} onChange={setSelect} labelledBy={"Select"} hasSelectAll={false} disableSearch={true} />
       <div className="c-grid">
         <div className="c-grid-table-row">

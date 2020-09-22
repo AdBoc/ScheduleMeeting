@@ -5,24 +5,21 @@
   top: 50%;
   width: 80%;
   left: 50%;
-  height: 500px;
+  max-height: 80%;
   background-color: white;
-  z-index: 1;
+  z-index: 10;
   text-align: center;
   transform: translate(-50%, -50%);
   border: 1px solid black;
-  -webkit-box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.55);
+  -webkit-box-shadow: 0 0 18px 2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 18px 2px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 18px 2px rgba(0, 0, 0, 0.55);
 }
 
-.dice-form {
-  position: absolute;
+.dice-form{
   display: flex;
+  justify-content: center;
   align-items: center;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%);
 }
 
 .dice-input {
@@ -45,9 +42,20 @@
   color: rgb(153, 153, 153);
 }
 
+.dice-dices{
+  display: flex;
+  flex-flow: column wrap;
+  max-height: 400px;
+}
+
 .dice-dice {
   @include def-button;
-  min-width: 6em;
+  min-width: 4.5em;
+  padding: 0.3em;
+  &--delete{
+    background-image: none;
+    background-color: rgba(230, 51, 51, 0.9);
+  }
 }
 
 .dice-result {
@@ -56,4 +64,12 @@
   min-height: 1.25em;
   max-width: 1.5em;
   margin: 1em auto;
+}
+
+.dice-trash {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  width: 25px;
+  height: 25px;
 }

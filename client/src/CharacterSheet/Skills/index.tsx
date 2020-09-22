@@ -18,7 +18,7 @@ const Skills: React.FC = () => {
       <p className="c-skills__skill">Intelligence</p>
       <Skill editMode={isEdit} skillName="Arcana" />
       <Skill editMode={isEdit} skillName="History" />
-      <Skill editMode={isEdit} skillName="Invesigation" />
+      <Skill editMode={isEdit} skillName="Investigation" />
       <Skill editMode={isEdit} skillName="Nature" />
       <Skill editMode={isEdit} skillName="Religion" />
       <p className="c-skills__skill">Wisdom</p>

@@ -39,9 +39,9 @@ const TopDisplay = () => {
     let className = "c-sheet__hp";
     let result = character.TemporaryHitPoints / character.MainStats.HitPoints;
     if (result <= 0.25)
-      return className += " --low-hp";
-    if (result <= 0.5)
-      return className += " --mid-hp";
+      className += " --low-hp";
+    else if (result <= 0.5)
+      className += " --mid-hp";
     return className;
   };
 
@@ -73,17 +73,18 @@ const TopDisplay = () => {
             <p className="c-stat__label">Initiative</p>
           </div>
           <div className="c-stat">
-            <p className="c-stat__value">{character.MainStats.PassivePercepion}</p>
-            <p className="c-stat__label">Passive Percepion</p>
+            <p className="c-stat__value">{character.MainStats.PassivePerception}</p>
+            <p className="c-stat__label">Passive Perception</p>
           </div>
           <div className="c-stat">
             <p className="c-stat__value">{charMethods.calcProficiency(character.MainStats.Level)}</p>
             <p className="c-stat__label">Proficiency Bonus</p>
           </div>
         </div>
-        {character.DiceSim.status && <img className="dice-icon" alt="dice sim button" src={require('../../assets/dices.svg')} onClick={() => setIsDiceSim(prev => !prev)}></img>}
+        {character.Other.Inspiration && <img className="inspiration-point" alt="inspiration point" src={require('../../assets/light-bulb.svg')} />}
+        {character.DiceSim.status && <img className="dice-icon" alt="dice sim button" src={require('../../assets/dices.svg')} onClick={() => setIsDiceSim(prev => !prev)}/>}
       </div>
-      {isDiceSim && <div ref={diceRef}><DiceSim /></div>}
+      {isDiceSim && <div className="dice-layer"><div ref={diceRef}><DiceSim /></div></div>}
     </>
   )
 };

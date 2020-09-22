@@ -13,7 +13,7 @@ $text-light: white;
 $text-dark: #003366;
 
 $witek--color: rgb(0, 51, 102);
-$sławek--color: rgb(0, 51, 102);
+$slawek--color: rgb(0, 51, 102);
 $maciek--color: rgb(0, 51, 102);
 $adrian--color: rgb(0, 51, 102);
 $adam--color: rgb(0, 51, 102);
@@ -22,7 +22,7 @@ $potrek--color: rgb(255, 77, 240);
 $krzysiek--color: rgb(0, 51, 102);
 
 .calendar-app {
-  font-family: Roboto;
+  font-family: Roboto, serif;
 }
 
 .sheet-link {
@@ -120,6 +120,8 @@ $krzysiek--color: rgb(0, 51, 102);
   margin: 1em auto;
   max-width: fit-content;
   &__person {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent; // i.e. Nexus5/Chrome and Kindle Fire HD 7''
     text-align: center;
     flex: 0 0 50%;
     padding: 0.75em 0;
@@ -129,8 +131,6 @@ $krzysiek--color: rgb(0, 51, 102);
       background-color: $main-theme;
       color: white;
     }
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-tap-highlight-color: transparent; // i.e. Nexus5/Chrome and Kindle Fire HD 7''
     &:focus,
     &:active,
     &:focus:active {
@@ -165,7 +165,7 @@ $krzysiek--color: rgb(0, 51, 102);
   color: $text-light;
 }
 .Sławek {
-  background-color: $sławek--color;
+  background-color: $slawek--color;
   color: $text-light;
 }
 .Janek {

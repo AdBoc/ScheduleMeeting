@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './styles.scss';
 
 const QuickAccess: React.FC = () => {
-  const [playerVisiblity, setPlayerVisiblity] = useState(false);
+  const [playerVisibility, setPlayerVisibility] = useState(false);
   const { character, dispatch } = useContext(characterContext);
 
   const handleInspiration = () => dispatch({ type: Types.CHANGE_BOOL, payload: { property: "Other.Inspiration", newValue: !character.Other.Inspiration } });
@@ -29,7 +29,7 @@ const QuickAccess: React.FC = () => {
       return toast.error("Firstly select user");
     const status = await apiService.sendCharacter();
     if (status === 200)
-      return toast.success("Upload Successfull");
+      return toast.success("Upload Successful");
     return toast.error("Error while uploading");
   };
 
@@ -52,7 +52,7 @@ const QuickAccess: React.FC = () => {
       <StatButtons prop={character.MainStats.Level} propName="MainStats.Level" fieldName="Level" />
       <StatButtons prop={character.MainStats.ArmorClass} propName="MainStats.ArmorClass" fieldName="Armor Class" />
       <StatButtons prop={character.MainStats.Initiative} propName="MainStats.Initiative" fieldName="Initiative" />
-      <StatButtons prop={character.MainStats.PassivePercepion} propName="MainStats.PassivePercepion" fieldName="Passive Perception" />
+      <StatButtons prop={character.MainStats.PassivePerception} propName="MainStats.PassivePerception" fieldName="Passive Perception" />
       <hr />
       <div className="c-ins-checkbox">
         <label htmlFor="inspiration">Inspiration</label>
@@ -66,8 +66,8 @@ const QuickAccess: React.FC = () => {
       <Link to="/"><button className="quick-btn section-break">Show Calendar</button></Link>
       <button className="quick-btn" onClick={handleUpload}>Store in DB</button>
       <button className="quick-btn" onClick={handleDownload}>Download Character</button>
-      <button className="quick-btn" onClick={() => setPlayerVisiblity(prev => !prev)}>Select User</button>
-      {playerVisiblity && <ChangeUserAndData setVisibility={setPlayerVisiblity} />}
+      <button className="quick-btn" onClick={() => setPlayerVisibility(prev => !prev)}>Select User</button>
+      {playerVisibility && <ChangeUserAndData setVisibility={setPlayerVisibility} />}
       <button className="quick-btn quick-btn--red" onClick={clearStorage}>Clear Local Storage</button>
       <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar />
     </div>

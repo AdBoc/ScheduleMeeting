@@ -2,7 +2,7 @@
 
 .c-sheet {
   position: relative;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   color: white;
   background-color: $primary-color;
   &__player {
@@ -73,10 +73,26 @@
   color: rgb(255, 44, 44);
 }
 
+.inspiration-point{
+  position: absolute;
+  right: 5px;
+  bottom: 3em;
+  width: 2em;
+  height: 2em;
+}
+
 .dice-icon {
   position: absolute;
   right: 5px;
   bottom: 5px;
   width: 2em;
   height: 2em;
+}
+
+.dice-layer{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 1000;
 }
