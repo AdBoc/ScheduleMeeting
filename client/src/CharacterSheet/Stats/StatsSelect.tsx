@@ -16,7 +16,7 @@ interface IProps {
   * default value of generated switch
   */
   value: number;
-};
+}
 
 const StatsSelect: React.FC<IProps> = ({ range, name, value }) => {
   const { character, dispatch } = useContext(characterContext);
@@ -36,7 +36,7 @@ const StatsSelect: React.FC<IProps> = ({ range, name, value }) => {
       case "Stats.Intelligence":
         copySkills.Arcana = newMod;
         copySkills.History = newMod;
-        copySkills.Invesigation = newMod;
+        copySkills.Investigation = newMod;
         copySkills.Nature = newMod;
         copySkills.Religion = newMod;
         break;
@@ -61,7 +61,7 @@ const StatsSelect: React.FC<IProps> = ({ range, name, value }) => {
   let options = [];
   for (let i = range[0]; i <= range[1]; i++) {
     options.push(<option key={i} value={i}>{i}</option>)
-  };
+  }
 
   return (
     <select className="stats-select" value={value} name={name} onChange={onChange}>

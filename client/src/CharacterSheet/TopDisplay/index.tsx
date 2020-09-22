@@ -73,8 +73,8 @@ const TopDisplay = () => {
             <p className="c-stat__label">Initiative</p>
           </div>
           <div className="c-stat">
-            <p className="c-stat__value">{character.MainStats.PassivePercepion}</p>
-            <p className="c-stat__label">Passive Percepion</p>
+            <p className="c-stat__value">{character.MainStats.PassivePerception}</p>
+            <p className="c-stat__label">Passive Perception</p>
           </div>
           <div className="c-stat">
             <p className="c-stat__value">{charMethods.calcProficiency(character.MainStats.Level)}</p>

@@ -10,14 +10,14 @@ function App(): JSX.Element {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={Calendar}></Route>
-        <Route exact path="/reset" component={Reset}></Route>
+        <Route exact path="/" component={Calendar}/>
+        <Route exact path="/reset" component={Reset}/>
         <CharacterContextProvider>
-          <Route exact path="/sheet" component={CharacterSheet}></Route>
+          <Route exact path="/sheet" component={CharacterSheet}/>
         </CharacterContextProvider>
       </Switch>
     </Router >
   )
-};
+}
 
 export default App;

@@ -24,12 +24,12 @@ const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, setSelectedDays, se
   else
     days = 6;
   for (let i = 0; i < days; i++) {
-    emptyButtons.push(<button key={i} className="day"></button>);
+    emptyButtons.push(<button key={i} className="day"/>);
   }
 
   const handleDaySelect = async ({ target }: any) => {
     const { value, className } = target;
-    const doesNotExist = /\b(\undefined)$/.test(className);
+    const doesNotExist = /\b(undefined)$/.test(className);
     if (doesNotExist) {
       if (selectedPlayer)
         setSelectedDays([...selectedDays, { day: value, name: selectedPlayer }]);

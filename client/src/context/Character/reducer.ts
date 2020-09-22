@@ -1,11 +1,4 @@
-import {
-  CharacterInterface,
-  Attack,
-  BackpackObj,
-  Effect,
-  Spell,
-  Dice,
-} from "../../ts/interfaces";
+import {Attack, BackpackObj, CharacterInterface, Dice, Effect, Spell,} from "../../ts/interfaces";
 import * as immutable from "object-path-immutable";
 
 export enum Types {
@@ -21,22 +14,22 @@ export enum Types {
   SET_ARRAY = "SET_ARRAY",
   SET_ITEM_QTY = "SET_ITEM_QTY",
   CHANGE_EFFECT_STATUS = "CHANGE_EFFECT_STATUS",
-  CHANGE_INSPIRATION = "CHANGE_INSPIRATION",
+  DELETE_DICE = "DELETE_DICE"
 }
 
-export type ContextProps = {
-  children: React.ReactNode;
-};
+// export type ContextProps = {
+//   children: React.ReactNode;
+// };
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
-        type: Key;
-      }
+      type: Key;
+    }
     : {
-        type: Key;
-        payload: M[Key];
-      };
+      type: Key;
+      payload: M[Key];
+    };
 };
 
 type SettingsPayload = {
@@ -89,6 +82,10 @@ type SettingsPayload = {
     property: "DiceSim.status" | "Other.Inspiration";
     newValue: boolean;
   };
+  [Types.DELETE_DICE]: {
+    times: number;
+    dice: number;
+  };
 };
 
 export type ScheetActions = ActionMap<SettingsPayload>[keyof ActionMap<SettingsPayload>];
@@ -101,7 +98,7 @@ export const initialCharacter: CharacterInterface = {
     ArmorClass: 1,
     Initiative: 1,
     Speed: 1,
-    PassivePercepion: 1,
+    PassivePerception: 1,
   },
   Stats: {
     Strength: 0,
@@ -118,7 +115,7 @@ export const initialCharacter: CharacterInterface = {
     Stealth: -5,
     Arcana: -5,
     History: -5,
-    Invesigation: -5,
+    Investigation: -5,
     Nature: -5,
     Religion: -5,
     AnimalHandling: -5,
@@ -218,6 +215,14 @@ export const reducer = (
         ...character,
         Effects: action.payload.newobj,
       };
+    case Types.DELETE_DICE:
+      return {
+        ...character,
+        DiceSim: {
+          status: character.DiceSim.status,
+          dices: character.DiceSim.dices.filter(diceObj => diceObj.number !== action.payload.times || diceObj.value !== action.payload.dice)
+        }
+      }
     default:
       return character;
   }

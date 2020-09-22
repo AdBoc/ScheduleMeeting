@@ -76,7 +76,7 @@ export interface CharacterInterface {
     Level: number;
     Initiative: number;
     Speed: number;
-    PassivePercepion: number;
+    PassivePerception: number;
   };
   Stats: {
     Charisma: number;
@@ -95,7 +95,7 @@ export interface CharacterInterface {
     Intimidation: number;
     Insight: number;
     History: number;
-    Invesigation: number;
+    Investigation: number;
     Nature: number;
     Religion: number;
     Medicine: number;

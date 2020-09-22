@@ -6,7 +6,7 @@ interface IProps {
   prop: number;
   propName: string;
   fieldName: string;
-};
+}
 
 const InputNumber: React.FC<IProps> = ({ fieldName, propName, prop }) => {
   const { dispatch } = useContext(characterContext);

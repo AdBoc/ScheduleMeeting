@@ -23,7 +23,7 @@ const CurrentComponent: React.FC<IProps> = ({ currentView }) => {
       return <QuickAccess />
     default:
       return null;
-  };
+  }
 }
 
 export default CurrentComponent;

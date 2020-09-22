@@ -52,6 +52,10 @@
   @include def-button;
   min-width: 4.5em;
   padding: 0.3em;
+  &--delete{
+    background-image: none;
+    background-color: rgba(230, 51, 51, 0.9);
+  }
 }
 
 .dice-result {
