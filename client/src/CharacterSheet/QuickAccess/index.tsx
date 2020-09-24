@@ -1,18 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {characterContext} from '../../context/Character';
 import {initialCharacter, Types} from '../../context/Character/reducer';
 import {history} from '../../Services/History';
 import {Link} from 'react-router-dom';
-import {apiService} from '../../Services/FetchAPI'
-import {Slide, toast, ToastContainer} from 'react-toastify';
 import StatButtons from '../../components/StatButtons';
-import ChangeUserAndData from './ChangeUserAndData';
 import InputNumber from '../../components/InputNumber';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.scss';
 
 const QuickAccess: React.FC = () => {
-  const [playerVisibility, setPlayerVisibility] = useState(false);
   const {character, dispatch} = useContext(characterContext);
 
   const handleInspiration = () => dispatch({
@@ -21,29 +17,19 @@ const QuickAccess: React.FC = () => {
   });
   const handleDiceSim = () => dispatch({type: Types.CHANGE_BOOL, payload: {property: "DiceSim.status", newValue: !character.DiceSim.status}});
 
-  const clearStorage = () => {
+  const deleteCharacter = () => {
     localStorage.removeItem("character");
     localStorage.setItem("character", JSON.stringify(initialCharacter));
     history.go(0);
   };
 
-  const handleUpload = async () => {
-    if (!localStorage.getItem("user"))
-      return toast.error("Firstly select user");
-    const status = await apiService.sendCharacter();
-    if (status === 200)
-      return toast.success("Upload Successful");
-    return toast.error("Error while uploading");
-  };
-
-  const handleDownload = async () => {
-    if (!localStorage.getItem("user"))
-      return toast.error("Firstly select user");
-    const characterData = await apiService.getCharacter();
-    if (characterData === "error")
-      return toast.error("No data exists");
-    dispatch({type: Types.SET_CHARACTER, payload: {newCharacter: JSON.parse(characterData.character)}});
-    return toast.success("Changes applied");
+  const handleCopy = () => {
+    const dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = localStorage.getItem("character")!;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
   }
 
   return (
@@ -68,12 +54,8 @@ const QuickAccess: React.FC = () => {
       <Link to="/">
         <button className="quick-btn section-break">Show Calendar</button>
       </Link>
-      <button className="quick-btn" onClick={handleUpload}>Store in DB</button>
-      <button className="quick-btn" onClick={handleDownload}>Download Character</button>
-      <button className="quick-btn" onClick={() => setPlayerVisibility(prev => !prev)}>Select User</button>
-      {playerVisibility && <ChangeUserAndData setVisibility={setPlayerVisibility}/>}
-      <button className="quick-btn quick-btn--red" onClick={clearStorage}>Clear Local Storage</button>
-      <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar/>
+      <button className="quick-btn" onClick={handleCopy}>Copy JSON</button>
+      <button className="quick-btn quick-btn--red" onClick={deleteCharacter}>Delete Character</button>
     </div>
   )
 };

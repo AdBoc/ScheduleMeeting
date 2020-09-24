@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Footer, Month, Players} from './index';
-
 import './Calendar.scss';
 
 const Calendar = () => {
@@ -15,7 +14,7 @@ const Calendar = () => {
     <div className="calendar-app">
       <Month selectedPlayer={player}/>
       <Players selectedPlayer={player} handleClick={handlePlayer}/>
-      <Footer/>
+      <Footer selectedPlayer={player}/>
     </div>
   )
 };

@@ -4,6 +4,7 @@ import TopDisplay from './TopDisplay';
 import CurrentComponent from './CurrentComponent';
 import TabsScroll from './TabsScroll';
 import './styles.scss';
+import {apiService} from "../Services/FetchAPI";
 
 const CharacterSheet: React.FC = () => {
   const tabs = ["stats", "skills", "savingThrows", "allActions", "equipment", "story", "quickAccess"];
@@ -15,6 +16,10 @@ const CharacterSheet: React.FC = () => {
 
   useEffect(() => {
     localStorage.setItem("character", JSON.stringify(character));
+    const sendChar = async () => {
+      await apiService.sendCharacter();
+    }
+    sendChar();
   }, [character]);
 
   useEffect(() => {
@@ -26,10 +31,10 @@ const CharacterSheet: React.FC = () => {
   };
 
   const handleTouchEnd = (e: any) => {
-    if (e.changedTouches[0].clientX - startX > 115) {
+    if (e.changedTouches[0].clientX - startX > 100) {
       if (currentIndex === 0) return setCurrentIndex(6);
       setCurrentIndex(prev => prev - 1);
-    } else if (e.changedTouches[0].clientX - startX < -115) {
+    } else if (e.changedTouches[0].clientX - startX < -100) {
       if (currentIndex === 6) return setCurrentIndex(0);
       setCurrentIndex(prev => prev + 1);
     }
