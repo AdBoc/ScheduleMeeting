@@ -1,28 +1,28 @@
-import React, { useContext } from 'react';
-import { characterContext } from '../../context/Character';
-import { charMethods } from '../../Services/CharacterMethods';
-import { Types } from '../../context/Character/reducer';
+import React, {useContext} from 'react';
+import {characterContext} from '../../context/Character';
+import {charMethods} from '../../Services/CharacterMethods';
+import {Types} from '../../context/Character/reducer';
 
 interface IProps {
   /**
-  * range of generated switch
-  */
+   * range of generated switch
+   */
   range: [number, number];
   /**
-  * path of property that will change in character object
-  */
+   * path of property that will change in character object
+   */
   name: string;
   /**
-  * default value of generated switch
-  */
+   * default value of generated switch
+   */
   value: number;
 }
 
-const StatsSelect: React.FC<IProps> = ({ range, name, value }) => {
-  const { character, dispatch } = useContext(characterContext);
+const StatsSelect: React.FC<IProps> = ({range, name, value}) => {
+  const {character, dispatch} = useContext(characterContext);
 
-  const onChange = ({ target }: any) => {
-    const copySkills = { ...character.Skills };
+  const onChange = ({target}: any) => {
+    const copySkills = {...character.Skills};
     const newMod = charMethods.calcStatModificator(+target.value);
     switch (name) {
       case "Stats.Strength":
@@ -54,8 +54,8 @@ const StatsSelect: React.FC<IProps> = ({ range, name, value }) => {
         copySkills.Persuasion = newMod;
         break;
     }
-    dispatch({ type: Types.SET_CHARACTER, payload: { newCharacter: { ...character, Skills: copySkills } } });
-    dispatch({ type: Types.CHANGE_STAT, payload: { property: name, newValue: target.value } });
+    dispatch({type: Types.SET_CHARACTER, payload: {newCharacter: {...character, Skills: copySkills}}});
+    dispatch({type: Types.CHANGE_STAT, payload: {property: name, newValue: target.value}});
   };
 
   let options = [];

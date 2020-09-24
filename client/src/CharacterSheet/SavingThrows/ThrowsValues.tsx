@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import { characterContext } from '../../context/Character';
-import { charMethods } from '../../Services/CharacterMethods';
-import { Types } from '../../context/Character/reducer';
+import React, {useContext} from 'react';
+import {characterContext} from '../../context/Character';
+import {charMethods} from '../../Services/CharacterMethods';
+import {Types} from '../../context/Character/reducer';
 
 const ThrowsValues = () => {
   let isTagged: boolean;
-  const { character, dispatch } = useContext(characterContext);
+  const {character, dispatch} = useContext(characterContext);
 
-  const tagElement = ({ target }: any) => {
+  const tagElement = ({target}: any) => {
     const newArray = character.Other.TaggedThrows;
     if (target.name === newArray[0]) {
       newArray[0] = null;
@@ -17,7 +17,7 @@ const ThrowsValues = () => {
       newArray.pop();
       newArray.unshift(target.name);
     }
-    dispatch({ type: Types.TAG_PROP, payload: { newArray } });
+    dispatch({type: Types.TAG_PROP, payload: {newArray}});
   };
 
   return (

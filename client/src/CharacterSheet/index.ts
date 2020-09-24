@@ -7,5 +7,5 @@ import Stats from './Stats';
 import Story from './Story';
 
 export {
-    AllActions, Equipment, QuickAccess, SavingThrows, Skills, Stats, Story
+  AllActions, Equipment, QuickAccess, SavingThrows, Skills, Stats, Story
 };

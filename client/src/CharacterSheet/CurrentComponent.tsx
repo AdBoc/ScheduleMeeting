@@ -1,26 +1,26 @@
 import React from 'react';
-import { SavingThrows, Skills, Stats, Story, AllActions, Equipment, QuickAccess } from './index';
+import {AllActions, Equipment, QuickAccess, SavingThrows, Skills, Stats, Story} from './index';
 
 interface IProps {
   currentView: string;
 }
 
-const CurrentComponent: React.FC<IProps> = ({ currentView }) => {
+const CurrentComponent: React.FC<IProps> = ({currentView}) => {
   switch (currentView) {
     case 'stats':
-      return <Stats />
+      return <Stats/>
     case 'skills':
-      return <Skills />
+      return <Skills/>
     case 'savingThrows':
-      return <SavingThrows />
+      return <SavingThrows/>
     case 'allActions':
-      return <AllActions />
+      return <AllActions/>
     case 'equipment':
-      return <Equipment />
+      return <Equipment/>
     case 'story':
-      return <Story />
+      return <Story/>
     case 'quickAccess':
-      return <QuickAccess />
+      return <QuickAccess/>
     default:
       return null;
   }

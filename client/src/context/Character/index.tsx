@@ -1,7 +1,6 @@
-import React, { createContext, Dispatch, useReducer } from 'react';
-import { initialCharacter, ScheetActions } from './reducer';
-import { CharacterInterface } from '../../ts/interfaces';
-import { reducer } from './reducer';
+import React, {createContext, Dispatch, useReducer} from 'react';
+import {initialCharacter, reducer, ScheetActions} from './reducer';
+import {CharacterInterface} from '../../ts/interfaces';
 
 export const characterContext = createContext<{
   character: CharacterInterface;
@@ -11,7 +10,7 @@ export const characterContext = createContext<{
   dispatch: () => null
 });
 
-const CharacterContextProvider: React.FC = ({ children }) => {
+const CharacterContextProvider: React.FC = ({children}) => {
   let getCharacter: string | null | CharacterInterface = localStorage.getItem("character");
   if (getCharacter) {
     getCharacter = JSON.parse(getCharacter);
@@ -23,7 +22,7 @@ const CharacterContextProvider: React.FC = ({ children }) => {
   const [character, dispatch] = useReducer(reducer, getCharacter as CharacterInterface);
 
   return (
-    <characterContext.Provider value={{ character, dispatch }}>
+    <characterContext.Provider value={{character, dispatch}}>
       {children}
     </characterContext.Provider>
   )

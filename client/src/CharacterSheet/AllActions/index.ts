@@ -7,4 +7,4 @@ import AddAttack from "./Attacks/AddAttack";
 import AddEffect from "./Effects/AddEffect";
 import AddSpell from "./Spells/AddSpell";
 
-export { Attacks, Actions, Effects, Spells, AddAttack, AddSpell, AddEffect };
+export {Attacks, Actions, Effects, Spells, AddAttack, AddSpell, AddEffect};

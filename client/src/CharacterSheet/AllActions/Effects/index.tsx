@@ -1,22 +1,24 @@
-import React, { useContext, useState, useRef } from 'react';
-import { characterContext } from '../../../context/Character';
-import { Effect } from '../../../ts/interfaces';
-import { Types } from '../../../context/Character/reducer';
+import React, {useContext, useRef, useState} from 'react';
+import {characterContext} from '../../../context/Character';
+import {Effect} from '../../../ts/interfaces';
+import {Types} from '../../../context/Character/reducer';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import './styles.scss';
 
 const Effects = () => {
-  const { character, dispatch } = useContext(characterContext);
+  const {character, dispatch} = useContext(characterContext);
   const [details, setDetails] = useState<Effect | null>(null);
 
   const ref = useRef(null);
-  useOutsideClick(ref, () => { if (details) setDetails(null) });
+  useOutsideClick(ref, () => {
+    if (details) setDetails(null)
+  });
 
-  const changeActivity = ({ target }: any) => {
+  const changeActivity = ({target}: any) => {
     const effectIndex = character.Effects.findIndex((effect) => effect.id === target.name);
     const newEffectsArray = character.Effects.slice(0);
     newEffectsArray[effectIndex].active = !newEffectsArray[effectIndex].active;
-    dispatch({ type: Types.CHANGE_EFFECT_STATUS, payload: { newobj: newEffectsArray } });
+    dispatch({type: Types.CHANGE_EFFECT_STATUS, payload: {newobj: newEffectsArray}});
   };
 
   const showDetails = (item: Effect) => () => {
@@ -24,7 +26,7 @@ const Effects = () => {
   };
 
   const delteEffect = () => {
-    dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Effects", id: details!.id } });
+    dispatch({type: Types.DELETE_IN_ARRAY, payload: {property: "Effects", id: details!.id}});
     setDetails(null);
   };
 
@@ -33,14 +35,14 @@ const Effects = () => {
       {character.Effects.map((effect) =>
         <div className="c-action-form" key={effect.id}>
           <p className="c-action-field" onClick={showDetails(effect)}>{effect.name}</p>
-          <input className="toggle-switch" id={effect.id} type="checkbox" name={effect.id} onChange={changeActivity} checked={effect.active} />
+          <input className="toggle-switch" id={effect.id} type="checkbox" name={effect.id} onChange={changeActivity} checked={effect.active}/>
           <label className="toggle-text" htmlFor={effect.id}>Toggle</label>
         </div>
       )
       }
       {details && <div className="details" ref={ref}>
-        <p className="details__desc">{details.description}</p>
-        <button className="details__text" name={details.id} onClick={delteEffect}>DELETE</button>
+          <p className="details__desc">{details.description}</p>
+          <button className="details__text" name={details.id} onClick={delteEffect}>DELETE</button>
       </div>
       }
     </>
@@ -132,6 +134,6 @@ export default Effects;
 
 
 // .dragged {
-  // background-color: $primary-color;
-  // color: white;
+// background-color: $primary-color;
+// color: white;
 // }

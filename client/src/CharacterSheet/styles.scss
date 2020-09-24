@@ -5,6 +5,7 @@
   flex-flow: column;
   min-height: 100vh;
 }
+
 .flex-content {
   flex: 1;
 }
@@ -14,9 +15,11 @@
   margin: 0.5em 1em;
   font-size: 1.25em;
   justify-content: space-around;
+
   &__field {
     flex-grow: 1.1;
   }
+
   &__btn {
     margin: 0 0.3em;
     border-radius: 20%;
@@ -27,6 +30,7 @@
     padding: 0;
     cursor: pointer;
   }
+
   &__val {
     text-align: center;
     min-width: 1.2em;
@@ -39,9 +43,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
   &__label {
     min-width: 6em;
   }
+
   &__field {
     background-color: $primary-color;
     color: white;
@@ -52,10 +58,13 @@
 .g-text-area {
   margin-top: 1.5em;
   text-align: center;
+
   &__label {
     font-size: 1.25em;
   }
+
   &__field {
+    font-size: 0.75em;
     display: block;
     margin: 0.5em auto;
     width: 80%;
@@ -73,6 +82,7 @@
   justify-content: center;
   margin: 0.25em 1em;
   align-items: center;
+
   &__val {
     border: 1px solid black;
     padding: 0.2em;
@@ -81,6 +91,7 @@
     color: white;
     width: 3em;
   }
+
   &__label {
     min-width: 4em;
   }

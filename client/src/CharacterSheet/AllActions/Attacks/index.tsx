@@ -1,25 +1,27 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import { characterContext } from '../../../context/Character';
-import { Types } from '../../../context/Character/reducer';
-import { Attack, CharacterInterface } from '../../../ts/interfaces';
-import { charMethods } from '../../../Services/CharacterMethods';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {characterContext} from '../../../context/Character';
+import {Types} from '../../../context/Character/reducer';
+import {Attack, CharacterInterface} from '../../../ts/interfaces';
+import {charMethods} from '../../../Services/CharacterMethods';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import './styles.scss';
 
 const Attacks: React.FC = () => {
-  const { character, dispatch } = useContext(characterContext);
+  const {character, dispatch} = useContext(characterContext);
   const [attacks, setAttacks] = useState(character.Attacks);
   const [details, setDetails] = useState<Attack | null>(null);
 
   const ref = useRef(null);
-  useOutsideClick(ref, () => { if (details) setDetails(null) });
+  useOutsideClick(ref, () => {
+    if (details) setDetails(null)
+  });
 
   useEffect(() => {
     setAttacks(character.Attacks);
   }, [character.Attacks]);
 
-  const deleteItem = ({ target }: any) => {
-    dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Attacks", id: target.name } });
+  const deleteItem = ({target}: any) => {
+    dispatch({type: Types.DELETE_IN_ARRAY, payload: {property: "Attacks", id: target.name}});
     setDetails(null);
   };
   const showDetails = (attack: Attack) => () => setDetails(attack);
@@ -37,7 +39,8 @@ const Attacks: React.FC = () => {
           <div key={attack.id} className={`attacks-grid ${attack.type}`} onClick={showDetails(attack)}>
             <p>{attack.name}</p>
             <p> {attack.diceType} + {(charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + +attack.bonusDamage)}</p>
-            {attack.proficient ? <p>d20 + {charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + charMethods.calcProficiency(character.MainStats.Level) + +attack.bonusHit}</p> :
+            {attack.proficient ? <p>d20
+                + {charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + charMethods.calcProficiency(character.MainStats.Level) + +attack.bonusHit}</p> :
               <p>d20 + {charMethods.calcStatModificator(character.Stats[attack.profMod as keyof CharacterInterface["Stats"]]) + +attack.bonusHit}</p>
             }
             <p>{attack.range}</p>
@@ -45,7 +48,7 @@ const Attacks: React.FC = () => {
         ))}
       </>
       {details &&
-        <div className="details" ref={ref}>
+      <div className="details" ref={ref}>
           <p className="details__text">Name: {details.name}</p>
           <p className="details__text">Ability Mod: {details.profMod}</p>
           <p className="details__text">Dice: {details.diceType}</p>
@@ -53,7 +56,7 @@ const Attacks: React.FC = () => {
           <p className="details__text">Range: {details.range}</p>
           <p className="details__text">Type: {details.type}</p>
           <button className="details__text" name={details.id} onClick={deleteItem}>DELETE</button>
-        </div>
+      </div>
       }
     </>
   )

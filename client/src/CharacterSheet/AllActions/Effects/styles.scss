@@ -32,6 +32,7 @@
   display: block;
   border-radius: 100px;
   position: relative;
+
   &::after {
     content: "";
     position: absolute;
@@ -43,6 +44,7 @@
     border-radius: 90px;
     transition: 0.3s;
   }
+
   &:active::after {
     width: 25px;
   }
@@ -51,6 +53,7 @@
 .toggle-switch:checked + .toggle-text {
   background: #9cbd32;
 }
+
 .toggle-switch:checked + .toggle-text::after {
   left: calc(100% - 2px);
   transform: translateX(-100%);

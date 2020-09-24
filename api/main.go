@@ -27,6 +27,10 @@ type FullDate struct {
 	DaysData []MonthData        `json:"daysData" bson:"daysData"`
 }
 
+type CharacterData struct {
+	Character string `json:"character,omitempty" bson:"character,omitempty"`
+}
+
 // MonthData has data for current month
 type MonthData struct {
 	Day  string `json:"day,omitempty" bson:"day,omitempty"`
@@ -34,7 +38,7 @@ type MonthData struct {
 }
 
 type dateFromFront struct {
-	Date string `json:"date,omitempty" bson:"date,omiteempty"`
+	Date string `json:"date,omitempty" bson:"date,omitempty"`
 }
 
 type monthDataRequest struct {
@@ -52,7 +56,7 @@ var collectionCharacter *mongo.Collection
 func main() {
 	//Run CRON schedule
 	cSchedule := cron.New()
-	cSchedule.AddFunc("@monthly", func() { //MONTHLY
+	cSchedule.AddFunc("@monthly", func() {
 		deleteOldData()
 	})
 	cSchedule.Start()
@@ -86,6 +90,7 @@ func main() {
 	api.HandleFunc("/", patchDataForMonth).Methods("PATCH")
 	api.HandleFunc("/character", getCharacter).Methods("POST")
 	api.HandleFunc("/character", sendCharacter).Methods("PATCH")
+	api.HandleFunc("/selectAll", selectAll).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
@@ -224,7 +229,7 @@ func getCharacter(w http.ResponseWriter, r *http.Request) {
 	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
 	defer error()
 
-	var searchResult interface{}
+	var searchResult CharacterData
 	errFind := collectionCharacter.FindOne(ctx, bson.M{"user": req.User}).Decode(&searchResult)
 
 	if errFind != nil {
@@ -266,4 +271,34 @@ func sendCharacter(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
+}
+
+func selectAll(w http.ResponseWriter, r *http.Request) {
+	user := "Witek"
+	month := 8
+	y := 2020
+	currentDay := time.Now().Day()
+	lastDay := time.Date(y, time.Month(month+2), 1, 0, 0, 0, -1, time.UTC).Day()
+
+	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+	defer error()
+
+	var updatedData interface{}
+	filter := bson.M{"date": "8/2020"}
+
+	for ; currentDay <= lastDay; currentDay++ {
+		update := bson.M{"$push": bson.M{"daysData": bson.M{"day": strconv.Itoa(currentDay), "name": user}}}
+		singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&updatedData)
+		if singleResult != nil {
+			fmt.Println(singleResult)
+		}
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
+func unselectAll(w http.ResponseWriter, r *http.Request) {
+	//interpretuje wyslany miesiac
+	//analizuje co to za uzytkownik
+	//usuwa wszystkie miesiace
 }

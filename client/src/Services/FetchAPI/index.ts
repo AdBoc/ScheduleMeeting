@@ -1,7 +1,8 @@
 class ApiService {
   url = "http://localhost:8080/api";
+
   async getSelectedMonthData(date: string, controller: AbortController) {
-    const rBody = { date };
+    const rBody = {date};
     try {
       const response = await fetch(`${this.url}/`, {
         method: "POST",
@@ -10,13 +11,13 @@ class ApiService {
       });
       return response.json();
     } catch (error) {
-      if (controller.signal.aborted) return { daysData: false };
-      return { daysData: [], error: true };
+      if (controller.signal.aborted) return {daysData: false};
+      return {daysData: [], error: true};
     }
   }
 
   async addSelectedDay(date: string, day: string, name: string) {
-    const rBody = { date, day, name };
+    const rBody = {date, day, name};
     try {
       const response = await fetch(`${this.url}/new`, {
         method: "POST",
@@ -29,7 +30,7 @@ class ApiService {
   }
 
   async unselectDay(date: string, day: string, name: string) {
-    const rBody = { date, day, name };
+    const rBody = {date, day, name};
     try {
       const response = await fetch(`${this.url}/`, {
         method: "PATCH",
@@ -73,4 +74,5 @@ class ApiService {
     }
   }
 }
+
 export const apiService = new ApiService();

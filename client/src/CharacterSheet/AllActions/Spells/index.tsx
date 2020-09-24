@@ -1,22 +1,24 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import SpellSlots from './SpellSlots';
-import { characterContext } from '../../../context/Character';
-import { Types } from '../../../context/Character/reducer';
-import { charMethods } from '../../../Services/CharacterMethods';
-import { Spell } from '../../../ts/interfaces';
+import {characterContext} from '../../../context/Character';
+import {Types} from '../../../context/Character/reducer';
+import {charMethods} from '../../../Services/CharacterMethods';
+import {Spell} from '../../../ts/interfaces';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import './styles.scss';
 
 const Spells = () => {
-  const { character, dispatch } = useContext(characterContext);
-  const [sortType, setSortType] = useState({ type: 'name', inverted: false });
+  const {character, dispatch} = useContext(characterContext);
+  const [sortType, setSortType] = useState({type: 'name', inverted: false});
   const [spells, setSpells] = useState(character.Spells);
   const [isSlots, setIsSlots] = useState(false);
   const [isProfSelect, setIsProfSelect] = useState(false);
   const [details, setDetails] = useState<Spell | null>(null);
 
   const ref = useRef(null);
-  useOutsideClick(ref, () => { if (details) setDetails(null) });
+  useOutsideClick(ref, () => {
+    if (details) setDetails(null)
+  });
 
   useEffect(() => {
     setSpells(character.Spells);
@@ -33,28 +35,32 @@ const Spells = () => {
 
   const handleProf = () => setIsProfSelect(prev => !prev);
   const handleSlots = () => setIsSlots(prev => !prev);
-  const handleSelect = ({ target }: any) => {
-    dispatch({ type: Types.EDIT_TEXT, payload: { property: "Other.SpellProficiency", newValue: target.value } });
+  const handleSelect = ({target}: any) => {
+    dispatch({type: Types.EDIT_TEXT, payload: {property: "Other.SpellProficiency", newValue: target.value}});
     setIsProfSelect(prev => !prev);
   };
   const handleDetails = (spell: Spell) => () => {
     setDetails(spell);
   };
-  const deleteItem = ({ target }: any) => {
-    dispatch({ type: Types.DELETE_IN_ARRAY, payload: { property: "Spells", id: target.name } });
+  const deleteItem = ({target}: any) => {
+    dispatch({type: Types.DELETE_IN_ARRAY, payload: {property: "Spells", id: target.name}});
     setDetails(null);
   };
-  const handleSortOption = ({ target }: any) => setSortType(prev => {
-    if (prev.type === target.name) return { type: target.name, inverted: !prev.inverted };
-    return { type: target.name, inverted: false };
+  const handleSortOption = ({target}: any) => setSortType(prev => {
+    if (prev.type === target.name) return {type: target.name, inverted: !prev.inverted};
+    return {type: target.name, inverted: false};
   });
 
   return (
     <>
       <div className="spells__menu">
         <div className="menu__info">
-          <p>Save DC: {character.Other.SpellProficiency !== null ? <span>{8 + charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
-          <p>Attack Bonus: {character.Other.SpellProficiency !== null ? <span>{charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> : <span onClick={handleProf}>Modifier Not Selected</span>}</p>
+          <p>Save DC: {character.Other.SpellProficiency !== null ?
+            <span>{8 + charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> :
+            <span onClick={handleProf}>Modifier Not Selected</span>}</p>
+          <p>Attack Bonus: {character.Other.SpellProficiency !== null ?
+            <span>{charMethods.calcProficiency(character.MainStats.Level) + charMethods.calcStatModificator((character.Stats as any)[(character.Other.SpellProficiency as any)])}</span> :
+            <span onClick={handleProf}>Modifier Not Selected</span>}</p>
         </div>
         <button className="spell-btn menu__button" onClick={handleSlots}>Spell Slots</button>
       </div>
@@ -68,7 +74,7 @@ const Spells = () => {
           <option value="Wisdom">Wisdom</option>
         </select>
       )}
-      {isSlots && <SpellSlots />}
+      {isSlots && <SpellSlots/>}
       <div>
         <div className="grid-border spells-grid">
           <button name="name" onClick={handleSortOption}>Name</button>
@@ -88,14 +94,14 @@ const Spells = () => {
         ))}
       </div>
       {details &&
-        <div className="details" ref={ref}>
+      <div className="details" ref={ref}>
           <p className="details__text">Name: {details.name}</p>
           <p className="details__text">Time: {details.castingTime}</p>
           <p className="details__text">Comp: {details.components}</p>
           <p className="details__text">Range: {details.range}</p>
           <p className="details__text">Name: {details.description}</p>
           <button className="details__text" name={details.id} onClick={deleteItem}>DELETE</button>
-        </div>
+      </div>
       }
     </>
   )

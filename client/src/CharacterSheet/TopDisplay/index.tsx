@@ -1,15 +1,16 @@
-import React, { useContext, useState, useRef } from 'react';
-import { characterContext } from '../../context/Character';
+import React, {useContext, useRef, useState} from 'react';
+import {characterContext} from '../../context/Character';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import DiceSim from '../DiceSim';
-import { Types } from '../../context/Character/reducer';
-import { charMethods } from '../../Services/CharacterMethods';
+import {Types} from '../../context/Character/reducer';
+import {charMethods} from '../../Services/CharacterMethods';
 import './styles.scss';
 
 const TopDisplay = () => {
-  const { character, dispatch } = useContext(characterContext);
+  const {character, dispatch} = useContext(characterContext);
   const [isHpInput, setIsHpInput] = useState(false);
   const [isDiceSim, setIsDiceSim] = useState(false);
+  const [newHpDiff, setNewHpDIff] = useState<number | string>("");
 
   const diceRef = useRef(null);
   useOutsideClick(diceRef, () => {
@@ -19,21 +20,17 @@ const TopDisplay = () => {
   const hpRef = useRef(null);
   useOutsideClick(hpRef, () => {
     if (isHpInput) setIsHpInput(prev => !prev);
-  });
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+    if (!newHpDiff) return;
+    const input = newHpDiff as number;
     let MaxHP = character.MainStats.HitPoints;
-    let currHP = character.TemporaryHitPoints;
-    let input = parseInt(e.target.HpMod.value);
-    currHP = currHP + input;
+    let currHP = character.TemporaryHitPoints + input;
     if (currHP <= 0)
       currHP = 0;
     else if (currHP > MaxHP)
       currHP = MaxHP;
-    dispatch({ type: Types.CHANGE_STAT, payload: { property: "TemporaryHitPoints", newValue: currHP } });
-    setIsHpInput(prev => !prev);
-  };
+    dispatch({type: Types.CHANGE_STAT, payload: {property: "TemporaryHitPoints", newValue: currHP}});
+    setNewHpDIff("");
+  });
 
   const styleHp = () => {
     let className = "c-sheet__hp";
@@ -45,23 +42,29 @@ const TopDisplay = () => {
     return className;
   };
 
+  const handleHpDiff = (e: any) => {
+    if (!e.target.value) return setNewHpDIff("");
+    setNewHpDIff(parseInt(e.target.value));
+  }
+
   return (
     <>
       <div className="c-sheet">
         <div className="c-sheet__player">
           <div className="c-player">
             <p className="c-player__name">{character.Story.Name}</p>
-            <p className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level ? character.MainStats.Level : null}</p>
+            <p
+              className="c-player__details">{character.Story.Race} {character.Story.Class} {character.MainStats.Level ? character.MainStats.Level : null}</p>
           </div>
-          <div className="relative">
+          <>
             <p className={styleHp()} onClick={() => setIsHpInput(prev => !prev)}>{character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP</p>
             {
-              isHpInput && <form className="c-sheet__hp-form" onSubmit={handleSubmit} ref={hpRef}>
-                <input className="c-sheet__hp-form__input" type="number" name="HpMod" autoFocus required />
-                <input className="c-sheet__hp-form__submit" type="submit" value="OK" />
-              </form>
+              isHpInput && <div className="c-sheet__hp-form" ref={hpRef}>
+                  <button className="c-sheet__hp-form__negative" onClick={() => setNewHpDIff(-newHpDiff)}>-</button>
+                  <input className="c-sheet__hp-form__input" type="number" name="HpMod" value={newHpDiff} onChange={handleHpDiff} autoFocus required/>
+              </div>
             }
-          </div>
+          </>
         </div>
         <div className="c-sheet__stats">
           <div className="c-stat">
@@ -81,10 +84,13 @@ const TopDisplay = () => {
             <p className="c-stat__label">Proficiency Bonus</p>
           </div>
         </div>
-        {character.Other.Inspiration && <img className="inspiration-point" alt="inspiration point" src={require('../../assets/light-bulb.svg')} />}
-        {character.DiceSim.status && <img className="dice-icon" alt="dice sim button" src={require('../../assets/dices.svg')} onClick={() => setIsDiceSim(prev => !prev)}/>}
+        {character.Other.Inspiration && <img className="inspiration-point" alt="inspiration point" src={require('../../assets/light-bulb.svg')}/>}
+        {character.DiceSim.status &&
+        <img className="dice-icon" alt="dice sim button" src={require('../../assets/dices.svg')} onClick={() => setIsDiceSim(prev => !prev)}/>}
       </div>
-      {isDiceSim && <div className="dice-layer"><div ref={diceRef}><DiceSim /></div></div>}
+      {isDiceSim && <div className="dice-layer">
+          <div ref={diceRef}><DiceSim/></div>
+      </div>}
     </>
   )
 };

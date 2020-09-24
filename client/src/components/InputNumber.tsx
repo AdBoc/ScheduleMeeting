@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { characterContext } from '../context/Character';
-import { Types } from '../context/Character/reducer';
+import React, {useContext} from 'react';
+import {characterContext} from '../context/Character';
+import {Types} from '../context/Character/reducer';
 
 interface IProps {
   prop: number;
@@ -8,18 +8,18 @@ interface IProps {
   fieldName: string;
 }
 
-const InputNumber: React.FC<IProps> = ({ fieldName, propName, prop }) => {
-  const { dispatch } = useContext(characterContext);
+const InputNumber: React.FC<IProps> = ({fieldName, propName, prop}) => {
+  const {dispatch} = useContext(characterContext);
 
-  const handleChange = ({ target }: any) => {
+  const handleChange = ({target}: any) => {
     if (target.value > 9999)
       return;
-    dispatch({ type: Types.CHANGE_STAT, payload: { property: propName, newValue: target.value } });
+    dispatch({type: Types.CHANGE_STAT, payload: {property: propName, newValue: target.value}});
   }
   return (
     <div className="g-input-num">
       <p className="g-input-num__label">{fieldName}</p>
-      <input className="g-input-num__val" type="number" value={prop} onChange={handleChange} onFocus={(e: any) => e.target.select()} />
+      <input className="g-input-num__val" type="number" value={prop} onChange={handleChange} onFocus={(e: any) => e.target.select()}/>
     </div>
   )
 };

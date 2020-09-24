@@ -1,13 +1,13 @@
 import React from 'react';
-import { players } from '../../Calendar/Players';
+import {players} from '../../Calendar/Players';
 
 interface IProps {
   setVisibility: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ChangeUserAndData: React.FC<IProps> = ({ setVisibility }) => {
+const ChangeUserAndData: React.FC<IProps> = ({setVisibility}) => {
 
-  const handlePlayers = ({ target }: any) => {
+  const handlePlayers = ({target}: any) => {
     localStorage.setItem("user", `${target.value}`);
     setVisibility(prev => !prev);
   };

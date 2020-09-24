@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { characterContext } from '../context/Character';
+import React, {useContext, useEffect, useState} from 'react';
+import {characterContext} from '../context/Character';
 import TopDisplay from './TopDisplay';
 import CurrentComponent from './CurrentComponent';
 import TabsScroll from './TabsScroll';
@@ -9,7 +9,7 @@ const CharacterSheet: React.FC = () => {
   const tabs = ["stats", "skills", "savingThrows", "allActions", "equipment", "story", "quickAccess"];
   let startX = 0;
 
-  const { character } = useContext(characterContext);
+  const {character} = useContext(characterContext);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentView, setCurrentView] = useState(tabs[currentIndex]);
 
@@ -26,10 +26,10 @@ const CharacterSheet: React.FC = () => {
   };
 
   const handleTouchEnd = (e: any) => {
-    if (e.changedTouches[0].clientX - startX > 50) {
+    if (e.changedTouches[0].clientX - startX > 115) {
       if (currentIndex === 0) return setCurrentIndex(6);
       setCurrentIndex(prev => prev - 1);
-    } else if (e.changedTouches[0].clientX - startX < -50) {
+    } else if (e.changedTouches[0].clientX - startX < -115) {
       if (currentIndex === 6) return setCurrentIndex(0);
       setCurrentIndex(prev => prev + 1);
     }
@@ -37,10 +37,10 @@ const CharacterSheet: React.FC = () => {
 
   return (
     <div className="try-flex">
-      <TopDisplay />
-      <TabsScroll setCurrentIndex={setCurrentIndex} />
+      <TopDisplay/>
+      <TabsScroll setCurrentIndex={setCurrentIndex}/>
       <div className="flex-content" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <CurrentComponent currentView={currentView} />
+        <CurrentComponent currentView={currentView}/>
       </div>
     </div>
   )

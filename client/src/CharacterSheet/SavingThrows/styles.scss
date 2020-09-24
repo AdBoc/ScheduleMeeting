@@ -1,8 +1,8 @@
 @import "../variables.scss";
 
 .c-saving-throws {
-    max-width: 30em;
-    margin: auto;
+  max-width: 30em;
+  margin: auto;
 }
 
 .c-save-throws {
@@ -10,11 +10,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   text-align: center;
+
   &__title {
     text-align: center;
     font-size: 1.75em;
     margin: 0.75em 0;
   }
+
   &__tag {
     display: block;
     text-align: right;
@@ -38,13 +40,16 @@
 .c-save-death {
   text-align: center;
   margin-top: 1em;
+
   &__title {
     font-size: 1.75em;
   }
+
   &__label {
     margin-top: 1em;
     font-size: 1.2em;
   }
+
   &__checkbox {
     margin: 0.5em;
     height: 1.75em;
@@ -60,9 +65,11 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 .--success {
   background-color: rgb(96, 146, 96);
 }
+
 .--fail {
   background-color: rgb(148, 12, 12);
 }

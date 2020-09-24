@@ -1,8 +1,8 @@
 import React from 'react';
-import { DateProps, SelectedDays } from '../../ts/interfaces';
-import { apiService } from '../../Services/FetchAPI';
-import { toast } from 'react-toastify';
-import { useCalendar } from '../../hooks/useCalendar';
+import {DateProps, SelectedDays} from '../../ts/interfaces';
+import {apiService} from '../../Services/FetchAPI';
+import {toast} from 'react-toastify';
+import {useCalendar} from '../../hooks/useCalendar';
 
 interface IProps {
   dateProps: DateProps;
@@ -11,9 +11,9 @@ interface IProps {
   setSelectedDays: React.Dispatch<React.SetStateAction<SelectedDays | false>>;
 }
 
-const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, setSelectedDays, selectedDays }) => {
-  const { currentMonth, currentYear, firstDayOfMonth, daysOfMonth } = dateProps;
-  const { parseUser, parseNoUser } = useCalendar();
+const Days: React.FC<IProps> = ({dateProps, selectedPlayer, setSelectedDays, selectedDays}) => {
+  const {currentMonth, currentYear, firstDayOfMonth, daysOfMonth} = dateProps;
+  const {parseUser, parseNoUser} = useCalendar();
 
   const daysFilteredByName = selectedPlayer ? parseUser(selectedDays, selectedPlayer) : parseNoUser(selectedDays);
 
@@ -27,12 +27,12 @@ const Days: React.FC<IProps> = ({ dateProps, selectedPlayer, setSelectedDays, se
     emptyButtons.push(<button key={i} className="day"/>);
   }
 
-  const handleDaySelect = async ({ target }: any) => {
-    const { value, className } = target;
+  const handleDaySelect = async ({target}: any) => {
+    const {value, className} = target;
     const doesNotExist = /\b(undefined)$/.test(className);
     if (doesNotExist) {
       if (selectedPlayer)
-        setSelectedDays([...selectedDays, { day: value, name: selectedPlayer }]);
+        setSelectedDays([...selectedDays, {day: value, name: selectedPlayer}]);
       const response = await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
       if (response === 403)
         toast.error("Month out of bounds");

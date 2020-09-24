@@ -5,9 +5,9 @@ interface IProps {
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const TabsScroll: React.FC<IProps> = ({ setCurrentIndex }) => {
+const TabsScroll: React.FC<IProps> = ({setCurrentIndex}) => {
 
-  const toggleView = ({ target }: any) => setCurrentIndex(+target.value);
+  const toggleView = ({target}: any) => setCurrentIndex(+target.value);
 
   return (
     <div className="c-btns">
