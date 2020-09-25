@@ -1,5 +1,5 @@
 class ApiService {
-  url = "http://localhost:8080/api";
+  url = "https://dev.moreoverandabove.com/api";
 
   async getSelectedMonthData(date: string, controller: AbortController) {
     const rBody = {date};
