@@ -10,6 +10,7 @@
   border: 3px double $primary-color;
   width: fit-content;
   margin: 1em auto;
+
   &__input {
     display: block;
     margin: 0.5em auto;
@@ -17,15 +18,18 @@
     padding: 0.3em;
     min-width: 14em;
   }
+
   &-flex {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0.5em;
   }
+
   &__label {
     min-width: 5em;
   }
+
   &__num {
     background-color: $primary-color;
     color: white;
@@ -38,6 +42,7 @@
 .c-eq__btns {
   display: flex;
   justify-content: space-between;
+
   &__btn {
     position: relative;
     display: block;
@@ -50,7 +55,7 @@
     color: rgb(255, 255, 255);
     background-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(55, 55, 55, 1) 100%);
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-      0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
     overflow: hidden;
     outline: none;
     cursor: pointer;
@@ -113,6 +118,7 @@
 
 .c-grid_table-cell {
   text-align: center;
+
   &:first-child {
     text-align: left;
   }
@@ -142,12 +148,15 @@
   background-color: $primary-color;
   bottom: 0;
   width: 100%;
+
   &__desc {
+    padding: 0.4em;
     color: white;
-    margin: 0.75em auto 0.25em;
+    margin: 0.25em auto;
     word-wrap: break-word;
     max-width: 90vw;
   }
+
   &__text {
     display: block;
     text-align: center;
@@ -162,6 +171,7 @@
   opacity: 0;
   transform: translate(-500px, 0);
 }
+
 .render-form-enter-active {
   opacity: 1;
   transition: opacity 2s ease;
@@ -170,10 +180,12 @@
   transition-duration: 500ms;
   transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
+
 .render-form-exit {
   opacity: 1;
   padding: 4em;
 }
+
 .render-form-exit-active {
   opacity: 0;
   width: 0;
@@ -183,5 +195,5 @@
   border: 0;
   overflow: hidden;
   transition: opacity 0ms, width 1000ms, height 1000ms, padding 1000ms, margin 1000ms, border 1000ms,
-    overflow 1000ms;
+  overflow 1000ms;
 }

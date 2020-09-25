@@ -27,6 +27,10 @@ type FullDate struct {
 	DaysData []MonthData        `json:"daysData" bson:"daysData"`
 }
 
+type CharacterData struct {
+	Character string `json:"character,omitempty" bson:"character,omitempty"`
+}
+
 // MonthData has data for current month
 type MonthData struct {
 	Day  string `json:"day,omitempty" bson:"day,omitempty"`
@@ -34,7 +38,7 @@ type MonthData struct {
 }
 
 type dateFromFront struct {
-	Date string `json:"date,omitempty" bson:"date,omiteempty"`
+	Date string `json:"date,omitempty" bson:"date,omitempty"`
 }
 
 type monthDataRequest struct {
@@ -46,13 +50,18 @@ type player struct {
 	User string `json:"user,omitempty" bson:"user,omitempty"`
 }
 
+type userDate struct {
+	dateFromFront
+	Name string `json:"name,omitempty" bson:"name,omitempty"`
+}
+
 var collection *mongo.Collection
 var collectionCharacter *mongo.Collection
 
 func main() {
 	//Run CRON schedule
 	cSchedule := cron.New()
-	cSchedule.AddFunc("@monthly", func() { //MONTHLY
+	cSchedule.AddFunc("@monthly", func() {
 		deleteOldData()
 	})
 	cSchedule.Start()
@@ -86,6 +95,8 @@ func main() {
 	api.HandleFunc("/", patchDataForMonth).Methods("PATCH")
 	api.HandleFunc("/character", getCharacter).Methods("POST")
 	api.HandleFunc("/character", sendCharacter).Methods("PATCH")
+	api.HandleFunc("/selectAll", selectAll).Methods("POST")
+	api.HandleFunc("/unselectAll", unselectAll).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(router)))
 }
@@ -157,7 +168,7 @@ func postDataForMonth(w http.ResponseWriter, r *http.Request) {
 		tNow := time.Now()
 		thisMonth := int(tNow.Month()) - 1
 
-		if thisMonth == 11 && selectedMonth < 3 {
+		if thisMonth == 11 && selectedMonth < 3 { //TODO: code exceptions
 		} else if selectedMonth < thisMonth || selectedMonth-thisMonth > 2 {
 			w.WriteHeader(http.StatusForbidden)
 			return
@@ -224,7 +235,7 @@ func getCharacter(w http.ResponseWriter, r *http.Request) {
 	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
 	defer error()
 
-	var searchResult interface{}
+	var searchResult CharacterData
 	errFind := collectionCharacter.FindOne(ctx, bson.M{"user": req.User}).Decode(&searchResult)
 
 	if errFind != nil {
@@ -266,4 +277,81 @@ func sendCharacter(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
+}
+
+func selectAll(w http.ResponseWriter, r *http.Request) {
+	req := userDate{}
+	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+	err := decoder.Decode(&req)
+	if err != nil {
+		fmt.Println("Error While Parsing Request Body")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	m, _ := strconv.Atoi(strings.Split(req.dateFromFront.Date, "/")[0])
+	y, _ := strconv.Atoi(strings.Split(req.dateFromFront.Date, "/")[1])
+
+	currentDay := time.Now().Day()
+	lastDay := time.Date(y, time.Month(m+2), 1, 0, 0, 0, -1, time.UTC).Day()
+
+	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+	defer error()
+
+	success := pullDaysForUser(&ctx, &req.Name, &req.dateFromFront.Date)
+	if success != true {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	var updatedData interface{}
+	filter := bson.M{"date": req.dateFromFront.Date}
+
+	currentMonth := int(time.Now().Month()) - 1
+	if currentMonth != m {
+		currentDay = 1
+	}
+
+	for ; currentDay <= lastDay; currentDay++ {
+		update := bson.M{"$push": bson.M{"daysData": bson.M{"day": strconv.Itoa(currentDay), "name": req.Name}}}
+		singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&updatedData)
+		if singleResult != nil {
+			fmt.Println(singleResult)
+		}
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
+func unselectAll(w http.ResponseWriter, r *http.Request) {
+	req := userDate{}
+	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+	err := decoder.Decode(&req)
+	if err != nil {
+		fmt.Println("Error While Parsing Request Body")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
+	defer error()
+
+	success := pullDaysForUser(&ctx, &req.Name, &req.dateFromFront.Date)
+	if success != true {
+		w.WriteHeader(http.StatusBadRequest)
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
+func pullDaysForUser(ctx *context.Context, user *string, date *string) bool {
+	filter := bson.M{"date": *date}
+	update := bson.M{"$pull": bson.M{"daysData": bson.M{"name": bson.D{{"$in", bson.A{*user}}}}}}
+	_, err := collection.UpdateMany(*ctx, filter, update)
+	if err != nil {
+		return false
+	}
+	return true
 }

@@ -5,30 +5,48 @@
   font-family: Roboto, serif;
   color: white;
   background-color: $primary-color;
+
   &__player {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
   }
+
   &__hp {
     font-size: 1.2em;
     margin: 0.25em 0.25em 0.8em;
     padding: 1em;
     position: relative;
   }
+
   &__hp-form {
-    background-color: white;
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%);
-    padding: 0.2em;
-    min-width: 6em;
+    display: flex;
+    background-color: white;
+    justify-content: space-evenly;
+    top: 3.5em;
+    right: 0;
+    width: 7em;
+    height: fit-content;
+
+    &__negative {
+      display: inline;
+      padding: 0.5em;
+    }
+
     &__input {
+      display: inline;
+      height: 2.5em;
+      font-size: 1em;
       max-width: 3em;
+      border: 1px solid black;
+      border-radius: 3px;
+      text-align: center;
+      margin: 0.5em 0;
     }
   }
+
   &__stats {
     display: flex;
     flex-wrap: nowrap;
@@ -40,9 +58,11 @@
 
 .c-player {
   margin: 0 0 0 1em;
+
   &__name {
     font-size: 1.2em;
   }
+
   &__details {
     font-size: 0.8em;
   }
@@ -52,10 +72,12 @@
   flex: 0 0 4em;
   margin: 0 0.5em 1em;
   min-height: 3em;
+
   &__value {
     font-size: 1.3em;
     margin-bottom: 0.25em;
   }
+
   &__label {
     font-size: 0.75em;
   }
@@ -73,7 +95,7 @@
   color: rgb(255, 44, 44);
 }
 
-.inspiration-point{
+.inspiration-point {
   position: absolute;
   right: 5px;
   bottom: 3em;
@@ -89,7 +111,7 @@
   height: 2em;
 }
 
-.dice-layer{
+.dice-layer {
   position: absolute;
   width: 100vw;
   height: 100vh;

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { SelectedDays, DateProps, FilteredByName, FilteredAllNames } from "../../ts/interfaces";
+import {useState} from "react";
+import {DateProps, FilteredAllNames, FilteredByName, SelectedDays} from "../../ts/interfaces";
 
 export const useCalendar = () => {
   const today = new Date();

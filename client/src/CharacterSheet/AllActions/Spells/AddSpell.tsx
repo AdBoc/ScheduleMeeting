@@ -1,31 +1,31 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
-import { characterContext } from '../../../context/Character';
-import { useForm } from 'react-hook-form';
-import { Types } from '../../../context/Character/reducer';
-import { v4 as uuidv4 } from 'uuid';
-import { Spell } from '../../../ts/interfaces';
+import {characterContext} from '../../../context/Character';
+import {useForm} from 'react-hook-form';
+import {Types} from '../../../context/Character/reducer';
+import {v4 as uuidv4} from 'uuid';
+import {Spell} from '../../../ts/interfaces';
 
 interface IProps {
   handleClose: () => void
 }
 
-const AddSpell: React.FC<IProps> = ({ handleClose }) => {
-  const { dispatch } = useContext(characterContext);
-  const { register, handleSubmit } = useForm({
+const AddSpell: React.FC<IProps> = ({handleClose}) => {
+  const {dispatch} = useContext(characterContext);
+  const {register, handleSubmit} = useForm({
     defaultValues: {
       school: "Conjuration",
     }
   });
   const onSubmit = handleSubmit((data) => {
-    dispatch({ type: Types.ADD_TO_ARRAY, payload: { property: "Spells", newValue: { ...data, id: uuidv4() } as Spell } });
+    dispatch({type: Types.ADD_TO_ARRAY, payload: {property: "Spells", newValue: {...data, id: uuidv4()} as Spell}});
     handleClose();
   });
 
   return (
     <form className="form-spell" onSubmit={onSubmit}>
       <p className="form-spell__label">Add Spell</p>
-      <input ref={register} className="form-spell__input" name="name" placeholder="Name" autoComplete="off" required />
+      <input ref={register} className="form-spell__input" name="name" placeholder="Name" autoComplete="off" required/>
       <select ref={register} className="form-spell__input" name="level" required>
         <option value="">--Spell Level--</option>
         <option value="1">1</option>
@@ -59,7 +59,7 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="12 hours">12 hours</option>
         <option value="24 hours">24 hours</option>
       </select>
-      <input ref={register} className="form-spell__input" name="range" placeholder="Range" type="number" required />
+      <input ref={register} className="form-spell__input" name="range" placeholder="Range" type="number" required/>
       <select ref={register} className="form-spell__input" name="components" required>
         <option value="">--Components--</option>
         <option value="V">V</option>
@@ -70,8 +70,8 @@ const AddSpell: React.FC<IProps> = ({ handleClose }) => {
         <option value="S, M">S, M</option>
         <option value="V, S, M">V, S, M</option>
       </select>
-      <TextareaAutosize ref={register} className="form-spell__input" name="description" placeholder="Description" rows={1} />
-      <input className="spell-btn" type="submit" value="Submit" />
+      <TextareaAutosize ref={register} className="form-spell__input" name="description" placeholder="Description" rows={1}/>
+      <input className="spell-btn" type="submit" value="Submit"/>
     </form>
   )
 };

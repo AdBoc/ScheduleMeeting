@@ -1,7 +1,8 @@
 class ApiService {
-  url = "https://dev.moreoverandabove.com/api";
+  url = "http://localhost:8080/api";
+
   async getSelectedMonthData(date: string, controller: AbortController) {
-    const rBody = { date };
+    const rBody = {date};
     try {
       const response = await fetch(`${this.url}/`, {
         method: "POST",
@@ -10,13 +11,13 @@ class ApiService {
       });
       return response.json();
     } catch (error) {
-      if (controller.signal.aborted) return { daysData: false };
-      return { daysData: [], error: true };
+      if (controller.signal.aborted) return {daysData: false};
+      return {daysData: [], error: true};
     }
   }
 
   async addSelectedDay(date: string, day: string, name: string) {
-    const rBody = { date, day, name };
+    const rBody = {date, day, name};
     try {
       const response = await fetch(`${this.url}/new`, {
         method: "POST",
@@ -29,7 +30,7 @@ class ApiService {
   }
 
   async unselectDay(date: string, day: string, name: string) {
-    const rBody = { date, day, name };
+    const rBody = {date, day, name};
     try {
       const response = await fetch(`${this.url}/`, {
         method: "PATCH",
@@ -72,5 +73,36 @@ class ApiService {
       return error;
     }
   }
+
+  async selectAllDays(date: string, name: string) {
+    const rBody = {
+      name,
+      date: date
+    };
+    try {
+      await fetch(`${this.url}/selectAll`, {
+        method: "POST",
+        body: JSON.stringify(rBody)
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async unselectAllDays(date: string, name: string) {
+    const rBody = {
+      name,
+      date: date
+    };
+    try {
+      await fetch(`${this.url}/unselectAll`, {
+        method: "POST",
+        body: JSON.stringify(rBody)
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
+
 export const apiService = new ApiService();

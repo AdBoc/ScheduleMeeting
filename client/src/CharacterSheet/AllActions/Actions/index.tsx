@@ -23,10 +23,10 @@ const Actions = () => {
     <div className="actions">
       <h1 className="actions__title">List of common actions</h1>
       {actions.map((action, index) => (
-        <Tippy key={index} content={actionsDescription[index]} placement="bottom">
-          <button className="actions__action" value={index}>{action}</button>
-        </Tippy>
-      )
+          <Tippy key={index} content={actionsDescription[index]} placement="bottom">
+            <button className="actions__action" value={index}>{action}</button>
+          </Tippy>
+        )
       )}
     </div>
   )

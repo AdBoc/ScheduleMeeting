@@ -7,7 +7,8 @@ export interface SelectedDay {
   name: string;
 }
 
-export interface SelectedDays extends Array<SelectedDay> {}
+export interface SelectedDays extends Array<SelectedDay> {
+}
 
 export interface FilteredByName {
   [day: string]: string;

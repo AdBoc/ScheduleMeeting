@@ -4,13 +4,16 @@ class CharMethods {
     if (level === 0) return 2;
     return Math.floor((level - 1) / 4) + 2;
   }
+
   /**
    * Returns base stat modifier (ex. str 10 returns 0)
    * @param statVal stat value is used to calculate base modificator
    */
   calcStatModificator(statVal: number) {
+    if (!statVal) return 0;
     return Math.floor(statVal / 2) - 5;
   }
+
   /**
    * Calculate saving throw modificator (Base Stat Mod + Proficiency)
    * @param level character level is used to calculate character proficiency
@@ -21,6 +24,7 @@ class CharMethods {
     if (isTagged) return this.calcProficiency(level) + this.calcStatModificator(statVal);
     return this.calcStatModificator(statVal);
   }
+
   /**
    * Calculate number of tagged proficiencies
    * @param throws array that holds information which throw has proficiency
@@ -47,6 +51,7 @@ class CharMethods {
     return Math.floor(Object.values(currencyCopy).reduce((a, b) => a + b));
   }
 }
+
 export const charMethods = new CharMethods();
 
 //Object.assign({}, a) in object assign method nested objects are treated as reference

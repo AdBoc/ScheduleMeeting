@@ -35,11 +35,13 @@ $krzysiek--color: rgb(0, 51, 102);
 }
 
 .calendar {
+  position: relative;
   max-width: max-content;
   margin: 2em auto 0 auto;
   padding: 1.5em;
   border: 2px solid $main-theme;
   border-radius: 8px;
+
   &__fetching {
     width: 100%;
     height: 15em;
@@ -48,6 +50,7 @@ $krzysiek--color: rgb(0, 51, 102);
     bottom: 2px;
     border-radius: 5px;
     left: 0;
+
     &__text {
       padding: 2em;
     }
@@ -58,6 +61,7 @@ $krzysiek--color: rgb(0, 51, 102);
   display: flex;
   align-items: center;
   justify-content: center;
+
   &__button {
     font-size: 1.25em;
     font-weight: bold;
@@ -67,6 +71,7 @@ $krzysiek--color: rgb(0, 51, 102);
     background-color: $main-theme;
     color: $text-light;
     cursor: pointer;
+
     &:focus,
     &:active,
     &:focus:active {
@@ -76,6 +81,7 @@ $krzysiek--color: rgb(0, 51, 102);
       box-shadow: none;
     }
   }
+
   &__full {
     min-width: 5.5em;
     font-size: 1.75em;
@@ -103,6 +109,7 @@ $krzysiek--color: rgb(0, 51, 102);
   color: $main-theme;
   outline: none;
   cursor: pointer;
+
   &:focus,
   &:active,
   &:focus:active {
@@ -119,6 +126,7 @@ $krzysiek--color: rgb(0, 51, 102);
   justify-content: center;
   margin: 1em auto;
   max-width: fit-content;
+
   &__person {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent; // i.e. Nexus5/Chrome and Kindle Fire HD 7''
@@ -126,11 +134,13 @@ $krzysiek--color: rgb(0, 51, 102);
     flex: 0 0 50%;
     padding: 0.75em 0;
     cursor: pointer;
+
     &--active {
       @extend .person-container__person;
       background-color: $main-theme;
       color: white;
     }
+
     &:focus,
     &:active,
     &:focus:active {
@@ -148,78 +158,103 @@ $krzysiek--color: rgb(0, 51, 102);
   border-top: 1px solid $main-theme;
   margin: 0.5em 1em;
   align-items: center;
+
   &__version {
     flex-grow: 1.1;
   }
+
   &__git-icon {
     margin: 0.5em;
   }
+}
+
+.calendar-select-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.75em;
 }
 
 .Test {
   background-color: $witek--color;
   color: $text-light;
 }
+
 .Witek {
   background-color: $witek--color;
   color: $text-light;
 }
+
 .Sławek {
   background-color: $slawek--color;
   color: $text-light;
 }
+
 .Janek {
   background-color: $janek--color;
   color: $text-light;
 }
+
 .Adrian {
   background-color: $adrian--color;
   color: $text-light;
 }
+
 .Adam {
   background-color: $adam--color;
   color: $text-light;
 }
+
 .Maciek {
   background-color: $maciek--color;
   color: $text-light;
 }
+
 .Potrek {
   background-color: $potrek--color;
   color: $text-light;
 }
+
 .Krzysiek {
   background-color: $krzysiek--color;
   color: $text-light;
 }
+
 .count1 {
   background-color: $count1;
   color: $text-dark;
 }
+
 .count2 {
   background-color: $count2;
   color: $text-dark;
 }
+
 .count3 {
   background-color: $count3;
   color: $text-dark;
 }
+
 .count4 {
   background-color: $count4;
   color: $text-light;
 }
+
 .count5 {
   background-color: $count5;
   color: $text-light;
 }
+
 .count6 {
   background-color: $count6;
   color: $text-light;
 }
+
 .count7 {
   background-color: $count7;
   color: $text-light;
 }
+
 .count8 {
   background-color: $count8;
   color: $text-light;

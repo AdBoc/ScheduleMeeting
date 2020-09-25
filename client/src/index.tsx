@@ -6,16 +6,16 @@ import './assets/index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
 serviceWorker.register({
   onUpdate: registration => {
-    alert('Version 1.1 is available');
+    alert('Version 1.2 is available');
     if (registration && registration.waiting) {
-      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+      registration.waiting.postMessage({type: 'SKIP_WAITING'});
     }
     window.location.reload();
   }
