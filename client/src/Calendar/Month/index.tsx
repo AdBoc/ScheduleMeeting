@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Slide, toast, ToastContainer} from 'react-toastify';
 import {CalendarProps, SelectedDays} from '../../ts/interfaces';
 import {apiService} from '../../Services/FetchAPI';
@@ -12,13 +12,18 @@ const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
   const {prevMonth, nextMonth, dateProps} = useCalendar();
   const {currentMonth, currentYear} = dateProps;
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays | false>(false);
+  const [rerender, setRerender] = useState({});
+  const isMounted = useRef(true);
 
   useEffect(() => {
-    setSelectedDays(false);
-  }, [currentMonth, currentYear]);
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     const abortController = new AbortController();
+    setSelectedDays(false);
 
     const fetchData = async () => {
       const {daysData, error} = await apiService.getSelectedMonthData(currentMonth + "/" + currentYear, abortController);
@@ -29,10 +34,23 @@ const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
     };
 
     fetchData();
+
     return () => {
       abortController.abort();
     };
-  }, [currentMonth, currentYear]);
+  }, [currentMonth, currentYear, rerender]);
+
+  const handleSelect = async () => {
+    if (!selectedPlayer) return;
+    await apiService.selectAllDays(currentMonth + "/" + currentYear, selectedPlayer);
+    if (isMounted.current) setRerender({});
+  }
+
+  const handleUnselect = async () => {
+    if (!selectedPlayer) return;
+    await apiService.unselectAllDays(currentMonth + "/" + currentYear, selectedPlayer);
+    if (isMounted.current) setRerender({});
+  }
 
   return (
     <div className="calendar">
@@ -55,6 +73,10 @@ const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
           selectedDays={selectedDays}
           setSelectedDays={setSelectedDays}
       />}
+      {selectedDays && <div className="calendar-select-btn">
+          <button onClick={handleSelect}>SELECT</button>
+          <button onClick={handleUnselect}>UNSELECT</button>
+      </div>}
       <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar newestOnTop/>
     </div>
   )

@@ -35,6 +35,7 @@ $krzysiek--color: rgb(0, 51, 102);
 }
 
 .calendar {
+  position: relative;
   max-width: max-content;
   margin: 2em auto 0 auto;
   padding: 1.5em;
@@ -165,6 +166,13 @@ $krzysiek--color: rgb(0, 51, 102);
   &__git-icon {
     margin: 0.5em;
   }
+}
+
+.calendar-select-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.75em;
 }
 
 .Test {

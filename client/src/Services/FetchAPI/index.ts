@@ -73,6 +73,36 @@ class ApiService {
       return error;
     }
   }
+
+  async selectAllDays(date: string, name: string) {
+    const rBody = {
+      name,
+      date: date
+    };
+    try {
+      await fetch(`${this.url}/selectAll`, {
+        method: "POST",
+        body: JSON.stringify(rBody)
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async unselectAllDays(date: string, name: string) {
+    const rBody = {
+      name,
+      date: date
+    };
+    try {
+      await fetch(`${this.url}/unselectAll`, {
+        method: "POST",
+        body: JSON.stringify(rBody)
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export const apiService = new ApiService();
