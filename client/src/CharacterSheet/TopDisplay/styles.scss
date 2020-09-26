@@ -22,13 +22,23 @@
 
   &__hp-form {
     position: absolute;
-    display: flex;
     background-color: white;
-    justify-content: space-evenly;
     top: 3.5em;
-    right: 0;
+    right: 10px;
     width: 7em;
     height: fit-content;
+    border: 1px solid black;
+    text-align: center;
+    z-index: 1;
+    padding-bottom: 0.5em;
+
+    &--top {
+      display: flex;
+      justify-content: space-evenly;
+      &--btn{
+        min-width: 1.5em;
+      }
+    }
 
     &__negative {
       display: inline;
@@ -37,9 +47,9 @@
 
     &__input {
       display: inline;
-      height: 2.5em;
+      height: 2em;
       font-size: 1em;
-      max-width: 3em;
+      max-width: 2.5em;
       border: 1px solid black;
       border-radius: 3px;
       text-align: center;
@@ -54,6 +64,10 @@
     align-items: center;
     text-align: center;
   }
+}
+
+.form-line {
+  margin: 0.5em;
 }
 
 .c-player {

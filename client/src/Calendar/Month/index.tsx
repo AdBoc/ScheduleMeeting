@@ -42,13 +42,17 @@ const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
 
   const handleSelect = async () => {
     if (!selectedPlayer) return;
-    await apiService.selectAllDays(currentMonth + "/" + currentYear, selectedPlayer);
+    const status = await apiService.selectAllDays(currentMonth + "/" + currentYear, selectedPlayer);
+    if (status === "error") return;
+    if (status !== 200) toast.error("Out of bounds");
     if (isMounted.current) setRerender({});
   }
 
   const handleUnselect = async () => {
     if (!selectedPlayer) return;
-    await apiService.unselectAllDays(currentMonth + "/" + currentYear, selectedPlayer);
+    const status = await apiService.unselectAllDays(currentMonth + "/" + currentYear, selectedPlayer);
+    if (status === "error") return;
+    if (status !== 200) toast.error("Out of bounds");
     if (isMounted.current) setRerender({});
   }
 

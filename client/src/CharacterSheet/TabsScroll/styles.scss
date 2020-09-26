@@ -48,3 +48,9 @@
     transition: transform 0s;
   }
 }
+
+@media screen and (min-width: 900px) {
+  .c-btns {
+    justify-content: center;
+  }
+}

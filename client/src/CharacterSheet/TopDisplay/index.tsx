@@ -11,6 +11,7 @@ const TopDisplay = () => {
   const [isHpInput, setIsHpInput] = useState(false);
   const [isDiceSim, setIsDiceSim] = useState(false);
   const [newHpDiff, setNewHpDIff] = useState<number | string>("");
+  const [isInverse, setIsInverse] = useState(false);
 
   const diceRef = useRef(null);
   useOutsideClick(diceRef, () => {
@@ -20,15 +21,6 @@ const TopDisplay = () => {
   const hpRef = useRef(null);
   useOutsideClick(hpRef, () => {
     if (isHpInput) setIsHpInput(prev => !prev);
-    if (!newHpDiff) return;
-    const input = newHpDiff as number;
-    let MaxHP = character.MainStats.HitPoints;
-    let currHP = character.TemporaryHitPoints + input;
-    if (currHP <= 0)
-      currHP = 0;
-    else if (currHP > MaxHP)
-      currHP = MaxHP;
-    dispatch({type: Types.CHANGE_STAT, payload: {property: "TemporaryHitPoints", newValue: currHP}});
     setNewHpDIff("");
   });
 
@@ -44,7 +36,37 @@ const TopDisplay = () => {
 
   const handleHpDiff = (e: any) => {
     if (!e.target.value) return setNewHpDIff("");
+    if (isInverse) return setNewHpDIff(-Math.abs(parseInt(e.target.value)));
     setNewHpDIff(parseInt(e.target.value));
+  }
+
+  const handleIncrement = () => {
+    if (character.TemporaryHitPoints === character.MainStats.HitPoints) return;
+    dispatch({type: Types.INCREMENT_STAT, payload: {property: "TemporaryHitPoints"}});
+  }
+
+  const handleDecrement = () => {
+    if (character.TemporaryHitPoints === 0) return;
+    dispatch({type: Types.DECREMENT_STAT, payload: {property: "TemporaryHitPoints"}});
+  }
+
+  const handleHpSubmit = () => {
+    if (!newHpDiff) return;
+    const input = newHpDiff as number;
+    let MaxHP = character.MainStats.HitPoints;
+    let currHP = character.TemporaryHitPoints + input;
+    if (currHP <= 0)
+      currHP = 0;
+    else if (currHP > MaxHP)
+      currHP = MaxHP;
+    dispatch({type: Types.CHANGE_STAT, payload: {property: "TemporaryHitPoints", newValue: currHP}});
+    setNewHpDIff("");
+    setIsHpInput(prev => !prev);
+  }
+
+  const handleInverse = () => {
+    setIsInverse(prev => !prev);
+    setNewHpDIff(prev => -prev);
   }
 
   return (
@@ -60,8 +82,17 @@ const TopDisplay = () => {
             <p className={styleHp()} onClick={() => setIsHpInput(prev => !prev)}>{character.TemporaryHitPoints}/{character.MainStats.HitPoints} HP</p>
             {
               isHpInput && <div className="c-sheet__hp-form" ref={hpRef}>
-                  <button className="c-sheet__hp-form__negative" onClick={() => setNewHpDIff(-newHpDiff)}>-</button>
-                  <input className="c-sheet__hp-form__input" type="number" name="HpMod" value={newHpDiff} onChange={handleHpDiff} autoFocus required/>
+                  <div className="c-sheet__hp-form--top">
+                      <button className="c-sheet__hp-form--top--btn" onClick={handleDecrement}>-</button>
+                      <input className="c-sheet__hp-form__input" type="number" name="HpMod" value={newHpDiff} onChange={handleHpDiff} required/>
+                      <button className="c-sheet__hp-form--top--btn" onClick={handleIncrement}>+</button>
+                  </div>
+                  <div>
+                      <hr className="form-line"/>
+                      <button onClick={handleInverse}>Inverse</button>
+                      <hr className="form-line"/>
+                      <button onClick={handleHpSubmit}>OK</button>
+                  </div>
               </div>
             }
           </>
