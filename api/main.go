@@ -293,8 +293,18 @@ func selectAll(w http.ResponseWriter, r *http.Request) {
 	m, _ := strconv.Atoi(strings.Split(req.dateFromFront.Date, "/")[0])
 	y, _ := strconv.Atoi(strings.Split(req.dateFromFront.Date, "/")[1])
 
+	currentMonth := int(time.Now().Month()) - 1
 	currentDay := time.Now().Day()
+	if currentMonth != m {
+		currentDay = 1
+	}
 	lastDay := time.Date(y, time.Month(m+2), 1, 0, 0, 0, -1, time.UTC).Day()
+
+	if currentMonth == 11 && m < 3 { //TODO: code exceptions
+	} else if m < currentMonth || m-currentMonth > 2 {
+		w.WriteHeader(http.StatusForbidden)
+		return
+	}
 
 	ctx, error := context.WithTimeout(context.Background(), 10*time.Second)
 	defer error()
@@ -308,16 +318,12 @@ func selectAll(w http.ResponseWriter, r *http.Request) {
 	var updatedData interface{}
 	filter := bson.M{"date": req.dateFromFront.Date}
 
-	currentMonth := int(time.Now().Month()) - 1
-	if currentMonth != m {
-		currentDay = 1
-	}
-
 	for ; currentDay <= lastDay; currentDay++ {
 		update := bson.M{"$push": bson.M{"daysData": bson.M{"day": strconv.Itoa(currentDay), "name": req.Name}}}
 		singleResult := collection.FindOneAndUpdate(ctx, filter, update).Decode(&updatedData)
 		if singleResult != nil {
-			fmt.Println(singleResult)
+			w.WriteHeader(http.StatusBadRequest)
+			return
 		}
 	}
 
