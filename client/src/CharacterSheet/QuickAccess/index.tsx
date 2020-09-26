@@ -51,10 +51,8 @@ const QuickAccess: React.FC = () => {
         <input className="c-ins-checkbox__box" id="diceSim" type="checkbox" checked={character.DiceSim.status} onChange={handleDiceSim}/>
       </div>
       <hr/>
-      <Link to="/">
-        <button className="quick-btn section-break">Show Calendar</button>
-      </Link>
-      <button className="quick-btn" onClick={handleCopy}>Copy JSON</button>
+      <button className="quick-btn section-break"><Link className="white-font" to="/">Show Calendar</Link></button>
+      <button className="btn-w-hover" onClick={handleCopy}>Copy JSON</button>
       <button className="quick-btn quick-btn--red" onClick={deleteCharacter}>Delete Character</button>
     </div>
   )

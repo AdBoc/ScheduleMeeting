@@ -42,15 +42,13 @@ class ApiService {
     }
   }
 
-  async getCharacter() {
-    const rBody = {
-      user: localStorage.getItem("user"),
-    };
+  async getCharacter(user: string) {
     try {
       const response = await fetch(`${this.url}/character`, {
         method: "POST",
-        body: JSON.stringify(rBody),
+        body: JSON.stringify({user}),
       });
+      console.log(response);
       if (response.status === 400) return "error";
       return response.json();
     } catch (error) {
@@ -58,20 +56,15 @@ class ApiService {
     }
   }
 
-  async sendCharacter() {
+  sendCharacter() {
     const rBody = {
       user: localStorage.getItem("user"),
       character: localStorage.getItem("character"),
     };
-    try {
-      const response = await fetch(`${this.url}/character`, {
-        method: "PATCH",
-        body: JSON.stringify(rBody),
-      });
-      return response.status;
-    } catch (error) {
-      return error;
-    }
+    fetch(`${this.url}/character`, {
+      method: "PATCH",
+      body: JSON.stringify(rBody),
+    });
   }
 
   async selectAllDays(date: string, name: string) {
@@ -80,12 +73,14 @@ class ApiService {
       date: date
     };
     try {
-      await fetch(`${this.url}/selectAll`, {
+      const response = await fetch(`${this.url}/selectAll`, {
         method: "POST",
         body: JSON.stringify(rBody)
       });
+      console.log(response.status);
+      return response.status;
     } catch (error) {
-      return error;
+      return "error";
     }
   }
 
@@ -95,12 +90,13 @@ class ApiService {
       date: date
     };
     try {
-      await fetch(`${this.url}/unselectAll`, {
+      const response = await fetch(`${this.url}/unselectAll`, {
         method: "POST",
         body: JSON.stringify(rBody)
       });
+      return response.status
     } catch (error) {
-      return error;
+      return "error";
     }
   }
 }

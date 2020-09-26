@@ -16,10 +16,7 @@ const CharacterSheet: React.FC = () => {
 
   useEffect(() => {
     localStorage.setItem("character", JSON.stringify(character));
-    const sendChar = async () => {
-      await apiService.sendCharacter();
-    }
-    sendChar();
+    apiService.sendCharacter();
   }, [character]);
 
   useEffect(() => {
