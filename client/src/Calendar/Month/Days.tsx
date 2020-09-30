@@ -66,14 +66,14 @@ const Days: React.FC<IProps> = ({dateProps, setSelectedDays, selectedDays}) => {
       {emptyButtons && emptyButtons}
       {user ?
         <>
-          {daysOfMonth.map((day, index) => {
-            return <button key={index} className={`day ${day} ` + daysFilteredByName[day]} value={day} onClick={handleDaySelect}>{day}</button>
-          })}
+          {daysOfMonth.map((day, index) =>
+            <button key={index} className={`day ${day} ` + daysFilteredByName[day]} value={day} onClick={handleDaySelect}>{day}</button>
+          )}
         </> :
         <>
-          {daysOfMonth.map((day, index) => {
-            return <button key={index} className={composeClassName(day)} value={day}>{day}</button>
-          })}
+          {daysOfMonth.map((day, index) =>
+            <button key={index} className={composeClassName(day)} value={day}>{day}</button>
+          )}
         </>
       }
     </div>

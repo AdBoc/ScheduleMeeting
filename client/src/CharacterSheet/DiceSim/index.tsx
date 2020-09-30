@@ -1,7 +1,10 @@
 import React, {useContext, useState} from 'react';
+
 import {characterContext} from '../../context/Character';
 import {useForm} from 'react-hook-form';
+
 import {Types} from '../../context/Character/reducer';
+
 import './styles.scss';
 
 const DiceSim = () => {

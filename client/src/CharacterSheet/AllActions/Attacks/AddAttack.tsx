@@ -1,8 +1,10 @@
 import React, {useContext} from 'react';
+
 import {characterContext} from '../../../context/Character';
-import {Types} from '../../../context/Character/reducer';
 import {v4 as uuidv4} from 'uuid';
 import {useForm} from 'react-hook-form';
+
+import {Types} from '../../../context/Character/reducer';
 import {Attack} from '../../../ts/interfaces';
 
 interface IProps {

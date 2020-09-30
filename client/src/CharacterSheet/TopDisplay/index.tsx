@@ -1,9 +1,13 @@
 import React, {useContext, useRef, useState} from 'react';
+
 import {characterContext} from '../../context/Character';
-import useOutsideClick from '../../hooks/useOutsideClick';
-import DiceSim from '../DiceSim';
+import {useOutsideClick} from '../../hooks/useOutsideClick';
+
 import {Types} from '../../context/Character/reducer';
 import {charMethods} from '../../Services/CharacterMethods';
+
+import DiceSim from '../DiceSim';
+
 import './styles.scss';
 
 const TopDisplay = () => {
@@ -127,3 +131,5 @@ const TopDisplay = () => {
 };
 
 export default React.memo(TopDisplay);
+
+//TODO: Refractor this component

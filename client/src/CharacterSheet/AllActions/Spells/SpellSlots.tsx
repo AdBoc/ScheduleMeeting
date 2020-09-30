@@ -1,5 +1,7 @@
 import React, {useContext} from 'react'
+
 import {characterContext} from '../../../context/Character';
+
 import {Types} from '../../../context/Character/reducer';
 
 const SpellSlots = () => {

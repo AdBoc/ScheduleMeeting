@@ -4,7 +4,9 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './App';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './assets/index.css';
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,11 +1,13 @@
 import React, {useContext} from 'react';
+
 import {characterContext} from '../../context/Character';
 import {initialCharacter, Types} from '../../context/Character/reducer';
 import {history} from '../../Services/History';
+
 import {Link} from 'react-router-dom';
 import StatButtons from '../../components/StatButtons';
 import InputNumber from '../../components/InputNumber';
-import 'react-toastify/dist/ReactToastify.css';
+
 import './styles.scss';
 
 const QuickAccess: React.FC = () => {

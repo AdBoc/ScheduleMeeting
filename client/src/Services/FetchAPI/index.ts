@@ -1,7 +1,6 @@
 class ApiService {
   url = "http://localhost:8080/api";
 
-  //TODO:DAY IS NOW INT SO IT DOESNT WORK ANYMORE
   async getSelectedMonthData(month: number, year: number, controller: AbortController) {
     try {
       const response = await fetch(`${this.url}/`, {

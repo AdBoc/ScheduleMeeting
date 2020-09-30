@@ -1,7 +1,10 @@
 import React, {useContext, useState} from 'react';
-import {Actions, AddAttack, AddEffect, AddSpell, Attacks, Effects, Spells} from './index';
-import './styles.scss';
+
 import {characterContext} from '../../context/Character';
+
+import {Actions, AddAttack, AddEffect, AddSpell, Attacks, Effects, Spells} from './index';
+
+import './styles.scss';
 
 const AllActions: React.FC = () => {
   const {character} = useContext(characterContext);

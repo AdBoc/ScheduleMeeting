@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import './styles.scss';
+
 import ThrowsValues from './ThrowsValues';
+
+import './styles.scss';
 
 const SavingThrows: React.FC = () => {
   const [throws, setThrows] = useState([false, false, false, false, false, false]);

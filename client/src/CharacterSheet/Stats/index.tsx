@@ -1,7 +1,10 @@
 import React, {useContext} from 'react';
+
 import {characterContext} from '../../context/Character';
 import {charMethods} from '../../Services/CharacterMethods';
+
 import StatsSelect from './StatsSelect';
+
 import './styles.scss';
 
 const Stats: React.FC = () => {

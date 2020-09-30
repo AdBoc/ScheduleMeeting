@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import './styles.scss';
+
 import Skill from './Skill';
+
+import './styles.scss';
 
 const Skills: React.FC = () => {
   const [isEdit, setIsEdit] = useState(false);
-  const handleEdit = () => setIsEdit(prev => !prev); // calculate new data when changing main stat (str)
+  const handleEdit = () => setIsEdit(prev => !prev);
 
   return (
     <div className="c-skills">
