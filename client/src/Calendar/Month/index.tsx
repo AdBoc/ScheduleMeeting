@@ -1,11 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Slide, toast, ToastContainer} from 'react-toastify';
-import {CalendarProps, SelectedDays} from '../../ts/interfaces';
-import {apiService} from '../../Services/FetchAPI';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+
+import {playerContext} from "../../context/SelectedUser";
 import {useCalendar} from '../../hooks/useCalendar';
+
+import {Slide, toast, ToastContainer} from 'react-toastify';
+import {SelectedDays} from '../../ts/interfaces';
+import {apiService} from '../../Services/FetchAPI';
+
 import Days from './Days';
 
-const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
+const Month: React.FC = () => {
   let monthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   let dayOfWeek = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
@@ -13,6 +17,7 @@ const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
   const {currentMonth, currentYear} = dateProps;
   const [selectedDays, setSelectedDays] = useState<never | SelectedDays | false>(false);
   const [rerender, setRerender] = useState({});
+  const {user} = useContext(playerContext)
   const isMounted = useRef(true);
 
   useEffect(() => {
@@ -41,16 +46,16 @@ const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
   }, [currentMonth, currentYear, rerender]);
 
   const handleSelect = async () => {
-    if (!selectedPlayer) return;
-    const status = await apiService.selectAllDays(currentMonth, currentYear, selectedPlayer);
+    if (!user) return;
+    const status = await apiService.selectAllDays(currentMonth, currentYear, user);
     if (status === "error") return;
     if (status !== 200) toast.error("Out of bounds");
     if (isMounted.current) setRerender({});
   }
 
   const handleUnselect = async () => {
-    if (!selectedPlayer) return;
-    const status = await apiService.unselectAllDays(currentMonth, currentYear, selectedPlayer);
+    if (!user) return;
+    const status = await apiService.unselectAllDays(currentMonth, currentYear, user);
     if (status === "error") return;
     if (status !== 200) toast.error("Out of bounds");
     if (isMounted.current) setRerender({});
@@ -73,7 +78,6 @@ const Month: React.FC<CalendarProps> = ({selectedPlayer}) => {
       {!selectedDays && <div className="calendar__fetching"><p className="calendar__fetching__text">...Loading</p></div>}
       {selectedDays && <Days
           dateProps={dateProps}
-          selectedPlayer={selectedPlayer}
           selectedDays={selectedDays}
           setSelectedDays={setSelectedDays}
       />}

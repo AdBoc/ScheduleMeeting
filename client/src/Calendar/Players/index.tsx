@@ -1,20 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {playerContext, users} from "../../context/SelectedUser";
 
-interface IProps {
-  handleClick: (arg: string | null) => () => void;
-  selectedPlayer: string | null;
-}
+const Players: React.FC = () => {
+  const {user, handleUser} = useContext(playerContext)
 
-export const players = ['Test', 'Witek', 'Sławek', 'Potrek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
-
-const Players: React.FC<IProps> = ({handleClick, selectedPlayer: selectedName}) => {
   return (
     <div className="person-container">
-      {players.map((person, index) => {
-        if (selectedName && person === selectedName)
-          return <button key={index} className="person-container__person--active" onClick={handleClick(person)}>{person}</button>
-        return <button key={index} className="person-container__person" onClick={handleClick(person)}>{person}</button>
-      })}
+      {users.map((users, index) =>
+        <button key={index} className={`person-container__person${user && users === user ? "--active" : ""}`} value={users}
+                onClick={handleUser}>{users}</button>
+      )}
     </div>
   )
 }

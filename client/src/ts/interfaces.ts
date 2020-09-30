@@ -1,7 +1,3 @@
-export interface CalendarProps {
-  selectedPlayer: string | null;
-}
-
 export interface SelectedDay {
   day: number;
   user: string;

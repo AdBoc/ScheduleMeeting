@@ -1,21 +1,23 @@
-import React from 'react';
-import {DateProps, SelectedDays} from '../../ts/interfaces';
+import React, {useContext} from 'react';
+import {playerContext} from "../../context/SelectedUser";
+
 import {apiService} from '../../Services/FetchAPI';
+import {DateProps, SelectedDays} from '../../ts/interfaces';
 import {toast} from 'react-toastify';
 import {useCalendar} from '../../hooks/useCalendar';
 
 interface IProps {
   dateProps: DateProps;
-  selectedPlayer: string | null;
   selectedDays: SelectedDays;
   setSelectedDays: React.Dispatch<React.SetStateAction<SelectedDays | false>>;
 }
 
-const Days: React.FC<IProps> = ({dateProps, selectedPlayer, setSelectedDays, selectedDays}) => {
+const Days: React.FC<IProps> = ({dateProps, setSelectedDays, selectedDays}) => {
   const {currentMonth, currentYear, firstDayOfMonth, daysOfMonth} = dateProps;
   const {parseUser, parseNoUser} = useCalendar();
+  const {user} = useContext(playerContext)
 
-  const daysFilteredByName = selectedPlayer ? parseUser(selectedDays, selectedPlayer) : parseNoUser(selectedDays);
+  const daysFilteredByName = user ? parseUser(selectedDays, user) : parseNoUser(selectedDays);
 
   const emptyButtons: JSX.Element[] = [];
   let days: number;
@@ -31,17 +33,17 @@ const Days: React.FC<IProps> = ({dateProps, selectedPlayer, setSelectedDays, sel
     const {value, className} = target;
     const doesNotExist = /\b(undefined)$/.test(className);
     if (doesNotExist) {
-      if (selectedPlayer)
-        setSelectedDays([...selectedDays, {day: value, user: selectedPlayer}]);
-      const response = await apiService.addSelectedDay(currentMonth, currentYear, +value, selectedPlayer!);
+      if (user)
+        setSelectedDays([...selectedDays, {day: value, user: user}]);
+      const response = await apiService.addSelectedDay(currentMonth, currentYear, +value, user!);
       if (response === 403)
         toast.error("Month out of bounds");
       else if (response !== 200)
         toast.error("Connection error");
     } else if (!doesNotExist) {
       const testCopy = [...selectedDays];
-      setSelectedDays(testCopy.filter((date) => (date.user !== selectedPlayer || (date.day !== +value && date.user === selectedPlayer))));
-      const response = await apiService.unselectDay(currentMonth, currentYear, +value, selectedPlayer!);
+      setSelectedDays(testCopy.filter((date) => (date.user !== user || (date.day !== +value && date.user === user))));
+      const response = await apiService.unselectDay(currentMonth, currentYear, +value, user!);
       if (response === 403)
         toast.error("Month out of bounds");
       else if (response !== 200)
@@ -62,7 +64,7 @@ const Days: React.FC<IProps> = ({dateProps, selectedPlayer, setSelectedDays, sel
   return (
     <div className="days-of-month">
       {emptyButtons && emptyButtons}
-      {selectedPlayer ?
+      {user ?
         <>
           {daysOfMonth.map((day, index) => {
             return <button key={index} className={`day ${day} ` + daysFilteredByName[day]} value={day} onClick={handleDaySelect}>{day}</button>
