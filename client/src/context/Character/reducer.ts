@@ -17,10 +17,6 @@ export enum Types {
   DELETE_DICE = "DELETE_DICE"
 }
 
-// export type ContextProps = {
-//   children: React.ReactNode;
-// };
-
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {

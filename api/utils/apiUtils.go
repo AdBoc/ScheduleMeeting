@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-func PullDaysForUser(ctx *context.Context, user *string, month int, year int) bool {
+func PullDaysForUser(ctx *context.Context, user string, month int, year int) bool {
 	filter := bson.M{"month": month, "year": year}
-	update := bson.M{"$pull": bson.M{"daysData": bson.M{"name": bson.D{{"$in", bson.A{user}}}}}}
+	update := bson.M{"$pull": bson.M{"daysData": bson.M{"user": bson.D{{"$in", bson.A{user}}}}}}
 	_, err := mongo.CollectionCalendar.UpdateMany(*ctx, filter, update)
 	if err != nil {
 		return false
@@ -31,7 +31,7 @@ func SelectedDaysRange(year int, month int) (startDay, endDay int) {
 }
 
 func VerifyMonthLimit(newMonth int, newYear int) bool {
-	currentDate := time.Date(2020, 12, 1, 0, 0, 0, 0, time.UTC)
+	currentDate := time.Now()
 	currentYear := currentDate.Year()
 
 	currentMonth := int(currentDate.Month())

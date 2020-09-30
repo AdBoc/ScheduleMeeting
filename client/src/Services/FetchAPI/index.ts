@@ -1,12 +1,12 @@
 class ApiService {
   url = "http://localhost:8080/api";
 
-  async getSelectedMonthData(date: string, controller: AbortController) {
-    const rBody = {date};
+  //TODO:DAY IS NOW INT SO IT DOESNT WORK ANYMORE
+  async getSelectedMonthData(month: number, year: number, controller: AbortController) {
     try {
       const response = await fetch(`${this.url}/`, {
         method: "POST",
-        body: JSON.stringify(rBody),
+        body: JSON.stringify({month, year}),
         signal: controller.signal,
       });
       return response.json();
@@ -16,12 +16,11 @@ class ApiService {
     }
   }
 
-  async addSelectedDay(date: string, day: string, name: string) {
-    const rBody = {date, day, name};
+  async addSelectedDay(month: number, year: number, day: number, user: string) {
     try {
       const response = await fetch(`${this.url}/new`, {
         method: "POST",
-        body: JSON.stringify(rBody),
+        body: JSON.stringify({month, year, day, user}),
       });
       return response.status;
     } catch (error) {
@@ -29,12 +28,11 @@ class ApiService {
     }
   }
 
-  async unselectDay(date: string, day: string, name: string) {
-    const rBody = {date, day, name};
+  async unselectDay(month: number, year: number, day: number, user: string) {
     try {
       const response = await fetch(`${this.url}/`, {
         method: "PATCH",
-        body: JSON.stringify(rBody),
+        body: JSON.stringify({month, year, day, user}),
       });
       return response.status;
     } catch (error) {
@@ -48,7 +46,6 @@ class ApiService {
         method: "POST",
         body: JSON.stringify({user}),
       });
-      console.log(response);
       if (response.status === 400) return "error";
       return response.json();
     } catch (error) {
@@ -56,43 +53,33 @@ class ApiService {
     }
   }
 
-  sendCharacter() {
-    const rBody = {
-      user: localStorage.getItem("user"),
-      character: localStorage.getItem("character"),
-    };
-    fetch(`${this.url}/character`, {
+  async sendCharacter() {
+    await fetch(`${this.url}/character`, {
       method: "PATCH",
-      body: JSON.stringify(rBody),
+      body: JSON.stringify({
+        user: localStorage.getItem("user"),
+        character: localStorage.getItem("character"),
+      }),
     });
   }
 
-  async selectAllDays(date: string, name: string) {
-    const rBody = {
-      name,
-      date: date
-    };
+  async selectAllDays(month: number, year: number, user: string) {
     try {
       const response = await fetch(`${this.url}/selectAll`, {
         method: "POST",
-        body: JSON.stringify(rBody)
+        body: JSON.stringify({month, year, user})
       });
-      console.log(response.status);
       return response.status;
     } catch (error) {
       return "error";
     }
   }
 
-  async unselectAllDays(date: string, name: string) {
-    const rBody = {
-      name,
-      date: date
-    };
+  async unselectAllDays(month: number, year: number, user: string) {
     try {
       const response = await fetch(`${this.url}/unselectAll`, {
         method: "POST",
-        body: JSON.stringify(rBody)
+        body: JSON.stringify({month, year, user})
       });
       return response.status
     } catch (error) {

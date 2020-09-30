@@ -32,16 +32,16 @@ const Days: React.FC<IProps> = ({dateProps, selectedPlayer, setSelectedDays, sel
     const doesNotExist = /\b(undefined)$/.test(className);
     if (doesNotExist) {
       if (selectedPlayer)
-        setSelectedDays([...selectedDays, {day: value, name: selectedPlayer}]);
-      const response = await apiService.addSelectedDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
+        setSelectedDays([...selectedDays, {day: value, user: selectedPlayer}]);
+      const response = await apiService.addSelectedDay(currentMonth, currentYear, +value, selectedPlayer!);
       if (response === 403)
         toast.error("Month out of bounds");
       else if (response !== 200)
         toast.error("Connection error");
     } else if (!doesNotExist) {
       const testCopy = [...selectedDays];
-      setSelectedDays(testCopy.filter((date) => (date.name !== selectedPlayer || (date.day !== value && date.name === selectedPlayer))));
-      const response = await apiService.unselectDay(currentMonth + "/" + currentYear, value, selectedPlayer!);
+      setSelectedDays(testCopy.filter((date) => (date.user !== selectedPlayer || (date.day !== +value && date.user === selectedPlayer))));
+      const response = await apiService.unselectDay(currentMonth, currentYear, +value, selectedPlayer!);
       if (response === 403)
         toast.error("Month out of bounds");
       else if (response !== 200)
@@ -49,11 +49,11 @@ const Days: React.FC<IProps> = ({dateProps, selectedPlayer, setSelectedDays, sel
     }
   }
 
-  const composeClassName = (day: string) => {
+  const composeClassName = (day: number) => {
     const newCurrentDay = new Date();
     let className = `day ${day}`;
     className += daysFilteredByName[day] !== undefined ? ` count${daysFilteredByName[day].length}` : "";
-    if (currentMonth === newCurrentDay.getMonth() && currentYear === newCurrentDay.getFullYear() && +day === newCurrentDay.getDate()) {
+    if (currentMonth === newCurrentDay.getMonth() && currentYear === newCurrentDay.getFullYear() && day === newCurrentDay.getDate()) {
       className += " currentDay";
     }
     return className;
