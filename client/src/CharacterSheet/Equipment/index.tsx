@@ -113,4 +113,3 @@ const Equipment: React.FC = () => {
 };
 
 export default Equipment;
-//TODO: Component too complicated

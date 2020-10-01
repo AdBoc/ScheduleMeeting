@@ -12,7 +12,7 @@ import (
 
 func sendMonthData(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var date Date
+	var date date
 
 	if err := json.NewDecoder(r.Body).Decode(&date); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -22,13 +22,13 @@ func sendMonthData(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	var searchResult FullMonthData
+	var searchResult fullMonthData
 	filter := bson.M{"month": date.Month, "year": date.Year}
 	err := mongo.CollectionCalendar.FindOne(ctx, filter).Decode(&searchResult)
 	if err != nil {
 		searchResult.Month = date.Month
 		searchResult.Year = date.Year
-		searchResult.DaysData = []DayObject{}
+		searchResult.DaysData = []dayObject{}
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -38,7 +38,7 @@ func sendMonthData(w http.ResponseWriter, r *http.Request) {
 
 func addDayInMonth(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var newDay NewDay
+	var newDay newDay
 
 	if err := json.NewDecoder(r.Body).Decode(&newDay); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -53,8 +53,8 @@ func addDayInMonth(w http.ResponseWriter, r *http.Request) {
 
 	searchResult := mongo.CollectionCalendar.FindOneAndUpdate(ctx, filter, update)
 	if searchResult.Err() != nil {
-		result := utils.VerifyMonthLimit(newDay.Month+1, newDay.Year)
-		if result == false {
+		err := utils.VerifyMonthLimit(newDay.Month+1, newDay.Year)
+		if err != nil {
 			w.WriteHeader(http.StatusForbidden)
 			return
 		}
@@ -68,18 +68,19 @@ func addDayInMonth(w http.ResponseWriter, r *http.Request) {
 					"user": newDay.User},
 			},
 		}
-		_, err := mongo.CollectionCalendar.InsertOne(ctx, newMonth)
+		_, err = mongo.CollectionCalendar.InsertOne(ctx, newMonth)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 	}
+
 	w.WriteHeader(http.StatusOK)
 }
 
 func deleteDayInMonth(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var deletedDay NewDay
+	var deletedDay newDay
 
 	if err := json.NewDecoder(r.Body).Decode(&deletedDay); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -98,13 +99,12 @@ func deleteDayInMonth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 }
 
 func selectAllInMonth(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var reqDate UserDate
+	var reqDate userDate
 
 	if err := json.NewDecoder(r.Body).Decode(&reqDate); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -114,35 +114,41 @@ func selectAllInMonth(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	result := utils.VerifyMonthLimit(reqDate.Month+1, reqDate.Year)
-	if result != true {
+	err := utils.VerifyMonthLimit(reqDate.Month+1, reqDate.Year)
+	if err != nil {
 		w.WriteHeader(http.StatusForbidden)
 		return
 	}
 
-	success := utils.PullDaysForUser(&ctx, reqDate.User, reqDate.Month, reqDate.Year) //TODO: instead of bool create custom error
-	if success != true {
-		w.WriteHeader(http.StatusBadRequest) //TODO: if selected and month does not exist then error shows
+	err = utils.PullDaysForUser(&ctx, reqDate.User, reqDate.Month, reqDate.Year)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
+	monthDays := make([]dayObject, 0, 32)
 	startDay, endDay := utils.SelectedDaysRange(reqDate.Year, reqDate.Month)
+	for ; startDay <= endDay; startDay++ {
+		monthDays = append(monthDays, dayObject{Day: startDay, User: reqDate.User})
+	}
 
 	filter := bson.M{"month": reqDate.Month, "year": reqDate.Year}
-	for ; startDay <= endDay; startDay++ { //TODO: instead of searching for 30 days push them all into array
-		update := bson.M{"$push": bson.M{"daysData": bson.M{"day": startDay, "user": reqDate.User}}}
-		singleResult := mongo.CollectionCalendar.FindOneAndUpdate(ctx, filter, update)
-		if singleResult.Err() != nil {
-			w.WriteHeader(http.StatusBadRequest)
+	update := bson.M{"$push": bson.M{"daysData": bson.M{"$each": monthDays}}}
+	singleResult := mongo.CollectionCalendar.FindOneAndUpdate(ctx, filter, update)
+	if singleResult.Err() != nil {
+		_, err := mongo.CollectionCalendar.InsertOne(ctx, bson.M{"month": reqDate.Month, "year": reqDate.Year, "daysData": monthDays})
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 	}
+
 	w.WriteHeader(http.StatusOK)
 }
 
 func unselectAllInMonth(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var reqDate UserDate
+	var reqDate userDate
 
 	if err := json.NewDecoder(r.Body).Decode(&reqDate); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -152,8 +158,8 @@ func unselectAllInMonth(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	success := utils.PullDaysForUser(&ctx, reqDate.User, reqDate.Month, reqDate.Year) //TODO: instead of bool create custom error
-	if success != true {
+	err := utils.PullDaysForUser(&ctx, reqDate.User, reqDate.Month, reqDate.Year)
+	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}

@@ -1,26 +1,26 @@
 package calendar
 
-type Date struct {
+type date struct {
 	Month int `json:"month" bson:"month"`
 	Year  int `json:"year" bson:"year"`
 }
 
-type DayObject struct {
+type dayObject struct {
 	Day  int    `json:"day" bson:"day"`
 	User string `json:"user" bson:"user"`
 }
 
-type FullMonthData struct {
-	Date
-	DaysData []DayObject `json:"daysData" bson:"daysData"`
+type fullMonthData struct {
+	date
+	DaysData []dayObject `json:"daysData" bson:"daysData"`
 }
 
-type NewDay struct {
-	Date
-	DayObject
+type newDay struct {
+	date
+	dayObject
 }
 
-type UserDate struct {
-	Date
+type userDate struct {
+	date
 	User string `json:"user" bson:"user"`
 }

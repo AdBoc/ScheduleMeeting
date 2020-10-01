@@ -22,12 +22,7 @@ func receiveCharacter(w http.ResponseWriter, r *http.Request) {
 
 	searchResult := mongo.CollectionCharacter.FindOneAndReplace(ctx, bson.M{"user": character.User}, character)
 	if searchResult.Err() != nil {
-		_, err := mongo.CollectionCharacter.InsertOne(ctx, character)
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("No Character Exists")) //TODO: test it
-			return
-		}
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -48,8 +43,13 @@ func sendCharacter(w http.ResponseWriter, r *http.Request) {
 
 	err := mongo.CollectionCharacter.FindOne(ctx, bson.M{"user": character.User}).Decode(&character)
 	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("No Character Exists"))
+		character.Character = "{New}"
+		_, err := mongo.CollectionCharacter.InsertOne(ctx, character)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		w.WriteHeader(http.StatusCreated)
 		return
 	}
 
