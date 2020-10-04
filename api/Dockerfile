@@ -10,4 +10,4 @@ RUN go mod download
 COPY . .
 
 RUN go build
-CMD ["./calendar"]
+CMD ["./dndApi"]

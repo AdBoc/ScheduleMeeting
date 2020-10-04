@@ -21,19 +21,17 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Production" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d87743-5c69-4d32-9148-a963a93f8076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/Calendar/Footer/Footer.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Calendar/Players/Players.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Calendar/Footer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Calendar/Footer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Calendar/Month/Days.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Calendar/Month/Days.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/CharacterSheet/QuickAccess/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/CharacterSheet/QuickAccess/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Services/FetchAPI/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Services/FetchAPI/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/tests/App.test.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/tests/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +40,11 @@
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Production" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
@@ -73,7 +76,30 @@
       <option name="presentableId" value="Default" />
       <updated>1601382570717</updated>
       <workItem from="1601806750669" duration="2527000" />
+      <workItem from="1601839959352" duration="517000" />
     </task>
+    <task id="LOCAL-00001" summary="added tests">
+      <created>1601840014587</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601840014587</updated>
+    </task>
+    <task id="LOCAL-00002" summary="commit untracked files">
+      <created>1601840098635</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1601840098635</updated>
+    </task>
+    <task id="LOCAL-00003" summary="changed url">
+      <created>1601840287300</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601840287300</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,7 +110,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Production" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -93,12 +131,23 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changed project structure, refractored code, deleted cron" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed project structure, refractored code, deleted cron" />
+    <MESSAGE value="added tests" />
+    <MESSAGE value="commit untracked files" />
+    <MESSAGE value="changed url" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed url" />
   </component>
   <component name="WindowStateProjectService">
     <state x="760" y="252" key="FileChooserDialogImpl" timestamp="1601821047517">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="760" y="252" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601821047517" />
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1601840297305">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601840297305" />
+    <state x="638" y="151" key="git4idea.branch.GitSmartOperationDialog" timestamp="1601839982953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="638" y="151" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601839982953" />
   </component>
 </project>
