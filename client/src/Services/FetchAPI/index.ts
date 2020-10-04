@@ -1,5 +1,5 @@
 class ApiService {
-  url = "https://dev.moreoverandabove.com/api";
+  url = "https://moreoverandabove.com/api";
 
   async getSelectedMonthData(month: number, year: number, controller: AbortController) {
     try {
