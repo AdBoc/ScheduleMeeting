@@ -10,9 +10,9 @@ export const useCalendar = () => {
   const daysInMonth = 32 - new Date(currentYear, currentMonth, 32).getDate();
   const firstDayOfMonth = new Date(currentMonth + 1 + "/1/" + currentYear).getDay();
 
-  const daysOfMonth: string[] = [];
+  const daysOfMonth: number[] = [];
   for (let i = 1; i <= daysInMonth; i++) {
-    daysOfMonth.push(i.toString());
+    daysOfMonth.push(i);
   }
 
   const nextMonth = () => {
@@ -35,9 +35,9 @@ export const useCalendar = () => {
 
   const parseUser = (selectedDays: SelectedDays, selectedName: string) => {
     return selectedDays
-      .filter((item) => item.name === selectedName)
+      .filter((item) => item.user === selectedName)
       .reduce((obj: FilteredByName, item) => {
-        obj[item.day] = item.name;
+        obj[item.day] = item.user;
         return obj;
       }, {});
   };
@@ -45,9 +45,9 @@ export const useCalendar = () => {
   const parseNoUser = (selectedDays: SelectedDays) => {
     return selectedDays.reduce((obj: FilteredAllNames, item) => {
       if (obj[item.day]) {
-        obj[item.day].push(item.name);
+        obj[item.day].push(item.user);
       } else {
-        obj[item.day] = [item.name];
+        obj[item.day] = [item.user];
       }
       return obj;
     }, {});

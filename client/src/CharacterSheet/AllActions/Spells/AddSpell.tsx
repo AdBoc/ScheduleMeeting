@@ -1,9 +1,12 @@
 import React, {useContext} from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
+
+import {v4 as uuidv4} from 'uuid';
 import {characterContext} from '../../../context/Character';
 import {useForm} from 'react-hook-form';
+
+import TextareaAutosize from 'react-autosize-textarea';
+
 import {Types} from '../../../context/Character/reducer';
-import {v4 as uuidv4} from 'uuid';
 import {Spell} from '../../../ts/interfaces';
 
 interface IProps {

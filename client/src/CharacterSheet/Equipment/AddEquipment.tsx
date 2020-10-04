@@ -1,10 +1,14 @@
 import React, {useContext} from 'react';
+
 import {characterContext} from '../../context/Character';
 import {v4 as uuidv4} from 'uuid';
 import {useForm} from 'react-hook-form';
+
 import TextareaAutosize from 'react-autosize-textarea';
+
 import {BackpackObj} from '../../ts/interfaces';
 import {Types} from '../../context/Character/reducer';
+
 import './styles.scss';
 
 interface IProps {

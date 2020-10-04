@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './styles.scss';
 
 interface IProps {
@@ -6,7 +7,6 @@ interface IProps {
 }
 
 const TabsScroll: React.FC<IProps> = ({setCurrentIndex}) => {
-
   const toggleView = ({target}: any) => setCurrentIndex(+target.value);
 
   return (

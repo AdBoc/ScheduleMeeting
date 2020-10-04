@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
-import InputNumber from '../../components/InputNumber';
+
 import {characterContext} from '../../context/Character';
+
+import InputNumber from '../../components/InputNumber';
 
 const Gold: React.FC<{ nodeRef: React.MutableRefObject<any> }> = ({nodeRef}) => {
   const {character} = useContext(characterContext);

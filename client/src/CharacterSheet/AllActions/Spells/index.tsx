@@ -1,10 +1,14 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import SpellSlots from './SpellSlots';
+
 import {characterContext} from '../../../context/Character';
-import {Types} from '../../../context/Character/reducer';
 import {charMethods} from '../../../Services/CharacterMethods';
+import {useOutsideClick} from '../../../hooks/useOutsideClick';
+
+import SpellSlots from './SpellSlots';
+
+import {Types} from '../../../context/Character/reducer';
 import {Spell} from '../../../ts/interfaces';
-import useOutsideClick from '../../../hooks/useOutsideClick';
+
 import './styles.scss';
 
 const Spells = () => {

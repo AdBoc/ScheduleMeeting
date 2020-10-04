@@ -8,9 +8,8 @@
 */package-lock.json
 */thoughts.txt
 api/calendar.exe
+*/.idea
 data
-client/.idea
-
 
 # misc
 .DS_Store

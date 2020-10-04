@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import App from './App';
+
+import 'react-toastify/dist/ReactToastify.css';
 import './assets/index.css';
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,7 +17,7 @@ ReactDOM.render(
 
 serviceWorker.register({
   onUpdate: registration => {
-    alert('Version 1.4 is available');
+    alert('Version 1.5 is available');
     if (registration && registration.waiting) {
       registration.waiting.postMessage({type: 'SKIP_WAITING'});
     }

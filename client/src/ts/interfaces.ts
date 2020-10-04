@@ -1,10 +1,6 @@
-export interface CalendarProps {
-  selectedPlayer: string | null;
-}
-
 export interface SelectedDay {
-  day: string;
-  name: string;
+  day: number;
+  user: string;
 }
 
 export interface SelectedDays extends Array<SelectedDay> {
@@ -23,7 +19,7 @@ export interface DateProps {
   currentMonth: number;
   currentYear: number;
   firstDayOfMonth: number;
-  daysOfMonth: string[];
+  daysOfMonth: number[];
 }
 
 export type Attack = {

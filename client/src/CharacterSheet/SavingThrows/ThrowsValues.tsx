@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
+
 import {characterContext} from '../../context/Character';
 import {charMethods} from '../../Services/CharacterMethods';
+
 import {Types} from '../../context/Character/reducer';
 
 const ThrowsValues = () => {

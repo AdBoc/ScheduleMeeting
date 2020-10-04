@@ -1,7 +1,10 @@
 import React, {useContext} from 'react';
+
 import {characterContext} from '../../context/Character';
+
 import InputField from '../../components/InputField';
 import TextAreaField from '../../components/TextAreaField';
+
 import './styles.scss';
 
 const Story: React.FC = () => {

@@ -1,10 +1,13 @@
 import React, {useContext} from 'react';
-import {useForm} from 'react-hook-form';
+
 import {characterContext} from '../../../context/Character';
-import {Types} from '../../../context/Character/reducer';
+import {useForm} from 'react-hook-form';
 import {v4 as uuidv4} from 'uuid';
-import {Effect} from '../../../ts/interfaces';
+
 import TextareaAutosize from 'react-autosize-textarea';
+
+import {Effect} from '../../../ts/interfaces';
+import {Types} from '../../../context/Character/reducer';
 
 interface IProps {
   handleClose: () => void;

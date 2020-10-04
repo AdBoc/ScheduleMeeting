@@ -1,20 +1,24 @@
 import React, {useContext, useRef, useState} from 'react';
 import {CSSTransition} from 'react-transition-group';
+
 import {characterContext} from '../../context/Character';
-import useOutsideClick from '../../hooks/useOutsideClick';
+import {useOutsideClick} from '../../hooks/useOutsideClick';
 import {charMethods} from '../../Services/CharacterMethods';
+
 import AddEquipment from './AddEquipment';
 import Gold from './Gold';
 import Multiselect from 'react-multi-select-component';
+
 import {Types} from '../../context/Character/reducer';
 import {BackpackObj} from '../../ts/interfaces';
+
 import './styles.scss';
 
 
 const Equipment: React.FC = () => {
   const {character, dispatch} = useContext(characterContext);
   const [renderForm, setRenderForm] = useState(false);
-  const [rednerGold, setRenderGold] = useState(false);
+  const [renderGold, setRenderGold] = useState(false);
   const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
   const [details, setDetails] = useState<null | BackpackObj>(null);
   const eqRef = useRef(null);
@@ -34,7 +38,7 @@ const Equipment: React.FC = () => {
     {label: "Tools", value: "tools"}
   ];
 
-  let equipment: BackpackObj[]; //is refreshed only because of state change in renderForm when submitted, also rerenders when gold info is changed
+  let equipment: BackpackObj[]; //rerenders when gold info is changed
   if (select.length !== 0) {
     const newObj = character.Equipment.reduce((accumulator, item) => {
       select.forEach((selected) => {
@@ -66,7 +70,7 @@ const Equipment: React.FC = () => {
   };
 
   const handleRenderForm = () => {
-    if (rednerGold) setRenderGold(false);
+    if (renderGold) setRenderGold(false);
     setRenderForm(prev => !prev);
   };
 
@@ -79,7 +83,7 @@ const Equipment: React.FC = () => {
       <CSSTransition in={renderForm} nodeRef={eqRef} timeout={1000} classNames="render-form" unmountOnExit>
         <AddEquipment nodeRef={eqRef} setRenderForm={setRenderForm}/>
       </CSSTransition>
-      <CSSTransition in={rednerGold} nodeRef={goldRef} timeout={1000} classNames="render-form" unmountOnExit>
+      <CSSTransition in={renderGold} nodeRef={goldRef} timeout={1000} classNames="render-form" unmountOnExit>
         <Gold nodeRef={goldRef}/>
       </CSSTransition>
       <Multiselect className="multiselect" options={options} value={select} onChange={setSelect} labelledBy={"Select"} hasSelectAll={false}

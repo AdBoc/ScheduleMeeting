@@ -1,8 +1,11 @@
 import React, {useContext, useRef, useState} from 'react';
+
 import {characterContext} from '../../../context/Character';
+import {useOutsideClick} from '../../../hooks/useOutsideClick';
+
 import {Effect} from '../../../ts/interfaces';
 import {Types} from '../../../context/Character/reducer';
-import useOutsideClick from '../../../hooks/useOutsideClick';
+
 import './styles.scss';
 
 const Effects = () => {

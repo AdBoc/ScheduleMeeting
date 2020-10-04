@@ -1,9 +1,12 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
+
 import {characterContext} from '../../../context/Character';
-import {Types} from '../../../context/Character/reducer';
-import {Attack, CharacterInterface} from '../../../ts/interfaces';
 import {charMethods} from '../../../Services/CharacterMethods';
-import useOutsideClick from '../../../hooks/useOutsideClick';
+import {useOutsideClick} from '../../../hooks/useOutsideClick';
+
+import {Attack, CharacterInterface} from '../../../ts/interfaces';
+import {Types} from '../../../context/Character/reducer';
+
 import './styles.scss';
 
 const Attacks: React.FC = () => {

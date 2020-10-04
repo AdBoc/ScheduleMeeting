@@ -1,7 +1,9 @@
 import React, {useContext} from 'react';
+
 import {characterContext} from '../../context/Character';
-import {Types} from '../../context/Character/reducer';
+
 import {CharacterInterface} from '../../ts/interfaces';
+import {Types} from '../../context/Character/reducer';
 import {charMethods} from '../../Services/CharacterMethods';
 
 interface IProps {
