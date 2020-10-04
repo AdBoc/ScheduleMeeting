@@ -9,15 +9,16 @@ const Footer: React.FC = () => {
   const {user} = useContext(playerContext)
 
   const handleSelectedUser = async () => {
-    const localUser = localStorage.getItem("user")
+    const localUser = localStorage.getItem("user");
     if (localUser !== user) {
-      const characterData = await apiService.getCharacter(user!);
-      if (characterData.character) {
-        localStorage.setItem("character", characterData.character);
+      const character = await apiService.getCharacter(user!);
+      if (character > 400 && character < 600) return toast.error("Connection Error");
+      if (character === 201) {
         localStorage.setItem("user", `${user}`);
-      } else {
-        return toast.error("Connection Error");
+        return toast.success("Character has been created");
       }
+      localStorage.setItem("character", character);
+      localStorage.setItem("user", `${user}`);
     }
     history.push("/sheet");
   }

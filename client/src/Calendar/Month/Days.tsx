@@ -31,10 +31,10 @@ const Days: React.FC<IProps> = ({dateProps, setSelectedDays, selectedDays}) => {
 
   const handleDaySelect = async ({target}: any) => {
     const {value, className} = target;
-    const doesNotExist = /\b(undefined)$/.test(className);
+    const doesNotExist = /\b(undefined)$/.test(className);//I can use className.includes
     if (doesNotExist) {
       if (user)
-        setSelectedDays([...selectedDays, {day: value, user: user}]);
+        setSelectedDays([...selectedDays, {day: +value, user: user}]);
       const response = await apiService.addSelectedDay(currentMonth, currentYear, +value, user!);
       if (response === 403)
         toast.error("Month out of bounds");

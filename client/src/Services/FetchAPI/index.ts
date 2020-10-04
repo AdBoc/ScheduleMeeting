@@ -45,10 +45,10 @@ class ApiService {
         method: "POST",
         body: JSON.stringify({user}),
       });
-      if (response.status === 400) return "error";
+      if (response.status !== 200) return response.status;
       return response.json();
     } catch (error) {
-      return "error";
+      return 500;
     }
   }
 
