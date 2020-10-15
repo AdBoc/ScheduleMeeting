@@ -4,7 +4,7 @@ import Footer from "./index";
 import {playerContext} from '../../context/SelectedUser';
 import userEvent from "@testing-library/user-event";
 
-function renderFooter(user: string | null) {
+function renderFooter(user) {
   const handleUser = jest.fn();
   render(
     <playerContext.Provider value={{user, handleUser}}>
@@ -14,6 +14,14 @@ function renderFooter(user: string | null) {
 }
 
 describe('Calendar--Footer', () => {
+  global.fetch = jest.fn(() => Promise.resolve({
+    json: () => Promise.resolve({character: "{character}"}),
+  }));
+
+  beforeEach(() => {
+    fetch.mockClear();
+  })
+
   beforeEach(() => {
     Object.defineProperty(window, "localStorage", {
       value: {
@@ -44,6 +52,7 @@ describe('Calendar--Footer', () => {
     renderFooter("Test");
     await userEvent.click(screen.getByRole('button'));
     expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
 });
 

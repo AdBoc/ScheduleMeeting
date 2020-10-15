@@ -82,7 +82,7 @@ const Month: React.FC = () => {
           setSelectedDays={setSelectedDays}
       />}
       {selectedDays && <div className="calendar-select-btn">
-          <button onClick={handleSelect}>SELECT</button>
+          <button onClick={handleSelect}>SELECT ALL</button>
           <button onClick={handleUnselect}>UNSELECT</button>
       </div>}
       <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar newestOnTop/>

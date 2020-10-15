@@ -1,4 +1,4 @@
-FROM golang:1.14.6
+FROM golang:latest
 
 ENV GO111MODULE=on \
     PORT=8080
