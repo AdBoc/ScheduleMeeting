@@ -1,0 +1,43 @@
+.day {
+  background: blanchedalmond;
+}
+.selected {
+  background: red;
+}
+.today {
+  background: yellow;
+}
+.count0{
+  background: rgba(0, 0, 0, 0.0);
+}
+.count1{
+  background: rgba(38, 255, 0, 0.1);
+}
+.count2{
+  background: rgba(38, 255, 0, 0.2);
+}
+.count3{
+  background: rgba(38, 255, 0, 0.4);
+}
+.count4{
+  background: rgba(38, 255, 0, 0.6);
+}
+.count5{
+  background: rgba(38, 255, 0, 0.8);
+}
+.count6{
+  background: rgba(38, 255, 0, 1);
+}
+//<>
+// {daysOfMonth.map(day => <button key={day}
+//   className={`${styles.day} ${filteredDays[day] !== undefined ? styles.selected : ""}`}
+//   value={day}
+//   onClick={handleSelectDay}>{day}</button>)}
+//</>
+//  :
+//<>
+// {daysOfMonth.map(day => <button key={day}
+//   className={`${styles.day} ${styles[`count${composeClassName(day)}`]} ${isCurrentDay(day) ? styles.today : ""}`}
+//   value={day}
+//   onClick={handleSelectDay}>{day}</button>)}
+//</>

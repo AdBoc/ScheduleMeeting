@@ -1,0 +1,41 @@
+import React, {useContext} from 'react';
+import {userContext} from "../../../context/users";
+
+import styles from './users.module.scss';
+import {history} from "../../../utils/history";
+import {getCharacter} from "../../../utils/api";
+import {toast} from "react-toastify";
+
+const users = ['Test', 'Witek', 'Sławek', 'Potrek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
+
+const Users = () => {
+  const {user, handleUser} = useContext(userContext);
+  const handleSheet = async () => {
+    const character = await getCharacter(user!);
+    const localUser = localStorage.getItem("user");
+    if (character === 201) return toast.success("Character is created");
+    else if (character === 500 && user === localUser) history.push("/sheet");
+    else if (typeof character === "string") {
+      localStorage.setItem("user", user!);
+      localStorage.setItem("character", character);
+      history.push("/sheet");
+    }
+  }
+
+  return (
+    <div>
+      {users.map(person =>
+        <button
+          key={person}
+          className={`${user === person ? styles.userActive : styles.userBasic}`}
+          value={person}
+          onClick={handleUser}>
+          {person}
+        </button>
+      )}
+      {user && <button onClick={handleSheet}>Use Sheet</button>}
+    </div>
+  )
+}
+
+export default Users;
