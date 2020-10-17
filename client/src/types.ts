@@ -2,6 +2,21 @@ export interface CalendarProps {
   selectedPlayer: string | null;
 }
 
+export interface UserDate {
+  selectedDay: number;
+  selectedMonth: number;
+  selectedYear: number;
+}
+
+export interface MonthData {
+  daysOfMonth: number[];
+  filteredDays: FilteredByName | FilteredAllNames;
+  handleSelectDay: ({ target }: any) => void;
+  isCurrentDay: (day: number) => boolean;
+  handleSelectAll: () => void;
+  handleUnselectAll: () => void;
+}
+
 export interface SelectedDay {
   day: number;
   user: string;

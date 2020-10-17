@@ -100,16 +100,24 @@ const useCalendar = (user: string | null) => {
       toast.error("Connection error");
   };
 
-  return {
+  const selectedMonth = {
+    prevMonth,
+    userDate,
+    nextMonth
+  }
+
+  const monthData = {
     daysOfMonth,
     filteredDays,
-    userDate,
     isCurrentDay,
     handleSelectAll,
     handleSelectDay,
     handleUnselectAll,
-    nextMonth,
-    prevMonth
+  }
+
+  return {
+    selectedMonth,
+    monthData
   };
 }
 
