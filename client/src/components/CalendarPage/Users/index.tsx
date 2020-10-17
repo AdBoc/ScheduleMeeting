@@ -10,9 +10,10 @@ const users = ['Test', 'Witek', 'Sławek', 'Potrek', 'Adrian', 'Adam', 'Krzysiek
 
 const Users = () => {
   const {user, handleUser} = useContext(userContext);
+
   const handleSheet = async () => {
-    const character = await getCharacter(user!);
     const localUser = localStorage.getItem("user");
+    const character = await getCharacter(user!);
     if (character === 201) return toast.success("Character is created");
     else if (character === 500 && user === localUser) history.push("/sheet");
     else if (typeof character === "string") {
@@ -23,7 +24,7 @@ const Users = () => {
   }
 
   return (
-    <div>
+    <>
       {users.map(person =>
         <button
           key={person}
@@ -34,7 +35,7 @@ const Users = () => {
         </button>
       )}
       {user && <button onClick={handleSheet}>Use Sheet</button>}
-    </div>
+    </>
   )
 }
 
