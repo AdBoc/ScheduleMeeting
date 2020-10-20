@@ -9,7 +9,8 @@ class DndMath {
    * Returns base stat modifier (ex. str 10 returns 0)
    * @param statVal stat value is used to calculate base modificator
    */
-  public statMod(statVal: number) {
+  public statModifier(statVal: number) {
+    if (!statVal) return 0;
     return Math.floor(statVal / 2) - 5;
   }
 
@@ -19,9 +20,9 @@ class DndMath {
    * @param statVal  stat value is used to calculate base modificator
    * @param isTagged  if its tagged then character proficiency is added to final result
    */
-  public calcSavingThrowMod(level: number, statVal: number, isTagged: boolean) {
-    if (isTagged) return this.skillProficiency(level) + this.statMod(statVal);
-    return this.statMod(statVal);
+  public savingThrowProficiency(level: number, statVal: number, isTagged: boolean) {
+    if (isTagged) return this.skillProficiency(level) + this.statModifier(statVal);
+    return this.statModifier(statVal);
   }
 
   /**

@@ -73,7 +73,7 @@ npm run start
 ```
 .
 │   App.tsx
-│   index.tsx
+│   index.ts
 │   react-app-env.d.ts
 │   serviceWorker.ts
 ├───assets
@@ -87,12 +87,12 @@ npm run start
 │   │   Calendar.tsx
 │   │   index.ts
 │   ├───Footer
-│   │       index.tsx
+│   │       index.ts
 │   ├───Month
 │   │       Days.tsx
-│   │       index.tsx
+│   │       index.ts
 │   └───Players
-│           index.tsx
+│           index.ts
 ├───CharacterSheet
 │   │   CharacterSheet.tsx
 │   │   CurrentComponent.tsx
@@ -104,43 +104,43 @@ npm run start
 │   │   │   index.ts
 │   │   │   styles.scss
 │   │   ├───Actions
-│   │   │       index.tsx
+│   │   │       index.ts
 │   │   ├───Attacks
 │   │   │       AddAttack.tsx
-│   │   │       index.tsx
+│   │   │       index.ts
 │   │   ├───Effects
 │   │   │       AddEffect.tsx
-│   │   │       index.tsx
+│   │   │       index.ts
 │   │   └───Spells
 │   │           AddSpell.tsx
-│   │           index.tsx
+│   │           index.ts
 │   │           SpellSlots.tsx
 │   ├───Equipment
 │   │       AddEquipment.tsx
 │   │       Gold.tsx
-│   │       index.tsx
+│   │       index.ts
 │   │       styles.scss
 │   ├───QuickAccess
 │   │       ChangeUserAndData.tsx
-│   │       index.tsx
+│   │       index.ts
 │   │       styles.scss
 │   ├───SavingThrows
-│   │       index.tsx
+│   │       index.ts
 │   │       styles.scss
-│   │       ThrowsValues.tsx
+│   │       ThrowsProficiency.tsx
 │   ├───Skills
-│   │       index.tsx
+│   │       index.ts
 │   │       Skill.tsx
 │   │       styles.scss
 │   ├───Stats
-│   │       index.tsx
+│   │       index.ts
 │   │       StatsSelect.tsx
 │   │       styles.scss
 │   ├───Story
-│   │       index.tsx
+│   │       index.ts
 │   │       styles.scss
 │   └───TopDisplay
-│           index.tsx
+│           index.ts
 │           styles.scss
 ├───components
 │       InputField.tsx
@@ -150,7 +150,7 @@ npm run start
 │       TextAreaField.tsx
 ├───context
 │   └───Character
-│           index.tsx
+│           index.ts
 │           reducer.ts
 ├───hooks
 │   ├───useCalendar

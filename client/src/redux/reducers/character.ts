@@ -1,18 +1,36 @@
-import {CHANGE_STAT, Character, CharacterActions, DECREMENT_STAT, INCREMENT_STAT} from "../types";
+import {CHANGE_STAT, Character, CharacterActions, DECREMENT_STAT, INCREMENT_STAT, SET_ARRAY} from "../types";
 import * as immutable from "object-path-immutable";
 
 
 const initialState = JSON.parse(localStorage.getItem("character")!) as Character;
-
+//najwyzej najczesciej wystepujace
 export const characterReducer = (character = initialState, action: CharacterActions): Character => {
   switch (action.type) {
-    case INCREMENT_STAT:
-      console.log(action.path)
-      return immutable.update(character, action.path, (v) => v + 1) as any;
-    case DECREMENT_STAT:
-      return immutable.update(character, action.path, (v) => v + 1) as any;
+    case SET_ARRAY:
+      return immutable.set(character, action.path, action.newArr)
     case CHANGE_STAT:
       return immutable.set(character, action.path, action.newVal);
+    case INCREMENT_STAT:
+      return immutable.update(character, action.path, (v) => v + 1) as any;
+    case DECREMENT_STAT:
+      return immutable.update(character, action.path, (v) => v - 1) as any;
+    case "TAG_ELEMENT":
+      const newArr = [...character.Other.TaggedThrows];
+      if (action.newVal === newArr[0]) {
+        newArr[0] = null;
+      } else if (action.newVal === newArr[1]) {
+        newArr[1] = null;
+      } else {
+        newArr.pop();
+        newArr.unshift(action.newVal);
+      }
+      return {
+        ...character,
+        Other: {
+          ...character.Other,
+          TaggedThrows: newArr
+        }
+      };
     default:
       return character;
   }

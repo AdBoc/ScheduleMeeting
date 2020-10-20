@@ -11,6 +11,7 @@ export const SET_ARRAY = "SET_ARRAY";
 export const SET_ITEM_QTY = "SET_ITEM_QTY";
 export const CHANGE_EFFECT_STATUS = "CHANGE_EFFECT_STATUS";
 export const DELETE_DICE = "DELETE_DICE";
+export const TAG_ELEMENT = "TAG_ELEMENT";
 
 interface IncrementStat {
   type: typeof INCREMENT_STAT;
@@ -28,23 +29,36 @@ interface ChangeStat {
   newVal: number;
 }
 
+interface SetArray {
+  type: typeof SET_ARRAY;
+  path: string;
+  newArr: EquipmentItem[] | Attack[] | string[] | number[];
+}
+
+interface TagElement {
+  type: typeof TAG_ELEMENT;
+  newVal: string;
+}
+
 export type CharacterActions = IncrementStat
   | DecrementStat
-  | ChangeStat;
+  | ChangeStat
+  | SetArray
+  | TagElement;
 
 export type Attack = {
   id: string;
   name: string;
   diceType: string;
-  bonusDamage: string;
-  bonusHit: string;
-  range: string;
+  bonusDamage: number;
+  bonusHit: number;
+  range: number;
   type: string;
   profMod: string;
   proficient: boolean;
 };
 
-export type BackpackObj = {
+export type EquipmentItem = {
   id: string;
   name: string;
   description: string;
@@ -114,7 +128,7 @@ export interface Character {
     Stealth: number;
   };
   Attacks: Attack[];
-  Equipment: BackpackObj[];
+  Equipment: EquipmentItem[];
   Effects: Effect[];
   Spells: Spell[];
   Story: {
@@ -129,7 +143,7 @@ export interface Character {
     Story: string;
   };
   Other: {
-    TaggedThrows: [string | null, string | null];
+    TaggedThrows: (string | null)[];
     TaggedSkills: string[];
     Currency: {
       PP: number;

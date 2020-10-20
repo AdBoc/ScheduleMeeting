@@ -31,48 +31,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d87743-5c69-4d32-9148-a963a93f8076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/calendar.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Footer/Footer.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Footer/footer.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/Users.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Background/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/DiceSim/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/QuickAccess/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skill.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/StatsSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/reducers/character.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/reducers/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/store.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/utils/dndMath.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useCustomForm/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/AddAttack.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Effects/Effects.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/Spells.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/ThrowsCheckboxes.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/ThrowsProficiency.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/normalize.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Calendar/Calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/Calendar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Calendar/Day.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/Day.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Calendar/MonthLabel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/MonthLabel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Calendar/SelectedMonth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/SelectedMonth.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Calendar/calendar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useSwipe/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Calendar/calendar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/calendar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/CalendarPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/CalendarPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Footer/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Footer/footer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/Calendar.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/Users/users.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/users.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CalendarPage/calendarPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/calendarPage.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CharacterSheet/CharacterSheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/CharacterSheet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NotFound404.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotFound404.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useMounted/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useMounted/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useSwipe/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useSwipe/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skill.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skill.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/StatsSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/StatsSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/dndMath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/dndMath.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +181,9 @@
       <workItem from="1603053911545" duration="753000" />
       <workItem from="1603084213597" duration="10457000" />
       <workItem from="1603104222648" duration="26365000" />
-      <workItem from="1603141389904" duration="1477000" />
+      <workItem from="1603141389904" duration="1534000" />
+      <workItem from="1603171611663" duration="9097000" />
+      <workItem from="1603197624621" duration="24147000" />
     </task>
     <task id="LOCAL-00001" summary="added tests">
       <created>1601840014587</created>
@@ -224,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601840287300</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Typesafe Redux">
+      <created>1603142921680</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603142921680</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,7 +248,8 @@
     <MESSAGE value="added tests" />
     <MESSAGE value="commit untracked files" />
     <MESSAGE value="changed url" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed url" />
+    <MESSAGE value="Added Typesafe Redux" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Typesafe Redux" />
   </component>
   <component name="WindowStateProjectService">
     <state x="760" y="252" key="FileChooserDialogImpl" timestamp="1603140522065">
@@ -282,17 +272,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1407" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601878194456" />
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1601840297305">
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603142924189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601840297305" />
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603142924189" />
     <state x="553" y="0" width="1179" height="650" key="dock-window-1" timestamp="1603088308287">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="553" y="0" width="1179" height="650" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1603088308287" />
+    <state x="204" y="253" width="602" height="552" key="find.popup" timestamp="1603216342038">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="204" y="253" width="602" height="552" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603216342038" />
     <state x="638" y="151" key="git4idea.branch.GitSmartOperationDialog" timestamp="1601839982953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="638" y="151" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601839982953" />
+    <state x="139" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1603213008053">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="139" y="247" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603213008053" />
   </component>
 </project>
