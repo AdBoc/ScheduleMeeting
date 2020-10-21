@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Attacks from "./Attacks";
-import Spells from "./Spells/Spells";
+import Spells from "./Spells";
 import Actions from "./Actions";
 import Effects from "./Effects/Effects";
 

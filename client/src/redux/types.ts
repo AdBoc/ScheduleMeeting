@@ -46,12 +46,26 @@ interface DeleteInArray {
   itemId: string;
 }
 
+interface AddToArray {
+  type: typeof ADD_TO_ARRAY;
+  path: string;
+  newElement: object;
+}
+
+interface EditText {
+  type: typeof EDIT_TEXT;
+  path: string;
+  newText: string;
+}
+
 export type CharacterActions = IncrementStat
   | DecrementStat
   | ChangeStat
   | SetArray
   | TagElement
-  | DeleteInArray;
+  | DeleteInArray
+  | AddToArray
+  | EditText;
 
 export type Attack = {
   id: string;

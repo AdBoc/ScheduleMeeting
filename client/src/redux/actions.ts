@@ -1,4 +1,14 @@
-import {CHANGE_STAT, CharacterActions, DECREMENT_STAT, DELETE_IN_ARRAY, INCREMENT_STAT, SET_ARRAY, TAG_ELEMENT} from "./types";
+import {
+  ADD_TO_ARRAY,
+  CHANGE_STAT,
+  CharacterActions,
+  DECREMENT_STAT,
+  DELETE_IN_ARRAY,
+  EDIT_TEXT,
+  INCREMENT_STAT,
+  SET_ARRAY,
+  TAG_ELEMENT
+} from "./types";
 
 export const incrementStat = (path: string): CharacterActions => ({
   type: INCREMENT_STAT,
@@ -31,4 +41,16 @@ export const deleteInArray = (path: string, itemId: string): CharacterActions =>
   type: DELETE_IN_ARRAY,
   path,
   itemId
+})
+
+export const addToArray = (path: string, newElement: object): CharacterActions => ({
+  type: ADD_TO_ARRAY,
+  path,
+  newElement
+})
+
+export const editText = (path: string, newText: string): CharacterActions => ({
+  type: EDIT_TEXT,
+  path,
+  newText
 })

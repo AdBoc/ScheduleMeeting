@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -31,9 +34,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d87743-5c69-4d32-9148-a963a93f8076" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useSortState/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/AddSpell.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/hooks/useCustomForm/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useCustomForm/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/AddAttack.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/AddAttack.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/Spells.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/character.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/types.ts" afterDir="false" />
@@ -70,6 +80,7 @@
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/client/node_modules/react-scripts" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="ts.external.directory.path" value="C:\Users\adria\Desktop\VisualStudioCodeProjects\ScheduleMeeting\client\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -168,7 +179,9 @@
       <workItem from="1603141389904" duration="1534000" />
       <workItem from="1603171611663" duration="9097000" />
       <workItem from="1603197624621" duration="24390000" />
-      <workItem from="1603259648895" duration="5109000" />
+      <workItem from="1603259648895" duration="12797000" />
+      <workItem from="1603288576742" duration="15081000" />
+      <workItem from="1603306689266" duration="6563000" />
     </task>
     <task id="LOCAL-00001" summary="added tests">
       <created>1601840014587</created>
@@ -205,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603228723434</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added attack details">
+      <created>1603265085243</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1603265085244</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +262,8 @@
     <MESSAGE value="changed url" />
     <MESSAGE value="Added Typesafe Redux" />
     <MESSAGE value="Added Stats, Skills, SavingThrows and Attack" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Stats, Skills, SavingThrows and Attack" />
+    <MESSAGE value="added attack details" />
+    <option name="LAST_COMMIT_MESSAGE" value="added attack details" />
   </component>
   <component name="WindowStateProjectService">
     <state x="760" y="252" key="FileChooserDialogImpl" timestamp="1603140522065">
@@ -265,6 +286,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1407" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601878194456" />
+    <state x="192" y="275" key="SettingsEditor" timestamp="1603269620081">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="192" y="275" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603269620081" />
     <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603228728120">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -281,9 +306,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="638" y="151" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601839982953" />
-    <state x="139" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1603213008053">
+    <state x="139" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1603310353724">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="139" y="247" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603213008053" />
+    <state x="139" y="247" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603310353724" />
   </component>
 </project>
