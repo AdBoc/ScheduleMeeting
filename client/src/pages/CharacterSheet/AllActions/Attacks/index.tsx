@@ -1,15 +1,22 @@
 import React from 'react';
 import AddAttack from "./AddAttack";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../redux/reducers";
 import {dndMath} from "../../../../utils/dndMath";
 import {Attack, Character} from "../../../../redux/types";
 import {useCustomForm} from "../../../../hooks/useCustomForm";
+import {deleteInArray} from "../../../../redux/actions";
 
 const Attacks = () => {
-  const {showItem, showForm, itemDetails, handleShowItem, handleShowForm} = useCustomForm<Attack>();
+  const {showForm, itemDetails, handleShowItem, handleShowForm, handleHideItem} = useCustomForm<Attack>();
   const character = useSelector((state: RootState) => state.characterReducer);
-  const attacks = [...character.Attacks];
+  const dispatch = useDispatch();
+  const attacks = [...character.Attacks]; //useEffect
+
+  const handleDelete = () => {
+    handleHideItem();
+    dispatch(deleteInArray("Attacks", itemDetails!.id));
+  }
 
   return (
     <>
@@ -33,9 +40,15 @@ const Attacks = () => {
             <p>{attack.range}</p>
           </div>
         ))}
-        {showItem &&
+        {itemDetails &&
         <div>
-            <p>Name: {itemDetails}</p>
+            <p>Name: {itemDetails.name}</p>
+            <p className="details__text">Ability Mod: {itemDetails.profMod}</p>
+            <p className="details__text">Dice: {itemDetails.diceType}</p>
+            <p className="details__text">Bonus: {itemDetails.bonusDamage}</p>
+            <p className="details__text">Range: {itemDetails.range}</p>
+            <p className="details__text">Type: {itemDetails.type}</p>
+            <button className="details__text" name={itemDetails.id} onClick={handleDelete}>DELETE</button>
         </div>
         }
       </div>

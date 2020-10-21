@@ -10,6 +10,12 @@ export const characterReducer = (character = initialState, action: CharacterActi
       return immutable.set(character, action.path, action.newArr)
     case CHANGE_STAT:
       return immutable.set(character, action.path, action.newVal);
+    case "DELETE_IN_ARRAY":
+      return immutable.set(
+        character,
+        action.path,
+        (character[action.path as keyof Character] as Array<any>).filter(element => element.id !== action.itemId)
+      );
     case INCREMENT_STAT:
       return immutable.update(character, action.path, (v) => v + 1) as any;
     case DECREMENT_STAT:

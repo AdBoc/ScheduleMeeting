@@ -40,11 +40,18 @@ interface TagElement {
   newVal: string;
 }
 
+interface DeleteInArray {
+  type: typeof DELETE_IN_ARRAY;
+  path: string;
+  itemId: string;
+}
+
 export type CharacterActions = IncrementStat
   | DecrementStat
   | ChangeStat
   | SetArray
-  | TagElement;
+  | TagElement
+  | DeleteInArray;
 
 export type Attack = {
   id: string;
