@@ -4,11 +4,15 @@ export const useSortState = <T extends Array<any>>(initialState: T) => {
   const [sortedState, setSortedState] = useState<T>(initialState);
   const [sortingOptions, setSortingOptions] = useState({prop: "name", inverted: false});
 
+  // useEffect(() => {
+  //   setSortedState(initialState);
+  // }, [initialState]);
+
   useEffect(() => {
     const sorted = [...sortedState].sort((a, b) => a[sortingOptions.prop].localeCompare(b[sortingOptions.prop]));
     if (sortingOptions.inverted) sorted.reverse();
-    setSortedState(<T>sorted);
-  }, [sortingOptions]);
+    setSortedState(sorted as T);
+  }, [sortingOptions, sortedState]);
 
   const handleSorting = ({target}: any) => setSortingOptions(prev => {
     if (prev.prop === target.name) return {...prev, inverted: !prev.inverted};
@@ -17,7 +21,8 @@ export const useSortState = <T extends Array<any>>(initialState: T) => {
 
   return {
     sortedState,
-    handleSorting
+    handleSorting,
+    setSortedState
   }
 }
 // React.ChangeEvent<HTMLTextAreaElement>

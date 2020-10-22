@@ -34,19 +34,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d87743-5c69-4d32-9148-a963a93f8076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/hooks/useSortState/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/AddSpell.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ModifyStatField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/NumberInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/TextArea.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/TextInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/AddItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/Gold.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/HpForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/StatsSection.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/TopSection.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/redux/selectors.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api/character/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/character/controller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useCustomForm/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useCustomForm/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/AddAttack.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/AddAttack.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/GitSvg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/GitSvg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useSortState/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useSortState/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/Spells.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Background/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Background/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/QuickAccess/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/QuickAccess/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/character.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/dndMath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/dndMath.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +194,8 @@
       <workItem from="1603197624621" duration="24390000" />
       <workItem from="1603259648895" duration="12797000" />
       <workItem from="1603288576742" duration="15081000" />
-      <workItem from="1603306689266" duration="6563000" />
+      <workItem from="1603306689266" duration="6764000" />
+      <workItem from="1603344775388" duration="32226000" />
     </task>
     <task id="LOCAL-00001" summary="added tests">
       <created>1601840014587</created>
@@ -225,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603265085244</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Spells">
+      <created>1603314749770</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603314749770</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,9 +284,14 @@
     <MESSAGE value="Added Typesafe Redux" />
     <MESSAGE value="Added Stats, Skills, SavingThrows and Attack" />
     <MESSAGE value="added attack details" />
-    <option name="LAST_COMMIT_MESSAGE" value="added attack details" />
+    <MESSAGE value="Added Spells" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Spells" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="141" y="314" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603353624087">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="141" y="314" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1603353624087" />
     <state x="760" y="252" key="FileChooserDialogImpl" timestamp="1603140522065">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -290,18 +316,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="192" y="275" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603269620081" />
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603228728120">
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603314752460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603228728120" />
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603314752460" />
     <state x="553" y="0" width="1179" height="650" key="dock-window-1" timestamp="1603088308287">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="553" y="0" width="1179" height="650" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1603088308287" />
-    <state x="204" y="253" width="602" height="552" key="find.popup" timestamp="1603216342038">
+    <state x="204" y="253" width="805" height="552" key="find.popup" timestamp="1603373632137">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="204" y="253" width="602" height="552" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603216342038" />
+    <state x="204" y="253" width="805" height="552" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603373632137" />
     <state x="638" y="151" key="git4idea.branch.GitSmartOperationDialog" timestamp="1601839982953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

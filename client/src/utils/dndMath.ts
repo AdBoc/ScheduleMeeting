@@ -24,23 +24,11 @@ class DndMath {
     if (isTagged) return this.skillProficiency(level) + this.statModifier(statVal);
     return this.statModifier(statVal);
   }
-
-  /**
-   * Calculate number of tagged proficiencies
-   * @param throws array that holds information which throw has proficiency
-   */
-  public countTaggedThrows(throws: [string | null, string | null]) {
-    let count = 0;
-    if (throws[0]) count++;
-    if (throws[1]) count++;
-    return count;
-  }
-
   /**
    * convert and return total gold value
    * @param currencyObject object that holds all currencies and their values
    */
-  public countTotalGP(currencyObject: { [k: string]: number }) {
+  public totalGp(currencyObject: { [k: string]: number }) {
     const currencyCopy = {
       PP: currencyObject.PP * 10,
       GP: currencyObject.GP,

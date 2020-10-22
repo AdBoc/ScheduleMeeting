@@ -45,12 +45,12 @@ const Attacks = () => {
         {itemDetails &&
         <div ref={ref}>
             <p>Name: {itemDetails.name}</p>
-            <p className="details__text">Ability Mod: {itemDetails.profMod}</p>
-            <p className="details__text">Dice: {itemDetails.diceType}</p>
-            <p className="details__text">Bonus: {itemDetails.bonusDamage}</p>
-            <p className="details__text">Range: {itemDetails.range}</p>
-            <p className="details__text">Type: {itemDetails.type}</p>
-            <button className="details__text" name={itemDetails.id} onClick={handleDelete}>DELETE</button>
+            <p>Ability Mod: {itemDetails.profMod}</p>
+            <p>Dice: {itemDetails.diceType}</p>
+            <p>Bonus: {itemDetails.bonusDamage}</p>
+            <p>Range: {itemDetails.range}</p>
+            <p>Type: {itemDetails.type}</p>
+            <button name={itemDetails.id} onClick={handleDelete}>DELETE</button>
         </div>
         }
       </div>

@@ -13,9 +13,9 @@ const Stats = () => {
       {Object.entries(stats).map((stat, i) => (
         <div key={i}>
           <StatsSelect statName={stat[0]} statVal={stat[1]}/>
-          <p className="c-stats__stat">{stat[0]}</p>
-          <p className="c-stats__mod-lab">MOD</p>
-          <p className="c-stats__mod-val">{dndMath.statModifier(stat[1])}</p>
+          <p>{stat[0]}</p>
+          <p>MOD</p>
+          <p>{dndMath.statModifier(stat[1])}</p>
         </div>
       ))}
     </div>

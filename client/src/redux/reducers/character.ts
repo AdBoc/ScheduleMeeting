@@ -6,8 +6,10 @@ import {
   DECREMENT_STAT,
   DELETE_IN_ARRAY,
   EDIT_TEXT,
+  FLIP_BOOL,
   INCREMENT_STAT,
-  SET_ARRAY
+  SET_ARRAY,
+  TAG_ELEMENT
 } from "../types";
 import * as immutable from "object-path-immutable";
 
@@ -30,7 +32,9 @@ export const characterReducer = (character = initialState, action: CharacterActi
       return immutable.update(character, action.path, (v) => v + 1) as any;
     case DECREMENT_STAT:
       return immutable.update(character, action.path, (v) => v - 1) as any;
-    case "TAG_ELEMENT":
+    case FLIP_BOOL:
+      return immutable.update(character, action.path, (v) => !v) as any;
+    case TAG_ELEMENT:
       const newArr = [...character.Other.TaggedThrows];
       if (action.newVal === newArr[0]) {
         newArr[0] = null;

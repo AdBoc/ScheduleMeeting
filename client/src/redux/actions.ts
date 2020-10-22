@@ -5,6 +5,7 @@ import {
   DECREMENT_STAT,
   DELETE_IN_ARRAY,
   EDIT_TEXT,
+  FLIP_BOOL,
   INCREMENT_STAT,
   SET_ARRAY,
   TAG_ELEMENT
@@ -49,8 +50,13 @@ export const addToArray = (path: string, newElement: object): CharacterActions =
   newElement
 })
 
-export const editText = (path: string, newText: string): CharacterActions => ({
+export const editText = (path: string, newText: string | number): CharacterActions => ({
   type: EDIT_TEXT,
   path,
   newText
+})
+
+export const flipBool = (path: string): CharacterActions => ({
+  type: FLIP_BOOL,
+  path
 })

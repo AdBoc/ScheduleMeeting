@@ -12,13 +12,13 @@ const Spells = () => {
   const character = useSelector((state: RootState) => state.characterReducer);
   const dispatch = useDispatch();
 
-  const {showForm, itemDetails, ref, handleShowItem, handleShowForm, handleHideItem} = useCustomForm<Spell>()
-  const {sortedState, handleSorting} = useSortState([...character.Spells])
+  const {showForm, itemDetails, ref, handleShowItem, handleShowForm, handleHideItem} = useCustomForm<Spell>();
+  const {sortedState, handleSorting} = useSortState(character.Spells);
 
   const handleDelete = () => {
     handleHideItem();
     dispatch(deleteInArray("Spells", itemDetails!.id));
-  }
+  };
 
   return (
     <>

@@ -10,6 +10,7 @@ export const SET_CHARACTER = "SET_CHARACTER";
 export const SET_ARRAY = "SET_ARRAY";
 export const SET_ITEM_QTY = "SET_ITEM_QTY";
 export const CHANGE_EFFECT_STATUS = "CHANGE_EFFECT_STATUS";
+export const FLIP_BOOL = "FLIP_BOOL";
 export const DELETE_DICE = "DELETE_DICE";
 export const TAG_ELEMENT = "TAG_ELEMENT";
 
@@ -55,7 +56,12 @@ interface AddToArray {
 interface EditText {
   type: typeof EDIT_TEXT;
   path: string;
-  newText: string;
+  newText: string | number;
+}
+
+interface FlipBool {
+  type: typeof FLIP_BOOL;
+  path: string;
 }
 
 export type CharacterActions = IncrementStat
@@ -65,7 +71,8 @@ export type CharacterActions = IncrementStat
   | TagElement
   | DeleteInArray
   | AddToArray
-  | EditText;
+  | EditText
+  | FlipBool;
 
 export type Attack = {
   id: string;
@@ -111,7 +118,6 @@ export type Spell = {
 };
 
 export interface Character {
-  TemporaryHitPoints: number;
   MainStats: {
     ArmorClass: number;
     HitPoints: number;
@@ -119,6 +125,7 @@ export interface Character {
     Initiative: number;
     Speed: number;
     PassivePerception: number;
+    TemporaryHitPoints: number;
   };
   Stats: {
     Charisma: number;
@@ -152,7 +159,7 @@ export interface Character {
   Equipment: EquipmentItem[];
   Effects: Effect[];
   Spells: Spell[];
-  Story: {
+  Background: {
     Alignment: string;
     Background: string;
     Class: string;
