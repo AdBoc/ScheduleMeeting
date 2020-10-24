@@ -1,0 +1,40 @@
+.savingThrows {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 0 33%;
+}
+
+.savingButtons {
+  padding: 0.7em 0.5em;
+  margin: 0.25em;
+  min-width: 10em;
+  background: inherit;
+  border: none;
+}
+
+.deathSaves {
+  margin: auto;
+  text-align: center;
+}
+
+.deathButton {
+  width: 2em;
+  height: 2em;
+  background: inherit;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0.2em;
+}
+
+.label {
+  font-size: 1.5em;
+  text-align: center;
+  padding: 0.8em;
+}
+
+.deathSaveLabel {
+  text-align: center;
+  padding: 0.25em;
+  font-size: 1.1em;
+}

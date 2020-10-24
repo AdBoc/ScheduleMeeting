@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {addToArray} from "../../../../redux/actions";
 import {v4 as uuidv4} from 'uuid';
+import styles from "./attacks.module.scss";
 
 interface IProps {
   handleClose: () => void;
@@ -24,14 +25,14 @@ const AddAttack: React.FC<IProps> = ({handleClose}) => {
   });
 
   return (
-    <form onSubmit={onSubmit}>
-      <input ref={register({required: true})} placeholder="Name" name="name" autoComplete="off"/>
-      <input ref={register({required: true})} placeholder="Dice" name="diceType" autoComplete="off"/>
-      <input ref={register({required: true})} placeholder="Range" name="range" type="number" autoComplete="off"/>
-      <input ref={register({required: true})} placeholder="Bonus Damage" name="bonusDamage" autoComplete="off" type="number"/>
-      <input ref={register({required: true})} placeholder="Bonus hit" name="bonusHit" autoComplete="off" type="number"/>
-      <label>Proficiency<input ref={register} type="checkbox" name="proficient"/></label>
-      <select ref={register} name="profMod" defaultValue="Strength">
+    <form className={styles.newAttackForm} onSubmit={onSubmit}>
+      <input className={styles.inputField} ref={register({required: true})} placeholder="Name" name="name" autoComplete="off"/>
+      <input className={styles.inputField} ref={register({required: true})} placeholder="Dice" name="diceType" autoComplete="off"/>
+      <input className={styles.inputField} ref={register({required: true})} placeholder="Range" name="range" type="number" autoComplete="off"/>
+      <input className={styles.inputField} ref={register({required: true})} placeholder="Bonus Damage" name="bonusDamage" autoComplete="off" type="number"/>
+      <input className={styles.inputField} ref={register({required: true})} placeholder="Bonus hit" name="bonusHit" autoComplete="off" type="number"/>
+      <label>Proficiency<input ref={register} className={styles.profCheckbox} type="checkbox" name="proficient"/></label>
+      <select ref={register} className={styles.select} name="profMod" defaultValue="Strength">
         <option value="Strength">Strength</option>
         <option value="Dexterity">Dexterity</option>
         <option value="Constitution">Constitution</option>
@@ -40,7 +41,7 @@ const AddAttack: React.FC<IProps> = ({handleClose}) => {
         <option value="Wisdom">Wisdom</option>
         <option value="">No Scaling</option>
       </select>
-      <select ref={register} name="type" defaultValue="Slashing">
+      <select ref={register} className={styles.select} name="type" defaultValue="Slashing">
         <option value="Slashing">Slashing</option>
         <option value="Bludgeoning">Bludgeoning</option>
         <option value="Piercing">Piercing</option>

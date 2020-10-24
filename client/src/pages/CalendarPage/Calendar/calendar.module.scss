@@ -1,0 +1,74 @@
+.calendar {
+  position: relative;
+  background: var(--calendar-background);
+  color: var(--calendar-font);
+  max-width: max-content;
+  margin: auto;
+  padding: 1em;
+}
+
+.monthTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.topLabel {
+  padding: 1em 0;
+  min-width: 8em;
+  text-align: center;
+  font-weight: normal;
+}
+
+.topButton {
+  cursor: pointer;
+  padding: .1em;
+}
+
+.weekGrid {
+  padding: 1em 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.selectButtons {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.selectButton {
+  color: inherit;
+  border: none;
+  background-color: inherit;
+  font-size: 0.9em;
+  cursor: pointer;
+  outline: none;
+}
+
+.day {
+  background: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: 0.75em;
+}
+
+.selected {
+  background: var(--selected);
+}
+
+.today {
+  background: var(--today);
+  border-radius: 100%;
+  color: white;
+}

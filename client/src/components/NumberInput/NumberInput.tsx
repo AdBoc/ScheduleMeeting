@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {editText} from "../redux/actions";
+import {editText} from "../../redux/actions";
+import styles from "./NumberInput.module.scss";
 
 interface IProps {
   label: string;
@@ -11,9 +12,10 @@ interface IProps {
 const NumberInput: React.FC<IProps> = ({label, path, value}) => {
   const dispatch = useDispatch();
   return (
-    <>
-      <label>{label}</label>
+    <div className={styles.numberInput}>
+      <label className={styles.label}>{label}</label>
       <input
+        className={styles.input}
         type="number"
         onChange={({target}) => dispatch(editText(path, parseInt(target.value)))}
         value={value}
@@ -21,7 +23,7 @@ const NumberInput: React.FC<IProps> = ({label, path, value}) => {
         autoCorrect="false"
         spellCheck="false"
       />
-    </>
+    </div>
   );
 }
 

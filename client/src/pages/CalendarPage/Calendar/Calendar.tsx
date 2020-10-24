@@ -6,6 +6,7 @@ import {userContext} from "../../../context/users";
 import MonthLabel from "./MonthLabel";
 import SelectedMonth from "./SelectedMonth";
 
+import styles from './calendar.module.scss';
 import './calendar.scss';
 
 const Calendar = () => {
@@ -13,10 +14,10 @@ const Calendar = () => {
   const {monthData, selectedMonth} = useCalendar(user);
 
   return (
-    <>
+    <div className={styles.calendar}>
       <MonthLabel selectedMonth={selectedMonth}/>
       <SelectedMonth monthData={monthData}/>
-    </>
+    </div>
   );
 }
 

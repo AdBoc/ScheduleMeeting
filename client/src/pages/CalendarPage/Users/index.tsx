@@ -6,7 +6,7 @@ import {history} from "../../../utils/history";
 import {getCharacter} from "../../../utils/api";
 import {toast} from "react-toastify";
 
-const users = ['Test', 'Witek', 'Sławek', 'Potrek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
+const users = ['Test', 'Witek', 'Sławek', 'Portek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
 
 const Users = () => {
   const {user, handleUser} = useContext(userContext);
@@ -25,16 +25,18 @@ const Users = () => {
 
   return (
     <>
-      {users.map(person =>
-        <button
-          key={person}
-          className={`${user === person ? styles.userActive : styles.userBasic}`}
-          value={person}
-          onClick={handleUser}>
-          {person}
-        </button>
-      )}
-      {user && <button onClick={handleSheet}>Use Sheet</button>}
+      <div className={styles.users}>
+        {users.map(person =>
+          <button
+            key={person}
+            className={`${user === person ? styles.userActive : styles.userBasic}`}
+            value={person}
+            onClick={handleUser}>
+            {person}
+          </button>
+        )}
+      </div>
+      {user && <button className={styles.sheetLinkButton} onClick={handleSheet}>Use Sheet {">"}</button>}
     </>
   )
 }

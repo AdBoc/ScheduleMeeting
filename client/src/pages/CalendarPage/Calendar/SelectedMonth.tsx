@@ -1,6 +1,7 @@
 import React from 'react';
 import {MonthData} from "../../../types";
 import Day from "./Day";
+import styles from './calendar.module.scss'
 
 interface IProps {
   monthData: MonthData;
@@ -12,15 +13,15 @@ const SelectedMonth: React.FC<IProps> = ({monthData}) => {
   const {handleSelectAll, handleUnselectAll} = monthData;
   return (
     <>
-      <div>
+      <div className={styles.weekGrid}>
         {daysOfWeek.map(day => <p key={day}>{day}</p>)}
       </div>
-      <div>
+      <div className={styles.daysGrid}>
         {monthData.daysOfMonth.map(day => <Day key={day} {...monthData} day={day}/>)}
       </div>
-      <div>
-        <button onClick={handleSelectAll}>Select All</button>
-        <button onClick={handleUnselectAll}>Unselect</button>
+      <div className={styles.selectButtons}>
+        <button className={styles.selectButton} onClick={handleSelectAll}>Select All</button>
+        <button className={styles.selectButton} onClick={handleUnselectAll}>Unselect All</button>
       </div>
     </>
   );

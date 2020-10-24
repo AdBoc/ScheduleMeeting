@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import styles from "./savingThorws.module.scss";
 
 const ThrowsCheckboxes = () => {
   const [throws, setThrows] = useState([false, false, false, false, false, false]);
@@ -10,17 +11,19 @@ const ThrowsCheckboxes = () => {
   }
 
   return (
-    <div>
-      <p>Death Save</p>
-      <p>Successes</p>
-      <button name="0" onClick={handleThrows}/>
-      <button name="1" onClick={handleThrows}/>
-      <button name="2" onClick={handleThrows}/>
-      <p>Failures</p>
-      <button name="3" onClick={handleThrows}/>
-      <button name="4" onClick={handleThrows}/>
-      <button name="5" onClick={handleThrows}/>
-    </div>
+    <>
+      <p className={styles.label}>Death Saves</p>
+      <div className={styles.deathSaves}>
+        <p className={styles.deathSaveLabel}>Successes</p>
+        <button className={styles.deathButton} name="0" onClick={handleThrows}/>
+        <button className={styles.deathButton} name="1" onClick={handleThrows}/>
+        <button className={styles.deathButton} name="2" onClick={handleThrows}/>
+        <p className={styles.deathSaveLabel}>Failures</p>
+        <button className={styles.deathButton} name="3" onClick={handleThrows}/>
+        <button className={styles.deathButton} name="4" onClick={handleThrows}/>
+        <button className={styles.deathButton} name="5" onClick={handleThrows}/>
+      </div>
+    </>
   );
 }
 

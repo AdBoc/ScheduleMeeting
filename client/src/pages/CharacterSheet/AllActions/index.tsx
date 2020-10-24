@@ -3,6 +3,7 @@ import Attacks from "./Attacks";
 import Spells from "./Spells";
 import Actions from "./Actions";
 import Effects from "./Effects/Effects";
+import styles from "./allActions.module.scss";
 
 const AllActions = () => {
   const [activeTab, setActiveTab] = useState("attacks");
@@ -16,11 +17,11 @@ const AllActions = () => {
 
   return (
     <>
-      <div>
-        <button name="attacks" onClick={({target}: any) => {setActiveTab(target.name)}}>Attacks</button>
-        <button name="spells" onClick={({target}: any) => {setActiveTab(target.name)}}>Spells</button>
-        <button name="actions" onClick={({target}: any) => {setActiveTab(target.name)}}>Actions</button>
-        <button name="effects" onClick={({target}: any) => {setActiveTab(target.name)}}>Effects</button>
+      <div className={styles.tabsButtons}>
+        <button className={styles.tabButton} name="attacks" onClick={({target}: any) => {setActiveTab(target.name)}}>Attacks</button>
+        <button className={styles.tabButton} name="spells" onClick={({target}: any) => {setActiveTab(target.name)}}>Spells</button>
+        <button className={styles.tabButton} name="actions" onClick={({target}: any) => {setActiveTab(target.name)}}>Actions</button>
+        <button className={styles.tabButton} name="effects" onClick={({target}: any) => {setActiveTab(target.name)}}>Effects</button>
       </div>
       <div>
         {ACTIVE_TAB[activeTab]}

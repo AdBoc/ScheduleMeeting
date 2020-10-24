@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {editText} from "../redux/actions";
+import {editText} from "../../redux/actions";
+import styles from "./textInput.module.scss";
 
 interface IProps {
   label: string;
@@ -11,9 +12,10 @@ interface IProps {
 const TextInput: React.FC<IProps> = ({label, path, value}) => {
   const dispatch = useDispatch();
   return (
-    <>
-      <label>{label}</label>
+    <div className={styles.textInput}>
+      <label className={styles.label}>{label}</label>
       <input
+        className={styles.input}
         type="text"
         onChange={({target}) => dispatch(editText(path, target.value))}
         value={value}
@@ -21,7 +23,7 @@ const TextInput: React.FC<IProps> = ({label, path, value}) => {
         autoCorrect="false"
         spellCheck="false"
       />
-    </>
+    </div>
   );
 }
 

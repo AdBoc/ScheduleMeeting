@@ -1,17 +1,20 @@
 import React from 'react';
 import AddAttack from "./AddAttack";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../../redux/reducers";
 import {dndMath} from "../../../../utils/dndMath";
 import {Attack, Character} from "../../../../redux/types";
 import {useCustomForm} from "../../../../hooks/useCustomForm";
 import {deleteInArray} from "../../../../redux/actions";
+import {sortedAttacks} from "../../../../redux/selectors";
+import {RootState} from "../../../../redux/reducers";
+import styles from "./attacks.module.scss";
 
 const Attacks = () => {
   const {showForm, itemDetails, ref, handleShowItem, handleShowForm, handleHideItem} = useCustomForm<Attack>();
-  const character = useSelector((state: RootState) => state.characterReducer);
+  const attacks = useSelector(sortedAttacks);
+  const stats = useSelector((state: RootState) => state.characterReducer.Stats);
+  const playerLevel = useSelector((state: RootState) => state.characterReducer.MainStats.Level);
   const dispatch = useDispatch();
-  const attacks = [...character.Attacks];
 
   const handleDelete = () => {
     handleHideItem();
@@ -20,28 +23,26 @@ const Attacks = () => {
 
   return (
     <>
-      <button onClick={handleShowForm}>Add attack</button>
+      <button className={styles.newAttackButton} onClick={handleShowForm}>Add attack</button>
       {showForm && <AddAttack handleClose={handleShowForm}/>}
       <div>
-        <div>
+        <div className={styles.attacksGrid}>
           <p>Name</p>
           <p>Attack</p>
           <p>Hit</p>
           <p>Range</p>
         </div>
-        <div>
-          {attacks.sort((a, b) => a.name.localeCompare(b.name)).map(attack => (
-            <div key={attack.id} onClick={handleShowItem(attack)}>
-              <p>{attack.name}</p>
-              <p>{attack.diceType} + {(dndMath.statModifier(character.Stats[attack.profMod as keyof Character["Stats"]]) + attack.bonusDamage)}</p>
-              {attack.proficient ? <p>d20
-                  + {dndMath.statModifier(character.Stats[attack.profMod as keyof Character["Stats"]]) + dndMath.skillProficiency(character.MainStats.Level) + attack.bonusHit}</p> :
-                <p>d20 + {dndMath.statModifier(character.Stats[attack.profMod as keyof Character["Stats"]]) + attack.bonusHit}</p>
-              }
-              <p>{attack.range}</p>
-            </div>
-          ))}
-        </div>
+        {attacks.map(attack => (
+          <div key={attack.id} className={styles.attacksGrid} onClick={handleShowItem(attack)}>
+            <p className={styles.attacksName}>{attack.name}</p>
+            <p>{attack.diceType} + {(dndMath.statModifier(stats[attack.profMod as keyof Character["Stats"]]) + attack.bonusDamage)}</p>
+            {attack.proficient ? <p>d20
+                + {dndMath.statModifier(stats[attack.profMod as keyof Character["Stats"]]) + dndMath.skillProficiency(playerLevel) + attack.bonusHit}</p> :
+              <p>d20 + {dndMath.statModifier(stats[attack.profMod as keyof Character["Stats"]]) + attack.bonusHit}</p>
+            }
+            <p>{attack.range}</p>
+          </div>
+        ))}
         {itemDetails &&
         <div ref={ref}>
             <p>Name: {itemDetails.name}</p>

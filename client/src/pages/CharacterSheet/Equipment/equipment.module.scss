@@ -1,0 +1,47 @@
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.basicButton {
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 0.5em;
+  margin: 0.5em 1em;
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2em;
+}
+
+.itemQuantity {
+  min-width: 1em;
+  text-align: center;
+}
+
+.multiselect {
+  margin: 0.5em 1.5em;
+}
+
+.addItemForm {
+  border: 3px double #292929;
+  margin: 1em auto;
+  padding: 2em;
+  width: fit-content;
+  text-align: center;
+}
+
+.addItemInput {
+  display: block;
+  margin: 0.5em;
+  width: 11em;
+}
+
+.addItemSelect {
+  display: block;
+  margin: 0.5em auto;
+  width: 11.5em;
+}

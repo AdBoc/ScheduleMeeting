@@ -1,6 +1,6 @@
 import React from 'react';
 import Tippy from '@tippyjs/react';
-
+import styles from "./actions.module.scss";
 import 'tippy.js/dist/tippy.css';
 
 const Actions = () => {
@@ -21,13 +21,15 @@ const Actions = () => {
 
   return (
     <div>
-      <h1>List of common actions</h1>
-      {actions.map((action, index) => (
-          <Tippy key={action} content={actionsDescription[index]} placement="bottom">
-            <button value={index}>{action}</button>
-          </Tippy>
-        )
-      )}
+      <h1 className={styles.actionTitle}>List of common actions</h1>
+      <div className={styles.actions}>
+        {actions.map((action, index) => (
+            <Tippy key={action} content={actionsDescription[index]} placement="bottom">
+              <button className={styles.actionStyle} value={index}>{action}</button>
+            </Tippy>
+          )
+        )}
+      </div>
     </div>
   )
 };

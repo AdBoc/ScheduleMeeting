@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {userContext} from "../../../context/users";
 import {MonthData} from "../../../types";
+import styles from './calendar.module.scss';
 
 interface IProps extends MonthData {
   day: number;
@@ -9,17 +10,16 @@ interface IProps extends MonthData {
 const Day: React.FC<IProps> = ({day, handleSelectDay, filteredDays, isCurrentDay}) => {
   const {user} = useContext(userContext);
 
-  const createClassName = (): string => {
-    let className: string;
+  const createClassName = () => {
+    let classes: string = "";
+    classes += styles.day;
     if (user) {
-      className = "day";
-      className += (filteredDays[day] && " selected") || "";
+      classes += (filteredDays[day] && " " + styles.selected) || "";
     } else {
-      className = "day count";
-      className += (filteredDays[day] && filteredDays[day].length) || "";
-      className += (isCurrentDay(day) && " today") || "";
+      classes += (filteredDays[day] && " count"+filteredDays[day].length) || "";
+      classes += (isCurrentDay(day) && " " + styles.today) || "";
     }
-    return className;
+    return classes;
   };
 
   return (

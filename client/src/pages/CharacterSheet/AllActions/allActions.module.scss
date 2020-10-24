@@ -1,0 +1,14 @@
+.tabsButtons{
+  display: flex;
+  margin: 0.3em;
+  justify-content: center;
+}
+
+.tabButton {
+  flex: 1 1;
+  border: none;
+  margin: 0.2em;
+  max-width: 10em;
+  padding: 0.15em 0;
+  background: var(--secondary-color);
+}

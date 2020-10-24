@@ -1,0 +1,26 @@
+.skills {
+  padding: 1em;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3em 0.25em;
+}
+
+.skillName {
+  background: inherit;
+  border: none;
+}
+
+.button {
+  background: inherit;
+  border: none;
+  float: right;
+}
+
+.skillLabel {
+  font-size: 1.4em;
+  border-bottom: 1px solid black;
+}

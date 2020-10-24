@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 const tabs = ["stats", "skills", "savingThrows", "allActions", "equipment", "background", "quickAccess"];
 
 export const useSwipe = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(6); //TODO: Set on 0
   const [currentTab, setCurrentTab] = useState(tabs[currentIndex]);
   let startX: number;
 

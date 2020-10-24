@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import {useSwipe} from "../../hooks/useSwipe";
 
 import {AllActions, Background, Equipment, Header, QuickAccess, SavingThrows, Skills, Stats} from './index';
+import styles from './characterSheet.module.scss';
 
 const CURRENT_TAB: { [key: string]: JSX.Element } = {
   allActions: <AllActions/>,
@@ -21,8 +22,10 @@ const CharacterSheet = () => {
 
   return (
     <Provider store={store}>
-      <Header/>
-      <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
+      <div className={styles.characterSheet}>
+        <Header/>
+        <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
+      </div>
     </Provider>
   );
 }

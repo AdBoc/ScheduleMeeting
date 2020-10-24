@@ -1,0 +1,48 @@
+.newAttackButton {
+  background: var(--secondary-color);
+  border: none;
+  padding: 0.15em 0;
+  min-width: 5em;
+  text-align: center;
+  width: 10em;
+  margin: auto;
+  display: block;
+}
+
+.attacksGrid {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5em;
+  margin: 0.5em 0;
+  font-size: 0.9em;
+}
+
+.attacksName {
+  font-size: 0.9em;
+}
+
+.newAttackForm {
+  border: 3px double #292929;
+  margin: 1em auto;
+  padding: 2em;
+  width: fit-content;
+  text-align: center;
+}
+
+.inputField {
+  display: block;
+  margin: 0.5em;
+  width: 11em;
+}
+
+.select {
+  display: block;
+  margin: 0.5em auto;
+  width: 11.5em;
+}
+
+.profCheckbox {
+  padding: 0.2em;
+  margin: 0.3em;
+}

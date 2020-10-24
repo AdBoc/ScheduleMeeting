@@ -1,0 +1,62 @@
+.header {
+  background: var(--primary-color);
+  color: white;
+}
+
+.topSection {
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.characterName {
+  font-size: 1.2em;
+}
+
+.characterDetails {
+  font-size: 0.8em;
+}
+
+.hpField {
+  font-size: 1.2em;
+}
+
+.hpLabel {
+  font-size: 0.8em;
+  padding: 0.1em;
+}
+
+.highlights {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.highlight {
+  flex: 0 0 4em;
+  margin: 0 0.5em 1em;
+  min-height: 3em;
+}
+
+.highlightedStats {
+  font-size: 1.25em;
+}
+
+.highlightedLabel {
+  font-size: 0.9em;
+}
+
+.dicesSvg {
+  width: 2em;
+  height: 2em;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.inspirationSvg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}

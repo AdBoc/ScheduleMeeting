@@ -1,6 +1,7 @@
 import React, {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {changeStatValue} from "../../../redux/actions";
+import styles from "./stats.module.scss";
 
 interface IProps {
   statName: string;
@@ -19,10 +20,9 @@ const StatsSelect: React.FC<IProps> = ({statName, statVal}) => {
     else error.current = true;//TODO: Recalculate skills on stat change
   };
 
-
   return (
     <>
-      <input type="number" value={newVal} onChange={handleStatChange} onFocus={(e) => e.target.select()}/>
+      <input className={styles.statInput} type="number" value={newVal} onChange={handleStatChange} onFocus={(e) => e.target.select()}/>
       {error.current && <p>"Incorrect Value"</p>}
     </>
   )

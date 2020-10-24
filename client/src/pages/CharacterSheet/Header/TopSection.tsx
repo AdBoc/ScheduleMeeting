@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/reducers";
 import HpForm from "./HpForm";
+import styles from './header.module.scss';
 
 const TopSection = () => {
   const background = useSelector((state: RootState) => state.characterReducer.Background);
@@ -9,18 +10,18 @@ const TopSection = () => {
   const [showHpForm, setShowHpForm] = useState(false);
 
   return (
-    <>
+    <div className={styles.topSection}>
       <div>
-        <p>{background.Name}</p>
-        <p>{background.Race} {background.Class} {stats.Level}</p>
+        <p className={styles.characterName}>{background.Name}</p>
+        <p className={styles.characterDetails}>{background.Race} {background.Class} {stats.Level}</p>
       </div>
-      <div>
+      <div className={styles.hpField}>
         <p onClick={() => {
           setShowHpForm(prev => !prev)
-        }}>{stats.TemporaryHitPoints}/{stats.HitPoints} HP</p>
+        }}>{stats.TemporaryHitPoints}/{stats.HitPoints}<span className={styles.hpLabel}>HP</span></p>
         {showHpForm && <HpForm/>}
       </div>
-    </>
+    </div>
   );
 }
 

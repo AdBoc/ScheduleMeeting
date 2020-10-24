@@ -4,6 +4,7 @@ import {RootState} from "../../../redux/reducers";
 import {Character} from "../../../redux/types";
 import {dndMath} from "../../../utils/dndMath";
 import {decrementStat, incrementStat, setArray} from "../../../redux/actions";
+import styles from "./skills.module.scss";
 
 interface IProps {
   skillName: keyof Character["Skills"];
@@ -24,10 +25,10 @@ const Skill: React.FC<IProps> = ({skillName}) => {
   }
 
   return (
-    <div>
-      <button onClick={() => dispatch(decrementStat(`Skills.${skillName}`))}>-</button>
-      <button name={skillName} onClick={handleTag}>{skillName}</button>
-      <button onClick={() => dispatch(incrementStat(`Skills.${skillName}`))}>+</button>
+    <div className={styles.skill}>
+      {/*<button onClick={() => dispatch(decrementStat(`Skills.${skillName}`))}>-</button>*/}
+      <button className={styles.skillName} name={skillName} onClick={handleTag}>{skillName}</button>
+      {/*<button onClick={() => dispatch(incrementStat(`Skills.${skillName}`))}>+</button>*/}
       <p>{skillVal}</p>
     </div>
   );

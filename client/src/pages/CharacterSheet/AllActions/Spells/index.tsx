@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../redux/reducers";
 import {dndMath} from "../../../../utils/dndMath";
@@ -6,32 +6,41 @@ import {useCustomForm} from "../../../../hooks/useCustomForm";
 import {Character, Spell} from "../../../../redux/types";
 import {deleteInArray, editText} from "../../../../redux/actions";
 import AddSpell from "./AddSpell";
-import {useSortState} from "../../../../hooks/useSortState";
+import {sortedSpells} from "../../../../redux/selectors";
+import styles from "./spells.module.scss";
 
 const Spells = () => {
-  const character = useSelector((state: RootState) => state.characterReducer);
+  const [sortingOptions, setSortingOptions] = useState({criteria: "name", inverted: false});
+  const spells = useSelector(sortedSpells(sortingOptions));
+  const stats = useSelector((state: RootState) => state.characterReducer.Stats);
+  const playerLevel = useSelector((state: RootState) => state.characterReducer.MainStats.Level);
+  const spellProficiency = useSelector((state: RootState) => state.characterReducer.Other.SpellProficiency);
   const dispatch = useDispatch();
 
   const {showForm, itemDetails, ref, handleShowItem, handleShowForm, handleHideItem} = useCustomForm<Spell>();
-  const {sortedState, handleSorting} = useSortState(character.Spells);
 
   const handleDelete = () => {
     handleHideItem();
     dispatch(deleteInArray("Spells", itemDetails!.id));
   };
 
+  const handleSorting = ({target}: any) => setSortingOptions(prev => {
+    if (prev.criteria === target.name) return {...prev, inverted: !prev.inverted};
+    return {criteria: target.name, inverted: false};
+  });
+
   return (
     <>
-      <button onClick={handleShowForm}>Add spell</button>
+      <button className={styles.newSpellButton} onClick={handleShowForm}>Add spell</button>
       {showForm && <AddSpell handleClose={handleShowForm}/>}
       <div>
-        <p>Save DC: {character.Other.SpellProficiency !== null ?
-          <span>{8 + dndMath.skillProficiency(character.MainStats.Level) + dndMath.statModifier(character.Stats[character.Other.SpellProficiency as keyof Character["Stats"]])}</span> :
+        <p>Save DC: {spellProficiency !== null ?
+          <span>{8 + dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[spellProficiency as keyof Character["Stats"]])}</span> :
           <span>SelectProf</span>}</p>
-        <p>Attack Bonus: {character.Other.SpellProficiency !== null ?
-          <span>{dndMath.skillProficiency(character.MainStats.Level) + dndMath.statModifier(character.Stats[(character.Other.SpellProficiency as keyof Character["Stats"])])}</span> :
+        <p>Attack Bonus: {spellProficiency !== null ?
+          <span>{dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[(spellProficiency as keyof Character["Stats"])])}</span> :
           <span>Select Prof</span>}</p>
-        {character.Other.SpellProficiency === null && (
+        {spellProficiency === null && (
           <select onChange={({target}: any) => dispatch(editText("Other.SpellProficiency", target.value))}>
             <option value="Strength">Strength</option>
             <option value="Dexterity">Dexterity</option>
@@ -43,15 +52,15 @@ const Spells = () => {
         )}
       </div>
       <div>
-        <div>
-          <button name="name" onClick={handleSorting}>Name</button>
-          <button name="level" onClick={handleSorting}>Level</button>
-          <button name="range" onClick={handleSorting}>Range</button>
-          <button name="school" onClick={handleSorting}>School</button>
+        <div className={styles.spellsGrid}>
+          <button className={styles.tableLabel} name="name" onClick={handleSorting}>Name</button>
+          <button className={styles.tableLabel} name="level" onClick={handleSorting}>Level</button>
+          <button className={styles.tableLabel} name="range" onClick={handleSorting}>Range</button>
+          <button className={styles.tableLabel} name="school" onClick={handleSorting}>School</button>
           <p>Components</p>
         </div>
-        {sortedState.map(spell => (
-          <div key={spell.id} onClick={handleShowItem(spell)}>
+        {spells.map(spell => (
+          <div key={spell.id} className={styles.spellsGrid} onClick={handleShowItem(spell)}>
             <p>{spell.name}</p>
             <p>{spell.level}</p>
             <p>{spell.range}</p>

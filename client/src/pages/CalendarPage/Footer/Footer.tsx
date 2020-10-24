@@ -1,15 +1,17 @@
 import React from 'react';
 import {GitSvg} from "../../../assets/GitSvg";
+import styles from './footer.module.scss'
 
 const Footer = () => {
   return (
-    <footer>
-      <p>v 1.4</p>
-      <div>
+    <>
+      <hr/>
+      <footer className={styles.footer}>
+        <p className={styles.version}>v 1.4</p>
         <p>Source Code On:</p>
-        <GitSvg/>
-      </div>
-    </footer>
+        <GitSvg cssClass={styles.svgStyle}/>
+      </footer>
+    </>
   );
 }
 
