@@ -30,3 +30,14 @@
   font-weight: bold;
   font-size: 1em;
 }
+
+.statSelect {
+  position: relative;
+}
+
+.inputError {
+  position: absolute;
+  color: red;
+  font-size: 0.7em;
+  text-align: center;
+}

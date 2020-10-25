@@ -15,10 +15,10 @@ const Users = () => {
     const localUser = localStorage.getItem("user");
     const character = await getCharacter(user!);
     if (character === 201) return toast.success("Character is created");
-    else if (character === 500 && user === localUser) history.push("/sheet");
+    else if (character === 500 && user === localUser) history.push("/sheet"); //TODO: download character
     else if (typeof character === "string") {
-      localStorage.setItem("user", user!);
-      localStorage.setItem("character", character);
+      await localStorage.setItem("user", user!);
+      await localStorage.setItem("character", character);
       history.push("/sheet");
     }
   }

@@ -34,82 +34,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d87743-5c69-4d32-9148-a963a93f8076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/Roboto/roboto-v20-latin-ext-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/Roboto/roboto-v20-latin-ext-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/Roboto/roboto-v20-latin-ext-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/Roboto/roboto-v20-latin-ext-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/Roboto/roboto-v20-latin-ext-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/fonts.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Checkbox/Checkbox.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Checkbox/checkbox.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/ModifyStatField/modifyStatField.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/NumberInput/NumberInput.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/TextArea/textArea.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/TextInput/textInput.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/hooks/useOutsideClick/useOutsideClick.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/actions.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/attacks.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/spells.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/allActions.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Background/background.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/equipment.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/header.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/QuickAccess/quickAccess.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/savingThorws.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skills.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/stats.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/characterSheet.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotFound404/notFound.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/utils/localStorage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/GitSvg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/GitSvg.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/Roboto-Light.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/dices.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/dices.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/light-bulb.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/light-bulb.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api/character/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/character/controller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/assets/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/normalize.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ModifyStatField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ModifyStatField/ModifyStatField.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NumberInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NumberInput/NumberInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/TextArea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/TextArea/TextArea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/TextInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/TextInput/TextInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useSortState/index.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/hooks/useSwipe/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useSwipe/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/Calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/Calendar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/Day.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/Day.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/MonthLabel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/MonthLabel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/SelectedMonth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/SelectedMonth.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/calendar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/calendar.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/calendar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Calendar/calendar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Footer/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Footer/footer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Footer/footer.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/users.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/users.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/calendarPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/calendarPage.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Actions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/AddAttack.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/AddAttack.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Attacks/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/AddSpell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/AddSpell.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/Spells/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/AllActions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Background/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Background/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/CharacterSheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/CharacterSheet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/AddItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/AddItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/HpForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/HpForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/StatsSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/StatsSection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/TopSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/TopSection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Header/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/QuickAccess/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/QuickAccess/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/ThrowsCheckboxes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/ThrowsCheckboxes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/ThrowsProficiency.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/SavingThrows/ThrowsProficiency.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skill.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skill.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/StatsSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/StatsSelect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/NotFound404.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotFound404/NotFound404.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/selectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/stats.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/stats.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,9 +81,15 @@
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/client/node_modules/react-scripts" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="C:\Users\adria\Desktop\VisualStudioCodeProjects\ScheduleMeeting\client\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -256,7 +202,8 @@
       <workItem from="1603306689266" duration="6764000" />
       <workItem from="1603344775388" duration="33920000" />
       <workItem from="1603430424820" duration="47148000" />
-      <workItem from="1603515968465" duration="26130000" />
+      <workItem from="1603515968465" duration="29480000" />
+      <workItem from="1603605841043" duration="9982000" />
     </task>
     <task id="LOCAL-00001" summary="added tests">
       <created>1601840014587</created>
@@ -314,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603400234105</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added all basic styles">
+      <created>1603570688528</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603570688528</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +308,8 @@
     <MESSAGE value="added attack details" />
     <MESSAGE value="Added Spells" />
     <MESSAGE value="Added Header, QuickAccess and new Input fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Header, QuickAccess and new Input fields" />
+    <MESSAGE value="added all basic styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="added all basic styles" />
   </component>
   <component name="WindowStateProjectService">
     <state x="141" y="314" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603353624087">
@@ -385,14 +340,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="146" y="255" key="IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603443763525" />
-    <state x="192" y="275" key="SettingsEditor" timestamp="1603269620081">
+    <state x="192" y="275" key="SettingsEditor" timestamp="1603615040021">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="192" y="275" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603269620081" />
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603400235918">
+    <state x="192" y="275" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603615040021" />
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603570693253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603400235918" />
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603570693253" />
     <state x="553" y="0" width="1179" height="650" key="dock-window-1" timestamp="1603088308287">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

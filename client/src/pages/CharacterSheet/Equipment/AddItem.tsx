@@ -20,7 +20,7 @@ const AddItem: React.FC<IProps> = ({closeForm}) => {
 
   return (
     <form className={styles.addItemForm} onSubmit={onSubmit}>
-      <input ref={register} className={styles.addItemInput} placeholder="Name" name="name" aria-label="item name" autoComplete="off" required/>
+      <input ref={register({required: true})} className={styles.addItemInput} placeholder="Name" name="name" aria-label="item name" autoComplete="off"/>
       <input ref={register} className={styles.addItemInput} type="number" name="quantity" aria-label="quantity" placeholder="Quantity" onFocus={(e: any) => e.target.select()}/>
       <select ref={register} className={styles.addItemSelect} name="type" defaultValue="other">
         <option value="other">Other</option>

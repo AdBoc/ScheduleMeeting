@@ -1,15 +1,10 @@
 export const INCREMENT_STAT = "INCREMENT_STAT";
 export const DECREMENT_STAT = "DECREMENT_STAT";
 export const CHANGE_STAT = "CHANGE_STAT";
-export const CHANGE_BOOL = "CHANGE_BOOL";
 export const EDIT_TEXT = "EDIT_TEXT";
 export const ADD_TO_ARRAY = "ADD_TO_ARRAY";
-export const TAG_PROP = "TAG_PROP";
 export const DELETE_IN_ARRAY = "DELETE_IN_ARRAY";
-export const SET_CHARACTER = "SET_CHARACTER";
 export const SET_ARRAY = "SET_ARRAY";
-export const SET_ITEM_QTY = "SET_ITEM_QTY";
-export const CHANGE_EFFECT_STATUS = "CHANGE_EFFECT_STATUS";
 export const FLIP_BOOL = "FLIP_BOOL";
 export const DELETE_DICE = "DELETE_DICE";
 export const TAG_ELEMENT = "TAG_ELEMENT";

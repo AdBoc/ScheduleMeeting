@@ -9,28 +9,28 @@ const Skills = () => {
       <button className={styles.button} onClick={() => setIsEdit(prev => !prev)}>EDIT</button>
       <button className={styles.button}>RESET</button>
       <p className={styles.skillLabel}>Strength</p>
-      <Skill skillName="Athletics"/>
+      <Skill label="Athletics" skillName="Athletics"/>
       <p className={styles.skillLabel}>Dexterity</p>
-      <Skill skillName="Acrobatics"/>
-      <Skill skillName="SleightOfHand"/>
-      <Skill skillName="Stealth"/>
+      <Skill label="Acrobatics" skillName="Acrobatics"/>
+      <Skill label="Sleight Of Hand" skillName="SleightOfHand"/>
+      <Skill label="Stealth" skillName="Stealth"/>
       <p className={styles.skillLabel}>Intelligence</p>
-      <Skill skillName="Arcana"/>
-      <Skill skillName="History"/>
-      <Skill skillName="Investigation"/>
-      <Skill skillName="Nature"/>
-      <Skill skillName="Religion"/>
+      <Skill label="Arcana" skillName="Arcana"/>
+      <Skill label="History" skillName="History"/>
+      <Skill label="Investigation" skillName="Investigation"/>
+      <Skill label="Nature" skillName="Nature"/>
+      <Skill label="Religion" skillName="Religion"/>
       <p className={styles.skillLabel}>Wisdom</p>
-      <Skill skillName="AnimalHandling"/>
-      <Skill skillName="Insight"/>
-      <Skill skillName="Medicine"/>
-      <Skill skillName="Perception"/>
-      <Skill skillName="Survival"/>
+      <Skill label="Animal Handling" skillName="AnimalHandling"/>
+      <Skill label="Insight" skillName="Insight"/>
+      <Skill label="Medicine" skillName="Medicine"/>
+      <Skill label="Perception" skillName="Perception"/>
+      <Skill label="Survival" skillName="Survival"/>
       <p className={styles.skillLabel}>Charisma</p>
-      <Skill skillName="Deception"/>
-      <Skill skillName="Intimidation"/>
-      <Skill skillName="Performance"/>
-      <Skill skillName="Persuasion"/>
+      <Skill label="Deception" skillName="Deception"/>
+      <Skill label="Intimidation" skillName="Intimidation"/>
+      <Skill label="Performance" skillName="Performance"/>
+      <Skill label="Persuasion" skillName="Persuasion"/>
     </div>
   );
 }

@@ -11,8 +11,8 @@ const Stats = () => {
   const stats = useSelector((state: RootState) => state.characterReducer.Stats)
   return (
     <>
-      {Object.entries(stats).map((stat, i) => (
-        <div key={i} className={styles.stat}>
+      {Object.entries(stats).map((stat) => (
+        <div key={stat[0]} className={styles.stat}>
           <StatsSelect statName={stat[0]} statVal={stat[1]}/>
           <p className={styles.statName}>{stat[0]}</p>
           <p className={styles.statMod}>MOD</p>

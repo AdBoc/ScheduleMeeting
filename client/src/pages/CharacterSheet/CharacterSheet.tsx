@@ -1,6 +1,4 @@
 import React from 'react';
-import {store} from '../../redux/store';
-import {Provider} from 'react-redux';
 
 import {useSwipe} from "../../hooks/useSwipe";
 
@@ -21,12 +19,10 @@ const CharacterSheet = () => {
   const {currentTab, handleTouchEnd, handleTouchStart} = useSwipe();
 
   return (
-    <Provider store={store}>
       <div className={styles.characterSheet}>
         <Header/>
         <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
       </div>
-    </Provider>
   );
 }
 
