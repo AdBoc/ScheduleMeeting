@@ -6,8 +6,8 @@
 */yarn-debug.log*
 */yarn-error.log*
 */package-lock.json
-*/thoughts.txt
-api/calendar.exe
+api/dndApi.exe
+.idea
 */.idea
 data
 

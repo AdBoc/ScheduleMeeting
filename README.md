@@ -1,3 +1,5 @@
 # DND character sheet and calendar
 
-Moje repo https://github.com/AdBoc/ScheduleMeeting
+Projekt w trakcie tworzenia
+
+Oryginalne Repo https://github.com/AdBoc/ScheduleMeeting

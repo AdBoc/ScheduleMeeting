@@ -34,22 +34,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d87743-5c69-4d32-9148-a963a93f8076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/utils/localStorage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/dndApi.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/react-app-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ScheduleMeeting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ScheduleMeeting.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api/character/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/character/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/normalize.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useSwipe/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useSwipe/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CalendarPage/Users/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/CharacterSheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/CharacterSheet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/AddItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Equipment/AddItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skill.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Skills/skill.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/StatsSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/StatsSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/stats.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/CharacterSheet/Stats/stats.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.idea/vcs.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +196,7 @@
       <workItem from="1603344775388" duration="33920000" />
       <workItem from="1603430424820" duration="47148000" />
       <workItem from="1603515968465" duration="29480000" />
-      <workItem from="1603605841043" duration="9982000" />
+      <workItem from="1603605841043" duration="11214000" />
     </task>
     <task id="LOCAL-00001" summary="added tests">
       <created>1601840014587</created>
@@ -268,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603570688528</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="changed Provider location added default store">
+      <created>1603619320668</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1603619320668</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +309,8 @@
     <MESSAGE value="Added Spells" />
     <MESSAGE value="Added Header, QuickAccess and new Input fields" />
     <MESSAGE value="added all basic styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="added all basic styles" />
+    <MESSAGE value="changed Provider location added default store" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed Provider location added default store" />
   </component>
   <component name="WindowStateProjectService">
     <state x="141" y="314" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603353624087">
@@ -344,10 +345,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="192" y="275" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603615040021" />
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603570693253">
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2" timestamp="1603620162071">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603570693253" />
+    <state x="551" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603620162071" />
     <state x="553" y="0" width="1179" height="650" key="dock-window-1" timestamp="1603088308287">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
