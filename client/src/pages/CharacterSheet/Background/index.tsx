@@ -5,7 +5,7 @@ import {RootState} from "../../../redux/reducers";
 import TextArea from "../../../components/TextArea/TextArea";
 
 const Background = () => {
-  const background = useSelector((state: RootState) => state.characterReducer.Background);
+  const background = useSelector((state: RootState) => state.character.Background);
   return (
     <>
       <TextInput label="Name" value={background.Name} path="Background.Name"/>

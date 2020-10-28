@@ -8,20 +8,23 @@ import {deleteInArray, editText} from "../../../../redux/actions";
 import AddSpell from "./AddSpell";
 import {sortedSpells} from "../../../../redux/selectors";
 import styles from "./spells.module.scss";
+import CustomPopup from "../../../../components/CustomPopup/CustomPopup";
+import SpellSlots from "./SpellSlots";
 
 const Spells = () => {
   const [sortingOptions, setSortingOptions] = useState({criteria: "name", inverted: false});
+  const [isSpellSlots, setIsSpellSlots] = useState(false);
   const spells = useSelector(sortedSpells(sortingOptions));
-  const stats = useSelector((state: RootState) => state.characterReducer.Stats);
-  const playerLevel = useSelector((state: RootState) => state.characterReducer.MainStats.Level);
-  const spellProficiency = useSelector((state: RootState) => state.characterReducer.Other.SpellProficiency);
+  const stats = useSelector((state: RootState) => state.character.Stats);
+  const playerLevel = useSelector((state: RootState) => state.character.MainStats.Level);
+  const spellProficiency = useSelector((state: RootState) => state.character.Other.SpellProficiency);
   const dispatch = useDispatch();
 
-  const {showForm, itemDetails, ref, handleShowItem, handleShowForm, handleHideItem} = useCustomForm<Spell>();
+  const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<Spell>();
 
   const handleDelete = () => {
+    if (!!itemDetails) dispatch(deleteInArray("Spells", itemDetails.id));
     handleHideItem();
-    dispatch(deleteInArray("Spells", itemDetails!.id));
   };
 
   const handleSorting = ({target}: any) => setSortingOptions(prev => {
@@ -31,8 +34,11 @@ const Spells = () => {
 
   return (
     <>
-      <button className={styles.newSpellButton} onClick={handleShowForm}>Add spell</button>
-      {showForm && <AddSpell handleClose={handleShowForm}/>}
+      <button className={styles.genericButton} onClick={() => setIsSpellSlots(prev => !prev)}>Spell Slots</button>
+      <button className={styles.newSpellButton} onClick={() => {
+        setShowForm(prev => !prev)
+      }}>Add spell
+      </button>
       <div>
         <p>Save DC: {spellProficiency !== null ?
           <span>{8 + dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[spellProficiency as keyof Character["Stats"]])}</span> :
@@ -69,15 +75,23 @@ const Spells = () => {
           </div>
         ))}
       </div>
+      {isSpellSlots && <CustomPopup hideElement={setIsSpellSlots}><SpellSlots/></CustomPopup>}
+      {showForm &&
+      <CustomPopup hideElement={setShowForm}>
+          <AddSpell handleClose={setShowForm}/>
+      </CustomPopup>
+      }
       {itemDetails &&
-      <div ref={ref}>
-          <p>Name: {itemDetails.name}</p>
-          <p>Time: {itemDetails.castingTime}</p>
-          <p>Comp: {itemDetails.components}</p>
-          <p>Range: {itemDetails.range}</p>
-          <p>Name: {itemDetails.description}</p>
-          <button name={itemDetails.id} onClick={handleDelete}>DELETE</button>
-      </div>
+      <CustomPopup hideElement={setItemDetails}>
+          <div className={styles.spellDetails}>
+              <p>Name: {itemDetails.name}</p>
+              <p>Time: {itemDetails.castingTime}</p>
+              <p>Comp: {itemDetails.components}</p>
+              <p>Range: {itemDetails.range}</p>
+              <p>Name: {itemDetails.description}</p>
+              <button name={itemDetails.id} onClick={handleDelete}>DELETE</button>
+          </div>
+      </CustomPopup>
       }
     </>
   );

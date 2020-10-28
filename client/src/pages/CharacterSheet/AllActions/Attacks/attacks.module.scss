@@ -4,7 +4,7 @@
   padding: 0.15em 0;
   min-width: 5em;
   text-align: center;
-  width: 10em;
+  width: 10.5em;
   margin: auto;
   display: block;
 }
@@ -23,11 +23,23 @@
 }
 
 .newAttackForm {
-  border: 3px double #292929;
-  margin: 1em auto;
+  position: absolute;
+  background: white;
   padding: 2em;
+  border: 3px double #292929;
   width: fit-content;
   text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.newAttackSubmit {
+  background: black;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  margin-top: 1em;
 }
 
 .inputField {
@@ -45,4 +57,26 @@
 .profCheckbox {
   padding: 0.2em;
   margin: 0.3em;
+}
+
+.attackDetails {
+  position: fixed;
+  bottom: 0;
+  background: #d6d6d6;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  padding: 1em 0;
+}
+
+.detailsLabel {
+  padding: 0.5em;
+  font-size: 0.9em;
+}
+
+.detailsDelete {
+  background: inherit;
+  border: 1px solid black;
+  padding: .5em;
+  margin: .5em 0 1.5em 0;
 }

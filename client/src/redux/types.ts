@@ -8,6 +8,7 @@ export const SET_ARRAY = "SET_ARRAY";
 export const FLIP_BOOL = "FLIP_BOOL";
 export const DELETE_DICE = "DELETE_DICE";
 export const TAG_ELEMENT = "TAG_ELEMENT";
+export const SET_CHARACTER = "SET_CHARACTER";
 
 interface IncrementStat {
   type: typeof INCREMENT_STAT;
@@ -59,6 +60,11 @@ interface FlipBool {
   path: string;
 }
 
+interface SetCharacter {
+  type: typeof SET_CHARACTER;
+  newCharacter: Character;
+}
+
 export type CharacterActions = IncrementStat
   | DecrementStat
   | ChangeStat
@@ -67,7 +73,8 @@ export type CharacterActions = IncrementStat
   | DeleteInArray
   | AddToArray
   | EditText
-  | FlipBool;
+  | FlipBool
+  | SetCharacter;
 
 export type Attack = {
   id: string;

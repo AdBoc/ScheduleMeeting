@@ -9,13 +9,13 @@ import styles from './calendarPage.module.scss';
 
 const CalendarPage = () => {
   return (
-    <div className={styles.calendar}>
-      <UserContextProvider>
+    <UserContextProvider>
+      <div className={styles.calendar}>
         <Calendar/>
         <Users/>
-      </UserContextProvider>
-      <Footer/>
-    </div>
+        <Footer/>
+      </div>
+    </UserContextProvider>
   );
 }
 

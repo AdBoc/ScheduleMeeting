@@ -8,8 +8,8 @@ import styles from './header.module.scss';
 import {DiceSvg, InspirationSvg} from "../../../assets/GitSvg";
 
 const Header = () => {
-  const inspirationStatus = useSelector((state: RootState) => state.characterReducer.Other.Inspiration);
-  const diceStatus = useSelector((state: RootState) => state.characterReducer.DiceSim.status);
+  const inspirationStatus = useSelector((state: RootState) => state.character.Other.Inspiration);
+  const diceStatus = useSelector((state: RootState) => state.character.DiceSim.status);
   const [showDiceSim, setShowDiceSim] = useState(false);
 
   return (
@@ -24,4 +24,3 @@ const Header = () => {
 }
 
 export default Header;
-//TODO: react memo and import SVGs from assets GitSvg.tsx?

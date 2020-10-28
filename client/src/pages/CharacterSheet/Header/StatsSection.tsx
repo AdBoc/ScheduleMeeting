@@ -5,7 +5,7 @@ import {dndMath} from "../../../utils/dndMath";
 import styles from './header.module.scss';
 
 const StatsSection = () => {
-  const stat = useSelector((state: RootState) => state.characterReducer.MainStats);
+  const stat = useSelector((state: RootState) => state.character.MainStats);
   return (
     <div className={styles.highlights}>
       <div className={styles.highlight}>

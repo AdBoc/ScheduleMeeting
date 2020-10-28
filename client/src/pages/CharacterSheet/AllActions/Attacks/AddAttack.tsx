@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {addToArray} from "../../../../redux/actions";
@@ -6,7 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import styles from "./attacks.module.scss";
 
 interface IProps {
-  handleClose: () => void;
+  handleClose: Dispatch<SetStateAction<boolean>>;
 }
 
 const AddAttack: React.FC<IProps> = ({handleClose}) => {
@@ -21,7 +21,7 @@ const AddAttack: React.FC<IProps> = ({handleClose}) => {
       bonusHit: parseInt(data.bonusHit)
     };
     dispatch(addToArray("Attacks", newElement));
-    handleClose();
+    handleClose(prev => !prev);
   });
 
   return (
@@ -56,7 +56,7 @@ const AddAttack: React.FC<IProps> = ({handleClose}) => {
         <option value="Necrotic">Necrotic</option>
         <option value="Radiant">Radiant</option>
       </select>
-      <input type="submit" value="Submit"/>
+      <input className={styles.newAttackSubmit} type="submit" value="Submit"/>
     </form>
   );
 }

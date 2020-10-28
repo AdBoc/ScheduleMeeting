@@ -1,6 +1,7 @@
 import {
   ADD_TO_ARRAY,
   CHANGE_STAT,
+  Character,
   CharacterActions,
   DECREMENT_STAT,
   DELETE_IN_ARRAY,
@@ -8,6 +9,7 @@ import {
   FLIP_BOOL,
   INCREMENT_STAT,
   SET_ARRAY,
+  SET_CHARACTER,
   TAG_ELEMENT
 } from "./types";
 
@@ -59,4 +61,9 @@ export const editText = (path: string, newText: string | number): CharacterActio
 export const flipBool = (path: string): CharacterActions => ({
   type: FLIP_BOOL,
   path
+})
+
+export const setCharacter = (newCharacter: Character): CharacterActions => ({
+  type: SET_CHARACTER,
+  newCharacter,
 })

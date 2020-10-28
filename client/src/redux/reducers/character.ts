@@ -9,13 +9,19 @@ import {
   FLIP_BOOL,
   INCREMENT_STAT,
   SET_ARRAY,
+  SET_CHARACTER,
   TAG_ELEMENT
 } from "../types";
 import * as immutable from "object-path-immutable";
 
+// function calcStatToSkill(stat = [], action: any) {
+//   switch (action.type) {
+//     default:
+//       return stat;
+//   }
+// }
 
-const initialState = JSON.parse(localStorage.getItem("character")!) as Character;
-//najwyzej najczesciej wystepujace
+const initialState = null as unknown as Character; // const initialState = JSON.parse(localStorage.getItem("character")!) as Character;//czy initialState nie jest nieotzrebny
 export const characterReducer = (character = initialState, action: CharacterActions): Character => {
   switch (action.type) {
     case CHANGE_STAT:
@@ -34,6 +40,8 @@ export const characterReducer = (character = initialState, action: CharacterActi
       return immutable.update(character, action.path, (v) => v - 1) as any;
     case FLIP_BOOL:
       return immutable.update(character, action.path, (v) => !v) as any;
+    case SET_CHARACTER:
+      return action.newCharacter;
     case TAG_ELEMENT:
       const newArr = [...character.Other.TaggedThrows];
       if (action.newVal === newArr[0]) {

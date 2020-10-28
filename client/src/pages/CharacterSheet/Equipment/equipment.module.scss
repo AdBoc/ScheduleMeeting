@@ -27,11 +27,15 @@
 }
 
 .addItemForm {
-  border: 3px double #292929;
-  margin: 1em auto;
+  position: absolute;
+  background: white;
   padding: 2em;
+  border: 3px double #292929;
   width: fit-content;
   text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .addItemInput {
@@ -44,4 +48,25 @@
   display: block;
   margin: 0.5em auto;
   width: 11.5em;
+}
+
+.itemDetails {
+  position: fixed;
+  bottom: 0;
+  background: #d6d6d6;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+.goldForm {
+  position: absolute;
+  background: white;
+  padding: 2em;
+  border: 3px double #292929;
+  width: fit-content;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }

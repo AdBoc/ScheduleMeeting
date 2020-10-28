@@ -7,7 +7,7 @@ import {v4 as uuidv4} from 'uuid';
 import styles from "./spells.module.scss";
 
 interface IProps {
-  handleClose: () => void;
+  handleClose: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const AddSpell: React.FC<IProps> = ({handleClose}) => {
@@ -15,7 +15,7 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
   const {register, handleSubmit} = useForm();
   const onSubmit = handleSubmit((data) => {
     dispatch(addToArray("Spells", {...data, id: uuidv4()}));
-    handleClose();
+    handleClose(prev => !prev);
   });
 
   return (

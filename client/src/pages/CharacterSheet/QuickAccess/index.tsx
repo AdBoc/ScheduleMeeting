@@ -6,9 +6,10 @@ import {Link} from "react-router-dom";
 import ModifyStatField from "../../../components/ModifyStatField/ModifyStatField";
 import styles from "./quickAccess.module.scss";
 import Checkbox from "../../../components/Checkbox/Checkbox";
+import {history} from "../../../utils/history";
 
 const QuickAccess = () => {
-  const character = useSelector((state: RootState) => state.characterReducer);
+  const character = useSelector((state: RootState) => state.character);
 
   const handleCopy = () => {
     const dummy = document.createElement("textarea");
@@ -17,6 +18,13 @@ const QuickAccess = () => {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
+  }
+
+  const handleDelete = () => {
+    if (window.confirm("Are you sure?")) {
+      localStorage.clear();
+      history.push("/");
+    }
   }
 
   return (
@@ -34,7 +42,7 @@ const QuickAccess = () => {
       <hr className={styles.hl}/>
       <button className={styles.defaultButton}><Link className={styles.linkColor} to="/">Show Calendar</Link></button>
       <button className={styles.defaultButton} onClick={handleCopy}>Copy JSON</button>
-      <button className={styles.defaultButton}>Delete Character</button>
+      <button className={styles.dangerButton} onClick={handleDelete}>Delete Character</button>
     </>
   );
 }

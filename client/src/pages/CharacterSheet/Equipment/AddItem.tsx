@@ -7,7 +7,7 @@ import {addToArray} from "../../../redux/actions";
 import styles from "./equipment.module.scss";
 
 interface IProps {
-  closeForm: () => void;
+  closeForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const AddItem: React.FC<IProps> = ({closeForm}) => {
@@ -15,13 +15,15 @@ const AddItem: React.FC<IProps> = ({closeForm}) => {
   const {register, handleSubmit} = useForm();
   const onSubmit = handleSubmit((data) => {
     dispatch(addToArray("Equipment", {...data, id: uuidv4()}));
-    closeForm();
+    closeForm(prev => !prev);
   });
 
   return (
     <form className={styles.addItemForm} onSubmit={onSubmit}>
-      <input ref={register({required: true})} className={styles.addItemInput} placeholder="Name" name="name" aria-label="item name" autoComplete="off"/>
-      <input ref={register} className={styles.addItemInput} type="number" name="quantity" aria-label="quantity" placeholder="Quantity" onFocus={(e: any) => e.target.select()}/>
+      <input ref={register({required: true})} className={styles.addItemInput} placeholder="Name" name="name" aria-label="item name"
+             autoComplete="off"/>
+      <input ref={register} className={styles.addItemInput} type="number" name="quantity" aria-label="quantity" placeholder="Quantity"
+             onFocus={(e: any) => e.target.select()}/>
       <select ref={register} className={styles.addItemSelect} name="type" defaultValue="other">
         <option value="other">Other</option>
         <option value="weapons">Weapons</option>

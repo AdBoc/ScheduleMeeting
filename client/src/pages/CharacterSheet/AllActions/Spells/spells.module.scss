@@ -4,9 +4,18 @@
   padding: 0.15em 0;
   min-width: 5em;
   text-align: center;
-  width: 10em;
+  width: 10.5em;
   margin: auto;
-  display: block;
+  display: inline-block;
+}
+
+.genericButton {
+  background: var(--secondary-color);
+  border: none;
+  display: inline;
+  padding: 0.15em 0;
+  margin: 0 0.5em;
+  width: 5em;
 }
 
 .spellsGrid {
@@ -23,11 +32,15 @@
 }
 
 .newSpellForm {
-  border: 3px double #292929;
-  margin: 1em auto;
+  position: absolute;
+  background: white;
   padding: 2em;
+  border: 3px double #292929;
   width: fit-content;
   text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .inputField {
@@ -52,3 +65,49 @@
   border: none;
   padding: 0;
 }
+
+.spellDetails {
+  position: fixed;
+  bottom: 0;
+  background: #d6d6d6;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+.spellSlotsComponent {
+  position: absolute;
+  background: white;
+  padding: 2em;
+  border: 3px double #292929;
+  width: 14em;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spellSlot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em 0;
+}
+
+.currentSpellCount {
+  background: inherit;
+  border: none;
+  width: 2.4em;
+}
+
+.maxSpellInput {
+  width: 2em;
+  border: none;
+  text-align: center;
+}
+
+.slotLevel {
+  color: inherit;
+  padding-right: 3em;
+}
+

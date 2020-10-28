@@ -9,6 +9,8 @@ import {deleteInArray} from "../../../redux/actions";
 import MultiSelect from "react-multi-select-component";
 import {filteredEquipment} from "../../../redux/selectors";
 import styles from "./equipment.module.scss";
+import CustomPopup from "../../../components/CustomPopup/CustomPopup";
+import Gold from "./Gold";
 
 const options = [
   {label: "Armors", value: "armors"},
@@ -21,25 +23,35 @@ const options = [
 
 const Equipment = () => {
   const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
+  const [isGold, setIsGold] = useState(false);
 
   const items = useSelector(filteredEquipment(select));
-  const currency = useSelector((state: RootState) => state.characterReducer.Other.Currency);
+  const currency = useSelector((state: RootState) => state.character.Other.Currency);
   const dispatch = useDispatch();
 
-  const {showForm, handleShowForm, itemDetails, handleShowItem, ref, handleHideItem} = useCustomForm<EquipmentItem>();
+  const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<EquipmentItem>();
 
   const handleDelete = () => {
+    if (!!itemDetails) dispatch(deleteInArray("Equipment", itemDetails.id));
     handleHideItem();
-    dispatch(deleteInArray("Equipment", itemDetails!.id));
   }
 
   return (
     <>
       <div className={styles.buttons}>
-        <button className={styles.basicButton}>Total GP: {dndMath.totalGp(currency)}</button>
-        <button className={styles.basicButton} onClick={handleShowForm}>Add item</button>
+        <button className={styles.basicButton} onClick={() => {
+          setIsGold(prev => !prev)
+        }}>Total GP: {dndMath.totalGp(currency)}</button>
+        <button className={styles.basicButton} onClick={() => {
+          setShowForm(prev => !prev)
+        }}>Add item
+        </button>
       </div>
-      {showForm && <AddItem closeForm={handleHideItem}/>}
+      {showForm && <CustomPopup hideElement={setShowForm}>
+          <AddItem closeForm={setShowForm}/>
+      </CustomPopup>
+      }
+      {isGold && <CustomPopup hideElement={setIsGold}><Gold/></CustomPopup>}
       <MultiSelect
         className={styles.multiselect}
         options={options}
@@ -56,12 +68,14 @@ const Equipment = () => {
         </div>
       ))}
       {itemDetails &&
-      <div ref={ref}>
-          <p>{itemDetails.name}</p>
-          <p>{itemDetails.description}</p>
-          <p>{itemDetails.quantity ? itemDetails.quantity : "-"}</p>
-          <button onClick={handleDelete}>Delete</button>
-      </div>
+      <CustomPopup hideElement={setItemDetails}>
+          <div className={styles.itemDetails}>
+              <p>{itemDetails.name}</p>
+              <p>{itemDetails.description}</p>
+              <p>{itemDetails.quantity ? itemDetails.quantity : "-"}</p>
+              <button onClick={handleDelete}>Delete</button>
+          </div>
+      </CustomPopup>
       }
     </>
   );

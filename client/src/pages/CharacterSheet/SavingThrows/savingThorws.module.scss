@@ -5,11 +5,20 @@
   flex: 0 33%;
 }
 
-.savingButtons {
+.savingButton {
   padding: 0.7em 0.5em;
   margin: 0.25em;
   min-width: 10em;
   background: inherit;
+  border: none;
+}
+
+.savingButtonTagged {
+  padding: 0.7em 0.5em;
+  margin: 0.25em;
+  min-width: 10em;
+  background: black;
+  color: white;
   border: none;
 }
 
@@ -22,6 +31,33 @@
   width: 2em;
   height: 2em;
   background: inherit;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0.2em;
+}
+
+.deathButtonTagged {
+  width: 2em;
+  height: 2em;
+  background: #ff6969;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0.2em;
+}
+
+.saveButton {
+  width: 2em;
+  height: 2em;
+  background: inherit;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0.2em;
+}
+
+.saveButtonTagged {
+  width: 2em;
+  height: 2em;
+  background: #609260;
   border: 1px solid black;
   border-radius: 4px;
   margin: 0.2em;

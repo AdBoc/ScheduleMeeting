@@ -17,12 +17,11 @@ const CURRENT_TAB: { [key: string]: JSX.Element } = {
 
 const CharacterSheet = () => {
   const {currentTab, handleTouchEnd, handleTouchStart} = useSwipe();
-
   return (
-      <div className={styles.characterSheet}>
-        <Header/>
-        <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
-      </div>
+    <div className={styles.characterSheet}>
+      <Header/>
+      <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
+    </div>
   );
 }
 

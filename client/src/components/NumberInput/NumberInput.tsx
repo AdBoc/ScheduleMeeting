@@ -11,13 +11,19 @@ interface IProps {
 
 const NumberInput: React.FC<IProps> = ({label, path, value}) => {
   const dispatch = useDispatch();
+  const handleChange = ({target}: any) => {
+    if (/^[1-9][0-9]*$/.test(target.value))
+      dispatch(editText(path, parseInt(target.value)));
+  }
+
   return (
     <div className={styles.numberInput}>
       <label className={styles.label}>{label}</label>
       <input
         className={styles.input}
         type="number"
-        onChange={({target}) => dispatch(editText(path, parseInt(target.value)))}
+        onChange={handleChange}
+        onFocus={(e) => e.target.select()}
         value={value}
         autoComplete="off"
         autoCorrect="false"

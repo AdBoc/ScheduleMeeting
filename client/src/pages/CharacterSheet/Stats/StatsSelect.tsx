@@ -1,7 +1,9 @@
 import React, {useRef, useState} from "react";
-import {useDispatch} from "react-redux";
-import {changeStatValue} from "../../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {changeStatValue, setCharacter} from "../../../redux/actions";
 import styles from "./stats.module.scss";
+import {RootState} from "../../../redux/reducers";
+import {dndMath} from "../../../utils/dndMath";
 
 interface IProps {
   statName: string;
@@ -9,6 +11,7 @@ interface IProps {
 }
 
 const StatsSelect: React.FC<IProps> = ({statName, statVal}) => {
+  const character = useSelector((state: RootState) => state.character);
   const dispatch = useDispatch();
   const [newVal, setNewVal] = useState(statVal);
   const error = useRef(false);
@@ -16,7 +19,8 @@ const StatsSelect: React.FC<IProps> = ({statName, statVal}) => {
   const handleStatChange = ({target}: any) => {
     setNewVal(target.value);
     if (/^\b([1-9]|[12][0-9]|30)\b/.test(target.value)) {
-      error.current = false
+      error.current = false;
+      dispatch(setCharacter({...character, Skills: dndMath.generateNewSkills(character.Skills, +target.value, statName)}));
       dispatch(changeStatValue(`Stats.${statName}`, +target.value));
     } else {
       error.current = true;

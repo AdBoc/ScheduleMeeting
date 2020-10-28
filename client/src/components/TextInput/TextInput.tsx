@@ -11,17 +11,21 @@ interface IProps {
 
 const TextInput: React.FC<IProps> = ({label, path, value}) => {
   const dispatch = useDispatch();
+
   return (
     <div className={styles.textInput}>
       <label className={styles.label}>{label}</label>
       <input
         className={styles.input}
         type="text"
-        onChange={({target}) => dispatch(editText(path, target.value))}
+        onChange={({target}) => {
+          dispatch(editText(path, target.value))
+        }}
         value={value}
         autoComplete="off"
         autoCorrect="false"
         spellCheck="false"
+        maxLength={22}
       />
     </div>
   );

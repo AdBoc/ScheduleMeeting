@@ -1,12 +1,17 @@
 import {createStore} from 'redux';
 import {rootReducer} from './reducers';
 import {loadStateFromStorage, saveStateToStorage} from "../utils/localStorage";
+import {composeWithDevTools} from "redux-devtools-extension";
+import api from "../utils/api";
 
-//@ts-ignore
-const store = createStore(rootReducer, loadStateFromStorage(), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, loadStateFromStorage(), composeWithDevTools())
 
 store.subscribe(() => saveStateToStorage({
-  characterReducer: store.getState().characterReducer
+  character: store.getState().character
 }));
+
+store.subscribe(() => {
+  api.sendCharacter()
+})
 
 export default store;

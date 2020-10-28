@@ -5,36 +5,56 @@ import {Character} from "../../../redux/types";
 import {dndMath} from "../../../utils/dndMath";
 import {decrementStat, incrementStat, setArray} from "../../../redux/actions";
 import styles from "./skills.module.scss";
-import {latest} from "immer/dist/utils/common";
 
 interface IProps {
+  edit: boolean
   skillName: keyof Character["Skills"];
   label: string;
 }
 
-const Skill: React.FC<IProps> = ({skillName, label}) => {
-  const character = useSelector((state: RootState) => state.characterReducer);
+const hpColors: any = {
+  "-5": styles.veyLowStat,
+  "-4": styles.veyLowStat,
+  "-3": styles.negativeStat,
+  "-2": styles.negativeStat,
+  "-1": styles.negativeStat,
+  0: styles.neutralStat,
+  1: styles.positiveStat,
+  2: styles.positiveStat,
+  3: styles.positiveStat,
+  4: styles.veryHighStat,
+  5: styles.veryHighStat,
+}
+
+const Skill: React.FC<IProps> = ({edit, skillName, label}) => {
+  const skill = useSelector((state: RootState) => state.character.Skills[skillName]);
+  const taggedSkills = useSelector((state: RootState) => state.character.Other.TaggedSkills);
+  const level = useSelector((state: RootState) => state.character.MainStats.Level)
   const dispatch = useDispatch();
 
-  const taggedIndex = character.Other.TaggedSkills.findIndex(skill => skill === skillName);
-  const skillVal = taggedIndex === -1 ? character.Skills[skillName] : character.Skills[skillName] + dndMath.skillProficiency(character.MainStats.Level);
+  const taggedIndex = taggedSkills.findIndex(skill => skill === skillName);
+  const skillVal = taggedIndex === -1 ? skill : skill + dndMath.skillProficiency(level);
 
   const handleTag = ({target}: any) => {
     let newTagArr: string[];
-    if (taggedIndex === -1) newTagArr = [...character.Other.TaggedSkills, target.name];
-    else newTagArr = [...character.Other.TaggedSkills.slice(0, taggedIndex), ...character.Other.TaggedSkills.slice(taggedIndex + 1)];
+    if (taggedIndex === -1) newTagArr = [...taggedSkills, target.name];
+    else newTagArr = [...taggedSkills.slice(0, taggedIndex), ...taggedSkills.slice(taggedIndex + 1)];
     dispatch(setArray("Other.TaggedSkills", newTagArr));
   }
 
   return (
     <div className={styles.skill}>
-      {/*<button onClick={() => dispatch(decrementStat(`Skills.${skillName}`))}>-</button>*/}
-      <button className={styles.skillName} name={skillName} onClick={handleTag}>{label}</button>
-      {/*<button onClick={() => dispatch(incrementStat(`Skills.${skillName}`))}>+</button>*/}
-      <p>{skillVal}</p>
+      <button className={taggedIndex !== -1 ? styles.skillNameTagged : styles.skillName} name={skillName}
+              onClick={edit ? handleTag : undefined}>{label}</button>
+      <button className={edit ? styles.skillEditButton : styles.skillEditButtonInvisible}
+              onClick={() => dispatch(decrementStat(`Skills.${skillName}`))}>-
+      </button>
+      <p className={`${hpColors[skillVal]} ${taggedIndex !== -1 ? styles.skillValueTagged : styles.skillValue}`}>{skillVal}</p>
+      <button className={edit ? styles.skillEditButton : styles.skillEditButtonInvisible}
+              onClick={() => dispatch(incrementStat(`Skills.${skillName}`))}>+
+      </button>
     </div>
   );
 }
 
 export default Skill;
-//TODO: useMEMo??
