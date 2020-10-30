@@ -1,0 +1,84 @@
+.contextMenu {
+  position: fixed;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 14px -7px #000000;
+  box-shadow: 0 1px 14px -7px #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 4em;
+  right: 3em;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  background: rgba(116, 156, 255, 0.5);
+  cursor: pointer;
+}
+
+.lineSmall {
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  width: 40%;
+  margin: auto;
+}
+
+.lineLarge {
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  width: 60%;
+}
+
+.expandedMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 1, 1, 0.85);
+}
+
+.lineLargeSelected {
+  border-top: 2px solid #2af6c1;
+  width: 60%;
+}
+
+.lineSmallSelected {
+  border-top: 2px solid #2af6c1;
+  width: 40%;
+  margin: auto;
+}
+
+.contextMenuSelected {
+  position: fixed;
+  border: 2px solid #2af6c1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 4em;
+  right: 3em;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  background: rgba(14, 37, 93, 0.5);
+}
+
+.effectWrapper {
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid #2af6c1;
+  color: #2af6c1;
+  background: #1c1c1c;
+}
+
+.effectName {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.75em;
+}
+
+.noEffects {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 2em;
+  color: #2af6c1;
+}

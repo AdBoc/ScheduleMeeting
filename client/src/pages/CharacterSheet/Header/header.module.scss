@@ -1,0 +1,117 @@
+.header {
+  background: var(--primary-color);
+  color: white;
+}
+
+.topSection {
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.characterName {
+  font-size: 1.2em;
+}
+
+.characterDetails {
+  font-size: 0.8em;
+}
+
+.hpField {
+  font-size: 1.2em;
+}
+
+.hpLabel {
+  font-size: 0.8em;
+  padding: 0.1em;
+}
+
+.highlights {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.highlight {
+  flex: 0 0 4em;
+  margin: 0 0.5em 1em;
+  min-height: 3em;
+}
+
+.highlightedStats {
+  font-size: 1.25em;
+}
+
+.highlightedLabel {
+  font-size: 0.9em;
+}
+
+.dicesSvg {
+  width: 2em;
+  height: 2em;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.inspirationSvg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.hpForm {
+  position: absolute;
+  background-color: white;
+  top: 3.5em;
+  right: 10px;
+  width: 6em;
+  height: fit-content;
+  border: 1px solid black;
+  text-align: center;
+  z-index: 1;
+  padding-bottom: 0.5em;
+}
+
+.hpInputField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hpFormInput {
+  width: 2em;
+  font-size: 0.9em;
+  height: 1.5em;
+  border-radius: 3px;
+  text-align: center;
+  margin: .5em;
+  border: 1px solid black;
+}
+
+.hpFormButtons {
+  background: inherit;
+  border: none;
+  min-width: 1.2em;
+}
+
+.hl {
+  margin: 0.5em;
+}
+
+.hpDanger {
+  color: #ff6767;;
+}
+
+.hpWarning {
+  color: #ffb239;
+}
+
+.hpNormal {
+  color: white;
+}
+
+.hpGood {
+  color: #9fff9f;
+}

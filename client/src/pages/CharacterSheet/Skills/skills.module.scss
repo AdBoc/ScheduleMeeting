@@ -1,0 +1,104 @@
+.skills {
+  padding: 1em;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3em 0.25em;
+}
+
+.skillName {
+  background: inherit;
+  flex: 1.1;
+  border: none;
+  text-align: left;
+  padding-left: 2em;
+}
+
+.skillNameTagged {
+  flex: 1 1;
+  border: none;
+  text-align: left;
+  background: linear-gradient(90deg, #0d0d0d, white);
+  color: white;
+  padding-left: 2em;
+}
+
+.button {
+  float: right;
+  border: none;
+  background: inherit;
+  padding: 0.2em 0.4em;
+  position: relative;
+  top: -0.5em;
+}
+
+.buttonSelected {
+  float: right;
+  border: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg,#000,#373737);
+  color: white;
+  padding: 0.2em 0.4em;
+  position: relative;
+  top: -0.5em;
+}
+
+.skillLabel {
+  font-size: 1.4em;
+  border-bottom: 1px solid black;
+}
+
+.skillEditButton {
+  background: inherit;
+  padding: 0;
+  text-align: center;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 .5em;
+  font-size: 0.9em;
+}
+
+.skillEditButtonInvisible {
+  background: inherit;
+  padding: 0;
+  text-align: center;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 .5em;
+  font-size: 0.9em;
+  visibility: hidden;
+}
+
+.skillValue {
+  min-width: 1.25em;
+  text-align: center;
+}
+
+.skillValueTagged {
+  min-width: 1.25em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.veryHighStat {
+  color: #37c200;
+}
+
+.positiveStat {
+  color: #288c00;
+}
+
+.neutralStat {
+  color: black;
+}
+
+.negativeStat {
+  color: #ba0000;
+}
+
+.veyLowStat {
+  color: #ff4040;
+}

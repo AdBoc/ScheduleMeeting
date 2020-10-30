@@ -1,0 +1,19 @@
+.selectMenu {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1px solid black;
+  min-height: 3.2em;
+  font-size: 0.85em;
+
+  @media only screen and (min-width: 600px) {
+    justify-content: center;
+  }
+}
+
+.buttons {
+  padding: 0.75em;
+  margin: 0.25em;
+  border: none;
+  background: inherit;
+}
