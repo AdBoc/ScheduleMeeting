@@ -26,8 +26,10 @@ export const useSwipe = () => {
   };
 
   return {
+    tabs,
+    setCurrentIndex,
+    currentTab,
     handleTouchStart,
     handleTouchEnd,
-    currentTab,
   }
 }

@@ -61,19 +61,23 @@ const Equipment = () => {
         hasSelectAll={false}
         disableSearch={true}
       />
-      {items.map(item => (
-        <div key={item.id} className={styles.items} onClick={handleShowItem(item)}>
-          <p>{item.name}</p>
-          <p className={styles.itemQuantity}>{item.quantity ? item.quantity : "-"}</p>
-        </div>
-      ))}
+      <div>
+        {items.length !== 0 ? items.map(item => (
+            <div key={item.id} className={styles.items} onClick={handleShowItem(item)}>
+              <p>{item.name}</p>
+              <p className={styles.itemQuantity}>{item.quantity ? item.quantity : "-"}</p>
+            </div>
+          )) :
+          <p className={styles.emptyList}>List is currently Empty</p>
+        }
+      </div>
       {itemDetails &&
       <CustomPopup hideElement={setItemDetails}>
           <div className={styles.itemDetails}>
-              <p>{itemDetails.name}</p>
-              <p>{itemDetails.description}</p>
-              <p>{itemDetails.quantity ? itemDetails.quantity : "-"}</p>
-              <button onClick={handleDelete}>Delete</button>
+              <p className={styles.detailsLabel}>{itemDetails.name}</p>
+              <p className={styles.detailsLabel}>{itemDetails.description}</p>
+              <p className={styles.detailsLabel}>{itemDetails.quantity ? itemDetails.quantity : "-"}</p>
+              <button className={styles.detailsDelete} onClick={handleDelete}>Delete</button>
           </div>
       </CustomPopup>
       }

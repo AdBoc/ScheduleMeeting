@@ -1,12 +1,45 @@
 .newAttackButton {
-  background: var(--secondary-color);
-  border: none;
-  padding: 0.15em 0;
-  min-width: 5em;
-  text-align: center;
-  width: 10.5em;
-  margin: auto;
-  display: block;
+  composes: genericSingleButton from "../reusableStyles.module.scss";
+}
+
+.attackDetails {
+  composes: detailsView from "../reusableStyles.module.scss";
+}
+
+.detailsLabel {
+  composes: detailsItem from "../reusableStyles.module.scss";
+}
+
+.detailsDelete {
+  composes: detailsDelete from "../reusableStyles.module.scss";
+}
+
+.emptyList {
+  composes: emptyListNotification from "../reusableStyles.module.scss";
+}
+
+.newAttackForm {
+  composes: newForm from "../reusableStyles.module.scss";
+}
+
+.newAttackSubmit {
+  composes: newFormSubmit from "../reusableStyles.module.scss";
+}
+
+.select {
+  composes: newFormSelect from "../reusableStyles.module.scss";
+}
+
+.inputField {
+  composes: newFormInput from "../reusableStyles.module.scss";
+}
+
+.inputError {
+  composes: newFormError from "../reusableStyles.module.scss";
+}
+
+.formTitle {
+  composes: newFormTitle from "../reusableStyles.module.scss";
 }
 
 .attacksGrid {
@@ -22,61 +55,7 @@
   font-size: 0.9em;
 }
 
-.newAttackForm {
-  position: absolute;
-  background: white;
-  padding: 2em;
-  border: 3px double #292929;
-  width: fit-content;
-  text-align: center;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.newAttackSubmit {
-  background: black;
-  color: white;
-  border: none;
-  padding: 0.5em 1em;
-  margin-top: 1em;
-}
-
-.inputField {
-  display: block;
-  margin: 0.5em;
-  width: 11em;
-}
-
-.select {
-  display: block;
-  margin: 0.5em auto;
-  width: 11.5em;
-}
-
 .profCheckbox {
   padding: 0.2em;
   margin: 0.3em;
-}
-
-.attackDetails {
-  position: fixed;
-  bottom: 0;
-  background: #d6d6d6;
-  text-align: center;
-  width: 100%;
-  margin: auto;
-  padding: 1em 0;
-}
-
-.detailsLabel {
-  padding: 0.5em;
-  font-size: 0.9em;
-}
-
-.detailsDelete {
-  background: inherit;
-  border: 1px solid black;
-  padding: .5em;
-  margin: .5em 0 1.5em 0;
 }

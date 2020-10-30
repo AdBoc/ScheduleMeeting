@@ -21,7 +21,6 @@
 }
 
 .topButton {
-  cursor: pointer;
   padding: .1em;
 }
 
@@ -46,12 +45,11 @@
 }
 
 .selectAllButton {
+  background: inherit;
   color: inherit;
   border: none;
-  background-color: inherit;
-  font-size: 0.9em;
-  cursor: pointer;
   outline: none;
+  font-size: 0.9em;
 }
 
 .day {
@@ -59,13 +57,12 @@
   color: inherit;
   border: none;
   outline: none;
-  cursor: pointer;
-
   padding: 0.75em;
 }
 
 .selected {
   background: var(--selected);
+  color: white;
 }
 
 .today {

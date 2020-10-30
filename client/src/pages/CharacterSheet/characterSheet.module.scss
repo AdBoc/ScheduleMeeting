@@ -2,4 +2,16 @@
   --primary-color: rgb(41, 41, 41);
   --secondary-color: rgb(239, 239, 239);
   font-family: "Roboto";
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.selectedTab {
+  flex: 1 1;
+
+  max-width: 25em;
+  width: 100%;
+  align-self: center;
 }

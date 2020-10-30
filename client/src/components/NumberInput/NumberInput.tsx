@@ -7,9 +7,10 @@ interface IProps {
   label: string;
   value: number;
   path: string;
+  customClass?: any;
 }
 
-const NumberInput: React.FC<IProps> = ({label, path, value}) => {
+const NumberInput: React.FC<IProps> = ({label, path, value, customClass}) => {
   const dispatch = useDispatch();
   const handleChange = ({target}: any) => {
     if (/^[1-9][0-9]*$/.test(target.value))
@@ -17,7 +18,7 @@ const NumberInput: React.FC<IProps> = ({label, path, value}) => {
   }
 
   return (
-    <div className={styles.numberInput}>
+    <div className={customClass ? customClass : styles.numberInput}>
       <label className={styles.label}>{label}</label>
       <input
         className={styles.input}
@@ -28,6 +29,9 @@ const NumberInput: React.FC<IProps> = ({label, path, value}) => {
         autoComplete="off"
         autoCorrect="false"
         spellCheck="false"
+        onInput = {(e: any) =>{
+          e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,5)
+        }}
       />
     </div>
   );

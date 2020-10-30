@@ -9,9 +9,20 @@ interface IProps {
   handleClose: Dispatch<SetStateAction<boolean>>;
 }
 
+type Inputs = {
+  name: string;
+  diceType: string;
+  range: string;
+  bonusDamage: string;
+  bonusHit: string;
+  proficient: boolean;
+  profMod: string;
+  type: string;
+}
+
 const AddAttack: React.FC<IProps> = ({handleClose}) => {
   const dispatch = useDispatch();
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, errors} = useForm<Inputs>();
   const onSubmit = handleSubmit((data) => {
     const newElement = {
       ...data,
@@ -26,11 +37,47 @@ const AddAttack: React.FC<IProps> = ({handleClose}) => {
 
   return (
     <form className={styles.newAttackForm} onSubmit={onSubmit}>
-      <input className={styles.inputField} ref={register({required: true})} placeholder="Name" name="name" autoComplete="off"/>
-      <input className={styles.inputField} ref={register({required: true})} placeholder="Dice" name="diceType" autoComplete="off"/>
-      <input className={styles.inputField} ref={register({required: true})} placeholder="Range" name="range" type="number" autoComplete="off"/>
-      <input className={styles.inputField} ref={register({required: true})} placeholder="Bonus Damage" name="bonusDamage" autoComplete="off" type="number"/>
-      <input className={styles.inputField} ref={register({required: true})} placeholder="Bonus hit" name="bonusHit" autoComplete="off" type="number"/>
+      <p className={styles.formTitle}>New Attack</p>
+      <input
+        className={errors.name ? styles.inputError : styles.inputField}
+        ref={register({required: true, maxLength: 20})}
+        placeholder="Name"
+        name="name"
+        autoComplete="off"
+        spellCheck="false"
+      />
+      <input
+        className={errors.diceType ? styles.inputError : styles.inputField}
+        ref={register({required: true, maxLength: 20})}
+        placeholder="Dice"
+        name="diceType"
+        autoComplete="off"
+        spellCheck="false"
+      />
+      <input
+        className={errors.range ? styles.inputError : styles.inputField}
+        ref={register({required: true, maxLength: 5})}
+        placeholder="Range"
+        name="range"
+        type="number"
+        autoComplete="off"
+      />
+      <input
+        className={errors.bonusDamage ? styles.inputError : styles.inputField}
+        ref={register({required: true, maxLength: 5})}
+        placeholder="Bonus Damage"
+        name="bonusDamage"
+        autoComplete="off"
+        type="number"
+      />
+      <input
+        className={errors.bonusHit ? styles.inputError : styles.inputField}
+        ref={register({required: true, maxLength: 5})}
+        placeholder="Bonus hit"
+        name="bonusHit"
+        autoComplete="off"
+        type="number"
+      />
       <label>Proficiency<input ref={register} className={styles.profCheckbox} type="checkbox" name="proficient"/></label>
       <select ref={register} className={styles.select} name="profMod" defaultValue="Strength">
         <option value="Strength">Strength</option>

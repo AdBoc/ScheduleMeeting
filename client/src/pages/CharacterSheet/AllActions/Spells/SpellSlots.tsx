@@ -47,7 +47,7 @@ const SpellSlots = () => {
           />
         </div>
       ))}
-      <button onClick={handleRest}>Rest</button>
+      <button onClick={handleRest} className={styles.addSpell}>Rest</button>
     </div>
   )
 }

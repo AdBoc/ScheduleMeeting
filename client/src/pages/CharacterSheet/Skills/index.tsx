@@ -6,7 +6,7 @@ const Skills = () => {
   const [isEdit, setIsEdit] = useState(false);
   return (
     <div className={styles.skills}>
-      <button className={styles.button} onClick={() => setIsEdit(prev => !prev)}>EDIT</button>
+      <button className={isEdit ? styles.buttonSelected : styles.button} onClick={() => setIsEdit(prev => !prev)}>EDIT</button>
       <p className={styles.skillLabel}>Strength</p>
       <Skill edit={isEdit} label="Athletics" skillName="Athletics"/>
       <p className={styles.skillLabel}>Dexterity</p>

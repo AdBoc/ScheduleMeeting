@@ -18,18 +18,32 @@
 }
 
 .skillNameTagged {
-  flex: 1.1;
+  flex: 1 1;
   border: none;
   text-align: left;
-  background: black;
+  background: linear-gradient(90deg, #0d0d0d, white);
   color: white;
   padding-left: 2em;
 }
 
 .button {
-  background: inherit;
-  border: none;
   float: right;
+  border: none;
+  background: inherit;
+  padding: 0.2em 0.4em;
+  position: relative;
+  top: -0.5em;
+}
+
+.buttonSelected {
+  float: right;
+  border: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg,#000,#373737);
+  color: white;
+  padding: 0.2em 0.4em;
+  position: relative;
+  top: -0.5em;
 }
 
 .skillLabel {

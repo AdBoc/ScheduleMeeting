@@ -35,6 +35,15 @@ const Skill: React.FC<IProps> = ({edit, skillName, label}) => {
   const taggedIndex = taggedSkills.findIndex(skill => skill === skillName);
   const skillVal = taggedIndex === -1 ? skill : skill + dndMath.skillProficiency(level);
 
+  const handleIncrement = () => {
+    if (skill === 5) return;
+    dispatch(incrementStat(`Skills.${skillName}`))
+  }
+  const handleDecrement = () => {
+    if (skill === -5) return;
+    dispatch(decrementStat(`Skills.${skillName}`))
+  }
+
   const handleTag = ({target}: any) => {
     let newTagArr: string[];
     if (taggedIndex === -1) newTagArr = [...taggedSkills, target.name];
@@ -46,13 +55,9 @@ const Skill: React.FC<IProps> = ({edit, skillName, label}) => {
     <div className={styles.skill}>
       <button className={taggedIndex !== -1 ? styles.skillNameTagged : styles.skillName} name={skillName}
               onClick={edit ? handleTag : undefined}>{label}</button>
-      <button className={edit ? styles.skillEditButton : styles.skillEditButtonInvisible}
-              onClick={() => dispatch(decrementStat(`Skills.${skillName}`))}>-
-      </button>
+      <button className={edit ? styles.skillEditButton : styles.skillEditButtonInvisible} onClick={handleDecrement}>-</button>
       <p className={`${hpColors[skillVal]} ${taggedIndex !== -1 ? styles.skillValueTagged : styles.skillValue}`}>{skillVal}</p>
-      <button className={edit ? styles.skillEditButton : styles.skillEditButtonInvisible}
-              onClick={() => dispatch(incrementStat(`Skills.${skillName}`))}>+
-      </button>
+      <button className={edit ? styles.skillEditButton : styles.skillEditButtonInvisible} onClick={handleIncrement}>+</button>
     </div>
   );
 }

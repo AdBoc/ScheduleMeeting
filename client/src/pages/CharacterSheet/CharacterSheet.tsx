@@ -1,8 +1,10 @@
-import React from 'react';
-
+import React from "react";
 import {useSwipe} from "../../hooks/useSwipe";
 
 import {AllActions, Background, Equipment, Header, QuickAccess, SavingThrows, Skills, Stats} from './index';
+import ContextMenu from "./ContextMenu";
+import SelectMenu from "./SelectMenu";
+
 import styles from './characterSheet.module.scss';
 
 const CURRENT_TAB: { [key: string]: JSX.Element } = {
@@ -16,11 +18,13 @@ const CURRENT_TAB: { [key: string]: JSX.Element } = {
 };
 
 const CharacterSheet = () => {
-  const {currentTab, handleTouchEnd, handleTouchStart} = useSwipe();
+  const {currentTab, tabs, setCurrentIndex, handleTouchEnd, handleTouchStart} = useSwipe();
   return (
     <div className={styles.characterSheet}>
       <Header/>
-      <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
+      <SelectMenu tabs={tabs} setTab={setCurrentIndex}/>
+      <div className={styles.selectedTab} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
+      <ContextMenu/>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import ModifyStatField from "../../../components/ModifyStatField/ModifyStatField
 import styles from "./quickAccess.module.scss";
 import Checkbox from "../../../components/Checkbox/Checkbox";
 import {history} from "../../../utils/history";
+import api from "../../../utils/api";
 
 const QuickAccess = () => {
   const character = useSelector((state: RootState) => state.character);
@@ -22,6 +23,7 @@ const QuickAccess = () => {
 
   const handleDelete = () => {
     if (window.confirm("Are you sure?")) {
+      api.deleteCharacter();
       localStorage.clear();
       history.push("/");
     }

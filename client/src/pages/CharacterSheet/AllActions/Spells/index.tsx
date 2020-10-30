@@ -34,18 +34,20 @@ const Spells = () => {
 
   return (
     <>
-      <button className={styles.genericButton} onClick={() => setIsSpellSlots(prev => !prev)}>Spell Slots</button>
-      <button className={styles.newSpellButton} onClick={() => {
-        setShowForm(prev => !prev)
-      }}>Add spell
-      </button>
-      <div>
-        <p>Save DC: {spellProficiency !== null ?
+      <div className={styles.buttonsRow}>
+        <button className={styles.genericButton} onClick={() => setIsSpellSlots(prev => !prev)}>Spell Slots</button>
+        <button className={styles.genericButton} onClick={() => {
+          setShowForm(prev => !prev)
+        }}>Add spell
+        </button>
+        <p className={styles.spellStats}>Save DC: {spellProficiency !== null ?
           <span>{8 + dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[spellProficiency as keyof Character["Stats"]])}</span> :
-          <span>SelectProf</span>}</p>
-        <p>Attack Bonus: {spellProficiency !== null ?
+          <span>?</span>}</p>
+        <p className={styles.spellStats}>Atk Bonus: {spellProficiency !== null ?
           <span>{dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[(spellProficiency as keyof Character["Stats"])])}</span> :
-          <span>Select Prof</span>}</p>
+          <span>?</span>}</p>
+      </div>
+      <div>
         {spellProficiency === null && (
           <select onChange={({target}: any) => dispatch(editText("Other.SpellProficiency", target.value))}>
             <option value="Strength">Strength</option>
@@ -65,7 +67,7 @@ const Spells = () => {
           <button className={styles.tableLabel} name="school" onClick={handleSorting}>School</button>
           <p>Components</p>
         </div>
-        {spells.map(spell => (
+        {spells.length !== 0 ? spells.map(spell => (
           <div key={spell.id} className={styles.spellsGrid} onClick={handleShowItem(spell)}>
             <p>{spell.name}</p>
             <p>{spell.level}</p>
@@ -73,7 +75,9 @@ const Spells = () => {
             <p>{spell.school}</p>
             <p>{spell.components}</p>
           </div>
-        ))}
+        )) : (
+          <p className={styles.emptyList}>List is empty</p>
+        )}
       </div>
       {isSpellSlots && <CustomPopup hideElement={setIsSpellSlots}><SpellSlots/></CustomPopup>}
       {showForm &&
@@ -84,12 +88,12 @@ const Spells = () => {
       {itemDetails &&
       <CustomPopup hideElement={setItemDetails}>
           <div className={styles.spellDetails}>
-              <p>Name: {itemDetails.name}</p>
-              <p>Time: {itemDetails.castingTime}</p>
-              <p>Comp: {itemDetails.components}</p>
-              <p>Range: {itemDetails.range}</p>
-              <p>Name: {itemDetails.description}</p>
-              <button name={itemDetails.id} onClick={handleDelete}>DELETE</button>
+              <p className={styles.labelDetails}>Name: {itemDetails.name}</p>
+              <p className={styles.labelDetails}>Time: {itemDetails.castingTime}</p>
+              <p className={styles.labelDetails}>Comp: {itemDetails.components}</p>
+              <p className={styles.labelDetails}>Range: {itemDetails.range}</p>
+              <p className={styles.labelDetails}>Name: {itemDetails.description}</p>
+              <button className={styles.deleteDetails} name={itemDetails.id} onClick={handleDelete}>DELETE</button>
           </div>
       </CustomPopup>
       }

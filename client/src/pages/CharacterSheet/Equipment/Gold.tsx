@@ -8,11 +8,11 @@ const Gold = () => {
   const currency = useSelector((state: RootState) => state.character.Other.Currency);
   return (
     <div className={styles.goldForm}>
-      <NumberInput label="PP" value={currency.PP} path="Other.Currency.PP"/>
-      <NumberInput label="GP" value={currency.GP} path="Other.Currency.GP"/>
-      <NumberInput label="EP" value={currency.EP} path="Other.Currency.EP"/>
-      <NumberInput label="SP" value={currency.SP} path="Other.Currency.SP"/>
-      <NumberInput label="CP" value={currency.CP} path="Other.Currency.CP"/>
+      <NumberInput customClass={styles.numInput} label="PP" value={currency.PP} path="Other.Currency.PP"/>
+      <NumberInput customClass={styles.numInput} label="GP" value={currency.GP} path="Other.Currency.GP"/>
+      <NumberInput customClass={styles.numInput} label="EP" value={currency.EP} path="Other.Currency.EP"/>
+      <NumberInput customClass={styles.numInput} label="SP" value={currency.SP} path="Other.Currency.SP"/>
+      <NumberInput customClass={styles.numInput} label="CP" value={currency.CP} path="Other.Currency.CP"/>
     </div>
   );
 }

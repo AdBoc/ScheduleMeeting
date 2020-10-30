@@ -23,6 +23,7 @@ const TextArea: React.FC<IProps> = ({value, label, path}) => {
           dispatch(editText(path, target.value))
         }}
         spellCheck="false"
+        maxLength={1000}
       />
     </div>
   );

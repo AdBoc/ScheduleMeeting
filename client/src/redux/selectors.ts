@@ -21,3 +21,6 @@ export const sortedSpells = (sortingCriteria: { criteria: string; inverted: bool
   if (sortingCriteria.inverted) spells.reverse();
   return spells;
 };
+export const activeEffects = (state: RootState) => {
+  return state.character.Effects.filter(effect => effect.active);
+}

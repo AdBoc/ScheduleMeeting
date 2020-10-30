@@ -1,0 +1,96 @@
+.addEffectButton {
+  composes: genericSingleButton from "../reusableStyles.module.scss";
+}
+
+.emptyList {
+  composes: emptyListNotification from "../reusableStyles.module.scss";
+}
+
+.effectDetails {
+  composes: detailsView from "../reusableStyles.module.scss";
+}
+
+.detailsLabel {
+  composes: detailsItem from "../reusableStyles.module.scss";
+}
+
+.detailsDelete {
+  composes: detailsDelete from "../reusableStyles.module.scss";
+}
+
+.newEffectForm {
+  composes: newForm from "../reusableStyles.module.scss";
+}
+
+.newEffectSubmit {
+  composes: newFormSubmit from "../reusableStyles.module.scss";
+}
+
+.select {
+  composes: newFormSelect from "../reusableStyles.module.scss";
+}
+
+.inputField {
+  composes: newFormInput from "../reusableStyles.module.scss";
+}
+
+.inputError {
+  composes: newFormError from "../reusableStyles.module.scss";
+}
+
+.formTitle {
+  composes: newFormTitle from "../reusableStyles.module.scss";
+}
+
+.effectsWrapper {
+  padding: 0.25em 0;
+}
+
+.effectWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.75em 0;
+
+  input {
+    margin-left: 2em;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+
+  label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 40px;
+    height: 20px;
+    background: #6b6b6b;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 90px;
+      transition: 0.3s;
+    }
+
+    &:active::after {
+      width: 25px;
+    }
+  }
+
+  input:checked + label {
+    background: #3d6636;
+  }
+  input:checked + label::after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+  }
+}

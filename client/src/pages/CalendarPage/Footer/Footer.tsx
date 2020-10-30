@@ -8,7 +8,7 @@ const Footer = () => {
       <hr/>
       <footer className={styles.footer}>
         <p className={styles.version}>v 1.4</p>
-        <p>Source Code On:</p>
+        <p>Source Code:</p>
         <GitSvg cssClass={styles.svgStyle}/>
       </footer>
     </>

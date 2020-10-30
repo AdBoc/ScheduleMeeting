@@ -56,3 +56,22 @@ func sendCharacter(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(character.Character)
 }
+
+func deleteCharacter(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+	var userName map[string]interface{}
+	if err := json.NewDecoder(r.Body).Decode(&userName); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	filter := bson.M{"user": userName["user"]}
+	_, err := mongo.CollectionCharacter.DeleteOne(ctx, filter)
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+	}
+	w.WriteHeader(http.StatusOK)
+}

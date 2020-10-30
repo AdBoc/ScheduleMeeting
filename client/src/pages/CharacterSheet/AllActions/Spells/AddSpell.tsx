@@ -10,9 +10,19 @@ interface IProps {
   handleClose: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+type Inputs = {
+  name: string;
+  level: string;
+  school: string;
+  castingTime: string;
+  range: string;
+  components: string;
+  description: string;
+}
+
 const AddSpell: React.FC<IProps> = ({handleClose}) => {
   const dispatch = useDispatch();
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, errors} = useForm<Inputs>();
   const onSubmit = handleSubmit((data) => {
     dispatch(addToArray("Spells", {...data, id: uuidv4()}));
     handleClose(prev => !prev);
@@ -20,8 +30,14 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
 
   return (
     <form className={styles.newSpellForm} onSubmit={onSubmit}>
-      <p>Add Spell</p>
-      <input ref={register({required: true})} className={styles.inputField} name="name" placeholder="Name" autoComplete="off"/>
+      <p className={styles.formTitle}>Add Spell</p>
+      <input
+        ref={register({required: true, maxLength: 20})}
+        className={errors.name ? styles.inputError : styles.inputField}
+        name="name"
+        placeholder="Name"
+        autoComplete="off"
+      />
       <select ref={register({required: true})} className={styles.select} name="level">
         <option value="">--Spell Level--</option>
         <option value="1">1</option>
@@ -55,7 +71,13 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
         <option value="12 hours">12 hours</option>
         <option value="24 hours">24 hours</option>
       </select>
-      <input ref={register({required: true})} className={styles.inputField} name="range" placeholder="Range" type="number"/>
+      <input
+        ref={register({required: true, maxLength: 5})}
+        className={errors.range ? styles.inputError : styles.inputField}
+        name="range"
+        placeholder="Range"
+        type="number"
+      />
       <select ref={register} className={styles.select} name="components" required>
         <option value="">--Components--</option>
         <option value="V">V</option>
@@ -66,8 +88,14 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
         <option value="S, M">S, M</option>
         <option value="V, S, M">V, S, M</option>
       </select>
-      <TextareaAutosize ref={register} className={styles.inputField} name="description" placeholder="Description" rows={1}/>
-      <input type="submit" value="Submit"/>
+      <TextareaAutosize
+        ref={register({maxLength: 100})}
+        className={errors.description ? styles.inputError : styles.inputField}
+        name="description"
+        placeholder="Description"
+        rows={1}
+      />
+      <input className={styles.addSpell} type="submit" value="Submit"/>
     </form>
   )
 }

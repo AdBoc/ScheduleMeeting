@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {userContext} from "../../../context/users";
 
 import styles from './users.module.scss';
@@ -11,17 +11,21 @@ const users = ['Test', 'Witek', 'Sławek', 'Portek', 'Adrian', 'Adam', 'Krzysiek
 
 const Users = () => {
   const {user, handleUser} = useContext(userContext);
+  const [fetching, setFetching] = useState(false);
   const dispatch = useDispatch();
 
-  const handleSheetLink = async () => {
-    const response = await api.getCharacter(user!);
-    if (!response && user === localStorage.getItem("user")) {
-      history.push("/sheet");
-    } else if (!!response && user === localStorage.getItem("user")) {
-      console.log(response);
-      dispatch(setCharacter(JSON.parse(response).character));
-      history.push("/sheet");
-    }
+  const handleSheetLink = () => {
+    setFetching(true);
+    api.getCharacter(user!)
+      .then(response => {
+        if (!response && user === localStorage.getItem("user")) {
+          history.push("/sheet");
+        } else if (!!response && user === localStorage.getItem("user")) {
+          dispatch(setCharacter(JSON.parse(response).character));
+          history.push("/sheet");
+        }
+      })
+      .finally(() => setFetching(false));
   }
 
   return (
@@ -37,7 +41,10 @@ const Users = () => {
           </button>
         )}
       </div>
-      {user && <button className={styles.sheetLinkButton} onClick={handleSheetLink}>Use Sheet {">"}</button>}
+      {user && <div className={styles.sheetLinkButton} onClick={handleSheetLink}>
+          <p>Use Sheet</p>
+        {fetching && <div className={styles.spinner}/>}
+      </div>}
     </>
   )
 }

@@ -33,7 +33,7 @@ const AddItem: React.FC<IProps> = ({closeForm}) => {
         <option value="tools">Tools</option>
       </select>
       <TextareaAutosize ref={register} className={styles.addItemInput} name="description" placeholder="Description" rows={1}/>
-      <input type="submit" value="Submit"/>
+      <input className={styles.submit} type="submit" value="Submit"/>
     </form>
   )
 };

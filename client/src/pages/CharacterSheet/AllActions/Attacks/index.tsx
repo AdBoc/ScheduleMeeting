@@ -36,7 +36,7 @@ const Attacks = () => {
           <p>Hit</p>
           <p>Range</p>
         </div>
-        {attacks.map(attack => (
+        {attacks.length !==0 ? attacks.map(attack => (
           <div key={attack.id} className={styles.attacksGrid} onClick={handleShowItem(attack)}>
             <p className={styles.attacksName}>{attack.name}</p>
             <p>{attack.diceType} + {(dndMath.statModifier(stats[attack.profMod as keyof Character["Stats"]]) + attack.bonusDamage)}</p>
@@ -46,7 +46,9 @@ const Attacks = () => {
             }
             <p>{attack.range}</p>
           </div>
-        ))}
+        )) : (
+          <p className={styles.emptyList}>Attacks list is empty</p>
+        )}
         {itemDetails &&
         <CustomPopup hideElement={setItemDetails}>
             <div className={styles.attackDetails}>

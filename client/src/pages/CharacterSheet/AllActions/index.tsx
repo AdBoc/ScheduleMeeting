@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Attacks from "./Attacks";
 import Spells from "./Spells";
 import Actions from "./Actions";
-import Effects from "./Effects/Effects";
+import Effects from "./Effects";
 import styles from "./allActions.module.scss";
 
 const AllActions = () => {
