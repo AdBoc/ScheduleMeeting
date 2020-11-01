@@ -2,28 +2,27 @@ import React from "react";
 import styles from "./spells.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../redux/reducers";
-import {setArray} from "../../../../redux/actions";
 
 const SpellSlots = () => {
-  const allSlots = useSelector((state: RootState) => state.character.Other.SpellSlots);
-  const currentSlots = useSelector((state: RootState) => state.character.Other.CurrentSlots);
+  const allSlots = useSelector((state: RootState) => state.other.SpellSlots);
+  const currentSlots = useSelector((state: RootState) => state.other.CurrentSlots);
   const dispatch = useDispatch();
 
   const handleDecrement = ({target}: any) => {
     const newSlotsValue = [...currentSlots];
     if (!!newSlotsValue[target.name]) {
       newSlotsValue[target.name] = newSlotsValue[target.name] - 1;
-      dispatch(setArray("Other.CurrentSlots", newSlotsValue));
+      // dispatch(setArray("Other.CurrentSlots", newSlotsValue));
     }
   };
   const handleMaxSpellSlots = ({target}: any) => {
     if (/^[0-9][0-9]*$/.test(target.value)) {
       const newSlotsValue = [...allSlots];
       newSlotsValue[target.name] = parseInt(target.value);
-      dispatch(setArray("Other.SpellSlots", newSlotsValue));
+      // dispatch(setArray("Other.SpellSlots", newSlotsValue));
     }
   }
-  const handleRest = () => dispatch(setArray("Other.CurrentSlots", allSlots));
+  // const handleRest = () => dispatch(setArray("Other.CurrentSlots", allSlots));
 
   return (
     <div className={styles.spellSlotsComponent}>
@@ -47,7 +46,7 @@ const SpellSlots = () => {
           />
         </div>
       ))}
-      <button onClick={handleRest} className={styles.addSpell}>Rest</button>
+      {/*<button onClick={handleRest} className={styles.addSpell}>Rest</button>*/}
     </div>
   )
 }

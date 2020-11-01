@@ -5,7 +5,6 @@ import {dndMath} from "../../../utils/dndMath";
 import {useCustomForm} from "../../../hooks/useCustomForm";
 import {EquipmentItem} from "../../../redux/types";
 import AddItem from "./AddItem";
-import {deleteInArray} from "../../../redux/actions";
 import MultiSelect from "react-multi-select-component";
 import {filteredEquipment} from "../../../redux/selectors";
 import styles from "./equipment.module.scss";
@@ -26,13 +25,13 @@ const Equipment = () => {
   const [isGold, setIsGold] = useState(false);
 
   const items = useSelector(filteredEquipment(select));
-  const currency = useSelector((state: RootState) => state.character.Other.Currency);
+  const currency = useSelector((state: RootState) => state.other.Currency);
   const dispatch = useDispatch();
 
   const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<EquipmentItem>();
 
   const handleDelete = () => {
-    if (!!itemDetails) dispatch(deleteInArray("Equipment", itemDetails.id));
+    // if (!!itemDetails) dispatch(deleteInArray("Equipment", itemDetails.id));
     handleHideItem();
   }
 

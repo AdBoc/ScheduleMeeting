@@ -1,5 +1,4 @@
 import React from 'react';
-import {flipBool} from "../../redux/actions";
 import {useDispatch} from "react-redux";
 import styles from "./checkbox.module.scss";
 
@@ -20,7 +19,7 @@ const Checkbox: React.FC<IProps> = ({label, path, checkboxValue}) => {
         type="checkbox"
         checked={checkboxValue}
         onChange={() => {
-          dispatch(flipBool(path));
+          // dispatch(flipBool(path));
         }}
       />
     </div>

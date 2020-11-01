@@ -3,7 +3,6 @@ import {v4 as uuidv4} from 'uuid';
 import {useForm} from 'react-hook-form';
 import TextareaAutosize from 'react-autosize-textarea';
 import {useDispatch} from "react-redux";
-import {addToArray} from "../../../redux/actions";
 import styles from "./equipment.module.scss";
 
 interface IProps {
@@ -14,7 +13,7 @@ const AddItem: React.FC<IProps> = ({closeForm}) => {
   const dispatch = useDispatch();
   const {register, handleSubmit} = useForm();
   const onSubmit = handleSubmit((data) => {
-    dispatch(addToArray("Equipment", {...data, id: uuidv4()}));
+    // dispatch(addToArray("Equipment", {...data, id: uuidv4()}));
     closeForm(prev => !prev);
   });
 

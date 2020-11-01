@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {FilteredAllNames, FilteredByName, SelectedDays, SelectedDaysState} from "../../types";
 import api from "../../utils/api";
+import {useIsMounted} from "../useIsMounted/useIsMounted";
 
 const filterDaysByAmount = (selectedDays: SelectedDays) => {
   return selectedDays.reduce((obj: FilteredAllNames, item) => {
@@ -28,6 +29,7 @@ const filterDayByUser = (selectedDays: SelectedDays, selectedName: string) => {
 
 const useCalendar = (user: string | null) => {
   const currentTime = new Date();
+  const isMounted = useIsMounted();
   const [userDate, setUserDate] = useState({
     selectedDay: currentTime.getDate(),
     selectedMonth: currentTime.getMonth(),
@@ -36,17 +38,15 @@ const useCalendar = (user: string | null) => {
   const [selectedApiDays, setSelectedApiDays] = useState<SelectedDaysState>({days: [], isFetching: false});
 
   useEffect(() => {
-    setSelectedApiDays(prev => ({...prev, isFetching: true}));
     const abortController = new AbortController();
+    setSelectedApiDays(prev => ({...prev, isFetching: true}));
 
-    const fetchMonth = async () => {
-      const {daysData} = await api.getSelectedMonthData(userDate.selectedMonth, userDate.selectedYear, abortController);
-      if (daysData) return setSelectedApiDays({days: daysData, isFetching: false});
-      setSelectedApiDays(prev => ({...prev, isFetching: false}));
+    api.getSelectedMonthData(userDate.selectedMonth, userDate.selectedYear, abortController)
+      .then(response => isMounted && setSelectedApiDays({days: response.daysData, isFetching: false}));
+
+    return () => {
+      abortController.abort();
     }
-
-    fetchMonth();
-    return () => abortController.abort();
   }, [userDate]);
 
   const filteredDays = user ? filterDayByUser(selectedApiDays.days, user) : filterDaysByAmount(selectedApiDays.days);

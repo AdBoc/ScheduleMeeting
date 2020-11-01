@@ -8,8 +8,8 @@ import styles from './header.module.scss';
 import {DiceSvg, InspirationSvg} from "../../../assets/GitSvg";
 
 const Header = () => {
-  const inspirationStatus = useSelector((state: RootState) => state.character.Other.Inspiration);
-  const diceStatus = useSelector((state: RootState) => state.character.DiceSim.status);
+  const inspirationStatus = useSelector((state: RootState) => state.other.Inspiration);
+  // const diceStatus = useSelector((state: RootState) => state.character.DiceSim.status);
   const [showDiceSim, setShowDiceSim] = useState(false);
 
   return (
@@ -17,7 +17,7 @@ const Header = () => {
       <TopSection/>
       <StatsSection/>
       {inspirationStatus && <InspirationSvg cssClass={styles.inspirationSvg}/>}
-      {diceStatus && <DiceSvg cssClass={styles.dicesSvg} handleClick={() => setShowDiceSim(prev => !prev)}/>}
+      {/*{diceStatus && <DiceSvg cssClass={styles.dicesSvg} handleClick={() => setShowDiceSim(prev => !prev)}/>}*/}
       {showDiceSim && <DiceSim/>}
     </div>
   );

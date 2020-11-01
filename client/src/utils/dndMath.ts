@@ -45,37 +45,37 @@ class DndMath {
   /*
   *Count new skills object based on changed Stat
    */
-  public generateNewSkills(skills: RootState["character"]["Skills"], newValue: number, name: string): RootState["character"]["Skills"] {
+  public generateNewSkills(skills: RootState["skills"], newValue: number, name: string): RootState["skills"] {
     const newSkills = {...skills};
     const newMod = this.statModifier(newValue);
     switch (name) {
       case "Strength":
-        newSkills.Athletics = newMod;
+        newSkills.athletics.value = newMod;
         break;
       case "Dexterity":
-        newSkills.Acrobatics = newMod;
-        newSkills.SleightOfHand = newMod;
-        newSkills.Stealth = newMod;
+        newSkills.acrobatics.value = newMod;
+        newSkills.sleightOfHand.value = newMod;
+        newSkills.stealth.value = newMod;
         break;
       case "Intelligence":
-        newSkills.Arcana = newMod;
-        newSkills.History = newMod;
-        newSkills.Investigation = newMod;
-        newSkills.Nature = newMod;
-        newSkills.Religion = newMod;
+        newSkills.arcana.value = newMod;
+        newSkills.history.value = newMod;
+        newSkills.investigation.value = newMod;
+        newSkills.nature.value = newMod;
+        newSkills.religion.value = newMod;
         break;
       case "Wisdom":
-        newSkills.AnimalHandling = newMod;
-        newSkills.Insight = newMod;
-        newSkills.Medicine = newMod;
-        newSkills.Perception = newMod;
-        newSkills.Survival = newMod;
+        newSkills.animalHandling.value = newMod;
+        newSkills.insight.value = newMod;
+        newSkills.medicine.value = newMod;
+        newSkills.perception.value = newMod;
+        newSkills.survival.value = newMod;
         break;
       case "Charisma":
-        newSkills.Deception = newMod;
-        newSkills.Intimidation = newMod;
-        newSkills.Performance = newMod;
-        newSkills.Persuasion = newMod;
+        newSkills.deception.value = newMod;
+        newSkills.intimidation.value = newMod;
+        newSkills.performance.value = newMod;
+        newSkills.persuasion.value = newMod;
         break;
     }
     return newSkills;

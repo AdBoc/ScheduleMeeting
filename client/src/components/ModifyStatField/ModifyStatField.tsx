@@ -1,6 +1,5 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {decrementStat, incrementStat} from "../../redux/actions";
 import styles from "./modifyStatField.module.scss";
 
 interface IProps {
@@ -18,14 +17,14 @@ const ModifyStatField: React.FC<IProps> = ({label, path, value}) => {
         <button
           className={styles.modifyIcon}
           onClick={() => {
-            dispatch(decrementStat(path))
+            // dispatch(decrementStat(path))
           }}>-
         </button>
         <p className={styles.value}>{value}</p>
         <button
           className={styles.modifyIcon}
           onClick={() => {
-            dispatch(incrementStat(path))
+            // dispatch(incrementStat(path))
           }}>+
         </button>
       </div>

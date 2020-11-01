@@ -6,12 +6,12 @@ import styles from './header.module.scss';
 import CustomPopup from "../../../components/CustomPopup/CustomPopup";
 
 const TopSection = () => {
-  const background = useSelector((state: RootState) => state.character.Background);
-  const stats = useSelector((state: RootState) => state.character.MainStats);
+  const background = useSelector((state: RootState) => state.background);
+  const stats = useSelector((state: RootState) => state.characterStats);
   const [showHpForm, setShowHpForm] = useState(false);
 
   const styleHp = () => {
-    const hpDiv = stats.TemporaryHitPoints / stats.HitPoints;
+    const hpDiv = stats.temporaryHitPoints / stats.hitPoints;
     if (hpDiv < 0.25) return styles.hpDanger;
     else if (hpDiv < 0.5) return styles.hpWarning;
     else if (hpDiv < 0.75) return styles.hpNormal;
@@ -22,14 +22,14 @@ const TopSection = () => {
     <div className={styles.topSection}>
       <div>
         <p className={styles.characterName}>{background.Name}</p>
-        <p className={styles.characterDetails}>{background.Race} {background.Class} {stats.Level}</p>
+        <p className={styles.characterDetails}>{background.Race} {background.Class} {stats.level}</p>
       </div>
       <div className={styles.hpField}>
         <p
           className={styleHp()}
           onClick={() => {
             setShowHpForm(prev => !prev)
-          }}>{stats.TemporaryHitPoints}/{stats.HitPoints}<span className={styles.hpLabel}>HP</span></p>
+          }}>{stats.temporaryHitPoints}/{stats.hitPoints}<span className={styles.hpLabel}>HP</span></p>
         {showHpForm && <CustomPopup hideElement={setShowHpForm}>
             <HpForm/>
         </CustomPopup>}

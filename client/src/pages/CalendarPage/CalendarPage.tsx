@@ -20,4 +20,3 @@ const CalendarPage = () => {
 }
 
 export default CalendarPage;
-//TODO: Animacja po kliknieciu na sheet ze sie pobiera postac

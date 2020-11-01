@@ -21,10 +21,10 @@ const CharacterSheet = () => {
   const {currentTab, tabs, setCurrentIndex, handleTouchEnd, handleTouchStart} = useSwipe();
   return (
     <div className={styles.characterSheet}>
-      <Header/>
+      {/*<Header/>*/}
       <SelectMenu tabs={tabs} setTab={setCurrentIndex}/>
       <div className={styles.selectedTab} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{CURRENT_TAB[currentTab]}</div>
-      <ContextMenu/>
+      {/*<ContextMenu/>*/}
     </div>
   );
 }

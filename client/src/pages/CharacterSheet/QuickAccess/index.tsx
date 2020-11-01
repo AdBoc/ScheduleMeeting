@@ -1,6 +1,6 @@
 import React from 'react';
 import NumberInput from "../../../components/NumberInput/NumberInput";
-import {useSelector} from "react-redux";
+import {useSelector, shallowEqual} from "react-redux";
 import {RootState} from "../../../redux/reducers";
 import {Link} from "react-router-dom";
 import ModifyStatField from "../../../components/ModifyStatField/ModifyStatField";
@@ -10,7 +10,8 @@ import {history} from "../../../utils/history";
 import api from "../../../utils/api";
 
 const QuickAccess = () => {
-  const character = useSelector((state: RootState) => state.character);
+  // const characterStats = useSelector((state: RootState) => state.characterStats);
+  // const other = useSelector((state: RootState) => state.other);
 
   const handleCopy = () => {
     const dummy = document.createElement("textarea");
@@ -31,16 +32,16 @@ const QuickAccess = () => {
 
   return (
     <>
-      <NumberInput label="Max HP" value={character.MainStats.HitPoints} path="MainStats.HitPoints"/>
-      <NumberInput label="Speed" value={character.MainStats.Speed} path="MainStats.Speed"/>
+      <NumberInput label="Max HP" statName="hitPoints"/>
+      <NumberInput label="Speed" statName="speed"/>
       <hr className={styles.hl}/>
-      <ModifyStatField label="Level" path="MainStats.Level" value={character.MainStats.Level}/>
-      <ModifyStatField label="Armor Class" path="MainStats.ArmorClass" value={character.MainStats.ArmorClass}/>
-      <ModifyStatField label="Initiative" path="MainStats.Initiative" value={character.MainStats.Initiative}/>
-      <ModifyStatField label="Passive Perception" path="MainStats.PassivePerception" value={character.MainStats.PassivePerception}/>
+      {/*<ModifyStatField label="Level" path="MainStats.Level" value={characterStats.level}/>*/}
+      {/*<ModifyStatField label="Armor Class" path="MainStats.ArmorClass" value={characterStats.armorClass}/>*/}
+      {/*<ModifyStatField label="Initiative" path="MainStats.Initiative" value={characterStats.initiative}/>*/}
+      {/*<ModifyStatField label="Passive Perception" path="MainStats.PassivePerception" value={characterStats.passivePerception}/>*/}
       <hr className={styles.hl}/>
-      <Checkbox label="Inspiration" path="Other.Inspiration" checkboxValue={character.Other.Inspiration}/>
-      <Checkbox label="DiceSim" path="DiceSim.status" checkboxValue={character.DiceSim.status}/>
+      {/*<Checkbox label="Inspiration" path="Other.Inspiration" checkboxValue={other.Inspiration}/>*/}
+      {/*<Checkbox label="DiceSim" path="DiceSim.status" checkboxValue={character.DiceSim.status}/>*/}
       <hr className={styles.hl}/>
       <button className={styles.defaultButton}><Link className={styles.linkColor} to="/">Show Calendar</Link></button>
       <button className={styles.defaultButton} onClick={handleCopy}>Copy JSON</button>

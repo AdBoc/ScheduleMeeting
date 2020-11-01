@@ -4,12 +4,11 @@ import {RootState} from "../../../../redux/reducers";
 import {useCustomForm} from "../../../../hooks/useCustomForm";
 import {Effect} from "../../../../redux/types";
 import CustomPopup from "../../../../components/CustomPopup/CustomPopup";
-import {deleteInArray, setArray} from "../../../../redux/actions";
 import AddEffect from "./AddEffect";
 import styles from "./effects.module.scss";
 
 const Effects = () => {
-  const effects = useSelector((state: RootState) => state.character.Effects);
+  const effects = useSelector((state: RootState) => state.effects);
   const dispatch = useDispatch();
   const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<Effect>();
 
@@ -17,11 +16,11 @@ const Effects = () => {
     const effectIndex = effects.findIndex((effect) => effect.id === target.name);
     const newEffectsArray = [...effects];
     newEffectsArray[effectIndex].active = !newEffectsArray[effectIndex].active;
-    dispatch(setArray("Effects", newEffectsArray));
+    // dispatch(setArray("Effects", newEffectsArray));
   };
 
   const handleDelete = () => {
-    if (!!itemDetails) dispatch(deleteInArray("Effects", itemDetails.id));
+    // if (!!itemDetails) dispatch(deleteInArray("Effects", itemDetails.id));
     handleHideItem();
   }
 

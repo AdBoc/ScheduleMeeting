@@ -3,8 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../redux/reducers";
 import {dndMath} from "../../../../utils/dndMath";
 import {useCustomForm} from "../../../../hooks/useCustomForm";
-import {Character, Spell} from "../../../../redux/types";
-import {deleteInArray, editText} from "../../../../redux/actions";
+import {Spell} from "../../../../redux/types";
 import AddSpell from "./AddSpell";
 import {sortedSpells} from "../../../../redux/selectors";
 import styles from "./spells.module.scss";
@@ -15,15 +14,15 @@ const Spells = () => {
   const [sortingOptions, setSortingOptions] = useState({criteria: "name", inverted: false});
   const [isSpellSlots, setIsSpellSlots] = useState(false);
   const spells = useSelector(sortedSpells(sortingOptions));
-  const stats = useSelector((state: RootState) => state.character.Stats);
-  const playerLevel = useSelector((state: RootState) => state.character.MainStats.Level);
-  const spellProficiency = useSelector((state: RootState) => state.character.Other.SpellProficiency);
+  const stats = useSelector((state: RootState) => state.stats);
+  const playerLevel = useSelector((state: RootState) => state.characterStats.level);
+  const spellProficiency = useSelector((state: RootState) => state.other.SpellProficiency);
   const dispatch = useDispatch();
 
   const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<Spell>();
 
   const handleDelete = () => {
-    if (!!itemDetails) dispatch(deleteInArray("Spells", itemDetails.id));
+    // if (!!itemDetails) dispatch(deleteInArray("Spells", itemDetails.id));
     handleHideItem();
   };
 
@@ -34,30 +33,30 @@ const Spells = () => {
 
   return (
     <>
-      <div className={styles.buttonsRow}>
-        <button className={styles.genericButton} onClick={() => setIsSpellSlots(prev => !prev)}>Spell Slots</button>
-        <button className={styles.genericButton} onClick={() => {
-          setShowForm(prev => !prev)
-        }}>Add spell
-        </button>
-        <p className={styles.spellStats}>Save DC: {spellProficiency !== null ?
-          <span>{8 + dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[spellProficiency as keyof Character["Stats"]])}</span> :
-          <span>?</span>}</p>
-        <p className={styles.spellStats}>Atk Bonus: {spellProficiency !== null ?
-          <span>{dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[(spellProficiency as keyof Character["Stats"])])}</span> :
-          <span>?</span>}</p>
-      </div>
+      {/*<div className={styles.buttonsRow}>*/}
+      {/*  <button className={styles.genericButton} onClick={() => setIsSpellSlots(prev => !prev)}>Spell Slots</button>*/}
+      {/*  <button className={styles.genericButton} onClick={() => {*/}
+      {/*    setShowForm(prev => !prev)*/}
+      {/*  }}>Add spell*/}
+      {/*  </button>*/}
+      {/*  <p className={styles.spellStats}>Save DC: {spellProficiency !== null ?*/}
+      {/*    <span>{8 + dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[spellProficiency as keyof Character["Stats"]])}</span> :*/}
+      {/*    <span>?</span>}</p>*/}
+      {/*  <p className={styles.spellStats}>Atk Bonus: {spellProficiency !== null ?*/}
+      {/*    <span>{dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[(spellProficiency as keyof Character["Stats"])])}</span> :*/}
+      {/*    <span>?</span>}</p>*/}
+      {/*</div>*/}
       <div>
-        {spellProficiency === null && (
-          <select onChange={({target}: any) => dispatch(editText("Other.SpellProficiency", target.value))}>
-            <option value="Strength">Strength</option>
-            <option value="Dexterity">Dexterity</option>
-            <option value="Constitution">Constitution</option>
-            <option value="Charisma">Charisma</option>
-            <option value="Intelligence">Intelligence</option>
-            <option value="Wisdom">Wisdom</option>
-          </select>
-        )}
+        {/*{spellProficiency === null && (*/}
+        {/*  <select onChange={({target}: any) => dispatch(editText("Other.SpellProficiency", target.value))}>*/}
+        {/*    <option value="Strength">Strength</option>*/}
+        {/*    <option value="Dexterity">Dexterity</option>*/}
+        {/*    <option value="Constitution">Constitution</option>*/}
+        {/*    <option value="Charisma">Charisma</option>*/}
+        {/*    <option value="Intelligence">Intelligence</option>*/}
+        {/*    <option value="Wisdom">Wisdom</option>*/}
+        {/*  </select>*/}
+        {/*)}*/}
       </div>
       <div>
         <div className={styles.spellsGrid}>

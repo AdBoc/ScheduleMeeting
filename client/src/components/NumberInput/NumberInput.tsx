@@ -1,21 +1,19 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
-import {editText} from "../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
 import styles from "./NumberInput.module.scss";
+import {changeCharacterStat} from "../../redux/actions";
+import {CharacterStats} from "../../redux/types";
+import {RootState} from "../../redux/reducers";
 
 interface IProps {
   label: string;
-  value: number;
-  path: string;
+  statName: keyof CharacterStats;
   customClass?: any;
 }
 
-const NumberInput: React.FC<IProps> = ({label, path, value, customClass}) => {
+const NumberInput: React.FC<IProps> = ({label, statName, customClass}) => {
+  const inputValue = useSelector((state: RootState) => state.characterStats[statName]);
   const dispatch = useDispatch();
-  const handleChange = ({target}: any) => {
-    if (/^[1-9][0-9]*$/.test(target.value))
-      dispatch(editText(path, parseInt(target.value)));
-  }
 
   return (
     <div className={customClass ? customClass : styles.numberInput}>
@@ -23,15 +21,13 @@ const NumberInput: React.FC<IProps> = ({label, path, value, customClass}) => {
       <input
         className={styles.input}
         type="number"
-        onChange={handleChange}
+        onChange={(e) => {dispatch(changeCharacterStat(statName, parseInt(e.target.value)))}}
         onFocus={(e) => e.target.select()}
-        value={value}
+        value={inputValue}
         autoComplete="off"
         autoCorrect="false"
         spellCheck="false"
-        onInput = {(e: any) =>{
-          e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,5)
-        }}
+        onInput = {(e: any) => {e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,5)}}
       />
     </div>
   );

@@ -1,32 +1,32 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changeStatValue, decrementStat, incrementStat} from "../../../redux/actions";
+import {changeStatValue} from "../../../redux/actions";
 import {RootState} from "../../../redux/reducers";
 import styles from "./header.module.scss";
 
 const HpForm = () => {
-  const mainStats = useSelector((state: RootState) => state.character.MainStats);
+  const mainStats = useSelector((state: RootState) => state.characterStats);
   const dispatch = useDispatch();
   const [hp, setHp] = useState<{ val: string | number, invert: boolean }>({val: "", invert: false});
 
   const handleSubmit = () => {
-    const {HitPoints, TemporaryHitPoints} = mainStats;
+    const {hitPoints, temporaryHitPoints} = mainStats;
     if (!hp.val) return;
-    let newVal = TemporaryHitPoints + (hp.val as number)
+    let newVal = temporaryHitPoints + (hp.val as number)
     if (newVal < 0) newVal = 0;
-    else if (newVal > HitPoints) newVal = HitPoints
-    dispatch(changeStatValue("MainStats.TemporaryHitPoints", newVal));
+    else if (newVal > hitPoints) newVal = hitPoints
+    // dispatch(changeStatValue("MainStats.TemporaryHitPoints", newVal));
     setHp({val: "", invert: false});
   };
 
   const handleIncrement = () => {
-    if (mainStats.TemporaryHitPoints !== mainStats.HitPoints)
-      dispatch(incrementStat("MainStats.TemporaryHitPoints"));
+    if (mainStats.temporaryHitPoints !== mainStats.hitPoints) return
+      // dispatch(incrementStat("MainStats.TemporaryHitPoints"));
   }
 
   const handleDecrement = () => {
-    if (mainStats.TemporaryHitPoints !== 0)
-      dispatch(decrementStat("MainStats.TemporaryHitPoints"));
+    if (mainStats.temporaryHitPoints !== 0) return
+      // dispatch(decrementStat("MainStats.TemporaryHitPoints"));
   }
 
   const handleHpChange = ({target}: any) => {

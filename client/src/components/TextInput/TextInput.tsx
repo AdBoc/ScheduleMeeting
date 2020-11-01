@@ -1,6 +1,5 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {editText} from "../../redux/actions";
 import styles from "./textInput.module.scss";
 
 interface IProps {
@@ -19,7 +18,7 @@ const TextInput: React.FC<IProps> = ({label, path, value}) => {
         className={styles.input}
         type="text"
         onChange={({target}) => {
-          dispatch(editText(path, target.value))
+          // dispatch(editText(path, target.value))
         }}
         value={value}
         autoComplete="off"

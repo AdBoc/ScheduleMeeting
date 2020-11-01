@@ -2,7 +2,6 @@ import React, {Dispatch, SetStateAction} from "react";
 import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 import {v4 as uuidv4} from "uuid";
-import {addToArray} from "../../../../redux/actions";
 import {TextareaAutosize} from "react-autosize-textarea/lib/TextareaAutosize";
 import styles from "./effects.module.scss";
 
@@ -23,7 +22,7 @@ const AddEffect: React.FC<IProps> = ({handleClose}) => {
       ...data,
       id: uuidv4(),
     };
-    dispatch(addToArray("Effects", newElement));
+    // dispatch(addToArray("Effects", newElement));
     handleClose(prev => !prev);
   });
 
