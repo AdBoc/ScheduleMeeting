@@ -1,20 +1,15 @@
-type Background = {
-  Alignment: string;
-  Background: string;
-  Class: string;
-  ExperiencePoints: string;
-  FeaturesAndTraits: string;
-  Name: string;
-  ProficienciesAndLanguage: string;
-  Race: string;
-  Story: string;
-}
+import {Background, BackgroundActions, CHANGE_BACKGROUND_ELEMENT} from "../types";
+import produce from "immer";
 
 const initialState = null as unknown as Background;
 
-export function background(state = initialState, action:any) {
+export function background(background = initialState, action: BackgroundActions): Background {
   switch (action.type) {
+    case CHANGE_BACKGROUND_ELEMENT:
+      return produce(background, draftState => {
+        draftState[action.element] = action.newValue;
+      })
     default:
-      return state;
+      return background;
   }
 }

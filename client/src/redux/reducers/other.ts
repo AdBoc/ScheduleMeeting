@@ -1,25 +1,33 @@
-type Background = {
-  TaggedThrows: (string | null)[];
-  TaggedSkills: string[];
-  Currency: {
-    PP: number;
-    GP: number;
-    EP: number;
-    SP: number;
-    CP: number;
-  };
-  Inspiration: boolean;
-  SpellSlots: [number, number, number, number, number, number, number, number, number];
-  CurrentSlots: [number, number, number, number, number, number, number, number, number];
-  ShortRestSlots: [number, number, number, number, number, number, number, number, number];
-  SpellProficiency: null | string;
-}
+import {CHANGE_CURRENCY_AMOUNT, CHANGE_SPELL_PROFICIENCY, CHANGE_STATUS, Other, OtherActions, TAG_ELEMENT} from "../types";
+import produce from "immer";
 
-const initialState = null as unknown as Background;
+const initialState = null as unknown as Other;
 
-export function other(state = initialState, action:any) {
+export function other(other = initialState, action: OtherActions): Other {
   switch (action.type) {
+    case CHANGE_STATUS:
+      return produce(other, draftState => {
+        draftState[action.statName] = !draftState[action.statName];
+      })
+    case TAG_ELEMENT:
+      return produce(other, draftState => {
+        const findIndex = draftState.taggedThrows.findIndex((taggedThrow) => action.element === taggedThrow);
+        if (findIndex === -1) {
+          draftState.taggedThrows.shift();
+          draftState.taggedThrows.push(action.element);
+        } else {
+          draftState.taggedThrows[findIndex] = null;
+        }
+      })
+    case CHANGE_CURRENCY_AMOUNT:
+      return produce(other, draftState => {
+        draftState.currency[action.currency] = action.newAmount;
+      })
+    case CHANGE_SPELL_PROFICIENCY:
+      return produce(other, draftState => {
+        draftState.spellProficiency = action.proficiency;
+      })
     default:
-      return state;
+      return other;
   }
 }

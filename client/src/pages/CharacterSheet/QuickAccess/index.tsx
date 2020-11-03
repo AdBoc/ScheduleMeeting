@@ -1,17 +1,20 @@
 import React from 'react';
 import NumberInput from "../../../components/NumberInput/NumberInput";
-import {useSelector, shallowEqual} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/reducers";
 import {Link} from "react-router-dom";
-import ModifyStatField from "../../../components/ModifyStatField/ModifyStatField";
 import styles from "./quickAccess.module.scss";
-import Checkbox from "../../../components/Checkbox/Checkbox";
 import {history} from "../../../utils/history";
 import api from "../../../utils/api";
+import {changeCharacterStat} from "../../../redux/actions";
+import ModifyStatField from "../../../components/ModifyStatField/ModifyStatField";
+import Checkbox from "../../../components/Checkbox/Checkbox";
 
 const QuickAccess = () => {
-  // const characterStats = useSelector((state: RootState) => state.characterStats);
-  // const other = useSelector((state: RootState) => state.other);
+  // const characterStats = useSelector((state: RootState) => state.characterStats, (prev, next) => prev.hitPoints === next.hitPoints && prev.speed === next.speed);
+  const hitPoints = useSelector((state: RootState) => state.characterStats.hitPoints);
+  const speed = useSelector((state: RootState) => state.characterStats.speed);
+  const dispatch = useDispatch();
 
   const handleCopy = () => {
     const dummy = document.createElement("textarea");
@@ -29,18 +32,18 @@ const QuickAccess = () => {
       history.push("/");
     }
   }
-
+  //TODO: change Number Input Component, Split NumberInput to other component as it causes rerenders of whole component
   return (
     <>
-      <NumberInput label="Max HP" statName="hitPoints"/>
-      <NumberInput label="Speed" statName="speed"/>
+      <NumberInput label="Max HP" value={hitPoints} dispatchAction={(v: string) => dispatch(changeCharacterStat("hitPoints", parseInt(v)))}/>
+      <NumberInput label="Speed" value={speed} dispatchAction={(v: string) => dispatch(changeCharacterStat("speed", parseInt(v)))}/>
       <hr className={styles.hl}/>
-      {/*<ModifyStatField label="Level" path="MainStats.Level" value={characterStats.level}/>*/}
-      {/*<ModifyStatField label="Armor Class" path="MainStats.ArmorClass" value={characterStats.armorClass}/>*/}
-      {/*<ModifyStatField label="Initiative" path="MainStats.Initiative" value={characterStats.initiative}/>*/}
-      {/*<ModifyStatField label="Passive Perception" path="MainStats.PassivePerception" value={characterStats.passivePerception}/>*/}
+      <ModifyStatField label="Level" statName="level"/>
+      <ModifyStatField label="Armor Class" statName="armorClass"/>
+      <ModifyStatField label="Initiative" statName="initiative"/>
+      <ModifyStatField label="Passive Perception" statName="passivePerception"/>
       <hr className={styles.hl}/>
-      {/*<Checkbox label="Inspiration" path="Other.Inspiration" checkboxValue={other.Inspiration}/>*/}
+      <Checkbox label="Inspiration" propertyName="inspiration"/>
       {/*<Checkbox label="DiceSim" path="DiceSim.status" checkboxValue={character.DiceSim.status}/>*/}
       <hr className={styles.hl}/>
       <button className={styles.defaultButton}><Link className={styles.linkColor} to="/">Show Calendar</Link></button>

@@ -1,18 +1,21 @@
 import React from 'react';
 import NumberInput from "../../../components/NumberInput/NumberInput";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/reducers";
 import styles from "./equipment.module.scss";
+import {changeCurrencyAmount} from "../../../redux/actions";
 
 const Gold = () => {
-  const currency = useSelector((state: RootState) => state.other.Currency);
+  const currency = useSelector((state: RootState) => state.other.currency); //TODO: improve???
+  const dispatch = useDispatch();
+  console.log(currency.cP);
   return (
     <div className={styles.goldForm}>
-      {/*<NumberInput customClass={styles.numInput} label="PP" value={currency.PP} path="Other.Currency.PP"/>*/}
-      {/*<NumberInput customClass={styles.numInput} label="GP" value={currency.GP} path="Other.Currency.GP"/>*/}
-      {/*<NumberInput customClass={styles.numInput} label="EP" value={currency.EP} path="Other.Currency.EP"/>*/}
-      {/*<NumberInput customClass={styles.numInput} label="SP" value={currency.SP} path="Other.Currency.SP"/>*/}
-      {/*<NumberInput customClass={styles.numInput} label="CP" value={currency.CP} path="Other.Currency.CP"/>*/}
+      <NumberInput label="PP" value={currency.pP} dispatchAction={v => dispatch(changeCurrencyAmount("pP", parseInt(v)))}/>
+      <NumberInput label="GP" value={currency.gP} dispatchAction={v => dispatch(changeCurrencyAmount("gP", parseInt(v)))}/>
+      <NumberInput label="EP" value={currency.eP} dispatchAction={v => dispatch(changeCurrencyAmount("eP", parseInt(v)))}/>
+      <NumberInput label="SP" value={currency.sP} dispatchAction={v => dispatch(changeCurrencyAmount("sP", parseInt(v)))}/>
+      <NumberInput label="CP" value={currency.cP} dispatchAction={v => dispatch(changeCurrencyAmount("cP", parseInt(v)))}/>
     </div>
   );
 }

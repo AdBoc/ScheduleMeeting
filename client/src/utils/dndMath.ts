@@ -33,11 +33,11 @@ class DndMath {
    */
   public totalGp(currencyObject: { [k: string]: number }): number {
     const currencyCopy = {
-      PP: currencyObject.PP * 10,
-      GP: currencyObject.GP,
-      EP: currencyObject.EP / 2,
-      SP: currencyObject.SP / 10,
-      CP: currencyObject.CP / 100,
+      pP: currencyObject.pP * 10,
+      gP: currencyObject.gP,
+      eP: currencyObject.eP / 2,
+      sP: currencyObject.sP / 10,
+      cP: currencyObject.cP / 100,
     };
     return Math.floor(Object.values(currencyCopy).reduce((a, b) => a + b));
   }

@@ -1,14 +1,17 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import styles from "./textInput.module.scss";
+import {RootState} from "../../redux/reducers";
+import {Background} from "../../redux/types";
+import {changeBackground} from "../../redux/actions";
 
 interface IProps {
   label: string;
-  value: string;
-  path: string;
+  backgroundProp: keyof Background;
 }
 
-const TextInput: React.FC<IProps> = ({label, path, value}) => {
+const TextInput: React.FC<IProps> = ({label, backgroundProp}) => {
+  const value = useSelector((stat: RootState) => stat.background[backgroundProp]);
   const dispatch = useDispatch();
 
   return (
@@ -17,9 +20,7 @@ const TextInput: React.FC<IProps> = ({label, path, value}) => {
       <input
         className={styles.input}
         type="text"
-        onChange={({target}) => {
-          // dispatch(editText(path, target.value))
-        }}
+        onChange={({target}) => {dispatch(changeBackground(backgroundProp, target.value))}}
         value={value}
         autoComplete="off"
         autoCorrect="false"

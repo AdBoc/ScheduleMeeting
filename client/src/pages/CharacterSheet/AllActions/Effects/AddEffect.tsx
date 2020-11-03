@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import {v4 as uuidv4} from "uuid";
 import {TextareaAutosize} from "react-autosize-textarea/lib/TextareaAutosize";
 import styles from "./effects.module.scss";
+import {addEffect} from "../../../../redux/actions";
 
 interface IProps {
   handleClose: Dispatch<SetStateAction<boolean>>;
@@ -20,9 +21,10 @@ const AddEffect: React.FC<IProps> = ({handleClose}) => {
   const onSubmit = handleSubmit((data) => {
     const newElement = {
       ...data,
+      active: false,
       id: uuidv4(),
     };
-    // dispatch(addToArray("Effects", newElement));
+    dispatch(addEffect(newElement));
     handleClose(prev => !prev);
   });
 

@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import {TextareaAutosize} from "react-autosize-textarea/lib/TextareaAutosize";
 import {v4 as uuidv4} from 'uuid';
 import styles from "./spells.module.scss";
+import {addSpell} from "../../../../redux/actions";
 
 interface IProps {
   handleClose: React.Dispatch<React.SetStateAction<boolean>>
@@ -23,7 +24,7 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
   const dispatch = useDispatch();
   const {register, handleSubmit, errors} = useForm<Inputs>();
   const onSubmit = handleSubmit((data) => {
-    // dispatch(addToArray("Spells", {...data, id: uuidv4()}));
+    dispatch(addSpell({...data, id: uuidv4()}));
     handleClose(prev => !prev);
   });
 

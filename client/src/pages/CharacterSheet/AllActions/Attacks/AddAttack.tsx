@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {v4 as uuidv4} from 'uuid';
 import styles from "./attacks.module.scss";
+import {addAttack} from "../../../../redux/actions";
 
 interface IProps {
   handleClose: Dispatch<SetStateAction<boolean>>;
@@ -30,7 +31,7 @@ const AddAttack: React.FC<IProps> = ({handleClose}) => {
       bonusDamage: parseInt(data.bonusDamage),
       bonusHit: parseInt(data.bonusHit)
     };
-    // dispatch(addToArray("Attacks", newElement));
+    dispatch(addAttack(newElement));
     handleClose(prev => !prev);
   });
 

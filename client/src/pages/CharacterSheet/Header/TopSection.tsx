@@ -6,8 +6,8 @@ import styles from './header.module.scss';
 import CustomPopup from "../../../components/CustomPopup/CustomPopup";
 
 const TopSection = () => {
-  const background = useSelector((state: RootState) => state.background);
-  const stats = useSelector((state: RootState) => state.characterStats);
+  const background = useSelector((state: RootState) => state.background, (prev, next) => prev.name === next.name && prev.race === next.race && prev.class === next.class);
+  const stats = useSelector((state: RootState) => state.characterStats, (prev, next) => prev.level === next.level && prev.temporaryHitPoints === next.temporaryHitPoints && prev.hitPoints === next.hitPoints);
   const [showHpForm, setShowHpForm] = useState(false);
 
   const styleHp = () => {
@@ -21,8 +21,8 @@ const TopSection = () => {
   return (
     <div className={styles.topSection}>
       <div>
-        <p className={styles.characterName}>{background.Name}</p>
-        <p className={styles.characterDetails}>{background.Race} {background.Class} {stats.level}</p>
+        <p className={styles.characterName}>{background.name}</p>
+        <p className={styles.characterDetails}>{background.race} {background.class} {stats.level}</p>
       </div>
       <div className={styles.hpField}>
         <p

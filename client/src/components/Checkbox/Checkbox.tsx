@@ -1,25 +1,27 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import styles from "./checkbox.module.scss";
+import {RootState} from "../../redux/reducers";
+import {changeStatus} from "../../redux/actions";
 
 interface IProps {
   label: string;
-  path: string;
-  checkboxValue: boolean;
+  propertyName: "inspiration";
 }
 
-const Checkbox: React.FC<IProps> = ({label, path, checkboxValue}) => {
+const Checkbox: React.FC<IProps> = ({label, propertyName}) => {
+  const checkboxStatus = useSelector((state: RootState) => state.other[propertyName]);
   const dispatch = useDispatch();
   return (
     <div className={styles.checkboxWrapper}>
-      <label className={styles.checkboxLabel} htmlFor="inspiration">{label}</label>
+      <label className={styles.checkboxLabel} htmlFor="reactCheckbox">{label}</label>
       <input
         className={styles.checkbox}
-        id="inspiration"
+        id="reactCheckbox"
         type="checkbox"
-        checked={checkboxValue}
+        checked={checkboxStatus}
         onChange={() => {
-          // dispatch(flipBool(path));
+          dispatch(changeStatus(propertyName))
         }}
       />
     </div>

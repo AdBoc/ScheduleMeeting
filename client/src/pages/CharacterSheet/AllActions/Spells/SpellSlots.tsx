@@ -4,8 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../redux/reducers";
 
 const SpellSlots = () => {
-  const allSlots = useSelector((state: RootState) => state.other.SpellSlots);
-  const currentSlots = useSelector((state: RootState) => state.other.CurrentSlots);
+  const allSlots = useSelector((state: RootState) => state.other.spellSlots);
+  const currentSlots = useSelector((state: RootState) => state.other.currentSlots);
   const dispatch = useDispatch();
 
   const handleDecrement = ({target}: any) => {
