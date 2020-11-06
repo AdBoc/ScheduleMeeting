@@ -4,6 +4,8 @@
   --today: rgba(255,0,0,.6);
   --selected: #9797ff;
   font-family: Roboto;
-  padding: 1em;
+  padding: 0 1em;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

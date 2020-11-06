@@ -37,7 +37,6 @@ class Api {
   async deleteCharacter() {
     try {
       const user = localStorage.getItem("user");
-      console.log(user);
       await fetch(`${this._url}/delete`, {
         method: "DELETE",
         body: JSON.stringify({user})

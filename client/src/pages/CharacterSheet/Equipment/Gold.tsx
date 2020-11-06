@@ -6,7 +6,7 @@ import styles from "./equipment.module.scss";
 import {changeCurrencyAmount} from "../../../redux/actions";
 
 const Gold = () => {
-  const currency = useSelector((state: RootState) => state.other.currency); //TODO: improve???
+  const currency = useSelector((state: RootState) => state.other.currency);
   const dispatch = useDispatch();
   return (
     <div className={styles.goldForm}>

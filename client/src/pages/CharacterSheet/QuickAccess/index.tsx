@@ -31,7 +31,7 @@ const QuickAccess = () => {
       localStorage.clear();
       history.push("/");
     }
-  }//TODO: change Number Input Component, Split NumberInput to other component as it causes rerenders of whole component
+  }
 
   return (
     <>
