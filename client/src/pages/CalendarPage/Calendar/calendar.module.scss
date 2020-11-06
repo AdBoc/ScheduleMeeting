@@ -1,0 +1,86 @@
+.calendar {
+  position: relative;
+  background: var(--calendar-background);
+  color: var(--calendar-font);
+  max-width: max-content;
+  margin: 1em auto 0 auto;
+  padding: 1em;
+}
+
+.monthTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.topLabel {
+  padding: 1em 0;
+  min-width: 8em;
+  text-align: center;
+  font-weight: normal;
+}
+
+.topButton {
+  padding: .1em;
+}
+
+.weekGrid {
+  padding: 1em 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.selectAllButtons {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.selectAllButton {
+  background: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  font-size: 0.9em;
+}
+
+.day {
+  background: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  padding: 0.75em;
+}
+
+.selected {
+  background: var(--selected);
+  color: white;
+}
+
+.today {
+  background: var(--today) !important;
+  border-radius: 100%;
+  color: white;
+}
+
+.loadingMessage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2em 3em;
+  border: 2px solid black;
+}
+
+.emptyDay {
+  visibility: hidden;
+}

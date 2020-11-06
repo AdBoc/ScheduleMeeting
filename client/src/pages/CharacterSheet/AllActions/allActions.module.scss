@@ -1,0 +1,9 @@
+.tabsButtons{
+  display: flex;
+  margin: 0.3em;
+  justify-content: center;
+}
+
+.tabButton {
+  composes: genericButton from "./reusableStyles.module.scss";
+}

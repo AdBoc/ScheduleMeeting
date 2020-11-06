@@ -1,0 +1,66 @@
+.stat {
+  position: relative;
+  display: flex;
+  padding: 1em;
+  justify-content: space-around;
+}
+
+.statInput {
+  font-size: 2em;
+  max-width: 1.25em;
+  text-align: center;
+}
+
+.statName {
+  align-self: center;
+  min-width: 6em;
+}
+
+.statMod {
+  width: 4em;
+  align-self: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.statModVal {
+  align-self: center;
+  width: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.statSelect {
+  position: relative;
+}
+
+.inputError {
+  position: absolute;
+  bottom: 0;
+  left: 1.9em;
+  color: red;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.veryHighStat {
+  color: #37c200;
+}
+
+.positiveStat {
+  color: #288c00;
+}
+
+.neutralStat {
+  color: black;
+}
+
+.negativeStat {
+  color: #ba0000;
+}
+
+.veyLowStat {
+  color: #ff4040;
+}

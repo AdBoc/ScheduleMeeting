@@ -1,0 +1,21 @@
+.modifyFieldWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 1.5em;
+}
+
+.value {
+  text-align: center;
+  display: inline-block;
+  min-width: 1.25em;
+}
+
+.modifyIcon {
+  background: var(--primary-color);
+  color: white;
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0.2em;
+  border: none;
+}

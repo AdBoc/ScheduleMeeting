@@ -1,23 +1,26 @@
-import React from 'react';
-import {Route, Router, Switch} from 'react-router-dom';
+import React from "react";
+import {Route, Router, Switch} from "react-router-dom"
+import {history} from "./utils/history";
 
-import {history} from './Services/History';
+import {Slide, ToastContainer} from "react-toastify";
 
-import CharacterContextProvider from './context/Character';
-import Calendar from './Calendar/Calendar';
-import CharacterSheet from './CharacterSheet/CharacterSheet';
-import Reset from './components/Reset';
+import CalendarPage from "./pages/CalendarPage/CalendarPage";
+import CharacterSheet from "./pages/CharacterSheet/CharacterSheet";
+import NotFound404 from "./pages/NotFound404/NotFound404";
 
-function App(): JSX.Element {
+import 'react-toastify/dist/ReactToastify.css';
+import './assets/fonts.css';
+import "./assets/normalize.css";
+
+function App() {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={Calendar}/>
-        <Route exact path="/reset" component={Reset}/>
-        <CharacterContextProvider>
-          <Route exact path="/sheet" component={CharacterSheet}/>
-        </CharacterContextProvider>
+        <Route exact path="/" component={CalendarPage}/>
+        <Route exact path={"/sheet"} component={CharacterSheet}/>
+        <Route component={NotFound404}/>
       </Switch>
+      <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar newestOnTop/>
     </Router>
   )
 }
