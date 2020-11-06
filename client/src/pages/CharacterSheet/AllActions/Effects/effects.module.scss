@@ -89,8 +89,13 @@
   input:checked + label {
     background: #3d6636;
   }
+
   input:checked + label::after {
     left: calc(100% - 2px);
     transform: translateX(-100%);
   }
+}
+
+.effectLabel {
+  cursor: pointer
 }

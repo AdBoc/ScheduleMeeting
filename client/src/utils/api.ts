@@ -56,6 +56,7 @@ class Api {
       });
       return response.json();
     } catch (error) {
+      console.log(error);
       toast.error("Connection error");
       if (controller.signal.aborted) return;
       return {daysData: []};

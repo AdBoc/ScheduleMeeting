@@ -7,8 +7,8 @@ import styles from "./header.module.scss";
 const HpForm = () => {
   const maxHitPoints = useSelector((state: RootState) => state.characterStats.hitPoints);
   const currentHitPoints = useSelector((state: RootState) => state.characterStats.temporaryHitPoints);
-  const dispatch = useDispatch();
   const [hp, setHp] = useState<{ val: "" | number, invert: boolean }>({val: "", invert: false});
+  const dispatch = useDispatch();
 
   const handleHpChange = ({target}: any) => {
     if (!target.value) return setHp(prev => ({...prev, val: ""}));

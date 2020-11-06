@@ -24,7 +24,6 @@ export function skills(skills = initialState, action: SkillActions): Skills {
   }
 }
 
-//INCREMENT
 //     case INCREMENT_SKILL:
 //       return {
 //         ...skills,

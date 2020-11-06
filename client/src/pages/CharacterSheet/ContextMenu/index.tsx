@@ -8,7 +8,8 @@ const ContextMenu = () => {
     <>
       {showEffects && <div className={styles.expandedMenu}>
           <ActiveEffects/>
-      </div>}
+      </div>
+      }
       <div className={showEffects ? styles.contextMenuSelected : styles.contextMenu} onClick={() => {
         setShowEffects(prev => !prev);
       }}>

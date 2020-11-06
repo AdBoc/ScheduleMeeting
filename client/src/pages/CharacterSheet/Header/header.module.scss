@@ -47,18 +47,10 @@
   font-size: 0.9em;
 }
 
-.dicesSvg {
-  width: 2em;
-  height: 2em;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
 .inspirationSvg {
   position: absolute;
   top: 5px;
-  left: 5px;
+  right: 5px;
 }
 
 .hpForm {
@@ -102,16 +94,20 @@
 
 .hpDanger {
   color: #ff6767;;
+  cursor: pointer;
 }
 
 .hpWarning {
   color: #ffb239;
+  cursor: pointer;
 }
 
 .hpNormal {
   color: white;
+  cursor: pointer;
 }
 
 .hpGood {
   color: #9fff9f;
+  cursor: pointer;
 }

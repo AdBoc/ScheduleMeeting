@@ -6,19 +6,20 @@ interface IProps {
   value: number;
   dispatchAction: (v: string) => any;
   customClass?: any;
+  customLabelClass?: any;
 }
 
 
-const NumberInput: React.FC<IProps> = ({label, dispatchAction, value, customClass}) => {
+const NumberInput: React.FC<IProps> = ({label, dispatchAction, value, customClass, customLabelClass}) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if(/^[1-9][0-9]*$/.test(e.target.value)) {
+    if (/^[0-9][0-9]*$/.test(e.target.value)) {
       dispatchAction(e.target.value);
     }
   }
 
   return (
-    <div className={customClass ? customClass : styles.numberInput}>
-      <label className={styles.label}>{label}</label>
+    <div className={customClass || styles.numberInput}>
+      <label className={customLabelClass || styles.label}>{label}</label>
       <input
         className={styles.input}
         type="number"

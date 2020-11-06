@@ -19,7 +19,7 @@ const EffectsTable: React.FC<Props> = ({handleShowItem}) => {
     <div className={styles.effectsWrapper}>
       {effects.map(effect => (
         <div key={effect.id} className={styles.effectWrapper}>
-          <p onClick={handleShowItem(effect)}>{effect.name}</p>
+          <p className={styles.effectLabel} onClick={handleShowItem(effect)}>{effect.name}</p>
           <input
             className={styles.effectToggleInput}
             id={effect.id}

@@ -72,6 +72,11 @@
   font-size: 0.9em;
 }
 
+.spellsGridList {
+  composes: spellsGrid;
+  cursor: pointer;
+}
+
 .spellName {
   font-size: 0.9em;
 }
@@ -85,6 +90,7 @@
   background: inherit;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .spellSlot {
@@ -109,4 +115,9 @@
 .slotLevel {
   color: inherit;
   padding: 0 1em 0 1.5em;
+}
+
+.proficiencySelect {
+  display: block;
+  margin: auto;
 }

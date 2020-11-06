@@ -6,9 +6,10 @@ import {history} from "../../../utils/history";
 import api from "../../../utils/api";
 import {useDispatch} from "react-redux";
 import {useIsMounted} from "../../../hooks/useIsMounted/useIsMounted";
+import {setCharacter} from "../../../redux/reducers";
 
 
-const users = ['Test', 'Witek', 'Sławek', 'Portek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
+const users = ['Janek', 'Witek', 'Sławek', 'Portek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
 
 const Users = () => {
   const {user, handleUser} = useContext(userContext);
@@ -23,7 +24,7 @@ const Users = () => {
         if (!response && user === localStorage.getItem("user")) {
           history.push("/sheet");
         } else if (!!response && user === localStorage.getItem("user")) {
-          // dispatch(setCharacter(JSON.parse(response).character)); TODO: dispatch every
+          dispatch(setCharacter(JSON.parse(response)));
           history.push("/sheet");
         }
       })

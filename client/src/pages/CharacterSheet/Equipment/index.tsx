@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/reducers";
-import {dndMath} from "../../../utils/dndMath";
 import {useCustomForm} from "../../../hooks/useCustomForm";
 import {EquipmentItem} from "../../../redux/types";
 import AddItem from "./AddItem";
 import MultiSelect from "react-multi-select-component";
-import {filteredEquipment} from "../../../redux/selectors";
 import styles from "./equipment.module.scss";
 import CustomPopup from "../../../components/CustomPopup/CustomPopup";
 import Gold from "./Gold";
 import EquipmentItems from "./EquipmentItems";
+import {deleteItem} from "../../../redux/actions";
+import {selectConvertedGoldValue} from "../../../redux/selectors";
 
 const options = [
   {label: "Armors", value: "armors"},
@@ -22,22 +21,22 @@ const options = [
 ];
 
 const Equipment = () => {
+  const totalGold = useSelector(selectConvertedGoldValue);
   const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
   const [isGold, setIsGold] = useState(false);
-
-  const currency = useSelector((state: RootState) => state.other.currency); //TODO: IMPROVE UNNECESSARY RERENDERS
+  const dispatch = useDispatch();
 
   const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<EquipmentItem>();
 
   const handleDelete = () => {
-    // if (!!itemDetails) dispatch(deleteInArray("Equipment", itemDetails.id));
+    if(!!itemDetails) dispatch(deleteItem(itemDetails.id));
     handleHideItem();
   }
 
   return (
     <>
       <div className={styles.buttons}>
-        <button className={styles.basicButton} onClick={() => {setIsGold(prev => !prev)}}>Total GP: {dndMath.totalGp(currency)}</button>
+        <button className={styles.basicButton} onClick={() => {setIsGold(prev => !prev)}}>Total GP: {totalGold}</button>
         <button className={styles.basicButton} onClick={() => {setShowForm(prev => !prev)}}>Add item</button>
       </div>
       {showForm && <CustomPopup hideElement={setShowForm}><AddItem closeForm={setShowForm}/></CustomPopup>}

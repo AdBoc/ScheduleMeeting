@@ -12,8 +12,10 @@ type Props = {
 }
 
 const SpellsTable: React.FC<Props> = ({sortingCriteria, handleShowItem, handleSorting}) => {
-  const spells = useSelector((state: RootState) => selectSortedSpells(state, sortingCriteria));
-  // console.log(selectSortedSpells.recomputations());
+  const spells = useSelector((state: RootState) => selectSortedSpells(state, sortingCriteria));// console.log(selectSortedSpells.recomputations());
+
+  if (!spells.length) return <p className={styles.emptyList}>Spells list is empty</p>;
+
   return (
     <>
       <div className={styles.spellsGrid}>
@@ -23,17 +25,15 @@ const SpellsTable: React.FC<Props> = ({sortingCriteria, handleShowItem, handleSo
         <button className={styles.tableLabel} name="school" onClick={handleSorting}>School</button>
         <p>Components</p>
       </div>
-      {spells.length !== 0 ? spells.map(spell => (
-        <div key={spell.id} className={styles.spellsGrid} onClick={handleShowItem(spell)}>
+      {spells.map(spell => (
+        <div key={spell.id} className={styles.spellsGridList} onClick={handleShowItem(spell)}>
           <p>{spell.name}</p>
           <p>{spell.level}</p>
           <p>{spell.range}</p>
           <p>{spell.school}</p>
           <p>{spell.components}</p>
         </div>
-      )) : (
-        <p className={styles.emptyList}>List is empty</p>
-      )}
+      ))}
     </>
   );
 }

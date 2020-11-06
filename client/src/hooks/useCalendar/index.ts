@@ -1,7 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {FilteredAllNames, FilteredByName, SelectedDays, SelectedDaysState} from "../../types";
 import api from "../../utils/api";
-import {useIsMounted} from "../useIsMounted/useIsMounted";
 
 const filterDaysByAmount = (selectedDays: SelectedDays) => {
   return selectedDays.reduce((obj: FilteredAllNames, item) => {
@@ -29,13 +28,18 @@ const filterDayByUser = (selectedDays: SelectedDays, selectedName: string) => {
 
 const useCalendar = (user: string | null) => {
   const currentTime = new Date();
-  const isMounted = useIsMounted();
+  const isMounted = useRef(false);
   const [userDate, setUserDate] = useState({
     selectedDay: currentTime.getDate(),
     selectedMonth: currentTime.getMonth(),
     selectedYear: currentTime.getFullYear()
   });
   const [selectedApiDays, setSelectedApiDays] = useState<SelectedDaysState>({days: [], isFetching: false});
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => void (isMounted.current = false);
+  }, []);
 
   useEffect(() => {
     const abortController = new AbortController();

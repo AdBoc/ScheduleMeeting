@@ -26,7 +26,7 @@ const AttacksTable: React.FC<Props> = ({handleShowItem}) => {
         <p>Range</p>
       </div>
       {attacks.map(attack => (
-        <div key={attack.id} className={styles.attacksGrid} onClick={handleShowItem(attack)}>
+        <div key={attack.id} className={styles.attacksGridTable} onClick={handleShowItem(attack)}>
           <p className={styles.attacksName}>{attack.name}</p>
           <p>{attack.diceType} + {(dndMath.statModifier(stats[attack.profMod as keyof Stats]) + attack.bonusDamage)}</p>
           {attack.proficient ? <p>1d20

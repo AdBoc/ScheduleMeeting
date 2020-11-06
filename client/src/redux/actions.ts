@@ -11,11 +11,14 @@ import {
   CHANGE_CHARACTER_STAT,
   CHANGE_CURRENCY_AMOUNT,
   CHANGE_EFFECT_STATUS,
-  CHANGE_HP, CHANGE_SPELL_PROFICIENCY,
+  CHANGE_HP,
+  CHANGE_MAX_SLOT_VALUE,
+  CHANGE_SPELL_PROFICIENCY,
   CHANGE_STAT_VALUE,
   CHANGE_STATUS,
   CharacterStats,
   CharacterStatsActions,
+  DECREMENT_CURRENT_SPELL_SLOT,
   DECREMENT_SKILL,
   DECREMENT_STAT,
   DELETE_ATTACK,
@@ -30,6 +33,7 @@ import {
   INCREMENT_STAT,
   Other,
   OtherActions,
+  REST_SLOTS,
   SkillActions,
   Skills,
   Spell,
@@ -100,6 +104,21 @@ export const changeCurrencyAmount = (currency: keyof Other["currency"], newAmoun
 export const changeSpellProficiency = (proficiency: string): OtherActions => ({
   type: CHANGE_SPELL_PROFICIENCY,
   proficiency
+})
+
+export const decrementCurrentSpellSlot = (slotLevel: number): OtherActions => ({
+  type: DECREMENT_CURRENT_SPELL_SLOT,
+  slotLevel
+})
+
+export const restSlots = (): OtherActions => ({
+  type: REST_SLOTS
+})
+
+export const changeMaxSlotValue = (slotLevel: number, newValue: number): OtherActions => ({
+  type: CHANGE_MAX_SLOT_VALUE,
+  slotLevel,
+  newValue
 })
 
 export const changeBackground = (element: keyof Background, newValue: string): BackgroundActions => ({

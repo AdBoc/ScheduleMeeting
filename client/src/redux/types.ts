@@ -115,7 +115,6 @@ export type CharacterStatsActions = ChangeStat
 
 export type Other = {
   taggedThrows: (string | null)[];
-  taggedSkills: string[];
   currency: {
     pP: number;
     gP: number;
@@ -126,7 +125,6 @@ export type Other = {
   inspiration: boolean;
   spellSlots: [number, number, number, number, number, number, number, number, number];
   currentSlots: [number, number, number, number, number, number, number, number, number];
-  shortRestSlots: [number, number, number, number, number, number, number, number, number];
   spellProficiency: null | string;
 }
 
@@ -134,6 +132,9 @@ export const CHANGE_STATUS = "CHANGE_STATUS";
 export const TAG_ELEMENT = "TAG_ELEMENT";
 export const CHANGE_CURRENCY_AMOUNT = "CHANGE_CURRENCY_AMOUNT";
 export const CHANGE_SPELL_PROFICIENCY = "CHANGE_SPELL_PROFICIENCY";
+export const DECREMENT_CURRENT_SPELL_SLOT = "DECREMENT_CURRENT_SPELL_SLOT";
+export const CHANGE_MAX_SLOT_VALUE = "CHANGE_MAX_SLOT_VALUE";
+export const REST_SLOTS = "REST_SLOTS";
 
 type ChangeStatus = {
   type: typeof CHANGE_STATUS;
@@ -146,7 +147,7 @@ type TagElement = {
 }
 
 type ChangeSpellProficiency = {
-  type: typeof CHANGE_SPELL_PROFICIENCY,
+  type: typeof CHANGE_SPELL_PROFICIENCY;
   proficiency: string;
 }
 
@@ -156,10 +157,28 @@ type ChangeCurrencyAmount = {
   newAmount: number;
 }
 
+type DecrementCurrentSpellSlot = {
+  type: typeof DECREMENT_CURRENT_SPELL_SLOT;
+  slotLevel: number;
+}
+
+type ChangeMaxSlotValue = {
+  type: typeof CHANGE_MAX_SLOT_VALUE;
+  slotLevel: number;
+  newValue: number;
+}
+
+type RestSlots = {
+  type: typeof REST_SLOTS;
+}
+
 export type OtherActions = ChangeStatus
   | TagElement
   | ChangeCurrencyAmount
-  | ChangeSpellProficiency;
+  | ChangeSpellProficiency
+  | DecrementCurrentSpellSlot
+  | ChangeMaxSlotValue
+  | RestSlots;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -297,13 +316,3 @@ type DeleteSpell = {
 
 export type SpellsActions = AddSpell
   | DeleteSpell;
-
-// {"characterStats":{"level":1,"temporaryHitPoints":1,"hitPoints":1,"armorClass":1,"initiative":1,"speed":1,"passivePerception":1},
-//   "stats":{"strength":1,"dexterity":1,"constitution":1,"intelligence":1,"wisdom":1,"charisma":1},
-//   "skills":{"athletics": {"value": -5, "isTagged": false},"acrobatics": {"value": -5, "isTagged": false},"sleightOfHand": {"value": -5, "isTagged": false},"stealth": {"value": -5, "isTagged": false},"arcana": {"value": -5, "isTagged": false},"history": {"value": -5, "isTagged": false},"investigation": {"value": -5, "isTagged": false},"nature": {"value": -5, "isTagged": false},"religion": {"value": -5, "isTagged": false},"animalHandling": {"value": -5, "isTagged": false},"insight": {"value": -5, "isTagged": false},"medicine": {"value": -5, "isTagged": false},"perception": {"value": -5, "isTagged": false},"survival": {"value": -5, "isTagged": false},"deception": {"value": -5, "isTagged": false},"intimidation": {"value": -5, "isTagged": false},"performance": {"value": -5, "isTagged": false},"persuasion": {"value": -5, "isTagged": false}},
-//   "background":{"name":"","alignment":"","background":"","class":"","featuresAndTraits":"","experiencePoints":"","proficienciesAndLanguage":"","race":"","story":""},
-//   "attacks":[{"name":"Fist","diceType":"1d6","range":5,"bonusDamage":0,"bonusHit":0,"proficient":true,"profMod":"Strength","type":"Bludgeoning","id":"cd712c29-6419-4563-93ae-47b0c91463f5"}],
-//   "equipment":[{"name":"item1","quantity":"5","type":"other","description":"dwadwadwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww","id":"a70b4333-5884-4625-8c60-2303424f1aee"},{"name":"item2","quantity":"10","type":"other","description":"","id":"9456ac7a-9af9-483a-b94e-1ef8d4900796"}],
-//   "effects":[],
-//   "spells":[],
-//   "other":{"taggedThrows":["dexterity","strength"],"taggedSkills":[],"currency":{"pP":0,"gP":0,"eP":0,"sP":0,"cP":0},"inspiration":false,"spellSlots":[0,0,0,0,0,0,0,0,0],"shortRestSlots":[0,0,0,0,0,0,0,0,0],"currentSlots":[0,0,0,0,0,0,0,0,0],"spellProficiency":"constitution"}}

@@ -1,4 +1,14 @@
-import {CHANGE_CURRENCY_AMOUNT, CHANGE_SPELL_PROFICIENCY, CHANGE_STATUS, Other, OtherActions, TAG_ELEMENT} from "../types";
+import {
+  CHANGE_CURRENCY_AMOUNT,
+  CHANGE_MAX_SLOT_VALUE,
+  CHANGE_SPELL_PROFICIENCY,
+  CHANGE_STATUS,
+  DECREMENT_CURRENT_SPELL_SLOT,
+  Other,
+  OtherActions,
+  REST_SLOTS,
+  TAG_ELEMENT
+} from "../types";
 import produce from "immer";
 
 const initialState = null as unknown as Other;
@@ -26,6 +36,19 @@ export function other(other = initialState, action: OtherActions): Other {
     case CHANGE_SPELL_PROFICIENCY:
       return produce(other, draftState => {
         draftState.spellProficiency = action.proficiency;
+      })
+    case CHANGE_MAX_SLOT_VALUE:
+      return produce(other, draftState => {
+        draftState.spellSlots[action.slotLevel] = action.newValue;
+      });
+    case DECREMENT_CURRENT_SPELL_SLOT:
+      if (!other.currentSlots[action.slotLevel]) return other;
+      return produce(other, draftState => {
+        draftState.currentSlots[action.slotLevel] = --draftState.currentSlots[action.slotLevel];
+      });
+    case REST_SLOTS:
+      return produce(other, draftState => {
+        draftState.currentSlots = draftState.spellSlots;
       })
     default:
       return other;

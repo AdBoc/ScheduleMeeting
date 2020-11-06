@@ -13,5 +13,5 @@ const Stats: React.FC = () => {
     </>
   )
 }
-
+//Because of the React update batching behavior used in React Redux v7, a dispatched action that causes multiple useSelector()s in the same component to return new values should only result in a single re-render.
 export default Stats;

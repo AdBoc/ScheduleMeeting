@@ -35,10 +35,7 @@ const Spells = () => {
     <>
       <div className={styles.buttonsRow}>
         <button className={styles.genericButton} onClick={() => setIsSpellSlots(prev => !prev)}>Spell Slots</button>
-        <button className={styles.genericButton} onClick={() => {
-          setShowForm(prev => !prev)
-        }}>Add spell
-        </button>
+        <button className={styles.genericButton} onClick={() => {setShowForm(prev => !prev)}}>Add spell</button>
         <p className={styles.spellStats}>Save DC: {spellProficiency !== null ?
           <span>{8 + dndMath.skillProficiency(playerLevel) + dndMath.statModifier(stats[spellProficiency as keyof Stats])}</span> :
           <span>?</span>}</p>
@@ -48,7 +45,7 @@ const Spells = () => {
       </div>
       <div>
         {spellProficiency === null && (
-          <select onChange={({target}: any) => dispatch(changeSpellProficiency(target.value))}>
+          <select className={styles.proficiencySelect} onChange={({target}: any) => dispatch(changeSpellProficiency(target.value))}>
             <option value="Strength">Strength</option>
             <option value="Dexterity">Dexterity</option>
             <option value="Constitution">Constitution</option>
@@ -72,7 +69,7 @@ const Spells = () => {
               <p className={styles.labelDetails}>Time: {itemDetails.castingTime}</p>
               <p className={styles.labelDetails}>Comp: {itemDetails.components}</p>
               <p className={styles.labelDetails}>Range: {itemDetails.range}</p>
-              <p className={styles.labelDetails}>Name: {itemDetails.description}</p>
+              <p className={styles.labelDetails}>Description: {itemDetails.description}</p>
               <button className={styles.deleteDetails} name={itemDetails.id} onClick={handleDelete}>DELETE</button>
           </div>
       </CustomPopup>

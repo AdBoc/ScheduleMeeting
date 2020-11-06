@@ -51,6 +51,11 @@
   font-size: 0.9em;
 }
 
+.attacksGridTable {
+  composes: attacksGrid;
+  cursor: pointer;
+}
+
 .attacksName {
   font-size: 0.9em;
 }

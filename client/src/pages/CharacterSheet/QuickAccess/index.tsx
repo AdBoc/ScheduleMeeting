@@ -31,8 +31,8 @@ const QuickAccess = () => {
       localStorage.clear();
       history.push("/");
     }
-  }
-  //TODO: change Number Input Component, Split NumberInput to other component as it causes rerenders of whole component
+  }//TODO: change Number Input Component, Split NumberInput to other component as it causes rerenders of whole component
+
   return (
     <>
       <NumberInput label="Max HP" value={hitPoints} dispatchAction={(v: string) => dispatch(changeCharacterStat("hitPoints", parseInt(v)))}/>
@@ -44,7 +44,6 @@ const QuickAccess = () => {
       <ModifyStatField label="Passive Perception" statName="passivePerception"/>
       <hr className={styles.hl}/>
       <Checkbox label="Inspiration" propertyName="inspiration"/>
-      {/*<Checkbox label="DiceSim" path="DiceSim.status" checkboxValue={character.DiceSim.status}/>*/}
       <hr className={styles.hl}/>
       <button className={styles.defaultButton}><Link className={styles.linkColor} to="/">Show Calendar</Link></button>
       <button className={styles.defaultButton} onClick={handleCopy}>Copy JSON</button>
