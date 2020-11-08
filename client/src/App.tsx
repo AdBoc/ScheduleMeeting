@@ -1,7 +1,8 @@
 import React from "react";
-import {Route, HashRouter, Switch} from "react-router-dom"
+import {Route, Router, Switch} from "react-router-dom"
 
 import {Slide, ToastContainer} from "react-toastify";
+import {customHistory} from "./utils/history";
 
 import CalendarPage from "./pages/CalendarPage/CalendarPage";
 import CharacterSheet from "./pages/CharacterSheet/CharacterSheet";
@@ -13,14 +14,14 @@ import "./assets/normalize.css";
 
 function App() {
   return (
-    <HashRouter>
+    <Router history={customHistory}>
       <Switch>
         <Route exact path="/" component={CalendarPage}/>
         <Route exact path={"/sheet"} component={CharacterSheet}/>
         <Route component={NotFound404}/>
       </Switch>
       <ToastContainer transition={Slide} autoClose={1500} pauseOnHover={false} position="bottom-center" hideProgressBar newestOnTop/>
-    </HashRouter>
+    </Router>
   )
 }
 

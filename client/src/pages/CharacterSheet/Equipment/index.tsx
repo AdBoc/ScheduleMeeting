@@ -29,15 +29,20 @@ const Equipment = () => {
   const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<EquipmentItem>();
 
   const handleDelete = () => {
-    if(!!itemDetails) dispatch(deleteItem(itemDetails.id));
+    if (!!itemDetails) dispatch(deleteItem(itemDetails.id));
     handleHideItem();
   }
 
   return (
     <>
       <div className={styles.buttons}>
-        <button className={styles.basicButton} onClick={() => {setIsGold(prev => !prev)}}>Total GP: {totalGold}</button>
-        <button className={styles.basicButton} onClick={() => {setShowForm(prev => !prev)}}>Add item</button>
+        <button className={styles.basicButton} onClick={() => {
+          setIsGold(prev => !prev)
+        }}>Total GP: {totalGold}</button>
+        <button className={styles.basicButton} onClick={() => {
+          setShowForm(prev => !prev)
+        }}>Add item
+        </button>
       </div>
       {showForm && <CustomPopup hideElement={setShowForm}><AddItem closeForm={setShowForm}/></CustomPopup>}
       {isGold && <CustomPopup hideElement={setIsGold}><Gold/></CustomPopup>}
@@ -55,7 +60,7 @@ const Equipment = () => {
       <CustomPopup hideElement={setItemDetails}>
           <div className={styles.itemDetails}>
               <p className={styles.detailsLabel}>{itemDetails.name}</p>
-              <p className={styles.detailsLabel}>{itemDetails.description}</p>
+            {itemDetails.description && <p className={styles.detailsLabel}>{itemDetails.description}</p>}
               <p className={styles.detailsLabel}>{itemDetails.quantity ? itemDetails.quantity : "-"}</p>
               <button className={styles.detailsDelete} onClick={handleDelete}>Delete</button>
           </div>

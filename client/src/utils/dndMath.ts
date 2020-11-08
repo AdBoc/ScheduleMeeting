@@ -24,45 +24,6 @@ class DndMath {
     if (isTagged) return this.skillProficiency(level) + this.statModifier(statVal);
     return this.statModifier(statVal);
   }
-
-  // /*
-  // *Count new skills object based on changed Stat
-  //  */
-  // public generateNewSkills(skills: RootState["skills"], newValue: number, name: string): RootState["skills"] {
-  //   const newSkills = {...skills};
-  //   const newMod = this.statModifier(newValue);
-  //   switch (name) {
-  //     case "Strength":
-  //       newSkills.athletics.value = newMod;
-  //       break;
-  //     case "Dexterity":
-  //       newSkills.acrobatics.value = newMod;
-  //       newSkills.sleightOfHand.value = newMod;
-  //       newSkills.stealth.value = newMod;
-  //       break;
-  //     case "Intelligence":
-  //       newSkills.arcana.value = newMod;
-  //       newSkills.history.value = newMod;
-  //       newSkills.investigation.value = newMod;
-  //       newSkills.nature.value = newMod;
-  //       newSkills.religion.value = newMod;
-  //       break;
-  //     case "Wisdom":
-  //       newSkills.animalHandling.value = newMod;
-  //       newSkills.insight.value = newMod;
-  //       newSkills.medicine.value = newMod;
-  //       newSkills.perception.value = newMod;
-  //       newSkills.survival.value = newMod;
-  //       break;
-  //     case "Charisma":
-  //       newSkills.deception.value = newMod;
-  //       newSkills.intimidation.value = newMod;
-  //       newSkills.performance.value = newMod;
-  //       newSkills.persuasion.value = newMod;
-  //       break;
-  //   }
-  //   return newSkills;
-  // }
 }
 
 export const dndMath = new DndMath();

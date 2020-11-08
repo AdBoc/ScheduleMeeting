@@ -1,2 +1,2 @@
-import {createHashHistory} from "history";
-export const customHistory = createHashHistory();
+import {createBrowserHistory} from "history";
+export const customHistory = createBrowserHistory();
