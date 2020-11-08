@@ -23,4 +23,4 @@ serviceWorker.register({
     }
     window.location.reload();
   }
-});
+}); 

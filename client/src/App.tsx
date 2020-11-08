@@ -1,6 +1,5 @@
 import React from "react";
 import {Route, HashRouter, Switch} from "react-router-dom"
-import {history} from "./utils/history";
 
 import {Slide, ToastContainer} from "react-toastify";
 
@@ -14,8 +13,7 @@ import "./assets/normalize.css";
 
 function App() {
   return (
-    //@ts-ignore
-    <HashRouter history={history}>
+    <HashRouter>
       <Switch>
         <Route exact path="/" component={CalendarPage}/>
         <Route exact path={"/sheet"} component={CharacterSheet}/>

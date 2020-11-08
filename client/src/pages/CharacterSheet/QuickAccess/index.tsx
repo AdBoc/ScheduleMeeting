@@ -2,9 +2,8 @@ import React from 'react';
 import NumberInput from "../../../components/NumberInput/NumberInput";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/reducers";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import styles from "./quickAccess.module.scss";
-import {history} from "../../../utils/history";
 import api from "../../../utils/api";
 import {changeCharacterStat} from "../../../redux/actions";
 import ModifyStatField from "../../../components/ModifyStatField/ModifyStatField";
@@ -15,6 +14,7 @@ const QuickAccess = () => {
   const hitPoints = useSelector((state: RootState) => state.characterStats.hitPoints);
   const speed = useSelector((state: RootState) => state.characterStats.speed);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleCopy = () => {
     const dummy = document.createElement("textarea");

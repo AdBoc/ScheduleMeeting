@@ -2,16 +2,17 @@ import React, {useContext, useState} from 'react';
 import {userContext} from "../../../context/users";
 
 import styles from './users.module.scss';
-import {history} from "../../../utils/history";
 import api from "../../../utils/api";
 import {useDispatch} from "react-redux";
 import {useIsMounted} from "../../../hooks/useIsMounted/useIsMounted";
 import {setCharacter} from "../../../redux/reducers";
+import {useHistory} from 'react-router-dom';
 
 
 const users = ['Janek', 'Witek', 'Sławek', 'Portek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
 
 const Users = () => {
+  const history = useHistory();
   const {user, handleUser} = useContext(userContext);
   const isMounted = useIsMounted();
   const [fetching, setFetching] = useState(false);
