@@ -14,6 +14,7 @@ import "./assets/normalize.css";
 
 function App() {
   return (
+    //@ts-ignore
     <HashRouter history={history}>
       <Switch>
         <Route exact path="/" component={CalendarPage}/>
