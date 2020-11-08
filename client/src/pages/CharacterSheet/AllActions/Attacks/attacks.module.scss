@@ -47,13 +47,24 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5em;
-  margin: 0.5em 0;
+  padding: 0.5em 0;
   font-size: 0.9em;
+}
+
+.attacksGridLabel {
+  margin-top: 1em;
+  composes: attacksGrid;
+  padding: 0.3em 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .attacksGridTable {
   composes: attacksGrid;
   cursor: pointer;
+  &:nth-of-type(odd) {
+    background: #eeeeee;
+  }
 }
 
 .attacksName {

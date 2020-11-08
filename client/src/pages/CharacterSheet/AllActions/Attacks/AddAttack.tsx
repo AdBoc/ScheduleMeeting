@@ -79,29 +79,29 @@ const AddAttack: React.FC<IProps> = ({handleClose}) => {
         type="number"
       />
       <label>Proficiency<input ref={register} className={styles.profCheckbox} type="checkbox" name="proficient"/></label>
-      <select ref={register} className={styles.select} name="profMod" defaultValue="Strength">
-        <option value="Strength">Strength</option>
-        <option value="Dexterity">Dexterity</option>
-        <option value="Constitution">Constitution</option>
-        <option value="Charisma">Charisma</option>
-        <option value="Intelligence">Intelligence</option>
-        <option value="Wisdom">Wisdom</option>
+      <select ref={register} className={styles.select} name="profMod" defaultValue="strength">
+        <option value="strength">Strength</option>
+        <option value="dexterity">Dexterity</option>
+        <option value="constitution">Constitution</option>
+        <option value="charisma">Charisma</option>
+        <option value="intelligence">Intelligence</option>
+        <option value="wisdom">Wisdom</option>
         <option value="">No Scaling</option>
       </select>
-      <select ref={register} className={styles.select} name="type" defaultValue="Slashing">
-        <option value="Slashing">Slashing</option>
-        <option value="Bludgeoning">Bludgeoning</option>
-        <option value="Piercing">Piercing</option>
-        <option value="Force">Force</option>
-        <option value="Fire">Fire</option>
-        <option value="Cold">Cold</option>
-        <option value="Lightning">Lightning</option>
-        <option value="Thunder">Thunder</option>
-        <option value="Poison">Poison</option>
-        <option value="Acid">Acid</option>
-        <option value="Psychic">Psychic</option>
-        <option value="Necrotic">Necrotic</option>
-        <option value="Radiant">Radiant</option>
+      <select ref={register} className={styles.select} name="type" defaultValue="slashing">
+        <option value="slashing">Slashing</option>
+        <option value="bludgeoning">Bludgeoning</option>
+        <option value="piercing">Piercing</option>
+        <option value="force">Force</option>
+        <option value="fire">Fire</option>
+        <option value="cold">Cold</option>
+        <option value="lightning">Lightning</option>
+        <option value="thunder">Thunder</option>
+        <option value="poison">Poison</option>
+        <option value="acid">Acid</option>
+        <option value="psychic">Psychic</option>
+        <option value="necrotic">Necrotic</option>
+        <option value="radiant">Radiant</option>
       </select>
       <input className={styles.newAttackSubmit} type="submit" value="Submit"/>
     </form>

@@ -72,9 +72,20 @@
   font-size: 0.9em;
 }
 
+.spellsGridLabel {
+  composes: spellsGrid;
+  margin-top: 1em;
+  padding: 0.3em 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
 .spellsGridList {
   composes: spellsGrid;
   cursor: pointer;
+  &:nth-of-type(odd) {
+    background: #eeeeee;
+  }
 }
 
 .spellName {

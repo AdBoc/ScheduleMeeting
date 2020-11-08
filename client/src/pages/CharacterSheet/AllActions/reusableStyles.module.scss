@@ -61,21 +61,25 @@
   cursor: pointer;
 }
 
-.newFormSelect {
+.baseInputStyle {
   display: block;
-  margin: 0.5em auto;
-  width: 11.5em;
+  width: 11em;
+  padding: 0.15em;
+  border: 1px solid rgb(48, 48, 48);
+  margin: 0.6em;
+}
+
+.newFormSelect {
+  composes: baseInputStyle;
 }
 
 .newFormInput {
-  display: block;
-  margin: 0.5em;
-  width: 11em;
+  composes: baseInputStyle;
 }
 
 .newFormError {
   composes: newFormInput;
-  background:  rgba(255,0,0,.1);
+  background: rgba(255, 0, 0, .1);
 }
 
 .detailsView {
