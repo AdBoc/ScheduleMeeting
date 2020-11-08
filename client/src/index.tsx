@@ -17,7 +17,7 @@ ReactDOM.render(
 
 serviceWorker.register({
   onUpdate: registration => {
-    alert('Version 1.5 is available');
+    alert('Version 1.1 is available');
     if (registration && registration.waiting) {
       registration.waiting.postMessage({type: 'SKIP_WAITING'});
     }

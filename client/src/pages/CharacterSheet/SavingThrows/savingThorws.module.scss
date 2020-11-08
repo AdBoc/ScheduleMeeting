@@ -11,6 +11,7 @@
   min-width: 10em;
   background: inherit;
   border: none;
+  text-transform: capitalize;
 }
 
 .savingButtonTagged {
@@ -20,6 +21,7 @@
   background: var(--primary-color);
   color: white;
   border: none;
+  text-transform: capitalize;
 }
 
 .deathSaves {

@@ -18,7 +18,7 @@ const SpellsTable: React.FC<Props> = ({sortingCriteria, handleShowItem, handleSo
 
   return (
     <>
-      <div className={styles.spellsGrid}>
+      <div className={styles.spellsGridLabel}>
         <button className={styles.tableLabel} name="name" onClick={handleSorting}>Name</button>
         <button className={styles.tableLabel} name="level" onClick={handleSorting}>Level</button>
         <button className={styles.tableLabel} name="range" onClick={handleSorting}>Range</button>

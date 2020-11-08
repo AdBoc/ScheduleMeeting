@@ -51,15 +51,15 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
         <option value="9">9</option>
         <option value="cantrip">cantrip</option>
       </select>
-      <select ref={register} className={styles.select} name="school" defaultValue="Conjuration">
-        <option value="Conjuration">Conjuration</option>
-        <option value="Necromancy">Necromancy</option>
-        <option value="Evocation">Evocation</option>
-        <option value="Abjuration">Abjuration</option>
-        <option value="Transmutation">Transmutation</option>
-        <option value="Divination">Divination</option>
-        <option value="Enchantment">Enchantment</option>
-        <option value="Illusion">Illusion</option>
+      <select ref={register} className={styles.select} name="school" defaultValue="conjuration">
+        <option value="conjuration">Conjuration</option>
+        <option value="necromancy">Necromancy</option>
+        <option value="evocation">Evocation</option>
+        <option value="abjuration">Abjuration</option>
+        <option value="transmutation">Transmutation</option>
+        <option value="divination">Divination</option>
+        <option value="enchantment">Enchantment</option>
+        <option value="illusion">Illusion</option>
       </select>
       <select ref={register} className={styles.select} name="castingTime">
         <option value="1 action">1 action</option>
@@ -71,13 +71,6 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
         <option value="12 hours">12 hours</option>
         <option value="24 hours">24 hours</option>
       </select>
-      <input
-        ref={register({required: true, maxLength: 5})}
-        className={errors.range ? styles.inputError : styles.inputField}
-        name="range"
-        placeholder="Range"
-        type="number"
-      />
       <select ref={register} className={styles.select} name="components" required>
         <option value="">--Components--</option>
         <option value="V">V</option>
@@ -88,6 +81,13 @@ const AddSpell: React.FC<IProps> = ({handleClose}) => {
         <option value="S, M">S, M</option>
         <option value="V, S, M">V, S, M</option>
       </select>
+      <input
+        ref={register({required: true, maxLength: 5})}
+        className={errors.range ? styles.inputError : styles.inputField}
+        name="range"
+        placeholder="Range"
+        type="number"
+      />
       <TextareaAutosize
         ref={register({maxLength: 100})}
         className={errors.description ? styles.inputError : styles.inputField}

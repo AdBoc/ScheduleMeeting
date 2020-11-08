@@ -5,11 +5,11 @@ import {dndMath} from "../../../../utils/dndMath";
 import {useCustomForm} from "../../../../hooks/useCustomForm";
 import {Spell, Stats} from "../../../../redux/types";
 import AddSpell from "./AddSpell";
-import styles from "./spells.module.scss";
 import CustomPopup from "../../../../components/CustomPopup/CustomPopup";
 import SpellSlots from "./SpellSlots";
 import SpellsTable from "./SpellsTable";
 import {changeSpellProficiency, deleteSpell} from "../../../../redux/actions";
+import styles from "./spells.module.scss";
 
 const Spells = () => {
   const [sortingOptions, setSortingOptions] = useState({criteria: "name", inverted: false});
@@ -46,12 +46,12 @@ const Spells = () => {
       <div>
         {spellProficiency === null && (
           <select className={styles.proficiencySelect} onChange={({target}: any) => dispatch(changeSpellProficiency(target.value))}>
-            <option value="Strength">Strength</option>
-            <option value="Dexterity">Dexterity</option>
-            <option value="Constitution">Constitution</option>
-            <option value="Charisma">Charisma</option>
-            <option value="Intelligence">Intelligence</option>
-            <option value="Wisdom">Wisdom</option>
+            <option value="strength">Strength</option>
+            <option value="dexterity">Dexterity</option>
+            <option value="constitution">Constitution</option>
+            <option value="charisma">Charisma</option>
+            <option value="intelligence">Intelligence</option>
+            <option value="wisdom">Wisdom</option>
           </select>
         )}
       </div>

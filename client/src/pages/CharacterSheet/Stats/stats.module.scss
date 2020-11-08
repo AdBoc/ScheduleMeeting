@@ -7,13 +7,15 @@
 
 .statInput {
   font-size: 2em;
-  max-width: 1.25em;
+  width: 1.25em;
+  height: 1.25em;
   text-align: center;
 }
 
 .statName {
   align-self: center;
   min-width: 6em;
+  text-transform: capitalize;
 }
 
 .statMod {
