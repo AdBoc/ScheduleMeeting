@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-// import reportWebVitals from './reportWebVitals';
+import * as serviceWorker from './serviceWorker';
 
 import App from "./App";
 import {Provider} from "react-redux";
@@ -16,9 +15,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorkerRegistration.unregister();
-
-serviceWorkerRegistration.register({
+serviceWorker.register({
   onUpdate: registration => {
     alert('Version 1.1 is available');
     if (registration && registration.waiting) {
@@ -26,5 +23,4 @@ serviceWorkerRegistration.register({
     }
     window.location.reload();
   }
-});
-// reportWebVitals();
+}); 
