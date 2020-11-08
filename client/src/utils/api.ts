@@ -1,7 +1,7 @@
 import {toast} from "react-toastify";
 
 class Api {
-  private _url = "http://localhost:8080/api"
+  private _url = "https://moreoverandabove.com/api"
 
   public async getCharacter(user: string) {
     try {
