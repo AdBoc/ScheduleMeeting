@@ -2,11 +2,11 @@ import React, {useRef, useState} from 'react';
 import {dndMath} from "../../../utils/dndMath";
 import {useDispatch, useSelector} from "react-redux";
 
-import {changeStatValue} from "../../../redux/actions";
 import {RootState} from "../../../redux/reducers";
 
 import styles from "./stats.module.scss";
 import {hpColors} from "../../statsColors";
+import {changeStatAndSkill} from "../../../redux/actions";
 
 type Props = {
   statName: keyof RootState["stats"];
@@ -25,7 +25,7 @@ const Stat: React.FC<Props> = ({statName}) => {
     setNewValue(target.value);
     if (/^\b([1-9]|[12][0-9]|30)\b/.test(target.value)) {
       error.current = false;
-      dispatch(changeStatValue(statName, +target.value));
+      dispatch(changeStatAndSkill(statName, +target.value));
     } else {
       error.current = true;
     }
