@@ -15,3 +15,15 @@
   width: 100%;
   align-self: center;
 }
+
+.noCharacter {
+  position:absolute;
+  top:25%;
+  left:50%;
+  transform:translate(-50%,-25%);
+  font-size: 1.25em;
+  font-weight: bold;
+  width: fit-content;
+  margin: 0 0.5em;
+  color: #fc5c5c;
+}

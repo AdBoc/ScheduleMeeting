@@ -46,7 +46,7 @@ const useCalendar = (user: string | null) => {
     setSelectedApiDays(prev => ({...prev, isFetching: true}));
 
     api.getSelectedMonthData(userDate.selectedMonth, userDate.selectedYear, abortController)
-      .then(response => isMounted && setSelectedApiDays({days: response.daysData, isFetching: false}));
+      .then(response => isMounted.current && setSelectedApiDays({days: response.daysData, isFetching: false}));
 
     return () => {
       abortController.abort();

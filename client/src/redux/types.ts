@@ -48,7 +48,7 @@ export type Skills = {
 export const INCREMENT_SKILL = "INCREMENT_SKILL";
 export const DECREMENT_SKILL = "DECREMENT_SKILL";
 export const TAG_SKILL = "TAG_SKILL";
-// export const CHANGE_SKILL_FROM_STAT = "CHANGE_SKILL_FROM_STAT";
+export const CHANGE_SKILL_FROM_STAT = "CHANGE_SKILL_FROM_STAT";
 
 type IncrementSkill = {
   type: typeof INCREMENT_SKILL;
@@ -65,54 +65,16 @@ type TagSkill = {
   skillName: keyof Skills;
 }
 
-// type ChangeSkillFromStat = {
-//
-// }
-
-
-// /*
-// *Count new skills object based on changed Stat
-//  */
-// public generateNewSkills(skills: RootState["skills"], newValue: number, name: string): RootState["skills"] {
-//   const newSkills = {...skills};
-//   const newMod = this.statModifier(newValue);
-//   switch (name) {
-//     case "Strength":
-//       newSkills.athletics.value = newMod;
-//       break;
-//     case "Dexterity":
-//       newSkills.acrobatics.value = newMod;
-//       newSkills.sleightOfHand.value = newMod;
-//       newSkills.stealth.value = newMod;
-//       break;
-//     case "Intelligence":
-//       newSkills.arcana.value = newMod;
-//       newSkills.history.value = newMod;
-//       newSkills.investigation.value = newMod;
-//       newSkills.nature.value = newMod;
-//       newSkills.religion.value = newMod;
-//       break;
-//     case "Wisdom":
-//       newSkills.animalHandling.value = newMod;
-//       newSkills.insight.value = newMod;
-//       newSkills.medicine.value = newMod;
-//       newSkills.perception.value = newMod;
-//       newSkills.survival.value = newMod;
-//       break;
-//     case "Charisma":
-//       newSkills.deception.value = newMod;
-//       newSkills.intimidation.value = newMod;
-//       newSkills.performance.value = newMod;
-//       newSkills.persuasion.value = newMod;
-//       break;
-//   }
-//   return newSkills;
-// }
-
+type ChangeSkillFromStat = {
+  type: typeof CHANGE_SKILL_FROM_STAT;
+  statName: keyof Stats;
+  newValue: number;
+}
 
 export type SkillActions = IncrementSkill
   | DecrementSkill
-  | TagSkill;
+  | TagSkill
+  | ChangeSkillFromStat;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -362,3 +324,43 @@ type DeleteSpell = {
 
 export type SpellsActions = AddSpell
   | DeleteSpell;
+
+
+// /*
+// *Count new skills object based on changed Stat
+//  */
+// public generateNewSkills(skills: RootState["skills"], newValue: number, name: string): RootState["skills"] {
+//   const newSkills = {...skills};
+//   const newMod = this.statModifier(newValue);
+//   switch (name) {
+//     case "Strength":
+//       newSkills.athletics.value = newMod;
+//       break;
+//     case "Dexterity":
+//       newSkills.acrobatics.value = newMod;
+//       newSkills.sleightOfHand.value = newMod;
+//       newSkills.stealth.value = newMod;
+//       break;
+//     case "Intelligence":
+//       newSkills.arcana.value = newMod;
+//       newSkills.history.value = newMod;
+//       newSkills.investigation.value = newMod;
+//       newSkills.nature.value = newMod;
+//       newSkills.religion.value = newMod;
+//       break;
+//     case "Wisdom":
+//       newSkills.animalHandling.value = newMod;
+//       newSkills.insight.value = newMod;
+//       newSkills.medicine.value = newMod;
+//       newSkills.perception.value = newMod;
+//       newSkills.survival.value = newMod;
+//       break;
+//     case "Charisma":
+//       newSkills.deception.value = newMod;
+//       newSkills.intimidation.value = newMod;
+//       newSkills.performance.value = newMod;
+//       newSkills.persuasion.value = newMod;
+//       break;
+//   }
+//   return newSkills;
+// }

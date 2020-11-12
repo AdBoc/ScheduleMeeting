@@ -13,6 +13,7 @@ import {
   CHANGE_EFFECT_STATUS,
   CHANGE_HP,
   CHANGE_MAX_SLOT_VALUE,
+  CHANGE_SKILL_FROM_STAT,
   CHANGE_SPELL_PROFICIENCY,
   CHANGE_STAT_VALUE,
   CHANGE_STATUS,
@@ -43,8 +44,10 @@ import {
   TAG_ELEMENT,
   TAG_SKILL
 } from "./types";
+import {dndMath} from "../utils/dndMath";
+import {Dispatch} from "redux";
 
-export const changeStatValue = (statName: keyof Stats, newValue: number): StatsActions => ({
+const changeStatValue = (statName: keyof Stats, newValue: number): StatsActions => ({
   type: CHANGE_STAT_VALUE,
   statName,
   newValue
@@ -62,6 +65,12 @@ export const decrementSkill = (skillName: keyof Skills): SkillActions => ({
 export const tagSkill = (skillName: keyof Skills): SkillActions => ({
   type: TAG_SKILL,
   skillName
+})
+
+const changeSkillFromStat = (statName: keyof Stats, newValue: number): SkillActions => ({
+  type: CHANGE_SKILL_FROM_STAT,
+  statName,
+  newValue
 })
 
 export const changeCharacterStat = (statName: keyof CharacterStats, newVal: number): CharacterStatsActions => ({
@@ -171,3 +180,11 @@ export const deleteSpell = (itemId: string): SpellsActions => ({
   type: DELETE_SPELL,
   itemId
 })
+
+export const changeStatAndSkill = (statName: keyof Stats, newValue: number) => {
+  return (dispatch: Dispatch<any>) => {
+    dispatch(changeStatValue(statName, newValue));
+    const skillValue = dndMath.statModifier(newValue);
+    return dispatch(changeSkillFromStat(statName, skillValue));
+  }
+}

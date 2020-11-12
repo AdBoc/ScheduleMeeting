@@ -1,38 +1,13 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext,} from 'react';
 import {userContext} from "../../../context/users";
-
 import styles from './users.module.scss';
-import api from "../../../utils/api";
-import {useDispatch} from "react-redux";
-import {useIsMounted} from "../../../hooks/useIsMounted/useIsMounted";
-import {setCharacter} from "../../../redux/reducers";
 import {useHistory} from 'react-router-dom';
-
 
 const users = ['Janek', 'Witek', 'Sławek', 'Portek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
 
 const Users = () => {
   const history = useHistory();
   const {user, handleUser} = useContext(userContext);
-  const isMounted = useIsMounted();
-  const [fetching, setFetching] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleSheetLink = () => {
-    setFetching(true);
-    api.getCharacter(user!)
-      .then(response => {
-        if (!response && user === localStorage.getItem("user")) {
-          history.push("/sheet");
-        } else if (!!response && user === localStorage.getItem("user")) {
-          dispatch(setCharacter(JSON.parse(response)));
-          history.push("/sheet");
-        }
-      })
-      .finally(() => {
-        if (isMounted) setFetching(false);
-      });
-  }
 
   return (
     <>
@@ -47,10 +22,10 @@ const Users = () => {
           </button>
         )}
       </div>
-      {user && <div className={styles.sheetLinkButton} onClick={handleSheetLink}>
-          <p>Use Sheet</p>
-        {fetching && <div className={styles.spinner}/>}
-      </div>}
+      {user && <button className={styles.sheetLinkButton} onClick={() => {
+        localStorage.setItem("user", user);
+        history.push("/sheet");
+      }}>Use Sheet</button>}
     </>
   )
 }
