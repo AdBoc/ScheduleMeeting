@@ -3,21 +3,19 @@ import {toast} from "react-toastify";
 class Api {
   private _url = "http://localhost:8080/api"
 
-  public async getCharacter(user: string) {
+  public async getCharacter() {
     try {
+      const user = localStorage.getItem("user");
       const response = await fetch(`${this._url}/character`, {
         method: "POST",
         body: JSON.stringify({user}),
       });
       if (response.status === 201) {
-        toast.success("Character Created");
-        return;
-      } else if (response.status === 200) {
-        const character = await response.json();
-        localStorage.setItem("user", user);
-        localStorage.setItem("character", character);
-        return character;
+        toast.success("Character Created")
       }
+      const character = await response.json();
+      localStorage.setItem("character", character);
+      return character;
     } catch (error) {
       toast.error("Connection Error");
       return null;
@@ -57,7 +55,7 @@ class Api {
     } catch (error) {
       console.log(error);
       toast.error("Connection error");
-      if (controller.signal.aborted) return;
+      if (controller.signal.aborted) return {daysData: []};
       return {daysData: []};
     }
   }
