@@ -40,7 +40,7 @@ const AddEffect: React.FC<IProps> = ({handleClose}) => {
         spellCheck="false"
       />
       <TextareaAutosize
-        ref={register({maxLength: 100})}
+        ref={register({maxLength: 150})}
         className={errors.description ? styles.inputError : styles.inputField}
         spellCheck="false"
         name="description"

@@ -13,6 +13,7 @@ import {
   CHANGE_EFFECT_STATUS,
   CHANGE_HP,
   CHANGE_MAX_SLOT_VALUE,
+  CHANGE_QUANTITY,
   CHANGE_SKILL_FROM_STAT,
   CHANGE_SPELL_PROFICIENCY,
   CHANGE_STAT_VALUE,
@@ -144,6 +145,12 @@ export const addItem = (item: EquipmentItem): EquipmentActions => ({
 export const deleteItem = (itemId: string): EquipmentActions => ({
   type: DELETE_ITEM,
   itemId
+})
+
+export const changeEqQuantity = (itemId: string, newValue: number): EquipmentActions => ({
+  type: CHANGE_QUANTITY,
+  itemId,
+  newValue
 })
 
 export const addAttack = (element: Attack): AttacksActions => ({

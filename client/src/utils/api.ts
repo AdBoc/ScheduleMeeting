@@ -40,7 +40,7 @@ class Api {
         body: JSON.stringify({user})
       });
     } catch (e) {
-      toast.error("Connection Error")
+      toast.error("Connection Error");
     }
   }
 
@@ -53,7 +53,6 @@ class Api {
       });
       return response.json();
     } catch (error) {
-      console.log(error);
       toast.error("Connection error");
       if (controller.signal.aborted) return {daysData: []};
       return {daysData: []};

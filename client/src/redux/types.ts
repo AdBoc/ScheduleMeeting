@@ -224,6 +224,7 @@ export type EquipmentItem = {
 
 export const ADD_ITEM = "ADD_ITEM";
 export const DELETE_ITEM = "DELETE_ITEM";
+export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 
 type AddItem = {
   type: typeof ADD_ITEM;
@@ -235,8 +236,15 @@ type DeleteItem = {
   itemId: string;
 }
 
+type ChangeEqQuantity = {
+  type: typeof CHANGE_QUANTITY;
+  itemId: string;
+  newValue: number;
+}
+
 export type EquipmentActions = AddItem
-  | DeleteItem;
+  | DeleteItem
+  | ChangeEqQuantity;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
