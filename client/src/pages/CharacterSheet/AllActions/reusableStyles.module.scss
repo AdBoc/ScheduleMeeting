@@ -95,6 +95,15 @@
 .detailsItem {
   padding: 0.5em;
   font-size: 0.9em;
+  display: block;
+}
+
+.detailsInput {
+  width: 2em;
+  height: 2em;
+  margin: 0 0.25em;
+  text-align: center;
+  background-color: #d6d6d6;
 }
 
 .detailsDelete {

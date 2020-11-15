@@ -44,6 +44,14 @@ export const selectSortedEquipment = createSelector(
   }
 )
 
+export const getEqItemById = (state: RootState, id: string | false) => {
+  if(id) {
+    const itemIndex = state.equipment.findIndex((item) => item.id === id);
+    return state.equipment[itemIndex];
+  }
+  return false;
+}
+
 const getCurrency = (state: RootState) => state.other.currency;
 
 export const selectConvertedGoldValue = createSelector(

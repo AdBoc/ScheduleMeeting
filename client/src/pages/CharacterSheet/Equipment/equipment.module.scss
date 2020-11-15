@@ -40,6 +40,10 @@
   composes: detailsDelete from "../AllActions/reusableStyles.module.scss";
 }
 
+.detailsInput {
+  composes: detailsInput from "../AllActions/reusableStyles.module.scss";
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;

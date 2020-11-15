@@ -22,15 +22,13 @@ const SpellsTable: React.FC<Props> = ({sortingCriteria, handleShowItem, handleSo
         <button className={styles.tableLabel} name="name" onClick={handleSorting}>Name</button>
         <button className={styles.tableLabel} name="level" onClick={handleSorting}>Level</button>
         <button className={styles.tableLabel} name="range" onClick={handleSorting}>Range</button>
-        <button className={styles.tableLabel} name="school" onClick={handleSorting}>School</button>
-        <p>Components</p>
+        <p>Comps</p>
       </div>
       {spells.map(spell => (
         <div key={spell.id} className={styles.spellsGridList} onClick={handleShowItem(spell)}>
           <p>{spell.name}</p>
           <p>{spell.level}</p>
           <p>{spell.range}</p>
-          <p>{spell.school}</p>
           <p>{spell.components}</p>
         </div>
       ))}

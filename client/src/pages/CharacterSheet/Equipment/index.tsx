@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useCustomForm} from "../../../hooks/useCustomForm";
 import {EquipmentItem} from "../../../redux/types";
 import AddItem from "./AddItem";
@@ -8,7 +8,6 @@ import styles from "./equipment.module.scss";
 import CustomPopup from "../../../components/CustomPopup/CustomPopup";
 import Gold from "./Gold";
 import EquipmentItems from "./EquipmentItems";
-import {deleteItem} from "../../../redux/actions";
 import {selectConvertedGoldValue} from "../../../redux/selectors";
 
 const options = [
@@ -24,14 +23,8 @@ const Equipment = () => {
   const totalGold = useSelector(selectConvertedGoldValue);
   const [select, setSelect] = useState<{ label: string, value: string }[] | never[]>([]);
   const [isGold, setIsGold] = useState(false);
-  const dispatch = useDispatch();
 
-  const {showForm, itemDetails, setShowForm, handleHideItem, handleShowItem, setItemDetails} = useCustomForm<EquipmentItem>();
-
-  const handleDelete = () => {
-    if (!!itemDetails) dispatch(deleteItem(itemDetails.id));
-    handleHideItem();
-  }
+  const {showForm, setShowForm} = useCustomForm<EquipmentItem>();
 
   return (
     <>
@@ -55,17 +48,9 @@ const Equipment = () => {
         hasSelectAll={false}
         disableSearch={true}
       />
-      <EquipmentItems sortingCriteria={select} handleShowItem={handleShowItem}/>
-      {itemDetails &&
-      <CustomPopup hideElement={setItemDetails}>
-          <div className={styles.itemDetails}>
-              <p className={styles.detailsLabel}>{itemDetails.name}</p>
-            {itemDetails.description && <p className={styles.detailsLabel}>{itemDetails.description}</p>}
-              <p className={styles.detailsLabel}>{itemDetails.quantity ? itemDetails.quantity : "-"}</p>
-              <button className={styles.detailsDelete} onClick={handleDelete}>Delete</button>
-          </div>
-      </CustomPopup>
-      }
+      <EquipmentItems
+        sortingCriteria={select}
+      />
     </>
   );
 }
