@@ -3,7 +3,7 @@ import {userContext} from "../../../context/users";
 import styles from './users.module.scss';
 import {useHistory} from 'react-router-dom';
 
-const users = ['Janek', 'Witek', 'Sławek', 'Portek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
+const users = ['Janek', 'Witek', 'Sławek', 'Piotrek', 'Adrian', 'Adam', 'Krzysiek', 'Maciek'];
 
 const Users = () => {
   const history = useHistory();
