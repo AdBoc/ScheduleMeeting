@@ -11,7 +11,7 @@ class Api {
         body: JSON.stringify({user}),
       });
       if (response.status === 201) {
-        toast.success("Character Created")
+        toast.success("Character Created");
       }
       const character = await response.json();
       localStorage.setItem("character", character);
@@ -65,7 +65,7 @@ class Api {
         method: "POST",
         body: JSON.stringify({month, year, user})
       });
-      if (response.status === 403) return toast.error("Select only next two months");
+      if (response.status === 403) return toast.error("Select date in current or next month");
     } catch (e) {
       return toast.error("Connection Error");
     }
@@ -77,7 +77,7 @@ class Api {
         method: "POST",
         body: JSON.stringify({month, year, user})
       });
-      if (response.status === 403) return toast.error("Select only next two months");
+      if (response.status === 403) return toast.error("Select date in current or next month");
     } catch (e) {
       return toast.error("Connection Error");
     }
@@ -89,7 +89,7 @@ class Api {
         method: "POST",
         body: JSON.stringify({month, year, day, user}),
       });
-      if (response.status === 403) return toast.error("Select only next two months")
+      if (response.status === 403) return toast.error("Select date in current or next month");
     } catch (e) {
       return toast.error("Connection Error");
     }
