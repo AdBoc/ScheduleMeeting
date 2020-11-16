@@ -34,27 +34,16 @@ func SelectedDaysRange(year int, month int) (startDay, endDay int) {
 func VerifyMonthLimit(newMonth int, newYear int) error {
 	currentDate := time.Now()
 	currentYear := currentDate.Year()
-
 	currentMonth := int(currentDate.Month())
 	nextMonth := int(currentDate.Month() + 1)
-	nextNextMonth := int(currentDate.Month() + 2)
-	currentCurrentYear := currentYear
 
-	if newMonth == currentMonth && newYear == currentYear {
+	if currentMonth == 12 && newMonth == 1 && newYear == currentYear+1 {
 		return nil
 	}
 
-	if currentMonth+1 > 11 {
-		currentYear++
-		nextMonth = (currentMonth + 1) % 12
-		nextNextMonth = (currentMonth + 2) % 12
-	} else if currentMonth+2 > 11 {
-		currentCurrentYear++
-		nextNextMonth = (currentMonth + 2) % 12
-	}
-
-	if newMonth == nextMonth && newYear == currentYear || newMonth == nextNextMonth && newYear == currentCurrentYear {
+	if (newMonth == currentMonth || newMonth == nextMonth) && newYear == currentYear {
 		return nil
 	}
+
 	return errors.New("date is out of bounds")
 }
