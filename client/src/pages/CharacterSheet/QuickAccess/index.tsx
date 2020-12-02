@@ -45,7 +45,7 @@ const QuickAccess = () => {
       <hr className={styles.hl}/>
       <Checkbox label="Inspiration" propertyName="inspiration"/>
       <hr className={styles.hl}/>
-      <button className={styles.defaultButton}><Link className={styles.linkColor} to="/">Show Calendar</Link></button>
+      <Link className={styles.defaultButton} to="/">Show Calendar</Link>
       <button className={styles.defaultButton} onClick={handleCopy}>Copy JSON</button>
       <button className={styles.dangerButton} onClick={handleDelete}>Delete Character</button>
     </>
